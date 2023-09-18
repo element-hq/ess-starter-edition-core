@@ -1,4 +1,4 @@
-# © 2023 New-Vector
+# Copyright 2023 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -8,13 +8,13 @@ Upstream-Contact: New-Vector
 Source: https://gitlab.matrix.org
 
 Files: helm/operator/fragments/*
-Copyright:  © 2023 New-Vector
+Copyright:  Copyright 2023 New Vector Ltd
 License: AGPL-3.0-or-later
 
 Files: helm/operator/yq/*
-Copyright:  © 2023 New-Vector
+Copyright:  Copyright 2023 New Vector Ltd
 License: AGPL-3.0-or-later
 
 Files: helm/updater/fragments/*
-Copyright:  © 2023 New-Vector
+Copyright:  Copyright 2023 New Vector Ltd
 License: AGPL-3.0-or-later

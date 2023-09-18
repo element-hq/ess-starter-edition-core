@@ -1,14 +1,17 @@
-<meta name="copyright" value="SPDX-FileCopyrightText:© 2023 New-Vector">
+<meta name="copyright" value="SPDX-FileCopyrightText:Copyright 2023 New Vector Ltd">
 <meta name="license" value="SPDX-License-Identifier: AGPL-3.0-or-later">
 
-# An Operator for managing Matrix stacks
+# Element Starter Core
+Copyright 2023 New Vector Ltd
+
+## An Operator for managing Matrix stacks
 
 This operator contains CRDs and a controller for managing numerous components from the Matrix stack.
 The list of the managed components can be found in the `watches.yml` file.
 
 The operator supports running in any kubernetes cluster, including Openshift.
 
-## Architecture
+### Architecture
 
 The operator is managing the components CRD to deploy the kubernetes workloads, ingresses, etc.
 
@@ -16,13 +19,13 @@ Each component CRD can be configured independantly from the others. Some compone
 
 To make it easier to write coherent and integrated components CRDs, it is possible to deploy the updater. The updater watches `ElementDeployment` CRD, and generates element resources CRDs to be ingested by the operator.
 
-## Installing the Operator
+### Installing the Operator
 
-### Introduction
+#### Introduction
 
 This document will walk you through how to get started with our Element Starter Edition Core. We require that you have a kubernetes environment to deploy into. If you do not have a kuberentes environment in which to deploy this, we have had experience deploying into a single node microk8s environment.
 
-### Requirements
+#### Requirements
 
 * Kubernetes
   * `cert-manager` will need to be installed and provide an appropriately configured `ClusterIssuer` named `letsencrypt`
@@ -30,7 +33,7 @@ This document will walk you through how to get started with our Element Starter 
 * PostgreSQL database with a UTF-8 encoding and a C Locale.
 
 
-### Installing the Helm Chart Repositories
+#### Installing the Helm Chart Repositories
 
 The first step is to start on a machine with helm v3 installed and configured with your kubernetes cluster and pull down the two charts that you will need.
 
@@ -53,7 +56,7 @@ NAME                                    URL
 ess-starter-edition-core                https://vector-im.github.io/ess-starter-edition-core
 ```
 
-### Creating namespaces for the `element-operator` and `element-updater`
+#### Creating namespaces for the `element-operator` and `element-updater`
 
 To be able to run the helm charts, they will need a namespace to run in. You can make this whatever you would like, but for the sake of this guide, we will create an `element-operator` namespace and an `element-updater` namespace. To do this, please follow this step:
 
@@ -62,7 +65,7 @@ kubectl create ns element-operator
 kubectl create ns element-updater
 ```
 
-### Installing the helm charts for the `element-updater` and the `element-operator`
+#### Installing the helm charts for the `element-updater` and the `element-operator`
 
 To install the helm charts and actually deploy the `element-updater` and the `element-operator` with their default configurations, simply run:
 
@@ -82,7 +85,7 @@ NAME                                                   READY   STATUS    RESTART
 element-operator-controller-manager-778c8bfbcf-4zzpl   2/2     Running   6 (8h ago)   2d
 ```
 
-### Generating the ElementDeployment CRD to Deploy Element Server Suite
+#### Generating the ElementDeployment CRD to Deploy Element Server Suite
 
 1) Create a CRD definition on your own starting from this base template:
 
@@ -159,7 +162,7 @@ element-operator-controller-manager-778c8bfbcf-4zzpl   2/2     Running   6 (8h a
 
  For more information on this option, please see our Element Deployment CRD documentation. Note: At present, this has not been written.
 
-### Loading secrets into kubernetes in preparation of deployment
+#### Loading secrets into kubernetes in preparation of deployment
 
 *N.B. This guide assumes that you are using the `element-onprem` namespace for deploying Element. You can call it whatever you want and if it doesn't exist yet, you can create it with: `kubectl create ns element-onprem`.*
 
@@ -173,27 +176,27 @@ import base64
 import signedjson.key
 from datetime import datetime
 
-# Define the secrets file
+## Define the secrets file
 SECRETS_FILE = 'secrets.yml'
 
-# Function to generate a secret and format it properly
+## Function to generate a secret and format it properly
 def generate_secret(name):
     value = base64.b64encode(os.urandom(32)).decode('utf-8')
     return f'  {name}: "{value}"'
 
-# Function to format postgres password
+## Function to format postgres password
 def encode_pgpassword(name, pgpassword):
     encoded_value = base64.b64encode(pgpassword.encode('utf-8')).decode('utf-8')
     return f'  {name}: "{encoded_value}"'
 
-# Function to generate unique signing key for Synapse
+## Function to generate unique signing key for Synapse
 def generate_signing_key(name):
     signing_key = signedjson.key.generate_signing_key(0)
     value = f'{signing_key.alg} {signing_key.version} {signedjson.key.encode_signing_key_base64(signing_key)}'
     encoded_value = base64.b64encode(value.encode('utf-8')).decode('utf-8')
     return f'  {name}: "{encoded_value}"'
 
-# Check if the secrets file exists
+## Check if the secrets file exists
 if os.path.isfile(SECRETS_FILE):
     timestamp = datetime.now().strftime("%s")
     backup_file = f"{SECRETS_FILE}.bak.{timestamp}"
@@ -205,7 +208,7 @@ if os.path.isfile(SECRETS_FILE):
 pgpassword = input("Enter your Postgres Password: ")
 
 
-# Populate secrets
+## Populate secrets
 print("Populating secrets.")
 
 with open(SECRETS_FILE, 'a') as f:
@@ -233,14 +236,14 @@ data:
     f.write(generate_signing_key("signingKey") + '\n')
     f.write(encode_pgpassword("pgpassword", pgpassword) + '\n')
 
-# Tell the user we are done
+## Tell the user we are done
 print(f"Done. Secrets are in {SECRETS_FILE}.")
 
 ```
 
 create a file `build_secrets.py` with this content and then run it with `python3 ./build_secrets.py` to creat a `secrets.yml` that can be added to the `element-onprem` namespace with `kubectl apply -f secrets.yml`
 
-### Deploying the actual CRD
+#### Deploying the actual CRD
 
 At this point, we are ready to deploy the ElementDeployment CRD into our cluster with the following command:
 
@@ -270,7 +273,7 @@ Watching pods come up in the `element-onprem` namespace:
 watch kubectl get pods -n element-onprem
 ```
 
-### Updating the helm charts and the underlying deployment
+#### Updating the helm charts and the underlying deployment
 
 To install the helm charts and actually deploy the `element-updater` and the `element-operator` with their default configurations, simply run:
 
@@ -280,7 +283,7 @@ helm upgrade element-updater ess-starter-edition-core/element-updater --namespac
 helm upgrade element-operator ess-starter-edition-core/element-operator --namespace element-operator
 ```
 
-### Registering a new user
+#### Registering a new user
 
 If you have registration closed, you will need to be able to create new users. To do that with the starter edition core, you can use `kubectl exec` to open a shell in the synapse pod and use the `register_new_matrix_user` command to accomplish this action.
 
