@@ -1,0 +1,10 @@
+.metadata.name |= sub("element-updater", "{{ .Values.prefix }}") |
+(. | select(.kind == "Namespace")).metadata.name |= "{{ .Release.Namespace }}" |
+(.metadata | select(has("namespace"))).namespace |= "{{ .Release.Namespace }}" |
+((. | select(has("roleRef"))).roleRef | select(has("name"))).name |= sub("element-updater", "{{ .Values.prefix }}") |
+((. | select(has("roleRef"))).roleRef | select(has("name"))).name |= sub("^manager$", "{{ .Values.prefix }}-manager") |
+((. | select(has("subjects"))).subjects[] | select(has("name"))).name |= sub("element-updater", "{{ .Values.prefix }}") |
+((. | select(has("subjects"))).subjects[] | select(has("namespace"))).namespace = "{{ .Release.Namespace }}" |
+((.metadata | select(has("labels"))).labels | select(has("app.kubernetes.io/instance")))."app.kubernetes.io/instance"  |= sub("controller-manager", "{{ .Values.prefix }}-controller-manager") |
+(((. | select(has("spec"))).spec | select(has("selector"))).selector | select(has("app.kubernetes.io/instance")))."app.kubernetes.io/instance" |= sub("controller-manager", "{{ .Values.prefix }}-controller-manager") |
+(((. | select(has("spec"))).spec | select(has("selector"))).selector | select(has("matchLabels"))).matchLabels."app.kubernetes.io/instance" |= sub("controller-manager", "{{ .Values.prefix }}-controller-manager")

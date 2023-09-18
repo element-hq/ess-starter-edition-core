@@ -1,0 +1,54 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    {{ _matrix_element_io_synapse_spec.ingress.annotations | default({}) | to_nice_yaml(2) | indent(4) }}
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: synapse-haproxy
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-server-ingress
+    app.kubernetes.io/version: "{{ image.tag }}"
+  name: "{{ ansible_operator_meta.name }}-synapse"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+{% if ingress.tls_secret | default(false) %}
+  tls:
+  - hosts:
+      - "{{ ingress.domain_name }}"
+    secretName: "{{ ingress.tls_secret }}"
+{% endif %}
+{% if ingress.ingress_class_name | default(false) %}
+  ingressClassName: "{{ ingress.ingress_class_name }}"
+{% endif %}
+  rules:
+  - host: "{{ ingress.domain_name }}"
+    http:
+      paths:
+{% for _external_path in ingress.additional_paths | default([]) %}
+{% if 'match_hostname' not in _external_path or _external_path.match_hostname == ingress.domain_name %}
+      - path: {{ _external_path.path }}
+        pathType: Prefix
+        backend:
+          service:
+            name: "{{ _external_path.service.name }}"
+            port: {{ _external_path.service.port | to_json }}
+{% endif %}
+{% endfor %}
+{% for _synapse_path in ["/_matrix", "/_synapse"] %}
+      - path: {{ _synapse_path }}
+        pathType: Prefix
+        backend:
+          service:
+            name: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+            port:
+              name: haproxy-http
+{% endfor %}

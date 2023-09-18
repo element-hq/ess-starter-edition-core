@@ -1,0 +1,97 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# This kustomization.yaml is not intended to be run by itself,
+# since it depends on service name and namespace that are out of this kustomize package.
+# It should be run by config/default
+resources:
+  - ../../inline-patches/starter-core
+patches:
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: default-resources-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: elementWeb
+    $patch: delete
+  - |
+    kind: KustomizeSchema
+    metadata:
+      name: matrixContentScanner
+    $patch: delete
+  - |
+    kind: KustomizeSchema
+    metadata:
+      name: slidingSync
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: synapse
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: wellKnownDelegation
+    $patch: delete
+  # common to cleanup
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: global
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-common
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-ingresses
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-monitoring
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-services
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-storage
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-storage-pvc-template
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-workloads
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-workloads-resources
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: postgres-golang
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: postgres-libpq
+    $patch: delete

@@ -1,0 +1,27 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: matrix.element.io/v1alpha1
+kind: WellKnownDelegation
+metadata:
+  name: sample
+spec:
+  ingress:
+    domainName: fdqn.tld
+    annotations:
+      route.openshift.io/termination: edge
+  workloads:
+    annotations:
+      some.annotation.io/info: custom
+  service:
+    type: ClusterIP
+  config:
+    client:
+      homeserverBaseUrl: https://your-synapse.fqdn.tld
+    federation:
+      endpoint: your-synapse.fqdn.tld:443
+    replicas: 1
+    podSecurityContext:
+      supplementalGroups: [65534]

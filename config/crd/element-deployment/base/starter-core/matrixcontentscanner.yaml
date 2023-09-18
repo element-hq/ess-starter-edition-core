@@ -1,0 +1,53 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+- op: add
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner'
+  value:
+    type: object
+    description: A web service for scanning media hosted on a Matrix media repository.
+    properties:
+      secretName:
+        default: matrix-content-scanner
+        type: string
+        description: The secret data associated to MatrixContentScanner config
+        pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+        maxLength: 253
+      config:
+        description: This field will be replaced by kustomize
+      k8s:
+        type: object
+        required:
+          - matrixContentScanner
+        properties:
+          common:
+            description: This field will be replaced by kustomize
+          clamAntiVirus:
+            type: object
+            default: {}
+            properties:
+              workloads:
+                description: This field will be replaced by kustomize
+              monitoring:
+                description: This field will be replaced by kustomize
+              storage:
+                description: This field will be replaced by kustomize
+          icap:
+            type: object
+            default: {}
+            properties:
+              workloads:
+                description: This field will be replaced by kustomize
+          matrixContentScanner:
+            type: object
+            required:
+              - storage
+            properties:
+              workloads:
+                description: This field will be replaced by kustomize
+              monitoring:
+                description: This field will be replaced by kustomize
+              storage:
+                description: This field will be replaced by kustomize

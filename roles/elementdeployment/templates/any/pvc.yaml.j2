@@ -1,0 +1,26 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{% if components_k8s_properties.storage.volume.size | default(false)  %}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ ansible_operator_meta.name }}-{{ _component_item | regex_replace('_', '-') }}
+  namespace: {{ ansible_operator_meta.namespace }}
+  labels:
+    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
+    app.kubernetes.io/managed-by: element-updater
+spec:
+{% if components_k8s_properties.storage.storage_class_name | default(global.k8s.storage.storage_class_name) | default(false) %}
+  storageClassName: "{{ components_k8s_properties.storage.storage_class_name | default(global.k8s.storage.storage_class_name) }}"
+{% endif %}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: "{{ components_k8s_properties.storage.volume.size }}"
+{% endif %}

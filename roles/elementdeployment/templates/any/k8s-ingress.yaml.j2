@@ -1,0 +1,32 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{%- set _ingress_annotations = _matrix_element_io_elementdeployment_spec.global.k8s.common.annotations
+                                | combine(_matrix_element_io_elementdeployment_spec.global.k8s.ingresses.annotations)
+                                | combine(components_k8s_properties_camelled.common.annotations)
+                                | combine(components_ingress_properties_camelled.annotations)
+                                | dict2items
+                                | rejectattr('value', 'equalto', '')
+                                | items2dict %}
+{% if _ingress_annotations | length > 0 or
+      (components_ingress_tls.mode | default('') == "certmanager" and
+       components_ingress_tls.certmanager.issuer | default(false)) %}
+annotations:
+  {{ _ingress_annotations
+    | combine((components_ingress_tls.mode | default('') == "certmanager" and
+               components_ingress_tls.certmanager.issuer | default(false))
+              | ternary({'cert-manager.io/cluster-issuer': components_ingress_tls.certmanager.issuer},
+                        {}))
+    | to_nice_yaml(indent=2) | indent(2) }}
+{% endif %}
+{% if components_ingress_tls.mode | default('') != 'external' %}
+tlsSecret: {{ components_ingress_tls.secret_name | default(ansible_operator_meta.name ~ '-' ~ _tls_secret) }}
+{% endif %}
+domainName: "{{ _ingress_fqdn | default(components_ingress_properties.fqdn) }}"
+{% if components_ingress_ingress_class_name | length > 0 %}
+ingressClassName: {{ components_ingress_ingress_class_name }}
+{% endif %}

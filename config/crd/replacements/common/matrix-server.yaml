@@ -1,0 +1,19 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: matrix-server
+spec:
+  schema:
+    description: Defines which Matrix server this component should point at.
+    type: object
+    properties:
+      baseUrl:
+        description: Domain name where the Matrix server is hosted
+        type: string
+      serverName:
+        description: Server name of the default Matrix server (if distinct from the baseUrl)
+        type: string

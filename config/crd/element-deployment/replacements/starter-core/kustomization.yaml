@@ -1,0 +1,248 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# This kustomization.yaml is not intended to be run by itself,
+# since it depends on service name and namespace that are out of this kustomize package.
+# It should be run by config/default
+resources:
+  - ../../../default-resources/starter-core
+  - ../../base/starter-core
+  - elementweb.yaml
+  - matrixContentScanner.yaml
+  - slidingSync.yaml
+  - synapse.yaml
+  - wellknowndelegation.yaml
+  - global.yaml
+  - k8s-common.yaml
+  - k8s-services.yaml
+  - k8s-ingresses.yaml
+  - k8s-monitoring.yaml
+  - k8s-storage-pvc-template.yaml
+  - k8s-storage.yaml
+  - k8s-workloads.yaml
+  - k8s-workloads-resources.yaml
+  - postgres-golang.yaml
+  - postgres-libpq.yaml
+replacements:
+  - source:
+      kind: KustomizeSchema
+      name: k8s-common
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.global.properties.k8s.properties.common
+  - source:
+      kind: KustomizeSchema
+      name: k8s-ingresses
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.global.properties.k8s.properties.ingresses
+  - source:
+      kind: KustomizeSchema
+      name: k8s-monitoring
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.global.properties.k8s.properties.monitoring
+  - source:
+      kind: KustomizeSchema
+      name: k8s-workloads
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.global.properties.k8s.properties.workloads
+  - source:
+      kind: KustomizeSchema
+      name: global
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.global.properties.config
+  - source:
+      kind: KustomizeSchema
+      name: k8s-common
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.common
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.common
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.common
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.common
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.common
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.k8s.properties.common
+  - source:
+      kind: KustomizeSchema
+      name: k8s-ingresses
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.ingress
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.ingress
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.ingress
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.k8s.properties.ingress
+  - source:
+      kind: KustomizeSchema
+      name: k8s-monitoring
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.monitoring
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.monitoring
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.api.properties.monitoring
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.monitoring
+  - source:
+      kind: KustomizeSchema
+      name: k8s-storage
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.storage
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.storage
+  - source:
+      kind: KustomizeSchema
+      name: k8s-storage-pvc-template
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.storage
+  - source:
+      kind: KustomizeSchema
+      name: k8s-workloads
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.icap.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.api.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.haproxy.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.redis.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.workloads
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.k8s.properties.workloads
+  - source:
+      kind: KustomizeSchema
+      name: elementWeb
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.config
+  - source:
+      kind: KustomizeSchema
+      name: matrixContentScanner
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.config
+  - source:
+      kind: KustomizeSchema
+      name: slidingSync
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.config
+  - source:
+      kind: KustomizeSchema
+      name: synapse
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.config
+  - source:
+      kind: KustomizeSchema
+      name: wellKnownDelegation
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.config
+  - source:
+      kind: KustomizeSchema
+      name: postgres-golang
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.config.properties.postgresql
+  - source:
+      kind: KustomizeSchema
+      name: postgres-libpq
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.config.properties.postgresql
+  - source:
+      kind: KustomizeSchema
+      name: k8s-workloads-resources
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.icap.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.api.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.config.properties.workers.items.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.haproxy.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.redis.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.workloads.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.k8s.properties.workloads.properties.resources
+  - path: default-resources-replacements.yaml

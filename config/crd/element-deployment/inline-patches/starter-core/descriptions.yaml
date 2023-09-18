@@ -1,0 +1,14 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+- op: replace
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/ingresses/properties/tls/properties/certificate/description'
+  value: The default certificate for every ingresses can be configured here. It can be used for example if you plan to use a wildcard certificate, or a certificate containing all components fqdns as SAN.
+- op: replace
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/ingresses/properties/tls/properties/mode/description'
+  value: The default TLS mode of deployed ingresses. Use external if TLS is managed externaly to the cluster, certmanager if you want to use cert manager to issue certificate automatically, or certfile if you want to upload certificate files to kubernetes tls secrets manually.
+- op: replace
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/common/description'
+  value: The annotations to add to every workloads, volume claims and service monitors deployed

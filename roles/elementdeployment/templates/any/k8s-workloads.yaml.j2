@@ -1,0 +1,28 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{%- set _workload_annotations = _matrix_element_io_elementdeployment_spec.global.k8s.common.annotations
+                          | combine(_matrix_element_io_elementdeployment_spec.global.k8s.workloads.annotations)
+                          | combine(_matrix_element_io_elementdeployment_spec.components[_component_item | camel_case(true)].k8s.common.annotations
+                                    | default({})
+                                    )
+                          | combine(components_k8s_properties_camelled.workloads.annotations)
+                          | dict2items
+                          | rejectattr('value', 'equalto', '')
+                          | items2dict %}
+{%- set _workload_env = _extraEnv | default([]) %}
+{% if _workload_annotations | length > 0 or _workload_env | length > 0 %}
+workloads:
+{% if _workload_annotations | length > 0 %}
+  annotations:
+    {{ _workload_annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+{% if  _workload_env | length > 0 %}
+  extraEnv:
+  {{ _workload_env | to_nice_yaml(indent=2) | indent(2) }}
+{% endif %}
+{% endif %}

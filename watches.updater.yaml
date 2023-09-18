@@ -1,0 +1,13 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+# Use the 'create api' subcommand to add watches to this file.
+- version: v1alpha1
+  group: matrix.element.io
+  kind: ElementDeployment
+  role: elementdeployment
+  watchAnnotationsChanges: true
+#+kubebuilder:scaffold:watch

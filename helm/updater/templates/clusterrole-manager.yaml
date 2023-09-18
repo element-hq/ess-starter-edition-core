@@ -1,0 +1,130 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: '{{ .Values.clusterDeployment | ternary "ClusterRole" "Role" }}'
+metadata:
+  name: '{{ .Values.prefix }}-manager'
+  {{- if not $.Values.clusterDeployment }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
+rules:
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - elementdeployments
+      - elementdeployments/status
+      - elementdeployments/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - elementwebs
+      - elementwebs/status
+      - elementwebs/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - matrixcontentscanners
+      - matrixcontentscanners/status
+      - matrixcontentscanners/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - slidingsyncs
+      - slidingsyncs/status
+      - slidingsyncs/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - synapses
+      - synapses/status
+      - synapses/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - wellknowndelegations
+      - wellknowndelegations/status
+      - wellknowndelegations/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+      - configmaps
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - persistentvolumeclaims
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - monitoring.coreos.com
+    resources:
+      - servicemonitors
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch

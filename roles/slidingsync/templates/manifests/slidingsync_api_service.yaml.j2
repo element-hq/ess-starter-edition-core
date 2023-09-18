@@ -1,0 +1,32 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: sliding-sync-api
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-sliding-sync-api"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-sliding-sync
+    app.kubernetes.io/version: "{{ image.api.tag }}"
+  name: "{{ ansible_operator_meta.name }}-sliding-sync-api"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+  type: "{{ service.type | default('ClusterIP', true) }}"
+  ports:
+    - port: {{ _ss_port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: {{ _metrics_port }}
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+  selector:
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-sliding-sync-api"

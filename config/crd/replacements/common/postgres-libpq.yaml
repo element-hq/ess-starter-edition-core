@@ -1,0 +1,43 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: postgres-libpq
+spec:
+  schema:
+    description: Configuration of the PostgreSQL database
+    type: object
+    required:
+      - host
+      - user
+      - name
+    properties:
+      host:
+        description: Database host to connect to
+        type: string
+      port:
+        description: Port to connect to
+        type: integer
+        default: 5432
+        minimum: 0
+        maximum: 65535
+      user:
+        description: Username to use for auth
+        type: string
+      name:
+        description: Database within the PostgreSQL instance to use
+        type: string
+      sslmode:
+        description: TLS settings to use for the PostgreSQL connection
+        type: string
+        default: prefer
+        enum:
+          - disable
+          - allow
+          - prefer
+          - require
+          - verify-ca
+          - verify-full

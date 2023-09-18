@@ -1,0 +1,17 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Maintain Synapse Redis config"
+  kubernetes.core.k8s:
+    template: manifests/redis_configmap.yaml.j2
+
+- name: "Maintain Synapse Redis deployment"
+  kubernetes.core.k8s:
+    template: manifests/redis_deployment.yaml.j2
+
+- name: "Maintain Synapse Redis service"
+  kubernetes.core.k8s:
+    template: manifests/redis_service.yaml.j2

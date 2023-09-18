@@ -1,0 +1,18 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+
+
+
+# close client connections 5m after the last request
+# (as recommened by https://support.cloudflare.com/hc/en-us/articles/212794707-General-Best-Practices-for-Load-Balancing-with-CloudFlare)
+_haproxy_timeout_client: '900s'
+
+# give clients 5m between requests (otherwise it defaults to the value of 'timeout http-request')
+_haproxy_timeout_http_keep_alive: '900s'
+
+# give clients 10s to complete a request (either time between handshake and first request, or time spent sending headers)
+_haproxy_timeout_http_request: '10s'

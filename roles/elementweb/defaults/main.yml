@@ -1,0 +1,12 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+image_repository: vectorim/element-web
+image_pull_secrets: []
+image_has_digest: "{{ (image.digest | default('')) | length > 0 }}"
+image_pull_policy: "{{ image_has_digest | ternary('IfNotPresent', 'Always') }}"
+
+replicas: 2

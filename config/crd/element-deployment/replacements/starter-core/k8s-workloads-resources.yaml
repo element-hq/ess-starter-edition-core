@@ -1,0 +1,36 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: k8s-workloads-resources
+spec:
+  schema:
+    description: Kubernetes resources to allocate to each instance.
+    type: object
+    default: {}
+    properties:
+      limits:
+        default:
+          description: This will be replaced by kustomize
+        additionalProperties:
+          anyOf:
+            - type: integer
+            - type: string
+          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+          x-kubernetes-int-or-string: true
+        description: 'Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+        type: object
+      requests:
+        default:
+          description: This will be replaced by kustomize
+        additionalProperties:
+          anyOf:
+            - type: integer
+            - type: string
+          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+          x-kubernetes-int-or-string: true
+        description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+        type: object

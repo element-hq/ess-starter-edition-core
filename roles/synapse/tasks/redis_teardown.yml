@@ -1,0 +1,29 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Remove Synapse Redis service"
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: Service
+    name: "{{ ansible_operator_meta.name }}-synapse-redis"
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    state: absent
+
+- name: "Remove Synapse Redis deployment"
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    kind: Deployment
+    name: "{{ ansible_operator_meta.name }}-synapse-redis"
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    state: absent
+
+- name: "Remove Synapse Redis config"
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: ConfigMap
+    name: "{{ ansible_operator_meta.name }}-synapse-redis"
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    state: absent

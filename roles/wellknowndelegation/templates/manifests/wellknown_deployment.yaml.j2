@@ -1,0 +1,126 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-delegation
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: well-known
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-well-known"
+    app.kubernetes.io/version: "{{ image.tag | default(image_tag) }}"
+{% if workloads.annotations | default([]) %}
+  annotations:
+    {{ _matrix_element_io_wellknowndelegation_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+  name: "{{ ansible_operator_meta.name }}-well-known"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+  replicas: {{ config.replicas | default(replicas) }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-well-known"
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: matrix-stack
+        app.kubernetes.io/component: matrix-delegation
+        app.kubernetes.io/managed-by: element-operator
+        app.kubernetes.io/name: well-known
+        app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-well-known"
+        app.kubernetes.io/version: "{{ image.tag | default(image_tag) }}"
+        k8s.element.io/confighash: "{{ (nginx_config + (client_json | to_nice_json) + (server_json | to_nice_json)) | hash('sha1') }}"
+{% if workloads.annotations | default([]) %}
+      annotations:
+        {{ _matrix_element_io_wellknowndelegation_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+    spec:
+{% if config.replicas | default(replicas) > 1 %}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/instance
+                operator: In
+                values:
+                - "{{ ansible_operator_meta.name }}-well-known"
+            topologyKey: kubernetes.io/hostname
+{% endif %}
+      automountServiceAccountToken: false
+{% if (image.pull_secrets | default(image_pull_secrets)) | length > 0 %}
+      imagePullSecrets:
+      {{ (image.pull_secrets | default(image_pull_secrets)) | to_nice_yaml(indent=6) | indent(6) }}
+{% endif %}
+{% if (_matrix_element_io_wellknowndelegation_spec.config.podSecurityContext | default({})) | length > 0 %}
+      securityContext:
+        {{ _matrix_element_io_wellknowndelegation_spec.config.podSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+      containers:
+      - name: well-known
+{% if image_has_digest %}
+        image: "{{ image.repository | default(image_repository) }}@{{ image.digest }}"
+{% else %}
+        image: "{{ image.repository | default(image_repository) }}:{{ image.tag | default(image_tag) }}"
+{% endif %}
+        imagePullPolicy: "{{ image.pull_policy | default(image_pull_policy) }}"
+{% if (_matrix_element_io_wellknowndelegation_spec.config.containersSecurityContext | default({})) | length > 0 %}
+        securityContext:
+          {{ _matrix_element_io_wellknowndelegation_spec.config.containersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+        ports:
+        - containerPort: 8080
+          name: well-known
+          protocol: TCP
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /.well-known/matrix/server
+            port: well-known
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /.well-known/matrix/server
+            port: well-known
+            scheme: HTTP
+          initialDelaySeconds: 2
+          periodSeconds: 3
+        resources:
+          {{ config.resources | to_nice_yaml(indent=10) | indent(10) }}
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html/.well-known/matrix
+          name: well-known
+          readOnly: true
+        - mountPath: /etc/nginx/nginx.conf
+          name: nginx-config
+          readOnly: true
+          subPath: nginx.conf
+        - mountPath: /tmp
+          name: nginx-tmp
+      restartPolicy: Always
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: "{{ ansible_operator_meta.name }}-well-known"
+        name: well-known
+      - configMap:
+          defaultMode: 420
+          name: "{{ ansible_operator_meta.name }}-well-known-nginx"
+        name: nginx-config
+      - emptyDir:
+          medium: Memory
+        name: nginx-tmp

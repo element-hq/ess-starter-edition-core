@@ -1,0 +1,31 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: matrix.element.io/v1alpha1
+kind: Synapse
+metadata:
+  name: sample
+spec:
+  image:
+    tag: latest
+  ingress:
+    domainName: matrix.fqdn.tld
+    annotations:
+      route.openshift.io/termination: edge
+  service:
+    type: ClusterIP
+  config:
+    externalSecret:
+      name: synapse-secrets
+    serverName: fqdn.tld
+    database:
+      host: postgres
+      user: synapse_user
+      name: synapse
+    haproxy:
+      timeoutHttpRequest: 30s
+    media:
+      volumeClaim: synapse-media
+    registration: open

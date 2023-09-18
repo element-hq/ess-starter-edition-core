@@ -1,0 +1,77 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: k8s-workloads
+spec:
+  schema:
+    type: object
+    default: {}
+    description: Settings dedicated to k8s workloads
+    properties:
+      dockerSecrets:
+        type: array
+        items:
+          type: object
+          required:
+            - url
+            - name
+          properties:
+            url:
+              type: string
+              description: The docker registry url for this secret
+            name:
+              type: string
+              description: Docker secret to use for ems image store
+      hostAliases:
+        type: array
+        description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+        items:
+          type: object
+          required:
+            - ip
+            - hostnames
+          properties:
+            ip:
+              description: An IP resolution to add to /etc/hosts
+              type: string
+            hostnames:
+              type: array
+              items:
+                type: string
+                description: An hostname of the associated ip to add to /etc/hosts
+                pattern: ^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$
+      securityContext:
+        type: object
+        default: {}
+        properties:
+          forceUidGid:
+            type: string
+            enum:
+              - enable
+              - disable
+            description: Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.
+          setSecComp:
+            type: string
+            enum:
+              - enable
+              - disable
+            description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
+          runAsUser:
+            type: number
+            description: The runAsUser UID to use if securityContextForceUidGid is enabled
+          fsGroup:
+            type: number
+            description: The fsGroup GID to use if securityContextForceUidGid is enabled
+      annotations:
+        description: The annotations to add to the workload
+        type: object
+        default: {}
+        additionalProperties:
+          description: Defines the annotations to add
+          type: string
+      resources:
+        description: This field will be replaced by kustomize

@@ -1,0 +1,118 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+  name: '{{ .Values.prefix }}-controller-manager'
+  namespace: '{{ .Release.Namespace }}'
+{{- if $.Values.updater.annotations }}
+  annotations:
+    {{- toYaml $.Values.updater.annotations | nindent 4 }}
+{{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: manager
+{{- if $.Values.updater.annotations }}
+        {{- toYaml $.Values.updater.annotations | nindent 8 }}
+{{- end }}
+      labels:
+        app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+    spec:
+    {{- if $.Values.updater.extraPodSpec }}
+      {{- toYaml $.Values.updater.extraPodSpec | nindent 6 }}
+    {{- end }}
+{{- if $.Values.updater.imagePullSecret }}
+      imagePullSecrets:
+      - name: {{ $.Values.updater.imagePullSecret }}
+{{- end }}
+      containers:
+{{- if $.Values.clusterDeployment }}
+      - args:
+          - --secure-listen-address=0.0.0.0:8443
+          - --upstream=http://127.0.0.1:8080/
+          - --logtostderr=true
+          - --v=0
+        image: '{{ .Values.updater.rbacProxy.image.repository }}{{ hasKey .Values.updater.rbacProxy.image "digest" | ternary (print "@" .Values.updater.rbacProxy.image.digest) (print ":" .Values.updater.rbacProxy.image.tag) }}'
+        imagePullPolicy: '{{ .Values.updater.rbacProxy.imagePullPolicy }}'
+        name: kube-rbac-proxy
+      {{- with $.Values.updater.rbacProxy.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if $.Values.updater.rbacProxy.extraContainerSpec }}
+        {{- toYaml $.Values.updater.rbacProxy.extraContainerSpec | nindent 8 }}
+      {{- end }}
+        ports:
+          - containerPort: 8443
+            name: https
+            protocol: TCP
+{{ end }}
+      - args:
+          - --health-probe-bind-address=:6789
+          - --metrics-bind-address=127.0.0.1:8080
+          - --leader-elect
+          - --leader-election-id=element-updater
+        env:
+        - name: ANSIBLE_GATHERING
+          value: "explicit"
+        {{- if not $.Values.clusterDeployment }}
+        - name: WATCH_NAMESPACE
+          value: '{{ .Release.Namespace }}'
+        {{- end }}
+        {{- if $.Values.updater.manager.extraEnvs }}
+          {{- toYaml $.Values.updater.manager.extraEnvs | nindent 8 }}
+        {{- end }}
+        image: '{{ .Values.updater.manager.image.repository }}{{ hasKey .Values.updater.manager.image "digest" | ternary (print "@" .Values.updater.manager.image.digest) (print ":" .Values.updater.manager.image.tag) }}'
+        imagePullPolicy: '{{ .Values.updater.manager.imagePullPolicy }}'
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 6789
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 6789
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /readyz
+            port: 6789
+          periodSeconds: 10
+          initialDelaySeconds: 5
+        name: manager
+      {{- with $.Values.updater.manager.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if $.Values.updater.manager.extraContainerSpec }}
+        {{- toYaml $.Values.updater.manager.extraContainerSpec | nindent 8 }}
+      {{- end }}
+        volumeMounts:
+        - mountPath: /tmp
+          name: manager-tmp
+        - mountPath: /opt/ansible/.ansible/tmp/
+          name: ansible-tmp
+        - mountPath: /opt/ansible/.ansible_async
+          name: ansible-async
+      serviceAccountName: '{{ .Values.prefix }}-controller-manager'
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: manager-tmp
+      - emptyDir:
+          medium: Memory
+        name: ansible-tmp
+      - emptyDir:
+          medium: Memory
+        name: ansible-async

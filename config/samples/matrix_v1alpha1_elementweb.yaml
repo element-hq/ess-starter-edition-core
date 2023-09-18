@@ -1,0 +1,28 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: matrix.element.io/v1alpha1
+kind: ElementWeb
+metadata:
+  name: sample
+spec:
+  image:
+    tag: v1.9.2
+  service:
+    type: ClusterIP
+  ingress:
+    domainName: your-element.fdqn.tld
+    annotations:
+      route.openshift.io/termination: edge
+  workloads:
+    annotations:
+      some.annotation.io/info: custom
+  config:
+    defaultMatrixServer:
+      baseUrl: your-synapse.fqdn.tld
+      serverName: fqdn.tld
+    replicas: 1
+  inject:
+    origin: your-synapseadminui.fqdn.tld

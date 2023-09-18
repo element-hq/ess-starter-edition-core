@@ -1,0 +1,21 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+
+- name: Fetch overriden images digests
+  when: global.config.images_digests_config_map | default(false)
+  block:
+  - name: Lookup imported images digests
+    kubernetes.core.k8s_info:
+      api_version: v1
+      kind: ConfigMap
+      namespace: "{{ ansible_operator_meta.namespace }}"
+      name: "{{ global.config.images_digests_config_map }}"
+    register: _global_images_digests
+
+  - name: Set imported images digests
+    ansible.builtin.set_fact:
+      imported_images_digests: "{{ _global_images_digests.resources[0].data.images_digests | from_yaml }}"

@@ -1,0 +1,27 @@
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "{{ .Values.clusterDeployment | ternary \"ClusterRole\" \"Role\" }}",
+  "metadata": {
+    "name": "{{ .Values.prefix }}-manager"
+  },
+  "rules": ((sort_by(.kind | downcase).[] as $item ireduce({}; [] + . + {
+            "apiGroups": ["matrix.element.io"],
+            "resources": [
+                $item.kind | downcase | sub("([a-rt-wyz])$", "${1}s") | sub("x$", "xes"),
+                ($item.kind | downcase | sub("([a-rt-wyz])$", "${1}s") | sub("x$", "xes")) + "/status",
+                ($item.kind | downcase | sub("([a-rt-wyz])$", "${1}s") | sub("x$", "xes")) + "/finalizers"
+            ],
+            "verbs": [
+              "create",
+              "delete",
+              "get",
+              "list",
+              "patch",
+              "update",
+              "watch"
+            ]
+          }
+        )
+      )
+  )
+}

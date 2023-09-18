@@ -1,0 +1,119 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: sliding-sync-api
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-sliding-sync-api"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-sliding-sync
+    app.kubernetes.io/version: "{{ image.api.tag }}"
+{% if workloads.api.annotations | default({}) %}
+  annotations:
+    {{ _matrix_element_io_slidingsync_spec.workloads.api.annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+  name: "{{ ansible_operator_meta.name }}-sliding-sync-api"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-sliding-sync-api"
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: element-operator
+        app.kubernetes.io/name: sliding-sync-api
+        app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-sliding-sync-api"
+        app.kubernetes.io/part-of: matrix-stack
+        app.kubernetes.io/component: matrix-sliding-sync
+        app.kubernetes.io/version: "{{ image.api.tag }}"
+{% if workloads.api.annotations | default({}) | length > 0 %}
+      annotations:
+        {{ _matrix_element_io_slidingsync_spec.workloads.api.annotations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+    spec:
+      automountServiceAccountToken: false
+{% if (image.api.pull_secrets | default(image_pull_secrets)) | length > 0 %}
+      imagePullSecrets:
+      {{ (image.api.pull_secrets | default(image_pull_secrets)) | to_nice_yaml(indent=6) | indent(6) }}
+{% endif %}
+{% if (_matrix_element_io_slidingsync_spec.config.api.podSecurityContext | default({})) | length > 0 %}
+      securityContext:
+        {{ _matrix_element_io_slidingsync_spec.config.api.podSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+{% if (_matrix_element_io_slidingsync_spec.config.hostAliases | default([])) | length > 0 %}
+      hostAliases:
+        {{ _matrix_element_io_slidingsync_spec.config.hostAliases | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+      containers:
+      - name: "api"
+{% if image_api_has_digest %}
+        image: "{{ image.api.repository | default(image_repository) }}@{{ image.api.digest }}"
+{% else %}
+        image: "{{ image.api.repository | default(image_repository) }}:{{ image.api.tag }}"
+{% endif %}
+        imagePullPolicy: "{{ image.api.pull_policy | default(image_api_pull_policy) }}"
+{% if (_matrix_element_io_slidingsync_spec.config.api.containersSecurityContext | default({})) | length > 0 %}
+        securityContext:
+          {{ _matrix_element_io_slidingsync_spec.config.api.containersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+        ports:
+        - name: http
+          containerPort: {{ _ss_port }}
+          protocol: TCP
+        - name: metrics
+          containerPort: {{ _metrics_port }}
+          protocol: TCP
+        env:
+{% if api_env | length > 0 %}
+        env:
+        {{ api_env | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+        envFrom:
+        - secretRef:
+            name: {{ config.external_secret.name }}
+        startupProbe:
+          httpGet:
+            path: /client/server.json
+            port: {{ _ss_port }}
+            scheme: HTTP
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          # Check twice a minute that the server is up.
+          periodSeconds: 30
+          successThreshold: 1
+          failureThreshold: 1
+        livenessProbe:
+          httpGet:
+            path: /client/server.json
+            port: {{ _ss_port }}
+            scheme: HTTP
+          timeoutSeconds: 1
+          # Check twice a minute that the server is up.
+          periodSeconds: 30
+          successThreshold: 1
+          failureThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /client/server.json
+            port: {{ _ss_port }}
+            scheme: HTTP
+          timeoutSeconds: 1
+          # Check twice a minute that the server is up.
+          periodSeconds: 30
+          successThreshold: 1
+          failureThreshold: 1
+        resources:
+          {{ config.api.resources | to_nice_yaml(indent=10) | indent(10) }}

@@ -1,0 +1,2 @@
+.kind |= sub("ClusterRole", "{{ .Values.clusterDeployment | ternary \"ClusterRole\" \"Role\" }}") |
+(. | select(has("roleRef"))).roleRef.kind |= sub("ClusterRole", "{{ .Values.clusterDeployment | ternary \"ClusterRole\" \"Role\" }}")

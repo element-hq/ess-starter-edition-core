@@ -1,0 +1,201 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+generic_shared_secret: "{{ _global_secret.resources[0].data[global.config.generic_shared_secret_secret_key] | b64decode }}"
+managed_kinds: >
+  {{
+      dict(element_operator_crds |
+            zip(query('sequence', "start=0 end=" ~ (element_operator_crds | length) ~ " format=e%d")
+                | map('regex_replace', 'e[0-9]+', 'matrix.element.io/v1alpha1')
+               )
+            | list
+          )
+      | dict2items(key_name='kind', value_name='api_version')
+      + [{
+          'kind': 'ConfigMap',
+          'api_version': 'v1'
+          }, {
+          'kind': 'Secrets',
+          'api_version': 'v1'
+          }, {
+          'kind': 'ServiceMonitor',
+          'api_version': 'monitoring.coreos.com/v1'
+          }]
+    | list
+  }}
+
+_all_secrets: >
+  {{
+    query('kubernetes.core.k8s',
+            kind='Secret',
+            api_version='v1',
+            namespace=ansible_operator_meta.namespace)
+  }}
+
+_component_secret: >
+  {{
+    (
+      _all_secrets
+      | selectattr('metadata.name', 'eq', components[_component_item].secret_name)
+    ) + [{'data': {}}]
+  }}
+
+_fetched_components_secrets: >
+  {{ (_component_secret | length > 0) | ternary(
+      dict(
+        ( _component_secret[0].data | default({}) ).keys()
+        | zip( (_component_secret[0].data | default({}) ).values() | map('b64decode'))
+        ),
+      {}
+      )
+  }}
+
+_synapse_secret: >
+  {{
+    (
+      _all_secrets
+      | selectattr('metadata.name', 'eq', components['synapse'].secret_name)
+    ) + [{'data': {}}]
+  }}
+
+_fetched_synapse_secrets: >
+  {{ (_synapse_secret | length > 0) | ternary(
+      dict(
+        ( _synapse_secret[0].data | default({}) ).keys()
+        | zip( (_synapse_secret[0].data | default({}) ).values() | map('b64decode'))
+        ),
+      {}
+      )
+  }}
+
+
+components_k8s_properties: >
+  {{ _subcomponent is defined | ternary(components[_component_item].k8s[_subcomponent | default('so that it does not explode')],
+                                        components[_component_item].k8s)
+  }}
+
+# Same as the above but without the un-camel-casing that the ansible operator-sdk does
+components_k8s_properties_camelled: >
+  {{
+    _subcomponent is defined | ternary(
+      _matrix_element_io_elementdeployment_spec.components[_component_item | camel_case(true)].k8s[
+        _subcomponent | default('so that it does not explode') | camel_case(true)
+      ],
+      _matrix_element_io_elementdeployment_spec.components[_component_item | camel_case(true)].k8s
+    )
+  }}
+
+has_service_monitor: >-
+  {{
+    ('monitoring.coreos.com/v1' in _cluster_info.apis) and 'ServiceMonitor' in _cluster_info.apis['monitoring.coreos.com/v1']
+  }}
+
+element_deployment_crd_schema: >-
+  {{
+    (
+      lookup('file', 'files/elementdeployment-schema.yaml') | from_yaml
+    ).spec.versions[0].schema.openAPIV3Schema
+  }}
+
+component_schema: >-
+  {{
+      element_deployment_crd_schema.properties.spec.properties.components.properties[_component_item | camel_case(true)]
+  }}
+
+component_k8s_schema: >-
+  {{
+    _subcomponent is defined | ternary(
+      component_schema.properties.k8s.properties[_subcomponent | default('so_that_it_does_not_explode') | camel_case(true)],
+      component_schema.properties.k8s
+    )
+  }}
+component_k8s_schema_has_replicas: >-
+  {{
+      'replicas' in component_k8s_schema.properties.workloads.properties
+  }}
+
+component_k8s_workload_container_resources: >-
+  {{
+  (_subcontainer is defined and _subcontainer | default('so that it does not explode') in components_k8s_properties.workloads.resources) | ternary(
+      components_k8s_properties.workloads.resources[_subcontainer | default('so that it does not explode')],
+      {}
+    )
+  }}
+
+component_k8s_service_monitor_deploy: >-
+  {{ components_k8s_properties.monitoring.service_monitor.deploy
+    | default(global.k8s.monitoring.service_monitor.deploy) == 'auto'
+    | ternary(has_service_monitor,
+        components_k8s_properties.monitoring.service_monitor.deploy
+        | default(global.k8s.monitoring.service_monitor.deploy) == 'enable'
+      )
+  }}
+
+component_k8s_security_context_force_uid_gid: >-
+  {{
+    components_k8s_properties.workloads.security_context.force_uid_gid
+    | default(global.k8s.workloads.security_context.force_uid_gid) == 'enable'
+  }}
+
+component_k8s_security_context_set_seccomp: >-
+  {{
+    components_k8s_properties.workloads.security_context.set_sec_comp
+    | default(global.k8s.workloads.security_context.set_sec_comp) == 'enable'
+  }}
+
+
+components_ingress_properties: >
+  {{ _ingress is defined | ternary(components[_component_item].k8s.ingresses[_ingress | default('so that it does not explode')],
+                                        components[_component_item].k8s.ingress | default('so that it does not explode'))
+  }}
+
+# Same as the above but without the un-camel-casing that the ansible operator-sdk does
+components_ingress_properties_camelled: >
+  {{
+    _ingress is defined | ternary(
+      _matrix_element_io_elementdeployment_spec.components[_component_item | camel_case(true)]
+          .k8s.ingresses[_ingress | default('stidne') | camel_case(true) ],
+      _matrix_element_io_elementdeployment_spec.components[_component_item | camel_case(true)].k8s.ingress | default('so that it does not explode')
+    )
+  }}
+
+
+components_service_properties: >
+  {{ _service is defined | ternary(components_ingress_properties.services[_service | default('so that it does not explode')],
+                                   components_ingress_properties.service)
+  }}
+
+components_ingress_tls: >-
+  {{
+    (global.k8s.ingresses.tls | default({})) | combine(components_ingress_properties.tls | default({}), recursive=true)
+  }}
+
+components_ingress_ingress_class_name: >-
+  {{ components_ingress_properties.ingress_class_name
+    | default(global.k8s.ingresses.ingress_class_name)
+    | default('')
+  }}
+
+selected_components: "{{ components_properties | selectattr('id', 'in', components.keys()) | list }}"
+
+selected_components_with_appservices: >-
+  {{ selected_components
+  | selectattr('application_services', 'true')
+  | list }}
+
+selected_components_with_synapse_additional_ingress_paths: >-
+  {{ selected_components
+  | selectattr('synapse_additional_ingress_paths', 'defined')
+  | list }}
+
+
+component_config_verify_tls: >-
+  {{
+    (components[_component_item].config.verify_tls == 'useGlobalSetting')
+    | ternary(global.config.verify_tls,
+              components[_component_item].config.verify_tls == 'force'
+             )
+  }}

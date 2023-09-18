@@ -1,0 +1,13 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+LogFile /proc/self/fd/2
+LogFileUnlock yes
+LogTime yes
+PidFile /run/clamav/clamd.pid
+TCPSocket 3310
+LocalSocket /tmp/clamd.sock

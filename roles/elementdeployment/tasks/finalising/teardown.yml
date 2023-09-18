@@ -1,0 +1,65 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+# tasks file for ElementDeployment
+- name: "Find unused crds"
+  kubernetes.core.k8s_info:
+    api_version: "{{ kind_item.api_version }}"
+    kind: "{{ kind_item.kind }}"
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    label_selectors:
+    - "app.kubernetes.io/managed-by = element-updater"
+    - "k8s.element.io/crdhash != {{ crd_spec_hash }}"
+    - "k8s.element.io/crdhash"
+  loop: "{{ managed_kinds }}"
+  loop_control:
+    loop_var: kind_item
+    label: kind_item
+  async: 60
+  poll: 0
+  register: async_loop
+
+- name: Wait for components deployment
+  ansible.builtin.async_status:
+    jid: "{{ item.ansible_job_id }}"
+    mode: status
+  retries: 60
+  delay: 1
+  loop: "{{ async_loop.results }}"
+  register: _orphan_crds
+  until: _orphan_crds.finished
+
+# Filter the above lists to remove items without
+# an ownerReferences that refers to `kind: ElementDeployment`
+# `name: {{ ansible_operator_meta.name }}`
+# Doing as two step process for debugging
+
+- name: "Filter resources managed by ElementDeployment CRD"
+  ansible.builtin.set_fact:
+    _filtered_kind: >-
+      {{ (_orphan_crds.results
+          | map(attribute='resources')
+          | map('json_query', query))
+          | flatten
+      }}
+  vars:
+    query: "[?metadata.ownerReferences[?kind == `ElementDeployment`]]"
+
+- name: "Remove resources under control of something not named {{ ansible_operator_meta.name }}"
+  ansible.builtin.set_fact:
+    _filtered: "{{ _filtered_kind | json_query(query) }}"
+  vars:
+    query: "[?metadata.ownerReferences[?name == '{{ ansible_operator_meta.name }}']]"
+
+- name: "Remove unused ElementDeployment resources - {{ item.kind ~ '/' ~ item.apiVersion ~ '/' ~ item.metadata.name }}"
+  kubernetes.core.k8s:
+    apply: true
+    state: absent
+    definition: >-
+      {{
+        _filtered
+        | mapattributes(['apiVersion', 'kind', 'metadata'])
+      }}

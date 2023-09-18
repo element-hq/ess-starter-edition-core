@@ -1,0 +1,10 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# We can only configure resources and containerSecurityContext of icap
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/icap/properties/workloads/properties/annotations'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/icap/properties/workloads/properties/hostAliases'

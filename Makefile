@@ -1,0 +1,35 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+include common.mk
+
+.PHONY: all
+all: buildah-build
+
+build-helm-charts:
+	cd helm/operator && BASE_CRD_KUSTOMIZE_TARGET=config/crd/cleanup/starter-core bash build.sh
+	cd helm/updater && ELEMENT_DEPLOYMENT_KUSTOMIZE_TARGET=config/crd/element-deployment/cleanup/starter-core bash build.sh
+
+.PHONY: build-crds
+build-crds: kustomize
+	mkdir -p ${ARTIFACT_DIR}
+	$(KUSTOMIZE) build config/crd/cleanup/starter-core  | sed '/x-ui/d' > ${ARTIFACT_DIR}/crds.yml
+
+.PHONY: build-crds-ui
+build-crds-ui: kustomize
+	mkdir -p ${ARTIFACT_DIR}
+	$(KUSTOMIZE) build config/crd/element-deployment/cleanup/starter-core -o ${ARTIFACT_DIR}/crds-ui.yml
+
+.PHONY: build-all-crds
+build-all-crds: build-crds build-crds-ui
+
+.PHONY: buildah-build
+buildah-build:  ## Build docker image with the manager.
+	buildah bud -t operator
+	buildah bud -t updater  -f Dockerfile.updater
+
+.PHONY: local-build
+local-build:
+	docker buildx build --load --metadata-file operator-metadata.json -t operator .
+	docker buildx build --metadata-file updater-metadata.json --load -t updater -f Dockerfile.updater .

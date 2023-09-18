@@ -1,0 +1,163 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+server_name: {{ config.server_name }}
+public_baseurl: https://{{ ingress.domain_name }}
+report_stats: false
+signing_key_path: /secrets/signingKey
+log_config: "/config/log_config.yaml"
+macaroon_secret_key: {{ _parsed_synapse_secrets.macaroon | to_json }}
+
+# The default as of 1.27.0
+ip_range_blacklist:
+- '127.0.0.0/8'
+- '10.0.0.0/8'
+- '172.16.0.0/12'
+- '192.168.0.0/16'
+- '100.64.0.0/10'
+- '192.0.0.0/24'
+- '169.254.0.0/16'
+- '192.88.99.0/24'
+- '198.18.0.0/15'
+- '192.0.2.0/24'
+- '198.51.100.0/24'
+- '203.0.113.0/24'
+- '224.0.0.0/4'
+- '::1/128'
+- 'fe80::/10'
+- 'fc00::/7'
+- '2001:db8::/32'
+- 'ff00::/8'
+- 'fec0::/10'
+
+listeners:
+- port: 8008
+  tls: false
+  bind_addresses: ['0.0.0.0']
+  type: http
+  x_forwarded: true
+  resources:
+  - names: [client, federation]
+    compress: false
+- port: 9093
+  tls: false
+  bind_addresses: ['0.0.0.0']
+  type: http
+  x_forwarded: false
+  resources:
+  - names: [replication]
+    compress: false
+- type: metrics
+  port: 9001
+  bind_addresses: ['0.0.0.0']
+# Unfortunately the metrics type doesn't get the health endpoint
+- port: 8080
+  tls: false
+  bind_addresses: ['0.0.0.0']
+  type: http
+  x_forwarded: false
+  resources:
+  - names: []
+    compress: false
+
+{% if has_any_workers %}
+redis:
+  enabled: true
+  host: "{{ ansible_operator_meta.name }}-synapse-redis.{{ ansible_operator_meta.namespace }}.svc.cluster.local"
+
+{% endif %}
+enabled_media_repo: {{ not synapse_has['media-repository'] }}
+media_store_path: "/media/media_store"
+uploads_path: "/media/uploads"
+{% if synapse_has['media-repository'] %}
+media_instance_running_background_jobs: "media-repository-0"
+{% endif %}
+
+enable_metrics: true
+
+
+registration_shared_secret: {{ _parsed_synapse_secrets.registration_shared | to_json }}
+
+use_presence: {{ not synapse_has['presence-writer'] }}
+
+{% if synapse_has['user-dir'] %}
+update_user_directory_from_worker: user-dir-0
+{% endif %}
+
+require_auth_for_profile_requests: true
+limit_profile_requests_to_users_who_share_rooms: false
+allow_public_rooms_without_auth: false
+allow_public_rooms_over_federation: false
+
+{% if synapse_has['appservice'] %}
+notify_appservices_from_worker: appservice-0
+{% endif %}
+
+{% if synapse_has['background'] %}
+run_background_tasks_on: background-0
+{% endif %}
+
+instance_map:
+  main:
+    host: {{ ansible_operator_meta.name }}-synapse-main-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local.
+    port: 9093
+{% for type in synapse_stream_writer_worker_types %}
+{% for index in range(synapse_configured_workers[type].instances | default(0)) %}
+  {{ type }}-{{ index }}:
+    host: {{ ansible_operator_meta.name }}-synapse-{{ type }}-{{ index }}.{{ ansible_operator_meta.name }}-synapse-{{ type }}-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local.
+    port: 9093
+{% endfor %}
+{% endfor %}
+
+{% if synapse_stream_writer_worker_types | map('extract', synapse_has) | select('equalto', true) | list | length > 0 %}
+stream_writers:
+{% for type in synapse_stream_writer_worker_types %}
+{% if (synapse_configured_workers[type].instances | default(0)) > 0 %}
+{% for stream_writer in synapse_available_worker_types[type].stream_writers %}
+{% if synapse_available_worker_types[type].single %}
+  {{ stream_writer }}: {{ type }}-0
+{% else %}
+  {{ stream_writer }}:
+{% for index in range(synapse_configured_workers[type].instances) %}
+  - {{ type }}-{{ index }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+{% endif %}
+send_federation: {{ not synapse_has['federation-sender'] }}
+{% if synapse_has['federation-sender'] %}
+federation_sender_instances:
+{% for index in range(synapse_configured_workers['federation-sender'].instances) %}
+- federation-sender-{{ index }}
+{% endfor %}
+
+{% endif %}
+start_pushers: {{ not synapse_has['pusher'] }}
+{% if synapse_has['pusher'] %}
+pusher_instances:
+{% for index in range(synapse_configured_workers['pusher'].instances) %}
+- pusher-{{ index }}
+{% endfor %}
+
+{% endif %}
+{% if config.additional is defined %}
+{{ config.additional }}
+{% endif %}
+
+{% if not (bootstrap | default(false)) %}
+
+
+{% if synapse_appservices_registrations | length > 0 %}
+app_service_config_files:
+{% for as_registration in synapse_appservices_registrations %}
+ - /as/{{ as_registration }}/registration.yaml
+{% endfor %}
+{% endif %}
+{% endif %}

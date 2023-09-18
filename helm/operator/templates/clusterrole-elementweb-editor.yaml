@@ -1,0 +1,30 @@
+{{- if $.Values.deployCrdRoles }}
+{{- if $.Values.deployCrds }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: '{{ .Values.clusterDeployment | ternary "ClusterRole" "Role" }}'
+metadata:
+  name: elementweb-editor
+  {{- if not $.Values.clusterDeployment }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
+rules:
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - elementwebs
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - elementwebs/status
+    verbs:
+      - get
+{{ end }}
+{{ end }}

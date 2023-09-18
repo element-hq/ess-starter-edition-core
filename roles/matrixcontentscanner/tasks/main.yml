@@ -1,0 +1,50 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: Maintain non-statefulsets resources
+  kubernetes.core.k8s:
+    resource_definition: >
+      {{
+        query('template',
+                *query('fileglob', 'templates/manifests/*.yaml.j2'))
+        | map('trim')
+        | select
+        | map('from_yaml')
+        | select
+        | rejectattr('kind', '==', 'StatefulSet')
+        | map('combine', _owner_refs_metadata, recursive=true)
+      }}
+
+- name: Maintain statefulsets resources
+  vars:
+    _statefulsets_resources: >-
+        {{
+          query('template',
+                  *query('fileglob', 'templates/manifests/*.yaml.j2'))
+          | map('trim')
+          | select
+          | map('from_yaml')
+          | select
+          | selectattr('kind', '==', 'StatefulSet')
+          | map('combine', _owner_refs_metadata, recursive=true)
+        }}
+  ansible.builtin.include_role:
+    name: statefulset_apply_recreate
+
+- name: "Teardown unused resources"
+  ansible.builtin.include_role:
+    name: teardown
+  vars:
+    kind_list:
+    - kind: Secrets
+      api_version: v1
+    - kind: Service
+      api_version: v1
+    - kind: StatefulSet
+      api_version: apps/v1
+    - kind: ConfigMap
+      api_version: v1
+    kind_owner: MatrixContentScanner

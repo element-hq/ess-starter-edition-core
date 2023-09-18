@@ -1,0 +1,25 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: synapse-shared
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-shared"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-server
+    app.kubernetes.io/version: "{{ image.tag }}"
+    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
+  name: "{{ ansible_operator_meta.name }}-synapse-shared"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+data:
+  homeserver.yaml: |
+    {{ homeserver_yaml | indent(4) }}
+  log_config.yaml: |
+    {{ log_config_yaml | indent(4) }}

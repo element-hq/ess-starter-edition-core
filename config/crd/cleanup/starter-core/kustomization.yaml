@@ -1,0 +1,79 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+resources:
+  - ../../patches/starter-core
+patches:
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: containers-security-context-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: pods-security-context-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: host-aliases-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: image-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: ingress-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: service-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: workloads-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: persistent-volume-claim-template-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: postgres-golang-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: postgres-libpq-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: matrix-server-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: k8s-workloads-resources-starter-core
+    $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: default-resources-starter-core
+    $patch: delete
+  - |-
+    kind: Kustomization
+    apiVersion: kustomize.config.k8s.io/v1beta1
+    metadata:
+      name: replacements-common-starter-core
+    $patch: delete

@@ -1,0 +1,25 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+# If we have a _subcomponent, we use it for the image details and the workload docker secret
+# If we have a _subcontainer, we use it only for the image details
+# Note : in this pattern, a component cannot have a subcomponent with multiple subcontainers.
+{%- set image_details =  images_digests[_component_item][_subcomponent | default(_subcontainer) | default(_component_item)] %}
+
+image:
+  repository: "{{ image_details.image_repository_server }}/{{ image_details.image_repository_path }}"
+  tag: "{{ image_details.image_tag }}"
+{% if 'image_digest' in image_details %}
+  digest: "{{ image_details.image_digest }}"
+{% endif %}
+{% if components_k8s_properties.workloads.docker_secrets | default(global.k8s.workloads.docker_secrets) | default([])
+      | selectattr('url', '==', image_details.image_repository_server) | list | length > 0 %}
+  pullSecrets:
+    - name: {{ (components_k8s_properties.workloads.docker_secrets | default(global.k8s.workloads.docker_secrets)
+                | selectattr('url', '==', image_details.image_repository_server) | first).name
+            }}
+{% endif %}

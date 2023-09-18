@@ -1,0 +1,53 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Find unused resources"
+  kubernetes.core.k8s_info:
+    api_version: "{{ kind_item.api_version }}"
+    kind: "{{ kind_item.kind }}"
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    label_selectors:
+    - "app.kubernetes.io/managed-by = element-operator"
+    - "k8s.element.io/crdhash != {{ crd_spec_hash }}"
+    - "k8s.element.io/crdhash"
+  register: _orphan_crds
+  loop: "{{ kind_list }}"
+  loop_control:
+    loop_var: kind_item
+    label: kind_item
+
+# Filter the above lists to remove items without
+# an ownerReferences that refers to kind
+# `name: {{ ansible_operator_meta.name }}`
+# Doing as two step process for debugging
+
+- name: "Filter resources managed by CRD"
+  ansible.builtin.set_fact:
+    _filtered_kind: >-
+      {{ (_orphan_crds.results
+          | map(attribute='resources')
+          | map('json_query', query))
+          | flatten
+      }}
+  vars:
+    query: "[?metadata.ownerReferences[?kind == `{{ kind_owner }}`]]"
+
+- name: "Remove resources under control of something not named {{ ansible_operator_meta.name }}"
+  ansible.builtin.set_fact:
+    _filtered: "{{ _filtered_kind | json_query(query) }}"
+  vars:
+    query: "[?metadata.ownerReferences[?name == '{{ ansible_operator_meta.name }}']]"
+
+- name: "Remove unused resources - {{ item.kind ~ '/' ~ item.apiVersion ~ '/' ~ item.metadata.name }}"
+  kubernetes.core.k8s:
+    state: absent
+    definition:
+      apiVersion: "{{ item.apiVersion }}"
+      kind: "{{ item.kind }}"
+      metadata:
+        name: "{{ item.metadata.name }}"
+        namespace: "{{ ansible_operator_meta.namespace }}"
+  loop: "{{ _filtered }}"

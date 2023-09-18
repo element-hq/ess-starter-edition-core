@@ -1,0 +1,23 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: host-aliases
+spec:
+  schema:
+    type: array
+    description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+    items:
+      type: object
+      properties:
+        ip:
+          description: An IP resolution to add to /etc/hosts
+          type: string
+        hostnames:
+          type: array
+          items:
+            type: string
+            description: An hostname of the associated ip to add to /etc/hosts

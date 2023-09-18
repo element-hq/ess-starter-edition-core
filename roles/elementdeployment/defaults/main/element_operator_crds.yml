@@ -1,0 +1,10 @@
+# © 2023 New-Vector
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+element_operator_crds:
+- ElementWeb
+- MatrixContentScanner
+- SlidingSync
+- Synapse
+- WellKnownDelegation

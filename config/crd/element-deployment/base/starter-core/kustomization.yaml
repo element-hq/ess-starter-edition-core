@@ -1,0 +1,30 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../common
+patches:
+  - path: elementweb.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: matrixcontentscanner.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: slidingsync.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: synapse.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: wellknowndelegation.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io

@@ -1,0 +1,27 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: k8s-monitoring
+spec:
+  schema:
+    type: object
+    default: {}
+    description: Settings dedicated to monitoring
+    properties:
+      serviceMonitor:
+        type: object
+        default: {}
+        description: Service monitor settings
+        properties:
+          deploy:
+            description: Enable or disable monitoring using ServiceMonitor resources
+            type: string
+            default: auto
+            enum:
+              - enable
+              - disable
+              - auto

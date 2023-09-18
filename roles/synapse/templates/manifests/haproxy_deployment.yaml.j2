@@ -1,0 +1,97 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: synapse-haproxy
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-server-ingress
+    app.kubernetes.io/version: "{{ image.haproxy_tag | default(haproxy_image_tag) }}"
+    k8s.element.io/confighash: "{{ lookup('template', 'manifests/haproxy_configmap.yaml.j2') | hash('sha1') }}"
+{% if workloads.haproxy.annotations | default({}) %}
+  annotations:
+    {{ _matrix_element_io_synapse_spec.workloads.haproxy.annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+  name: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+  replicas: {{ config.haproxy_replicas | default(haproxy_replicas) }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: element-operator
+        app.kubernetes.io/name: synapse-haproxy
+        app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+        app.kubernetes.io/part-of: matrix-stack
+        app.kubernetes.io/component: matrix-server-ingress
+        app.kubernetes.io/version: "{{ image.haproxy_tag | default(haproxy_image_tag) }}"
+        k8s.element.io/confighash: "{{ lookup('template', 'manifests/haproxy_configmap.yaml.j2') | hash('sha1') }}"
+{% if workloads.haproxy.annotations | default({}) %}
+      annotations:
+        {{ _matrix_element_io_synapse_spec.workloads.haproxy.annotations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+    spec:
+      automountServiceAccountToken: false
+{% if (image.pull_secrets | default(image_pull_secrets)) | length > 0 %}
+      imagePullSecrets:
+      {{ (image.pull_secrets | default(image_pull_secrets)) | to_nice_yaml(indent=6) | indent(6) }}
+{% endif %}
+{% if (_matrix_element_io_synapse_spec.config.haproxyPodSecurityContext | default({})) | length > 0 %}
+      securityContext:
+        {{ _matrix_element_io_synapse_spec.config.haproxyPodSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+      containers:
+      - name: haproxy
+{% if image_haproxy_has_digest %}
+        image: "{{ image.haproxy_repository | default(haproxy_image_repository) }}@{{ image.haproxy_digest }}"
+{% else %}
+        image: "{{ image.haproxy_repository | default(haproxy_image_repository) }}:{{ image.haproxy_tag | default(haproxy_image_tag) }}"
+{% endif %}
+        imagePullPolicy: "{{ image.haproxyPullPolicy | default(image_haproxy_pull_policy) }}"
+{% if (_matrix_element_io_synapse_spec.config.haproxyContainersSecurityContext | default({})) | length > 0 %}
+        securityContext:
+          {{ _matrix_element_io_synapse_spec.config.haproxyContainersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+        ports:
+        - containerPort: 8008
+          name: haproxy-http
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /haproxy_test
+            port: 8008
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /haproxy_test
+            port: 8008
+          initialDelaySeconds: 20
+          timeoutSeconds: 5
+        resources:
+          {{ config.haproxy_resources | to_nice_yaml(indent=10) | indent(10) }}
+        volumeMounts:
+        - name: haproxy-config
+          mountPath: "/usr/local/etc/haproxy"
+          readOnly: true
+      volumes:
+      - configMap:
+          name: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+          defaultMode: 420
+        name: haproxy-config

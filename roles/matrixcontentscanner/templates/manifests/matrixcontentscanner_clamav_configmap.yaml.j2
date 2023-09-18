@@ -1,0 +1,31 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ ansible_operator_meta.name }}-clamav-config"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: clamav
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-clamav"
+    app.kubernetes.io/version: "{{ image.clam_anti_virus.tag }}"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-content-scanner
+data:
+  freshclam.conf: |
+    {{ _freshclam_config | indent(4) }}
+  clamd.conf: |
+    {{ _clamd_config | indent(4) }}
+  c-icap.conf: |
+    {{ _c_icap_config | indent(4) }}
+  clamd_mod.conf: |
+    {{ _c_icap_clamd_mod_config | indent(4) }}
+  virus_scan.conf: |
+    {{ _c_icap_virus_scan_config | indent(4) }}
+

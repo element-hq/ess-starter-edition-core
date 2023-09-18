@@ -1,0 +1,16 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{
+{% if config.client is defined %}
+  "m.homeserver": {
+    "base_url": "{{ config.client.homeserver_base_url }}"
+  }{% if config.client.additional is defined %},
+  {{ config.client.additional }}
+  {% endif %}
+{% endif %}
+}

@@ -1,0 +1,38 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: image
+spec:
+  schema:
+    description: Defines the image to be used
+    type: object
+    properties:
+      pullSecrets:
+        description: Pull secrets to make available for any of the images below
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              description: The name of the image pull secret in this namespace to use
+              type: string
+      repository:
+        description: Image repository to use
+        type: string
+      tag:
+        description: Image tag in the repository to use
+        type: string
+      digest:
+        description: Image digest. If defined, this will be used instead of image tag. Image tag is still mandatory to render annotations on the statefulsets and deployments.
+        type: string
+      pullPolicy:
+        description: Image pull policy
+        type: string
+        enum:
+          - Always
+          - IfNotPresent
+          - Never

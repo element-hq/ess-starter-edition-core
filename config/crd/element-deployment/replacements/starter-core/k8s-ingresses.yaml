@@ -1,0 +1,93 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: k8s-ingresses
+spec:
+  schema:
+    type: object
+    description: Settings dedicated to k8s ingresses
+    required:
+      - fqdn
+    properties:
+      fqdn:
+        type: string
+        description: Fully qualified domain name of the ingress
+      services:
+        type: object
+        default: {}
+        properties:
+          type:
+            type: string
+            description: Default service type
+            enum:
+              - ClusterIP
+              - NodePort
+              - LoadBalancer
+      annotations:
+        type: object
+        default: {}
+        description: Defines the annotations to add
+        additionalProperties:
+          type: string
+      ingressClassName:
+        description: An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer externally.
+        type: string
+      tls:
+        type: object
+        oneOf:
+          - required: [certmanager]
+            not:
+              required: [certificate, secretName]
+            properties:
+              mode:
+                pattern: certmanager
+          - required: [certificate]
+            not:
+              required: [certmanager, secretName]
+            properties:
+              mode:
+                pattern: certfile
+          - properties:
+              mode:
+                pattern: existing
+            required: [secretName]
+            not:
+              required: [certificate, certmanager]
+          - properties:
+              mode:
+                pattern: external
+            not:
+              required: [certificate, certmanager, secretName]
+        properties:
+          mode:
+            type: string
+            description: The TLS mode of this component ingress. Use external if TLS is managed externaly to the cluster, certmanager if you want to use cert manager to issue certificate automatically, or certfile if you want to upload certificate files to kubernetes tls secrets manually.
+            enum:
+              - certmanager
+              - external
+              - certfile
+              - existing
+          certmanager:
+            type: object
+            description: The cert-manager properties, if enabled
+            properties:
+              issuer:
+                description: The name of cert-manager ClusterIssuer to use
+                type: string
+          secretName:
+            type: string
+            description: The name of a secret in the cluster that contains TLS certificates
+            pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+            maxLength: 253
+          certificate:
+            type: object
+            description: Certificate file
+            properties:
+              certFileSecretKey:
+                type: string
+              privateKeySecretKey:
+                type: string

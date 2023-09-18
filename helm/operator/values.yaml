@@ -1,0 +1,51 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+prefix: element-operator
+clusterDeployment: true
+deployCrds: true
+deployCrdRoles: true
+deployManager: true
+
+operator:
+  extraPodSpec: {}
+  manager:
+    resources:
+      limits:
+        memory: 2Gi
+      requests:
+        cpu: 10m
+        memory: 256Mi
+    extraEnvs:
+    - name: DEBUG_MANIFESTS
+      value: "0"
+    - name: ANSIBLE_VERBOSITY
+      value: "1"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+    imagePullPolicy: Always
+    image:
+      repository: docker.io/vectorim/ess-starter-edition-core-operator
+      tag: 2.11.8
+
+  rbacProxy:
+    resources:
+      limits:
+        memory: 2Gi
+      requests:
+        cpu: 10m
+        memory: 256Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+    imagePullPolicy: Always
+    image:
+      repository: gcr.io/kubebuilder/kube-rbac-proxy
+      tag: v0.13.1

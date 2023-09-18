@@ -1,0 +1,11 @@
+HTTP/1.0 429 Too Many Requests
+Cache-Control: no-cache
+Connection: close
+Content-Type: text/html
+access-control-allow-origin: *
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept, Authorization
+
+<html><body><h1>429 Too Many Requests</h1>
+No server is available to handle this request.
+</body></html>

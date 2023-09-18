@@ -1,0 +1,30 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+- op: add
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/wellKnownDelegation'
+  value:
+    type: object
+    description: This is a well known delegation file hosted as a static site.
+    properties:
+      secretName:
+        default: well-known-delegation
+        type: string
+        description: The secret data associated to wellKnownDelegation config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present
+        pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+        maxLength: 253
+      config:
+        description: This field will be replaced by kustomize
+      k8s:
+        type: object
+        description: You can override Kubernetes configuration for each component of WellKnownDelegation
+        default: {}
+        properties:
+          ingress:
+            description: This field will be replaced by kustomize
+          common:
+            description: This field will be replaced by kustomize
+          workloads:
+            description: This field will be replaced by kustomize

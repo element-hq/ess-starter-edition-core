@@ -1,0 +1,22 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Prepare Manifests"
+  ansible.builtin.set_fact:
+    _manifests: >
+      {{
+        query('template',
+                 *query('fileglob', 'templates/manifests/*.yaml.j2'))
+        | map('trim')
+        | select
+        | map('from_yaml')
+        | select
+        | map('combine', _owner_refs_metadata, recursive=true)
+      }}
+
+- name: "Maintain Element Web Manifests"
+  kubernetes.core.k8s:
+    resource_definition: "{{ _manifests }}"

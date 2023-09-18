@@ -1,0 +1,29 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+collections:
+  # ansible-galaxy is timeouting a lot, so use git as a workaround to get collections
+  # https://github.com/ansible/galaxy/issues/3086
+  - name: operator_sdk.util
+    # We can't use version with operator-sdk-ansible-util because of
+    # ERROR! Unexpected Exception, this is probably a bug: Non integer values in LooseVersion ('v0.4.0')
+    source: https://github.com/operator-framework/operator-sdk-ansible-util.git,v0.4.0
+    type: git
+  - name: kubernetes.core
+    source: https://github.com/vector-im/kubernetes.core.git,gaelg/add-async-k8s-info
+    type: git
+  - name: community.postgresql
+    source: https://github.com/ansible-collections/community.postgresql.git
+    type: git
+    version: "2.3.2"
+  - name: community.general
+    source: https://github.com/ansible-collections/community.general.git
+    type: git
+    version: "4.6.1"
+  - name: ansible.utils
+    source: https://github.com/ansible-collections/ansible.utils.git
+    version: "2.9.0"
+    type: git

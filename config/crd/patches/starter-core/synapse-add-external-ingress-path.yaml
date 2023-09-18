@@ -1,0 +1,45 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/ingress/properties/additionalPaths
+  value:
+    type: array
+    description: Additional prefixed path to load in synapse ingress
+    items:
+      type: object
+      description: An additional path to load in synapse ingress
+      required:
+        - path
+        - service
+      properties:
+        matchHostname:
+          type: string
+          description: Hostname to target for the additional path. Empty if not required..
+        path:
+          type: string
+          description: A prefix path
+        service:
+          type: object
+          description: The targetted service name and port
+          required:
+            - name
+            - port
+          properties:
+            name:
+              type: string
+              description: The service name
+            port:
+              type: object
+              oneOf:
+                - required: [name]
+                - required: [number]
+              properties:
+                name:
+                  type: string
+                  description: The port name
+                number:
+                  type: number
+                  description: The port number

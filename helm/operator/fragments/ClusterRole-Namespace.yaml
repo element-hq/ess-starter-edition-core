@@ -1,0 +1,3 @@
+  {{- if not $.Values.clusterDeployment }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}

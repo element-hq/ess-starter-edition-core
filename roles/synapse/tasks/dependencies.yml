@@ -1,0 +1,9 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: Import all dependencies
+  include_tasks: '{{ item }}'
+  loop: "{{ query('fileglob', 'dependencies/*.yml') | sort }}"

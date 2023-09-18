@@ -1,0 +1,57 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# ElementWeb
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/elementWeb/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/default
+  value: elementWebCertificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/elementWeb/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/description
+  value: ElementWeb Certificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/elementWeb/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/default
+  value: elementWebPrivateKey
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/elementWeb/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/description
+  value: ElementWeb Private Key
+# slidingSync
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/slidingSync/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/default
+  value: certificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/slidingSync/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/description
+  value: SlidingSync Certificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/slidingSync/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/default
+  value: privateKey
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/slidingSync/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/description
+  value: SlidingSync Private Key
+# Synapse
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/default
+  value: synapseCertificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/description
+  value: Synapse Server Certificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/default
+  value: synapsePrivateKey
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/description
+  value: Synapse Server Private Key
+# Wellknowndelegation
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/wellKnownDelegation/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/default
+  value: wellKnownDelegationCertificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/wellKnownDelegation/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/certFileSecretKey/description
+  value: WellKnownDelegation Certificate
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/wellKnownDelegation/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/default
+  value: wellKnownDelegationPrivateKey
+- op: add
+  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/wellKnownDelegation/properties/k8s/properties/ingress/properties/tls/properties/certificate/properties/privateKeySecretKey/description
+  value: WellKnownDelegation Private Key

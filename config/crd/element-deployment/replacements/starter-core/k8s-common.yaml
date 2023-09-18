@@ -1,0 +1,21 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: k8s-common
+spec:
+  schema:
+    type: object
+    default: {}
+    description: Settings dedicated to k8s
+    properties:
+      annotations:
+        description: The annotations to add to every workloads and ingresses deployed
+        type: object
+        default: {}
+        additionalProperties:
+          description: Defines the annotations to add
+          type: string

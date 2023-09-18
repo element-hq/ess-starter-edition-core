@@ -1,0 +1,46 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{% if _subcontainer is defined %}
+{% if component_k8s_workload_container_resources | default(false) %}
+resources:
+  {{ component_k8s_workload_container_resources | to_nice_yaml(indent=2) | indent(2) }}
+{% endif %}
+{% else %}
+{% if components_k8s_properties.workloads.resources | default(false) %}
+resources:
+  {{ components_k8s_properties.workloads.resources | to_nice_yaml(indent=2) | indent(2) }}
+{% endif %}
+{% endif %}
+{% if component_k8s_security_context_force_uid_gid or component_k8s_security_context_set_seccomp %}
+podSecurityContext:
+{% if component_k8s_security_context_force_uid_gid %}
+  runAsUser: {{ components_k8s_properties.workloads.security_context.run_as_user }}
+  fsGroup: {{ components_k8s_properties.workloads.security_context.fs_group }}
+{% endif %}
+{% if component_k8s_security_context_set_seccomp %}
+  seccompProfile:
+    type: RuntimeDefault
+{% endif %}
+{% endif %}
+containersSecurityContext:
+{% if component_k8s_security_context_force_uid_gid %}
+  allowPrivilegeEscalation: {{ (components_k8s_properties.workloads.security_context.run_as_user == 0) | to_nice_json }}
+{% else %}
+  allowPrivilegeEscalation: false
+{% endif %}
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+    - ALL
+{% if component_k8s_schema_has_replicas %}
+{% if components_k8s_properties.workloads.replicas is mapping %}
+replicas: {{ components_k8s_properties.workloads.replicas.static | default(global.k8s.workloads.replicas) }}
+{% else %}
+replicas: {{ components_k8s_properties.workloads.replicas | default(global.k8s.workloads.replicas) }}
+{% endif %}
+{% endif %}

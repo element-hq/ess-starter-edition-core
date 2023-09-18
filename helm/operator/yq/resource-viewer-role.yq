@@ -1,0 +1,27 @@
+(.[] as $item ireduce({}; [] + . + {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "{{ .Values.clusterDeployment | ternary \"ClusterRole\" \"Role\" }}",
+    "metadata": {
+      "name": ($item.kind | downcase) + "-viewer"
+    },
+    "rules": [
+      {
+        "apiGroups": ["matrix.element.io"],
+        "resources": [$item.kind | downcase | sub("([a-rt-wyz])$", "${1}s") | sub("x$", "xes")],
+        "verbs": [
+          "get",
+          "list",
+          "watch"
+        ]
+      },
+      {
+        "apiGroups": ["matrix.element.io"],
+        "resources": [($item.kind | downcase | sub("([a-rt-wyz])$", "${1}s") | sub("x$", "xes")) + "/status"],
+        "verbs": [
+          "get"
+        ]
+      }
+    ]
+  }
+)
+).[]

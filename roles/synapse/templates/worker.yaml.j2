@@ -1,0 +1,78 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+worker_app: {{ process_app }}
+worker_name: REPLACE_HOSTNAME
+
+worker_listeners:
+{% if has_http %}
+- port: 8008
+  tls: false
+  bind_addresses: ['0.0.0.0']
+  type: http
+  x_forwarded: true
+  resources:
+  - names:
+    - client
+    - federation
+{% if process_type == 'media-repository '%}
+    - media
+{% endif %}
+    compress: false
+{% endif %}
+{% if has_replication %}
+- port: 9093
+  tls: false
+  bind_addresses: ['0.0.0.0']
+  type: http
+  x_forwarded: false
+  resources:
+  - names: [replication]
+    compress: false
+{% endif %}
+- type: metrics
+  port: 9001
+  bind_addresses: ['0.0.0.0']
+# Unfortunately the metrics type doesn't get the health endpoint
+- port: 8080
+  tls: false
+  bind_addresses: ['0.0.0.0']
+  type: http
+  x_forwarded: false
+  resources:
+  - names: []
+    compress: false
+
+database:
+  name: psycopg2
+  args:
+    user: {{ config.database.user }}
+    password: {{ _parsed_synapse_secrets.database_password | to_json }}
+    database: {{ config.database.name }}
+    host: {{ config.database.host }}
+    port: {{ config.database.port }}
+    cp_min: 5
+    cp_max: 10
+    application_name: REPLACE_HOSTNAME
+    sslmode: {{ config.database.sslmode }}
+    keepalives: 1
+    keepalives_idle: 10
+    keepalives_interval: 10
+    keepalives_count: 3
+
+{% if process_type != 'media-repository' %}
+media_storage_providers:
+ - module: file_system
+   store_local: false
+   store_remote: false
+   config:
+     directory: "/media/media_store"
+{% endif %}
+
+{% if process_additional | length > 0 %}
+{{ process_additional }}
+{% endif %}

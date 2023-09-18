@@ -1,0 +1,26 @@
+{{- if $.Values.deployCrdRoles }}
+{{- if $.Values.deployCrds }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: '{{ .Values.clusterDeployment | ternary "ClusterRole" "Role" }}'
+metadata:
+  name: matrixcontentscanner-viewer
+  {{- if not $.Values.clusterDeployment }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
+rules:
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - matrixcontentscanners
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - matrixcontentscanners/status
+    verbs:
+      - get
+{{ end }}
+{{ end }}

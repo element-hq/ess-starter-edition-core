@@ -1,0 +1,42 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: slidingSync
+spec:
+  schema:
+    type: object
+    required:
+      - postgresql
+    properties:
+      verifyTls:
+        default: useGlobalSetting
+        type: string
+        description: TLS Verification
+        enum:
+          - useGlobalSetting
+          - force
+          - disable
+      postgresql:
+        description: This field will be replaced by kustomize
+      log:
+        description: Logging settings
+        type: object
+        default: {}
+        properties:
+          level:
+            type: string
+            description: The maximum level of log output
+            default: info
+            enum:
+              - info
+              - debug
+              - warning
+              - error
+      syncSecretSecretKey:
+        type: string
+        default: syncSecret
+        description: The key of the k8s secret containing Sliding Sync Sync Secret

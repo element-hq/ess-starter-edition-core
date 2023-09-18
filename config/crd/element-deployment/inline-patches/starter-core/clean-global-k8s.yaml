@@ -1,0 +1,22 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# Everything here is also in config/crd/element-deployment/inline-patches/enterprise/clean-global-k8s.yaml
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/workloads/properties/resources'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/workloads/properties/securityContext/properties/runAsUser'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/workloads/properties/securityContext/properties/fsGroup'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/ingresses/properties/fqdn'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/ingresses/required'
+- op: add
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/global/properties/k8s/properties/workloads/properties/replicas'
+  value:
+    type: number
+    description: The number of replicas for workloads supporting it
+    default: 2

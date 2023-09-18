@@ -1,0 +1,57 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+# defaults file for SlidingSync
+_ss_port: 8008
+_metrics_port: 8080
+
+image_repository: "matrix-org/sliding-sync"
+
+image_pull_secrets: []
+image_api_has_digest: "{{ (image.api.digest | default('')) | length > 0 }}"
+image_api_pull_policy: "{{ image_api_has_digest | ternary('IfNotPresent', 'Always') }}"
+
+_fetched_slidingsync_secrets: >
+  {{
+    query('kubernetes.core.k8s',
+          kind='Secret',
+          api_version='v1',
+          namespace=ansible_operator_meta.namespace,
+          resource_name=config.external_secret.name)
+  }}
+
+# These are done as underrides so users can override them
+# They are done straight as env vars rather than anything under config.database as that's global and we want
+# different limits for the different pods. Doing them as env var underrides does not prevent us from switching
+# to a more explicit mechanism in future
+api_env_underrides:
+- name: SYNCV3_MAX_DB_CONN
+  value: "40"
+
+api_env_user: "{{ workloads.api.extra_env | default([]) }}"
+
+common_env_overrides:
+- name: SYNCV3_SERVER
+  value: "{{ config.matrix_server.base_url }}"
+- name: SYNCV3_BINDADDR
+  value: "0.0.0.0:{{ _ss_port }}"
+- name: SYNCV3_PROM
+  value: ":{{ _metrics_port }}"
+- name: SYNCV3_DB
+  value: "dbname={{ config.database.name }} host={{ config.database.host }} port={{ config.database.port }} \
+          user={{ config.database.user }} password=$(POSTGRES_PASSWORD) sslmode={{ config.database.sslmode }}"
+- name: SYNCV3_LOG_LEVEL
+  value: "{{ config.log.level }}"
+
+# We convert all the items to dicts, merge them (removing duplicates), and extract them out to items again
+api_env: "{{ {} | combine(([api_env_underrides, api_env_user]
+                    + (query('vars', *(query('ansible.builtin.varnames', '.+_env_overrides$')
+                                      )
+                             ) | list
+                      )
+                    )
+                  | map('items2dict', key_name='name'))
+                | dict2items(key_name='name') }}"

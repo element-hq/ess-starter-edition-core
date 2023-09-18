@@ -1,0 +1,182 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: matrix.element.io/v1alpha1
+kind: Synapse
+metadata:
+  name: {{ ansible_operator_meta.name }}
+  namespace: "{{ ansible_operator_meta.namespace }}"
+  labels:
+    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
+    app.kubernetes.io/managed-by: element-updater
+  annotations:
+    k8s.element.io/secretshash: "{{ lookup('template', 'synapse/secrets.yaml.j2') | hash('sha1') }}"
+spec:
+  {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'synapse'})
+    | from_yaml
+    | ansible.utils.remove_keys(target='pullSecrets')
+    | to_nice_yaml(indent=2)
+    | indent(2)
+  }}
+    {{
+      (
+        lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+        | from_yaml
+      ).image
+      | ansible.utils.replace_keys(target=[
+        {"before":"repository", "after":"haproxyRepository"},
+        {"before":"tag", "after":"haproxyTag"},
+        {"before":"digest", "after":"haproxyDigest"}
+      ])
+      | ansible.utils.remove_keys(target='pullSecrets')
+      | to_nice_yaml(indent=2)
+      | indent(4)
+    }}
+    {{
+      (
+        lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'redis'})
+        | from_yaml
+      ).image
+      | ansible.utils.replace_keys(target=[
+          {"before":"repository", "after":"redisRepository"},
+          {"before":"tag", "after":"redisTag"},
+          {"before":"digest", "after":"redisDigest"}
+      ])
+      | ansible.utils.remove_keys(target='pullSecrets')
+      | to_nice_yaml(indent=2)
+      | indent(4)
+    }}
+    {{
+      {
+        'pullSecrets': [
+          (
+            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'synapse'})
+            | from_yaml
+          ).image.pullSecrets | default([]),
+          (
+            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+            | from_yaml
+          ).image.pullSecrets | default([]),
+          (
+            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'redis'})
+            | from_yaml
+          ).image.pullSecrets | default([])
+        ] | community.general.lists_mergeby('name')
+    }
+    | to_nice_yaml(indent=2)
+    | indent(4)
+    }}
+{% if component_k8s_security_context_force_uid_gid %}
+    passUserIdToSynapse: Always
+{% else %}
+    passUserIdToSynapse: Never
+{% endif %}
+  workloads:
+    haproxy:
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+        | regex_replace('workloads:\n', '')
+        | indent(4)
+    }}
+    redis:
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'redis'})
+        | regex_replace('workloads:\n', '')
+        | indent(4)
+    }}
+    synapse:
+{% set _env = [] %}
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'synapse', '_extraEnv': _env})
+        | regex_replace('workloads:\n', '')
+        | indent(4)
+    }}
+  service:
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
+  ingress:
+    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_tls_secret': 'synapse-tls-secret'}) | indent(4) }}
+{% if selected_components_with_synapse_additional_ingress_paths | length > 0 %}
+    additionalPaths:
+    {{
+      selected_components_with_synapse_additional_ingress_paths
+      | map(attribute='synapse_additional_ingress_paths')
+      | flatten
+      | to_nice_yaml(indent=2)
+      | indent(4)
+    }}
+{% endif %}
+  config:
+    haproxyReplicas: 1
+    {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2', template_vars={'_subcomponent':'synapse'}) | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'synapse'}) | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+        | regex_replace('resources:', 'haproxyResources:')
+        | regex_replace('replicas:', 'haproxyReplicas:')
+        | regex_replace('podSecurityContext:', 'haproxyPodSecurityContext:')
+        | regex_replace('containersSecurityContext:', 'haproxyContainersSecurityContext:')
+        | indent(4)
+     }}
+    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'redis'})
+      | regex_replace('resources:', 'redisResources:')
+      | regex_replace('podSecurityContext:', 'redisPodSecurityContext:')
+      | regex_replace('containersSecurityContext:', 'redisContainersSecurityContext:')
+      | indent(4)
+    }}
+    externalSecret:
+      name: {{ ansible_operator_meta.name }}-synapse-secrets
+    serverName: "{{ global.config.domain_name }}"
+    database:
+      host: "{{ components.synapse.config.postgresql.host }}"
+      port: {{ components.synapse.config.postgresql.port }}
+      user: "{{ components.synapse.config.postgresql.user }}"
+      name: "{{ components.synapse.config.postgresql.database }}"
+      sslmode: "{{ components.synapse.config.postgresql.ssl_mode }}"
+    media:
+      volumeClaim: {{ ansible_operator_meta.name }}-synapse-media
+    log:
+      rootLevel: "{{ components.synapse.config.log.root_level }}"
+{% if components.synapse.config.log.level_overrides | default({}) | length > 0 %}
+      levelOverrides:
+{% for logger, level in _matrix_element_io_elementdeployment_spec.components.synapse.config.log.levelOverrides.items() %}
+        "{{ logger }}": {{ level }}
+{% endfor %}
+{% endif %}
+{% if (selected_components_with_appservices
+      + components.synapse.config.external_appservices.config_maps
+      + components.synapse.config.external_appservices.files.keys() | list) | length > 0
+      or components.synapse.config.workers | length > 0 %}
+    workers:
+{% for worker in components.synapse.config.workers | default([]) %}
+      - type: {{ worker.type }}
+        instances: {{ worker.instances }}
+        resources:
+          {{ worker.resources | to_nice_yaml(indent=2) | indent(10) }}
+{% else %}
+      - type: appservice
+        instances: 1
+{#
+Use the main process resources on this as we have no option to use instead.
+If this isn't what users want they can manually specify the workers
+#}
+{% if components.synapse.k8s.synapse.workloads.resources | default(false) %}
+        resources:
+          {{ components.synapse.k8s.synapse.workloads.resources | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if (selected_components_with_appservices
+      + components.synapse.config.external_appservices.config_maps
+      + components.synapse.config.external_appservices.files.keys() | list) | length > 0
+      or synapse_workers is defined %}
+    applicationServicesRegistrations:
+{% for as in selected_components_with_appservices %}
+    - {{ as.registration_configmap_name }}
+{% endfor %}
+{% for as_external_configmap_name in components.synapse.config.external_appservices.config_maps %}
+    - {{ as_external_configmap_name }}
+{% endfor %}
+{% for as_external_configmap_name in (components.synapse.config.external_appservices.files.keys()) %}
+    - {{ ansible_operator_meta.name }}-appservice-{{ as_external_configmap_name }}-config
+{% endfor %}
+{% endif %}

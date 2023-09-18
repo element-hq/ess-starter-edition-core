@@ -1,0 +1,209 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# This kustomization.yaml is not intended to be run by itself,
+# since it depends on service name and namespace that are out of this kustomize package.
+# It should be run by config/default
+resources:
+  - ../../bases/starter-core
+  - ../../default-resources/starter-core
+  - ../common
+nameSuffix: -starter-core
+replacements:
+  - source:
+      kind: KustomizeSchema
+      name: containers-security-context
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.containersSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.clamAntiVirus.properties.containersSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.containersSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.haproxyContainersSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.icap.properties.containersSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixContentScanner.properties.containersSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.redisContainersSecurityContext
+  - source:
+      kind: KustomizeSchema
+      name: host-aliases
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.hostAliases
+  - source:
+      kind: KustomizeSchema
+      name: image
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+        reject:
+          # https://gitlab.matrix.org/new-vector/element-kubernetes-operator/-/issues/42
+          # TODO : Synapse uses a different schema at the moment
+          - kind: CustomResourceDefinition
+            name: synapses.matrix.element.io
+          - kind: CustomResourceDefinition
+            name: matrixcontentscanners.matrix.element.io
+          - kind: CustomResourceDefinition
+            name: slidingsyncs.matrix.element.io
+          - namespace: enterprise
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image
+      - select:
+          kind: CustomResourceDefinition
+          name: matrixcontentscanners.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.clamAntiVirus
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.icap
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.matrixContentScanner
+      - select:
+          kind: CustomResourceDefinition
+          name: slidingsyncs.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.api
+  - source:
+      kind: KustomizeSchema
+      name: ingress
+      fieldPath: spec.schema
+    targets:
+      - reject:
+          - namespace: enterprise
+        select:
+          kind: CustomResourceDefinition
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.appserviceIngress
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.ingress
+  - source:
+      kind: KustomizeSchema
+      name: k8s-workloads-resources
+      fieldPath: spec.schema
+    targets:
+      - reject:
+          - namespace: enterprise
+        select:
+          kind: CustomResourceDefinition
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.clamAntiVirus.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.haproxyResources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.icap.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixContentScanner.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.redisResources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.resources
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.workers.items.properties.resources
+  - source:
+      kind: KustomizeSchema
+      name: matrix-server
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+        reject:
+          - namespace: enterprise
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixServer
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.defaultMatrixServer
+  - source:
+      kind: KustomizeSchema
+      name: persistent-volume-claim-template
+      fieldPath: spec.schema
+    targets:
+      - reject:
+          - namespace: enterprise
+        select:
+          kind: CustomResourceDefinition
+          name: matrixcontentscanners.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.caching.properties.persistentVolumeClaimTemplate
+  - source:
+      kind: KustomizeSchema
+      name: pods-security-context
+      fieldPath: spec.schema
+    targets:
+      - reject:
+          - namespace: enterprise
+        select:
+          kind: CustomResourceDefinition
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.podSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.clamAntiVirus.properties.podSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.haproxyPodSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixContentScanner.properties.podSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.podSecurityContext
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.redisPodSecurityContext
+  - source:
+      kind: KustomizeSchema
+      name: postgres-golang
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: slidingsyncs.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.database
+  - source:
+      kind: KustomizeSchema
+      name: postgres-libpq
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: synapses.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.database
+  - source:
+      kind: KustomizeSchema
+      name: service
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+        reject:
+          - namespace: enterprise
+          - kind: CustomResourceDefinition
+            name: lowbandwidths.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.service
+  - source:
+      kind: KustomizeSchema
+      name: workloads
+      fieldPath: spec.schema
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+        reject:
+          - namespace: enterprise
+          - kind: CustomResourceDefinition
+            name: synapses.matrix.element.io
+          - kind: CustomResourceDefinition
+            name: matrixcontentscanners.matrix.element.io
+          - kind: CustomResourceDefinition
+            name: slidingsyncs.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads
+      - select:
+          kind: CustomResourceDefinition
+          name: synapses.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.haproxy
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.redis
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.synapse
+      - select:
+          kind: CustomResourceDefinition
+          name: matrixcontentscanners.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.clamAntiVirus
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.icap
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.matrixContentScanner
+      - select:
+          kind: CustomResourceDefinition
+          name: slidingsyncs.matrix.element.io
+        fieldPaths:
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.api
+  - path: default-resources-replacements.yaml

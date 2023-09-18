@@ -1,0 +1,23 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: replacements-common
+resources:
+  - containers-security-context.yaml
+  - host-aliases.yaml
+  - image.yaml
+  - ingress.yaml
+  - kustomization.yaml
+  - matrix-server.yaml
+  - persistent-volume-claim-template.yaml
+  - pods-security-context.yaml
+  - postgres-golang.yaml
+  - postgres-libpq.yaml
+  - service.yaml
+  - workloads.yaml
+  - k8s-workloads-resources.yaml

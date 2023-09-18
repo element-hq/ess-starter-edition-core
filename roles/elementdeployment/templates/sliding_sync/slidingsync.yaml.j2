@@ -1,0 +1,45 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: matrix.element.io/v1alpha1
+kind: SlidingSync
+metadata:
+  name: "{{ ansible_operator_meta.name }}"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+  annotations:
+    k8s.element.io/secretshash: "{{ lookup('template', 'sliding_sync/secrets.yaml.j2') | hash('sha1') }}"
+  labels:
+    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
+    app.kubernetes.io/managed-by: element-updater
+spec:
+  image:
+    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'api'})
+      | regex_replace('image:', 'api:') | indent(6) }}
+  workloads:
+    api:
+      {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'api'}) | indent(6) }}
+  ingress:
+    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_tls_secret': 'sliding-sync-tls-secret'}) | indent(4) }}
+  service:
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
+  config:
+    api:
+      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'api'})
+          | indent(6) }}
+    log:
+      level: {{ components.sliding_sync.config.log.level }}
+    externalSecret:
+      name: {{ ansible_operator_meta.name }}-sliding-sync-secrets
+    matrixServer:
+      baseUrl: https://{{ components.synapse.k8s.ingress.fqdn }}
+      serverName: {{ global.config.domain_name }}
+    database:
+      host: "{{ components.sliding_sync.config.postgresql.host }}"
+      port: {{ components.sliding_sync.config.postgresql.port }}
+      user: "{{ components.sliding_sync.config.postgresql.user }}"
+      name: "{{ components.sliding_sync.config.postgresql.database }}"
+      sslmode: "{{ components.sliding_sync.config.postgresql.ssl_mode }}"

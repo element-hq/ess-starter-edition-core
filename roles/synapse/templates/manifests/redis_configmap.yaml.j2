@@ -1,0 +1,22 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: synapse-redis
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-redis"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-server-pubsub
+    app.kubernetes.io/version: "{{ image.redis_tag | default(redis_image_tag) }}"
+  name: "{{ ansible_operator_meta.name }}-synapse-redis"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+data:
+  redis.conf: |
+    {{ redis_config | indent(4) }}

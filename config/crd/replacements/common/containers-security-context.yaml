@@ -1,0 +1,45 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: containers-security-context
+spec:
+  schema:
+    description: "A subset of SecurityContext. ContainersSecurityContext holds pod-level security attributes and common container settings"
+    type: object
+    properties:
+      allowPrivilegeEscalation:
+        description: Controls whether a process can gain more privileges than its parent process. This bool directly controls whether the no_new_privs flag gets set on the container process. allowPrivilegeEscalation is always true when the container is run as privileged, or has CAP_SYS_ADMIN
+        type: boolean
+      readOnlyRootFilesystem:
+        description: Mounts the container's root filesystem as read-only.
+        type: boolean
+      capabilities:
+        description: Give a process some privileges, but not all the privileges of the root user.
+        type: object
+        properties:
+          add:
+            description: Privileges to add.
+            type: array
+            items:
+              type: string
+          drop:
+            description: Privileges to drop.
+            type: array
+            items:
+              type: string
+      seccompProfile:
+        description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
+        type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - RuntimeDefault
+              - Unconfined
+              - Localhost
+          localhostProfile:
+            type: string

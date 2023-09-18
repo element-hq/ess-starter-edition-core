@@ -1,0 +1,51 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# This kustomization.yaml is not intended to be run by itself,
+# since it depends on service name and namespace that are out of this kustomize package.
+# It should be run by config/default
+resources:
+  - ../../replacements/starter-core
+patches:
+  - path: descriptions.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: uids-gids.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: certificates-keys.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: replicas.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: wellknowndelegation-no-fqdn.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: synapse-op-del-k8s-synapse-storage-volume.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: clean-global-k8s.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: defaults-global-k8s.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: descriptions.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+  - path: certificates-keys.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io

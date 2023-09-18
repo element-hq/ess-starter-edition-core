@@ -1,0 +1,17 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+image_repository: nginx
+image_tag: 1.23
+image_pull_secrets: []
+image_has_digest: "{{ (image.digest | default('')) | length > 0 }}"
+image_pull_policy: "{{ image_has_digest | ternary('IfNotPresent', 'Always') }}"
+
+replicas: 2
+
+nginx_config: "{{ lookup('file', 'nginx.conf') }}"
+client_json: "{{ lookup('template', 'client.j2') | from_json }}"
+server_json: "{{ lookup('template', 'server.j2') | from_json }}"

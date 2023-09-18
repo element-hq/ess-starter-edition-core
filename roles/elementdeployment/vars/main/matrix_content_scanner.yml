@@ -1,0 +1,18 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+component_info_matrix_content_scanner:
+  id: matrix_content_scanner
+  application_services: false
+  is_bridge: false
+  synapse_module_config_names: []
+  supports_encryption: true
+  synapse_additional_ingress_paths:
+  - path: /_matrix/media_proxy
+    matchHostname: '{{ components.synapse.k8s.ingress.fqdn }}'
+    service:
+      name: '{{ ansible_operator_meta.name }}-matrix-content-scanner-headless'
+      port:
+        name: web

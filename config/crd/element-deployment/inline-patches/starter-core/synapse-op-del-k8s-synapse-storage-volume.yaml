@@ -1,0 +1,8 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# Synapse is has not been migrated yet to volume names and size being handled under the k8s key
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/storage/properties'

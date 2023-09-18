@@ -1,0 +1,27 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: ingress
+spec:
+  schema:
+    description: Defines how to access this resource
+    type: object
+    properties:
+      domainName:
+        description: What domain name to create this ingress at
+        type: string
+      annotations:
+        description: Defines the annotations to add to the ingress object
+        type: object
+        additionalProperties:
+          type: string
+      tlsSecret:
+        description: An optional TLS secret to be used to secure this ingress with. Optional as if used in OpenShift the default Router certificates can be used
+        type: string
+      ingressClassName:
+        description: An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer external to the operator.
+        type: string

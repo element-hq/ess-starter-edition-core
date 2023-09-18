@@ -1,0 +1,16 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: elementWeb
+spec:
+  schema:
+    type: object
+    default: {}
+    properties:
+      additionalConfig:
+        type: string
+        description: Element web additional configuration.

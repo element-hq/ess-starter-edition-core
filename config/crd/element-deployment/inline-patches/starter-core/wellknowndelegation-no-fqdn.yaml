@@ -1,0 +1,10 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+# Remove WellKnownDelegation ingress fqdn, its using global domain_name
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/wellKnownDelegation/properties/k8s/properties/ingress/properties/fqdn'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/wellKnownDelegation/properties/k8s/properties/ingress/required'

@@ -1,0 +1,36 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+version: 1
+
+formatters:
+  precise:
+    format: '%(asctime)s - %(name)s - %(lineno)d - %(levelname)s - %(request)s - %(message)s'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: precise
+
+loggers:
+{#
+Increasing synapse.storage.SQL past INFO will log access tokens. Putting in the CRD default will mean it gets
+nuked if an override is set and then if the root level is increased to debug, the access tokens will be logged.
+Putting here means it is an explicit customer choice to override it.
+#}
+{% set _overrides = {"synapse.storage.SQL": "INFO"} | combine(_matrix_element_io_synapse_spec.config.log.levelOverrides | default({})) %}
+{% for logger, level in _overrides.items() %}
+  {{ logger }}:
+    level: "{{ level | upper }}"
+{% endfor %}
+
+root:
+  level: "{{ config.log.root_level | upper }}"
+  handlers:
+  - console
+
+disable_existing_loggers: false

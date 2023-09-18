@@ -1,0 +1,113 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+  name: '{{ .Values.prefix }}-controller-manager'
+  namespace: '{{ .Release.Namespace }}'
+{{- if $.Values.operator.annotations }}
+  annotations:
+    {{- toYaml $.Values.operator.annotations | nindent 4 }}
+{{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: manager
+{{- if $.Values.operator.annotations }}
+        {{- toYaml $.Values.operator.annotations | nindent 8 }}
+{{- end }}
+      labels:
+        app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+    spec:
+    {{- if $.Values.operator.extraPodSpec }}
+      {{- toYaml $.Values.operator.extraPodSpec | nindent 6 }}
+    {{- end }}
+{{- if $.Values.operator.imagePullSecret }}
+      imagePullSecrets:
+      - name: {{ $.Values.operator.imagePullSecret }}
+{{- end }}
+      containers:
+{{- if $.Values.clusterDeployment }}
+      - args:
+          - --secure-listen-address=0.0.0.0:8443
+          - --upstream=http://127.0.0.1:8080/
+          - --logtostderr=true
+          - --v=0
+        image: '{{ .Values.operator.rbacProxy.image.repository }}{{ hasKey .Values.operator.rbacProxy.image "digest" | ternary (print "@" .Values.operator.rbacProxy.image.digest) (print ":" .Values.operator.rbacProxy.image.tag) }}'
+        imagePullPolicy: '{{ .Values.operator.rbacProxy.imagePullPolicy }}'
+        name: kube-rbac-proxy
+      {{- with $.Values.operator.rbacProxy.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if $.Values.operator.rbacProxy.extraContainerSpec }}
+        {{- toYaml $.Values.operator.rbacProxy.extraContainerSpec | nindent 8 }}
+      {{- end }}
+        ports:
+          - containerPort: 8443
+            name: https
+            protocol: TCP
+{{- end }}
+      - args:
+          - --health-probe-bind-address=:6789
+          - --metrics-bind-address=127.0.0.1:8080
+          - --leader-elect
+          - --leader-election-id=element-operator
+        env:
+        - name: ANSIBLE_GATHERING
+          value: "explicit"
+        {{- if not $.Values.clusterDeployment }}
+        - name: WATCH_NAMESPACE
+          value: '{{ .Release.Namespace }}'
+        {{- end }}
+        {{- if $.Values.operator.manager.extraEnvs }}
+          {{- toYaml $.Values.operator.manager.extraEnvs | nindent 8 }}
+        {{- end }}
+        image: '{{ .Values.operator.manager.image.repository }}{{ hasKey .Values.operator.manager.image "digest" | ternary (print "@" .Values.operator.manager.image.digest) (print ":" .Values.operator.manager.image.tag) }}'
+        imagePullPolicy: '{{ .Values.operator.manager.imagePullPolicy }}'
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 6789
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 6789
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /readyz
+            port: 6789
+          periodSeconds: 10
+          initialDelaySeconds: 5
+        name: manager
+      {{- with $.Values.operator.manager.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if $.Values.operator.manager.extraContainerSpec }}
+        {{- toYaml $.Values.operator.manager.extraContainerSpec | nindent 8 }}
+      {{- end }}
+        volumeMounts:
+        - mountPath: /tmp
+          name: manager-tmp
+        - mountPath: /opt/ansible/.ansible/tmp/
+          name: ansible-tmp
+      serviceAccountName: '{{ .Values.prefix }}-controller-manager'
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: manager-tmp
+      - emptyDir:
+          medium: Memory
+        name: ansible-tmp

@@ -1,0 +1,27 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: Maintain sliding sync
+  kubernetes.core.k8s:
+    resource_definition: >
+      {{
+        query('template',
+                *query('fileglob', 'templates/manifests/*.yaml.j2'))
+        | map('trim')
+        | select
+        | map('from_yaml')
+        | select
+        | map('combine', _owner_refs_metadata, recursive=true)
+      }}
+
+- name: "Teardown unused secrets"
+  ansible.builtin.include_role:
+    name: teardown
+  vars:
+    kind_list:
+    - kind: Secrets
+      api_version: v1
+    kind_owner: SlidingSync

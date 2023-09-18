@@ -1,0 +1,179 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-content-scanner
+    app.kubernetes.io/name: clamav
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-clamav"
+    app.kubernetes.io/version: "{{ image.clam_anti_virus.tag }}"
+  annotations:
+    k8s.element.io/confighash: "{{ lookup('template', 'manifests/matrixcontentscanner_clamav_configmap.yaml.j2') | hash('sha1') }}"
+    k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
+{% if workloads.annotations | default({}) %}
+    {{ _matrix_element_io_matrixcontentscanner_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+  name: "{{ ansible_operator_meta.name }}-clamav"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+  replicas: {{ config.clam_anti_virus.replicas | default(replicas) }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-clamav"
+  serviceName: "{{ ansible_operator_meta.name }}-clamav"
+  updateStrategy:
+    type: RollingUpdate
+  # Without this CrashLoopBackoffs due to config failures block pod recreation
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: element-operator
+        app.kubernetes.io/part-of: matrix-stack
+        app.kubernetes.io/component: matrix-content-scanner
+        app.kubernetes.io/name: clamav
+        app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-clamav"
+        app.kubernetes.io/version: "{{ image.clam_anti_virus.tag }}"
+      annotations:
+        k8s.element.io/confighash: "{{ lookup('template', 'manifests/matrixcontentscanner_clamav_configmap.yaml.j2') | hash('sha1') }}"
+        k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
+{% if workloads.clam_anti_virus.annotations | default({}) %}
+        {{ _matrix_element_io_matrixcontentscanner_spec.workloads.clam_anti_virus.annotations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+    spec:
+      automountServiceAccountToken: false
+{% if _merged_image_pull_secrets_names | length > 0 %}
+      imagePullSecrets:
+{% for _secret_name in _merged_image_pull_secrets_names %}
+      - name: {{ _secret_name }}
+{% endfor %}
+{% endif %}
+{% if (_matrix_element_io_matrixcontentscanner_spec.config.clamAntiVirus.podSecurityContext | default({})) | length > 0 %}
+      securityContext:
+        {{ _matrix_element_io_matrixcontentscanner_spec.config.clamAntiVirus.podSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+{% if (_matrix_element_io_matrixcontentscanner_spec.config.hostAliases | default([])) | length > 0 %}
+      hostAliases:
+        {{ _matrix_element_io_matrixcontentscanner_spec.config.hostAliases | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+      containers:
+      - name: clamav
+{% if image_clamav_has_digest %}
+        image: "{{ image.clam_anti_virus.repository | default(image_clamav_repository) }}@{{ image.clam_anti_virus.digest }}"
+{% else %}
+        image: "{{ image.clam_anti_virus.repository | default(image_clamav_repository) }}:{{ image.clam_anti_virus.tag }}"
+{% endif %}
+        imagePullPolicy: "{{ image.pull_policy | default(image_clamav_pull_policy) }}"
+{% if (_matrix_element_io_matrixcontentscanner_spec.config.clamAntiVirus.containersSecurityContext | default({})) | length > 0 %}
+        securityContext:
+          {{ _matrix_element_io_matrixcontentscanner_spec.config.clamAntiVirus.containersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+{% if env_clamav | length > 0 %}
+        env:
+        {{ env_clamav | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+        ports:
+        - containerPort: {{ _clamav_port }}
+          name: clamav
+          protocol: TCP
+        resources:
+          {{ config.clam_anti_virus.resources | to_nice_yaml(indent=2) | indent(10) }}
+        livenessProbe:
+          tcpSocket:
+            port: 3310
+        readinessProbe:
+          tcpSocket:
+            port: 3310
+        startupProbe:
+          tcpSocket:
+            port: 3310
+        volumeMounts:
+        - mountPath: "/etc/clamav/freshclam.conf"
+          name: clamav-config
+          readOnly: true
+          subPath: freshclam.conf
+        - mountPath: "/etc/clamav/clamd.conf"
+          name: clamav-config
+          readOnly: true
+          subPath: clamd.conf
+        - mountPath: "/var/lib/clamav"
+          name: clamav-data
+        - mountPath: /run/clamav
+          name: clamav-run
+        - mountPath: /tmp
+          name: clamav-tmp
+      - name: icap
+{% if image_icap_has_digest %}
+        image: "{{ image.icap.repository | default(image_icap_repository) }}@{{ image.icap.digest }}"
+{% else %}
+        image: "{{ image.icap.repository | default(image_icap_repository) }}:{{ image.icap.tag }}"
+{% endif %}
+        imagePullPolicy: "{{ image.pull_policy | default(image_icap_pull_policy) }}"
+{% if (_matrix_element_io_matrixcontentscanner_spec.config.icap.containersSecurityContext | default({})) | length > 0 %}
+        securityContext:
+          {{ _matrix_element_io_matrixcontentscanner_spec.config.icap.containersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+{% if env_clamav | length > 0 %}
+        env:
+        {{ env_clamav | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+        ports:
+        - containerPort: {{ _clamav_icap_port }}
+          name: icap
+          protocol: TCP
+        resources:
+          {{ config.icap.resources | to_nice_yaml(indent=2) | indent(10) }}
+        livenessProbe:
+          tcpSocket:
+            port: 1344
+        readinessProbe:
+          tcpSocket:
+            port: 1344
+        startupProbe:
+          tcpSocket:
+            port: 1344
+        volumeMounts:
+        - mountPath: "/usr/local/c-icap/etc/c-icap.conf"
+          name: clamav-config
+          readOnly: true
+          subPath: c-icap.conf
+        - mountPath: "/usr/local/c-icap/etc/virus_scan.conf"
+          name: clamav-config
+          readOnly: true
+          subPath: virus_scan.conf
+        - mountPath: "/usr/local/c-icap/etc/clamd_mod.conf"
+          name: clamav-config
+          readOnly: true
+          subPath: clamd_mod.conf
+        - mountPath: /tmp
+          name: icap-tmp
+        - mountPath: /var/run/c-icap
+          name: icap-var-run
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: "{{ ansible_operator_meta.name }}-clamav-config"
+        name: clamav-config
+      - persistentVolumeClaim:
+          claimName: "{{ config.clam_anti_virus.volume_claim }}"
+        name: "clamav-data"
+      - name: icap-tmp
+        emptyDir:
+          medium: Memory
+      - name: icap-var-run
+        emptyDir:
+          medium: Memory
+      - name: clamav-run
+        emptyDir:
+          medium: Memory
+      - name: clamav-tmp
+        emptyDir:
+          medium: Memory

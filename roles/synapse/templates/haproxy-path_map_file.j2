@@ -1,0 +1,17 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+# A map file that is used in haproxy config to map from matrix paths to the
+# named backend. The format is: path_regexp backend_name
+
+{% for type, details in synapse_configured_workers | dictsort %}
+{% if 'paths' in synapse_available_worker_types[type] %}
+{% for path in synapse_available_worker_types[type]['paths'] %}
+{{ path }} {{ type }}
+{% endfor %}
+{% endif %}
+{% endfor %}

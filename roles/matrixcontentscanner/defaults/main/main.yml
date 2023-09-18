@@ -1,0 +1,79 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+# defaults file for MatrixContentScanner
+_matrix_content_scanner_web_port: 8080
+_clamav_icap_port: 1344
+_clamav_port: 3310
+
+_matrix_content_scanner_external_secret_found: >-
+  {{
+    query('k8s', resource_name=config.external_secret.name,
+          kind='Secret',
+          api_version='v1',
+          namespace=ansible_operator_meta.namespace)
+    + [{'data': {}}]
+  }}
+
+# if we did not find a secret, we fall back to empty one
+_matrix_content_scanner_external_secret: >-
+  {{
+    _matrix_content_scanner_external_secret_found | first
+  }}
+
+_matrix_content_scanner_config: "{{ lookup('template', 'templates/config.yaml.j2') }}"
+_freshclam_config: "{{ lookup('template', 'templates/freshclam.conf.j2') }}"
+_clamd_config: "{{ lookup('template', 'templates/clamd.conf.j2') }}"
+_c_icap_config: "{{ lookup('template', 'templates/c-icap.conf.j2') }}"
+_c_icap_clamd_mod_config: "{{ lookup('template', 'templates/clamd_mod.conf.j2') }}"
+_c_icap_virus_scan_config: "{{ lookup('template', 'templates/virus_scan.conf.j2') }}"
+
+image_matrixcontentscanner_repository: docker.io/vectorim/matrix-content-scanner
+image_clamav_repository: docker.io/clamav/clamav
+image_icap_repository: registry.element.io/c-icap
+image_pull_secrets: []
+_merged_image_pull_secrets_names: >-
+  {{
+    (image.clam_anti_virus.pull_secrets | default(image_pull_secrets)
+    + image.icap.pull_secrets | default(image_pull_secrets))
+    | map(attribute='name')
+    | unique
+    | list
+  }}
+
+env_matrixcontentscanner_overrides:
+- name: ICAP_HOST
+  value: "{{ ansible_operator_meta.name }}-clamav-headless"
+- name: ICAP_PORT
+  value: "1344"
+- name: ICAP_SVC
+  value: "matrix-content-scanner"
+- name: DETECTION_KEYWORD
+  value: X-Infection-Found
+env_matrixcontentscanner_user: "{{ workloads.matrix_content_scanner.extra_env | default([]) }}"
+env_matrixcontentscanner_underrides: []
+
+# We convert all the items to dicts, merge them (removing duplicates), and extract them out to items again
+env_matrixcontentscanner: >-
+  {{ {} | combine([env_matrixcontentscanner_underrides,
+                    env_matrixcontentscanner_user,
+                    env_matrixcontentscanner_overrides] | map('items2dict', key_name='name'))
+            | dict2items(key_name='name') }}
+
+
+env_clamav: "{{ workloads.clam_anti_virus.extra_env | default([]) }}"
+
+
+image_matrixcontentscanner_has_digest: "{{ (image.matrix_content_scanner.digest | default('')) | length > 0 }}"
+image_matrixcontentscanner_pull_policy: "{{ image_matrixcontentscanner_has_digest | ternary('IfNotPresent', 'Always') }}"
+image_clamav_has_digest: "{{ (image.clam_anti_virus.digest | default('')) | length > 0 }}"
+image_clamav_pull_policy: "{{ image_clamav_has_digest | ternary('IfNotPresent', 'Always') }}"
+image_icap_has_digest: "{{ (image.icap.digest | default('')) | length > 0 }}"
+image_icap_pull_policy: "{{ image_icap_has_digest | ternary('IfNotPresent', 'Always') }}"
+
+
+replicas: 2
+crd_spec_hash: "{{ _matrix_element_io_matrixcontentscanner_spec | to_json | hash('sha1') }}"

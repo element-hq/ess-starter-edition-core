@@ -1,0 +1,20 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: service
+spec:
+  schema:
+    description: Describes the service created to expose this resource
+    type: object
+    properties:
+      type:
+        description: What type of service to create
+        type: string
+        enum:
+          - ClusterIP
+          - NodePort
+          - LoadBalancer

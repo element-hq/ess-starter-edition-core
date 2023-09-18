@@ -1,0 +1,72 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+kind: KustomizeSchema
+metadata:
+  name: default-resources-starter-core
+spec:
+  schemas:
+    elementWeb:
+      limits:
+        memory: 200Mi
+      requests:
+        cpu: 100m
+        memory: 50Mi
+    matrixContentScanner:
+      icap:
+        limits:
+          memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 200Mi
+      clamAntiVirus:
+        limits:
+          memory: 4Gi
+        requests:
+          cpu: 100m
+          memory: 200Mi
+      matrixContentScanner:
+        limits:
+          memory: 500Mi
+        requests:
+          cpu: 100m
+          memory: 200Mi
+    slidingSync:
+      api:
+        limits:
+          memory: 4Gi
+        requests:
+          cpu: 200m
+          memory: 2Gi
+    synapse:
+      haproxy:
+        limits:
+          memory: 200Mi
+        requests:
+          cpu: 1
+          memory: 100Mi
+      redis:
+        limits:
+          memory: 50Mi
+        requests:
+          cpu: 200m
+          memory: 50Mi
+      synapse:
+        limits:
+          memory: 4Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+      workers:
+        limits:
+          memory: 4Gi
+        requests:
+          cpu: 1
+          memory: 2Gi
+    wellKnownDelegation:
+      limits:
+        memory: 200Mi
+      requests:
+        cpu: 100m
+        memory: 50Mi

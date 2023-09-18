@@ -1,0 +1,46 @@
+# © 2023 New-Vector
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+default_images_digests:
+  element_web:
+    element_web:
+      image_repository_server: docker.io
+      image_repository_path: vectorim/element-web
+      image_tag: v1.11.40
+  matrix_content_scanner:
+    icap:
+      image_repository_server: ghcr.io
+      image_repository_path: vector-im/docker-icap
+      image_tag: core-0.5.10-mod-0.5.5
+    clam_anti_virus:
+      image_repository_server: ghcr.io
+      image_repository_path: vector-im/docker-clamav
+      image_tag: "1.1"
+    matrix_content_scanner:
+      image_repository_server: docker.io
+      image_repository_path: vectorim/matrix-content-scanner
+      image_tag: v1.0.3
+  sliding_sync:
+    api:
+      image_repository_server: ghcr.io
+      image_repository_path: matrix-org/sliding-sync
+      image_tag: v0.99.9b
+  synapse:
+    haproxy:
+      image_repository_server: docker.io
+      image_repository_path: library/haproxy
+      image_tag: '2.4'
+    redis:
+      image_repository_server: docker.io
+      image_repository_path: library/redis
+      image_tag: 6.2.10
+    synapse:
+      image_repository_server: docker.io
+      image_repository_path: matrixdotorg/synapse
+      image_tag: v1.92.2
+  well_known_delegation:
+    well_known_delegation:
+      image_repository_server: docker.io
+      image_repository_path: library/nginx
+      image_tag: '1.23'

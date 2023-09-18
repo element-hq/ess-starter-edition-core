@@ -1,0 +1,138 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-content-scanner
+    app.kubernetes.io/name: matrix-content-scanner
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
+    app.kubernetes.io/version: "{{ image.matrix_content_scanner.tag }}"
+  annotations:
+    k8s.element.io/confighash: "{{ _matrix_content_scanner_config | hash('sha1') }}"
+    k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
+{% if workloads.annotations | default({}) %}
+    {{ _matrix_element_io_matrixcontentscanner_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+  name: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+  replicas: {{ config.matrix_content_scanner.replicas | default(replicas) }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
+  serviceName: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
+  updateStrategy:
+    type: RollingUpdate
+  # Without this CrashLoopBackoffs due to config failures block pod recreation
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: element-operator
+        app.kubernetes.io/part-of: matrix-stack
+        app.kubernetes.io/component: matrix-content-scanner
+        app.kubernetes.io/name: matrix-content-scanner
+        app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
+        app.kubernetes.io/version: "{{ image.matrix_content_scanner.tag }}"
+      annotations:
+        k8s.element.io/confighash: "{{ _matrix_content_scanner_config | hash('sha1') }}"
+        k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
+{% if workloads.annotations | default({}) %}
+        {{ _matrix_element_io_matrixcontentscanner_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+    spec:
+      automountServiceAccountToken: false
+{% if (image.matrix_content_scanner.pull_secrets | default(image_pull_secrets)) | length > 0 %}
+      imagePullSecrets:
+      {{ (image.matrix_content_scanner.pull_secrets | default(image_pull_secrets)) | to_nice_yaml(indent=2) | indent(6) }}
+{% endif %}
+{% if (_matrix_element_io_matrixcontentscanner_spec.config.matrixContentScanner.podSecurityContext | default({})) | length > 0 %}
+      securityContext:
+        {{ _matrix_element_io_matrixcontentscanner_spec.config.matrixContentScanner.podSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+{% if (_matrix_element_io_matrixcontentscanner_spec.config.hostAliases | default([])) | length > 0 %}
+      hostAliases:
+        {{ _matrix_element_io_matrixcontentscanner_spec.config.hostAliases | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+      containers:
+      - name: matrix-content-scanner
+{% if image_matrixcontentscanner_has_digest %}
+        image: "{{ image.matrix_content_scanner.repository | default(image_matrixcontentscanner_repository) }}@{{ image.matrix_content_scanner.digest }}"
+{% else %}
+        image: "{{ image.matrix_content_scanner.repository | default(image_matrixcontentscanner_repository) }}:{{ image.matrix_content_scanner.tag }}"
+{% endif %}
+        imagePullPolicy: "{{ image.matrix_content_scanner.pull_policy | default(image_matrixcontentscanner_pull_policy) }}"
+{% if (_matrix_element_io_matrixcontentscanner_spec.config.matrixContentScanner.containersSecurityContext | default({})) | length > 0 %}
+        securityContext:
+          {{ _matrix_element_io_matrixcontentscanner_spec.config.matrixContentScanner.containersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+{% if env_matrixcontentscanner | length > 0 %}
+        env:
+        {{ env_matrixcontentscanner | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+        ports:
+        - containerPort: {{ _matrix_content_scanner_web_port }}
+          name: web
+          protocol: TCP
+        resources:
+          {{ config.matrix_content_scanner.resources | to_nice_yaml(indent=2) | indent(10) }}
+        livenessProbe:
+          httpGet:
+            path: /_matrix/media_proxy/unstable/public_key
+            port: web
+        readinessProbe:
+          httpGet:
+            path: /_matrix/media_proxy/unstable/public_key
+            port: web
+        startupProbe:
+          httpGet:
+            path: /_matrix/media_proxy/unstable/public_key
+            port: web
+        volumeMounts:
+        - mountPath: "/data/config.yaml"
+          name: config
+          readOnly: true
+          subPath: config.yaml
+        - mountPath: "/data/virusScan.sh"
+          name: config
+          readOnly: true
+          subPath: virusScan.sh
+        - name: secrets
+          readOnly: true
+          mountPath: "/secrets"
+        - mountPath: "/tmp"
+          name: temp
+        - mountPath: "/pickle"
+          name: pickle
+      volumes:
+      - name: secrets
+        secret:
+          secretName: {{ config.external_secret.name }}
+      - name: config
+        configMap:
+          defaultMode: 360
+          name: {{ ansible_operator_meta.name }}-matrix-content-scanner-config
+      - emptyDir:
+          medium: Memory
+        name: pickle
+  volumeClaimTemplates:
+  - metadata:
+      name: temp
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "{{ config.caching.persistent_volume_claim_template.storage_class_name }}"
+      resources:
+        requests:
+          storage: {{ config.caching.persistent_volume_claim_template.size }}
+{% if "selector" in config.caching.persistent_volume_claim_template %}
+      selector:
+        {{ _matrix_element_io_matrixcontentscanner_spec.config.caching.persistentVolumeClaimTemplate.selector | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}

@@ -1,0 +1,24 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-delegation
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: well-known
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-well-known"
+    app.kubernetes.io/version: "{{ image.tag | default(image_tag) }}"
+  name: "{{ ansible_operator_meta.name }}-well-known"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+data:
+  client: |-
+    {{ client_json | to_nice_json | indent(4) }}
+  server: |-
+    {{ server_json | to_nice_json | indent(4) }}

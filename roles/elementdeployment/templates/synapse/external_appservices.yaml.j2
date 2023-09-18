@@ -1,0 +1,23 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{% for key, value in components.synapse.config.external_appservices.files.items() %}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ ansible_operator_meta.name }}-appservice-{{ key }}-config"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+  labels:
+    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
+    app.kubernetes.io/managed-by: element-updater
+    app.kubernetes.io/component: external-appservice
+  annotations:
+data:
+  registration.yaml: |
+    {{ value | from_yaml | to_nice_yaml(indent=2) | indent(4) }}
+{% endfor %}

@@ -1,0 +1,20 @@
+# © 2023 New-Vector
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ess-starter-edition-core
+Upstream-Contact: New-Vector
+Source: https://gitlab.matrix.org
+
+Files: helm/operator/fragments/*
+Copyright:  © 2023 New-Vector
+License: AGPL-3.0-or-later
+
+Files: helm/operator/yq/*
+Copyright:  © 2023 New-Vector
+License: AGPL-3.0-or-later
+
+Files: helm/updater/fragments/*
+Copyright:  © 2023 New-Vector
+License: AGPL-3.0-or-later

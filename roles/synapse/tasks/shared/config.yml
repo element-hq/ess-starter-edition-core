@@ -1,0 +1,9 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Maintain Synapse shared config"
+  kubernetes.core.k8s:
+    template: manifests/synapse_shared_configmap.yaml.j2

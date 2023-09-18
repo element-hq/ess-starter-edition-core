@@ -1,0 +1,25 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Maintain Well-Known Delegation Nginx config"
+  kubernetes.core.k8s:
+    template: manifests/wellknown_nginx_configmap.yaml.j2
+
+- name: "Maintain Well-Known Delegation config"
+  kubernetes.core.k8s:
+    template: manifests/wellknown_configmap.yaml.j2
+
+- name: "Maintain Well-Known Delegation deployment"
+  kubernetes.core.k8s:
+    template: manifests/wellknown_deployment.yaml.j2
+
+- name: "Maintain Well-Known Delegation service"
+  kubernetes.core.k8s:
+    template: manifests/wellknown_service.yaml.j2
+
+- name: "Maintain Well-Known Delegation ingress"
+  kubernetes.core.k8s:
+    template: manifests/wellknown_ingress.yaml.j2

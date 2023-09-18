@@ -1,0 +1,27 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+kind: KustomizeSchema
+metadata:
+  name: global
+spec:
+  schema:
+    type: object
+    default: {}
+    properties:
+      domainName:
+        type: string
+        description: The domain name of this deployment. It will be used for the <localpart> of the users MXIDs, and cannot be changed afterwards
+      genericSharedSecretSecretKey:
+        type: string
+        default: genericSharedSecret
+        description: The generic shared secret to use as a seed for all internally-generated secrets
+      verifyTls:
+        type: boolean
+        description: TLS verification
+        default: true
+      imagesDigestsConfigMap:
+        type: string
+        description: A configmap containing images digests metadata to override

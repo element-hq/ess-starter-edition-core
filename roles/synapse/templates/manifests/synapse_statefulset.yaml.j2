@@ -1,0 +1,214 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: synapse-{{ process_type }}
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-server
+    app.kubernetes.io/version: "{{ image.tag }}"
+    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
+    k8s.element.io/confighash: "{{ (homeserver_yaml + log_config_yaml + secrets_hash + specific_worker_yaml) | hash('sha1') }}"
+{% if not (bootstrap | default(false)) %}
+{% for as_registration in synapse_appservices_registrations %}
+    k8s.element.io/{{ as_registration }}hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
+{% endfor %}
+{% endif %}
+{% if workloads.synapse.annotations | default({}) %}
+  annotations:
+    {{ _matrix_element_io_synapse_spec.workloads.synapse.annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+  name: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+spec:
+  serviceName: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}-headless"
+  replicas: {{ num_instances }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
+  updateStrategy:
+    type: RollingUpdate
+  # Without this CrashLoopBackoffs due to config failures block pod recreation
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: element-operator
+        app.kubernetes.io/name: synapse-{{ process_type }}
+        app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
+        app.kubernetes.io/part-of: matrix-stack
+        app.kubernetes.io/component: matrix-server
+        app.kubernetes.io/version: "{{ image.tag }}"
+        k8s.element.io/confighash: "{{ (homeserver_yaml + log_config_yaml + secrets_hash + specific_worker_yaml) | hash('sha1') }}"
+{% if not (bootstrap | default(false)) %}
+{% for as_registration in synapse_appservices_registrations %}
+        k8s.element.io/{{ as_registration }}hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
+{% endfor %}
+{% endif %}
+{% if workloads.synapse.annotations | default({}) %}
+      annotations:
+        {{ _matrix_element_io_synapse_spec.workloads.synapse.annotations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+    spec:
+{% if (image.pull_secrets | default(image_pull_secrets)) | length > 0 %}
+      imagePullSecrets:
+      {{ (image.pull_secrets | default(image_pull_secrets)) | to_nice_yaml(indent=2) | indent(6) }}
+{% endif %}
+{% if (_matrix_element_io_synapse_spec.config.podSecurityContext | default({})) | length > 0 %}
+      securityContext:
+        {{ _matrix_element_io_synapse_spec.config.podSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+      automountServiceAccountToken: false
+{% if (_matrix_element_io_synapse_spec.config.hostAliases | default([])) | length > 0 %}
+      hostAliases:
+        {{ _matrix_element_io_synapse_spec.config.hostAliases | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+
+      containers:
+      - name: synapse
+{% if image_synapse_has_digest %}
+        image: "{{ image.repository | default(image_repository) }}@{{ image.digest }}"
+{% else %}
+        image: "{{ image.repository | default(image_repository) }}:{{ image.tag }}"
+{% endif %}
+        imagePullPolicy: "{{ image.pull_policy | default(image_synapse_pull_policy) }}"
+{% if (_matrix_element_io_synapse_spec.config.containersSecurityContext | default({})) | length > 0 %}
+        securityContext:
+          {{ _matrix_element_io_synapse_spec.config.containersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+        command:
+        - "bash"
+        - "-cx"
+        - |
+          sed "s/REPLACE_HOSTNAME/$(hostname -s | sed 's/.*-synapse-//g')/g" /config/instance_template.yaml > /config/rendered/instance.yaml
+          /start.py run --config-path=/config/homeserver.yaml{% if 'shared.yaml' in _fetched_synapse_secrets.resources[0].data %} --config-path=/secrets/shared.yaml{% endif %} --config-path=/config/rendered/instance.yaml{% if (process_type ~ '.yaml') in _fetched_synapse_secrets.resources[0].data %} --config-path=/secrets/{{ process_type }}.yaml{% endif %}
+
+{% if env | length > 0 %}
+        env:
+        {{ env | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+        ports:
+{% if has_http %}
+        - containerPort: 8008
+          name: synapse-http
+          protocol: TCP
+{% endif %}
+        - containerPort: 8080
+          name: synapse-health
+          protocol: TCP
+{% if has_replication %}
+        - containerPort: 9093
+          name: synapse-repl
+          protocol: TCP
+{% endif %}
+        - containerPort: 9001
+          name: synapse-metrics
+          protocol: TCP
+        startupProbe:
+          httpGet:
+            path: /health
+            port: synapse-health
+          periodSeconds: 2
+          failureThreshold: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: synapse-health
+          periodSeconds: 6
+          timeoutSeconds: 2
+          successThreadhold: 2
+          failureThreshold: {{ 8 if can_only_have_one else 3 }}
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: synapse-health
+          periodSeconds: 2
+          timeoutSeconds: 2
+          successThreadhold: 2
+          failureThreshold: {{ 8 if can_only_have_one else 3 }}
+{% if process_resources | length > 0 %}
+        resources:
+          {{ process_resources | to_nice_yaml(indent=2) | indent(10) }}
+{% endif %}
+        volumeMounts:
+        - mountPath: /config/homeserver.yaml
+          name: shared-config
+          readOnly: true
+          subPath: homeserver.yaml
+        - mountPath: /config/instance_template.yaml
+          name: "process-type-config"
+          readOnly: true
+          subPath: instance_template.yaml
+        - mountPath: /config/log_config.yaml
+          name: shared-config
+          readOnly: true
+          subPath: log_config.yaml
+{% if not (bootstrap | default(false)) %}
+{% for as_registration in synapse_appservices_registrations %}
+        - name: {{ as_registration }}
+          mountPath: /as/{{ as_registration }}/registration.yaml
+          readOnly: true
+          subPath: registration.yaml
+{% endfor %}
+{% for file_mount in workloads.synapse.additional_file_mounts | default([]) %}
+        - name: external-secrets
+          mountPath: {{ file_mount.mount_path }}
+          readOnly: true
+          subPath: {{ file_mount.secret_key }}
+{% endfor %}
+{% endif %}
+        - mountPath: /secrets/
+          name: external-secrets
+          readOnly: true
+        - mountPath: /config/rendered
+          name: rendered-config
+          readOnly: false
+        - mountPath: /media
+          name: media
+          readOnly: false
+        - mountPath: /tmp
+          name: tmp
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: "{{ ansible_operator_meta.name }}-synapse-shared"
+        name: shared-config
+      - configMap:
+          defaultMode: 420
+          name: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
+        name: "process-type-config"
+      - emptyDir:
+          medium: Memory
+        name: "rendered-config"
+      - secret:
+          secretName: "{{ config.external_secret.name }}"
+        name: external-secrets
+{% if not (bootstrap | default(false)) %}
+{% for as_registration in synapse_appservices_registrations %}
+      - configMap:
+          defaultMode: 420
+          name: "{{ as_registration }}"
+        name: {{ as_registration }}
+{% endfor %}
+{% endif %}
+{% if (process_type == "main" and not synapse_has['media-repository']) or (process_type == "media-repository" and synapse_has['media-repository'])%}
+      - persistentVolumeClaim:
+          claimName: "{{ config.media.volume_claim }}"
+        name: "media"
+{% else %}
+      - emptyDir:
+          medium: Memory
+        name: "media"
+{% endif %}
+      - emptyDir:
+          medium: Memory
+        name: "tmp"

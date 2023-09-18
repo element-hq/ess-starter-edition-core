@@ -1,0 +1,47 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ ansible_operator_meta.name }}-sliding-sync"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+  annotations:
+    {{ _matrix_element_io_slidingsync_spec.ingress.annotations | default({}) | to_nice_yaml(2) | indent(4) }}
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/component: matrix-sliding-sync
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/name: sliding-sync
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-sliding-sync"
+    app.kubernetes.io/version: "{{ image.api.tag }}"
+    k8s.element.io/ingress-type: hook
+{% if ingress is defined %}
+spec:
+{% if ingress.tls_secret | default(false) %}
+  tls:
+  - hosts:
+    - "{{ ingress.domain_name }}"
+    secretName: "{{ ingress.tls_secret }}"
+{% endif %}
+{% if ingress.ingress_class_name | default(false) %}
+  ingressClassName: "{{ ingress.ingress_class_name }}"
+{% endif %}
+  rules:
+{% for path in ["/client", "/_matrix/client/v3/sync", "/_matrix/client/unstable/org.matrix.msc3575/sync"]%}
+  - host: "{{ ingress.domain_name }}"
+    http:
+      paths:
+      - path: "{{ path }}"
+        pathType: Prefix
+        backend:
+          service:
+            name: "{{ ansible_operator_meta.name }}-sliding-sync-api"
+            port:
+              number: {{ _ss_port }}
+{% endfor %}
+{% endif %}

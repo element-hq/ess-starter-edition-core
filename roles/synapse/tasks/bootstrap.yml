@@ -1,0 +1,34 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Fetch Synapse main statefulset"
+  kubernetes.core.k8s_info:
+    api_version: apps/v1
+    kind: StatefulSet
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    name: "{{ ansible_operator_meta.name }}-synapse-main"
+  register: _synapse_main_sts
+
+- name: Bootstrap if no synapse pod is running
+  vars:
+    bootstrap: true
+  when: _synapse_main_sts.resources | length == 0
+  block:
+  - name: Bootstrap an initial configuration if no synapse pod is running
+    ansible.builtin.import_tasks: shared.yml
+
+  - name: Bootstrap an initial synapse sts if no synapse pod is running
+    ansible.builtin.import_tasks: synapse_process.yml
+    vars:
+      process_type: main
+      process_app: synapse.app.homeserver
+      process_additional: "{{ config.additional_main | default('') }}"
+      process_resources: "{{ config.resources }}"
+      specific_yaml_template: "main.yaml.j2"
+      has_replication: true
+      has_http: true
+      num_instances: 1
+      can_only_have_one: true

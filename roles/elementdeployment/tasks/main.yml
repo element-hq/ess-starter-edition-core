@@ -1,0 +1,20 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Check prerequisites"
+  ansible.builtin.include_tasks: "{{ prerequisite_task }}"
+  loop: "{{ query('fileglob', 'tasks/prerequisites/*.yml') }}"
+  loop_control:
+    loop_var: prerequisite_task
+
+- name: "Deploy contents"
+  ansible.builtin.include_tasks: deploy.yml
+
+- name: "Finalising tasks"
+  ansible.builtin.include_tasks: "{{ finalising_task }}"
+  loop: "{{ query('fileglob', 'tasks/finalising/*.yml') }}"
+  loop_control:
+    loop_var: finalising_task

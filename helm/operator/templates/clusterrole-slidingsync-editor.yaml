@@ -1,0 +1,30 @@
+{{- if $.Values.deployCrdRoles }}
+{{- if $.Values.deployCrds }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: '{{ .Values.clusterDeployment | ternary "ClusterRole" "Role" }}'
+metadata:
+  name: slidingsync-editor
+  {{- if not $.Values.clusterDeployment }}
+  namespace: {{ $.Release.Namespace }}
+  {{- end }}
+rules:
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - slidingsyncs
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - matrix.element.io
+    resources:
+      - slidingsyncs/status
+    verbs:
+      - get
+{{ end }}
+{{ end }}

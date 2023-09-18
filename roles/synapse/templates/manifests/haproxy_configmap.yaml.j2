@@ -1,0 +1,28 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: element-operator
+    app.kubernetes.io/name: synapse-haproxy
+    app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+    app.kubernetes.io/part-of: matrix-stack
+    app.kubernetes.io/component: matrix-server-ingress
+    app.kubernetes.io/version: "{{ image.haproxy_tag | default(haproxy_image_tag) }}"
+  name: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+  namespace: "{{ ansible_operator_meta.namespace }}"
+data:
+  haproxy.cfg: |
+    {{ lookup('template', 'haproxy.cfg.j2') | indent(4) }}
+  path_map_file: |
+    {{ lookup('template', 'haproxy-path_map_file.j2') | indent(4) }}
+  path_map_file_get: |
+    {{ lookup('template', 'haproxy-path_map_file_get.j2') | indent(4) }}
+  429.http: |
+    {{ lookup('file', 'haproxy-429.http', rstrip=false) | indent(4) }}

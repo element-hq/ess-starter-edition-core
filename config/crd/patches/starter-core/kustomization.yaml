@@ -1,0 +1,35 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+resources:
+  - ../../replacements/starter-core
+patches:
+  - target:
+      kind: CustomResourceDefinition
+      name: synapses.matrix.element.io
+    path: synapse-add-external-ingress-path.yaml
+  # Remove extraEnv from workloads that couldn't possibly benefit from it
+  # These are all Nginx's, HAProxies or Redis
+  # Chatterbox should also be excluded here but doesn't have any workloads at present
+  - target:
+      kind: CustomResourceDefinition
+      name: (elementweb|wellknowndelegation)s.matrix.element.io
+    patch: |-
+      - op: remove
+        path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/workloads/properties/extraEnv
+  - target:
+      kind: CustomResourceDefinition
+      name: synapses.matrix.element.io
+    patch: |-
+      - op: remove
+        path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/workloads/properties/haproxy/properties/extraEnv
+      - op: remove
+        path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/workloads/properties/redis/properties/extraEnv
+  - target:
+      kind: CustomResourceDefinition
+      name: livekits.matrix.element.io
+    patch: |-
+      - op: remove
+        path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/workloads/properties/redis/properties/extraEnv
