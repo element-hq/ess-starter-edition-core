@@ -1,0 +1,46 @@
+# © 2023 New-Vector
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+name: Release Charts
+
+on:
+  push:
+
+env:
+  VERSION: ${{ github.ref_name }}
+
+jobs:
+  release:
+    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
+    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+    permissions:
+      contents: write
+    runs-on: cpu-s
+    container: ubuntu
+    steps:
+      - name: Configure deps
+        run: |
+          apt update
+          apt install -y unzip curl git make
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --global --add safe.directory  "$GITHUB_WORKSPACE"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@ed43eb303604cbc0eeec8390544f7748dc6c790d
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          charts_dir: ./helm
+          skip_existing: true
