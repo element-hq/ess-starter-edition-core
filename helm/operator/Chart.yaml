@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-
 apiVersion: v2
 name: element-operator
 description: A Helm chart for Kubernetes
