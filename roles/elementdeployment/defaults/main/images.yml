@@ -25,7 +25,7 @@ default_images_digests:
     api:
       image_repository_server: ghcr.io
       image_repository_path: matrix-org/sliding-sync
-      image_tag: v0.99.9b
+      image_tag: v0.99.9c
   synapse:
     haproxy:
       image_repository_server: docker.io
@@ -38,7 +38,7 @@ default_images_digests:
     synapse:
       image_repository_server: docker.io
       image_repository_path: matrixdotorg/synapse
-      image_tag: v1.92.2
+      image_tag: v1.92.3
   well_known_delegation:
     well_known_delegation:
       image_repository_server: docker.io

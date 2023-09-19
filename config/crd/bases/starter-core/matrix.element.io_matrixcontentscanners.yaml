@@ -186,9 +186,18 @@ spec:
                           pattern: "[0-9]+[KMGT]B"
                         persistentVolumeClaimTemplate:
                           description: This field will be replaced by kustomize
+                    download:
+                      type: object
+                      description: Configures download of medias
+                      properties:
+                        additionalHeaders:
+                          type: object
+                          description: Headers to send in outgoing requests.
+                          additionalProperties:
+                            type: string
                 download:
                   type: object
-                  description: Configures download of medias
+                  description: Configures download of medias. Deprecated, not used. Use download inside config instead
                   properties:
                     additionalHeaders:
                       type: object

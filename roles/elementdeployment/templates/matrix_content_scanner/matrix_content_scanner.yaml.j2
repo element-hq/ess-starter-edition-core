@@ -24,12 +24,10 @@ spec:
     {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'icap'})
       | regex_replace('image:', 'icap:') | indent(4) }}
   workloads:
-    matrixContentScanner:
-      {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'matrix_content_scanner'}) | indent(6) }}
-    clamAntiVirus:
-      {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'clam_anti_virus'}) | indent(6) }}
-    icap:
-      {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'icap'}) | indent(6) }}
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'matrix_content_scanner'})
+      | regex_replace('workloads:', 'matrixContentScanner:') | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'clam_anti_virus'})
+      | regex_replace('workloads:', 'clamAntiVirus:') | indent(4) }}
   service:
     {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
   config:
@@ -39,7 +37,11 @@ spec:
       {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'clam_anti_virus'}) | indent(6) }}
       volumeClaim: {{ ansible_operator_meta.name }}-matrix-content-scanner
     icap:
-      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'icap'}) | indent(6) }}
+      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'icap'})
+       | from_yaml
+       | ansible.utils.remove_keys(target=['podSecurityContext'])
+       | to_nice_yaml(indent=2)
+       | indent(6) }}
     {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2') | indent(4) }}
     externalSecret:
       name: {{ ansible_operator_meta.name }}-matrix-content-scanner-secrets
@@ -64,5 +66,5 @@ spec:
           {{ components_k8s_properties.matrix_content_scanner.storage.selector | to_nice_yaml(indent=2) | indent(10) }}
 {% endif %}
     download:
-      additional_headers:
-          user-agent: "matrix-content-scanner"
+      additionalHeaders:
+        user-agent: "matrix-content-scanner"

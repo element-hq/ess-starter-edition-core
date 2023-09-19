@@ -254,6 +254,15 @@ spec:
                           description: ClamAntiVirus persistent volume to store virus db
                           type: string
                       type: object
+                    download:
+                      description: Configures download of medias
+                      properties:
+                        additionalHeaders:
+                          additionalProperties:
+                            type: string
+                          description: Headers to send in outgoing requests.
+                          type: object
+                      type: object
                     externalSecret:
                       description: |
                         The Secret that is managed outside of the MatrixContentScanner CRD lifecycle.
@@ -523,7 +532,7 @@ spec:
                     - matrixServer
                   type: object
                 download:
-                  description: Configures download of medias
+                  description: Configures download of medias. Deprecated, not used. Use download inside config instead
                   properties:
                     additionalHeaders:
                       additionalProperties:

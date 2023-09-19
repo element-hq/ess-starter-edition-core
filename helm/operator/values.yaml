@@ -31,7 +31,7 @@ operator:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-starter-edition-core-operator
-      tag: 2.11.8
+      tag: 2.11.9
 
   rbacProxy:
     resources:

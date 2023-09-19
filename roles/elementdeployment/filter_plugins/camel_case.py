@@ -7,7 +7,7 @@
 MIT License
 
 Copyright (c) 2020 Marek Chmiel
-Copyright (c) 2023 New-Vector
+Copyright (c) 2023 New Vector Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

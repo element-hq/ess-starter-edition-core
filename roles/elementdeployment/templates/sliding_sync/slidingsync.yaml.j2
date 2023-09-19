@@ -20,8 +20,9 @@ spec:
     {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'api'})
       | regex_replace('image:', 'api:') | indent(6) }}
   workloads:
-    api:
-      {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'api'}) | indent(6) }}
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'api'})
+      | regex_replace('workloads:', 'api:')
+      | indent(4) }}
   ingress:
     {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_tls_secret': 'sliding-sync-tls-secret'}) | indent(4) }}
   service:

@@ -125,7 +125,6 @@ spec:
             port: synapse-health
           periodSeconds: 6
           timeoutSeconds: 2
-          successThreadhold: 2
           failureThreshold: {{ 8 if can_only_have_one else 3 }}
         readinessProbe:
           httpGet:
@@ -133,7 +132,7 @@ spec:
             port: synapse-health
           periodSeconds: 2
           timeoutSeconds: 2
-          successThreadhold: 2
+          successThreshold: 2
           failureThreshold: {{ 8 if can_only_have_one else 3 }}
 {% if process_resources | length > 0 %}
         resources:

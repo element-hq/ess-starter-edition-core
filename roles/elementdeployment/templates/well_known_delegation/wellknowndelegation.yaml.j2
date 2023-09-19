@@ -23,7 +23,6 @@ spec:
         template_vars={'_tls_secret': 'wellknowndelegation-tls-secret',
                        '_ingress_fqdn': global.config.domain_name}) | indent(4) }}
   config:
-    {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2') | indent(4) }}
     {{ lookup('template', 'templates/any/k8s-config.yaml.j2') | indent(4) }}
     client:
       homeserverBaseUrl: https://{{ components.synapse.k8s.ingress.fqdn }}

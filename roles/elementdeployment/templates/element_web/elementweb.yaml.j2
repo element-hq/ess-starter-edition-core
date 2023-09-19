@@ -21,7 +21,6 @@ spec:
   service:
     {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
   config:
-    {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2') | indent(4) }}
     {{ lookup('template', 'templates/any/k8s-config.yaml.j2') | indent(4) }}
     defaultMatrixServer:
       baseUrl: {{ components.synapse.k8s.ingress.fqdn }}
