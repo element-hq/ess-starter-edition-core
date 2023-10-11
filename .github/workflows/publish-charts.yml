@@ -33,7 +33,7 @@ jobs:
         uses: azure/setup-helm@v3
 
       - name: Run chart-releaser
-        uses: vector-im/chart-releaser-action@12805e4109f6f5416ff35652ac6c8e1c72fc07e4
+        uses: vector-im/chart-releaser-action@1389a6afc9af1b11ab9e79267f371d694e4995b2
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
