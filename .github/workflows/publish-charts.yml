@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: write
     runs-on: cpu-s
-    container: ubuntu
+    container: ghcr.io/vector-im/chart-releaser:cr-push-fix
     steps:
       - name: Configure deps
         run: |
@@ -38,9 +38,11 @@ jobs:
         uses: azure/setup-helm@v3
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@ed43eb303604cbc0eeec8390544f7748dc6c790d
+        uses: vector-im/chart-releaser-action@12805e4109f6f5416ff35652ac6c8e1c72fc07e4
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
           charts_dir: ./helm
           skip_existing: true
+          skip_cr_install: true
+
