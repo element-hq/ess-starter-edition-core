@@ -24,8 +24,6 @@ spec:
       host: postgres
       user: synapse_user
       name: synapse
-    haproxy:
-      timeoutHttpRequest: 30s
     media:
       volumeClaim: synapse-media
     registration: open

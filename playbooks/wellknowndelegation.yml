@@ -5,10 +5,6 @@
 
 ---
 - name: "WellKnownDelegation"
-  hosts: localhost
-  gather_facts: false
-  module_defaults:
-    kubernetes.core.k8s:
-      apply: true
-  roles:
-  - "wellknowndelegation"
+  ansible.builtin.import_playbook: "any.yml"
+  vars:
+    _kind: "WellKnownDelegation"

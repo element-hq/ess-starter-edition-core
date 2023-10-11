@@ -4,24 +4,19 @@
 
 
 ---
-- name: "Maintain Synapse Headless Service - {{ process_type }}"
-  kubernetes.core.k8s:
-    template: manifests/synapse_headless_service.yaml.j2
-
 - name: "Set specific_worker_yaml for {{ process_type }}"
   ansible.builtin.set_fact:
     specific_worker_yaml: "{{ lookup('template', specific_yaml_template) }}"
 
-# It is somewhat tempting to put this into the shared ConfigMap however
+# It is somewhat tempting to put the specific ConfigMap into the shared ConfigMap however
 # a) that isn't needed
 # b) imposes the complexity of having to loop on worker types in multiple places
 #    e.g. defining has_replication, has_http, process_additional, etc
-- name: "Maintain Synapse ConfigMap - {{ process_type }}"
-  kubernetes.core.k8s:
-    template: manifests/synapse_specific_configmap.yaml.j2
-
-- name: Maintain Synapse statefulsets resources
-  vars:
-    _statefulsets_resources: "{{ lookup('template', 'manifests/synapse_statefulset.yaml.j2') }}"
+- name: "Maintain manifests - {{ process_type }}"
   ansible.builtin.include_role:
-    name: statefulset_apply_recreate
+    name: "generic_apply"
+  vars:
+    _manifest_files:
+    - "{{ role_path }}/../synapse/templates/manifests/synapse_headless_service.yaml.j2"
+    - "{{ role_path }}/../synapse/templates/manifests/synapse_specific_configmap.yaml.j2"
+    - "{{ role_path }}/../synapse/templates/manifests/synapse_statefulset.yaml.j2"

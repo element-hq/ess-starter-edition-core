@@ -1,0 +1,55 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Reconcile"
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    kubernetes.core.k8s:
+      apply: true
+      server_side_apply:
+        field_manager: element-operator
+        force_conflicts: true
+  tasks:
+  - name: "Run {{ _kind | lower }}"
+    ansible.builtin.import_role:
+      name: "{{ _kind | lower }}"
+
+  - name: "Perform teardown for {{ _kind }}"
+    ansible.builtin.import_role:
+      name: "teardown"
+    vars:
+      kind_managed_by: "{{ 'element-updater' if _kind == 'ElementDeployment' else 'element-operator' }}"
+      kind_owner: "{{ _kind }}"
+  vars:
+    _owner: "{{ lookup('kubernetes.core.k8s',
+                      api_version='matrix.element.io/v1alpha1',
+                      kind=_kind,
+                      namespace=ansible_operator_meta.namespace,
+                      resource_name=ansible_operator_meta.name) }}"
+    # Server Side Apply uses PATCH whilst currently (1.29) operator-sdk only intercepts POST
+    # So we need to add in the correct ownerReferences
+    # Unfortunately we're only given namespace & name as variables, so we need to fetch the uid
+    # and pass in everything else
+    _owner_refs_metadata:
+      metadata:
+        ownerReferences:
+        - apiVersion: "{{ _owner.apiVersion }}"
+          kind: "{{ _owner.kind }}"
+          name: "{{ _owner.metadata.name }}"
+          uid: "{{ _owner.metadata.uid }}"
+
+    # This allows us to force a recreation of all managed resources
+    # Change this value, _crd_spec_hash will then change and then any resources not updated will be reaped by the teardown plays
+    _crd_hash_version: ""
+    _crd_spec_json: "{{ hostvars[inventory_hostname]['_matrix_element_io_' ~ (_kind | lower) ~ '_spec'] | to_json }}"
+    _crd_spec_hash: "{{ (_crd_spec_json + (_owner.metadata.annotations | default({}) | to_json) + _crd_hash_version) | hash('sha1') }}"
+    _crd_spec_hash_metadata:
+      metadata:
+        labels:
+          k8s.element.io/crdhash: "{{ _crd_spec_hash }}"
+
+    _generic_apply_mixin: "{{ {} | combine([_owner_refs_metadata, _crd_spec_hash_metadata], recursive=true) }}"

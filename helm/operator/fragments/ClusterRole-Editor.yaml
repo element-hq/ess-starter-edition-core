@@ -1,0 +1,5 @@
+  {{- end }}
+  {{- if $.Values.clusterDeployment }}
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"

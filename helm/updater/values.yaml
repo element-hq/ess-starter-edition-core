@@ -28,10 +28,10 @@ updater:
       allowPrivilegeEscalation: false
       capabilities:
         drop:
-          - ALL
+        - ALL
     image:
       repository: docker.io/vectorim/ess-starter-edition-core-updater
-      tag: 2.11.10
+      tag: 2.12.1
 
   rbacProxy:
     resources:
@@ -44,7 +44,7 @@ updater:
       allowPrivilegeEscalation: false
       capabilities:
         drop:
-          - ALL
+        - ALL
     imagePullPolicy: Always
     image:
       repository: gcr.io/kubebuilder/kube-rbac-proxy

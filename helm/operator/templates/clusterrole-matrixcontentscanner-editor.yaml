@@ -1,11 +1,15 @@
 {{- if $.Values.deployCrdRoles }}
-{{- if $.Values.deployCrds }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: '{{ .Values.clusterDeployment | ternary "ClusterRole" "Role" }}'
 metadata:
   name: matrixcontentscanner-editor
   {{- if not $.Values.clusterDeployment }}
   namespace: {{ $.Release.Namespace }}
+  {{- end }}
+  {{- if $.Values.clusterDeployment }}
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
   {{- end }}
 rules:
   - apiGroups:
@@ -26,5 +30,4 @@ rules:
       - matrixcontentscanners/status
     verbs:
       - get
-{{ end }}
 {{ end }}

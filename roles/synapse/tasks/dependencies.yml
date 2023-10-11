@@ -5,5 +5,5 @@
 
 ---
 - name: Import all dependencies
-  include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: '{{ item }}'
   loop: "{{ query('fileglob', 'dependencies/*.yml') | sort }}"

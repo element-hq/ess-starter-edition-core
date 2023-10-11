@@ -11,7 +11,6 @@ metadata:
   name: "{{ ansible_operator_meta.name }}"
   namespace: "{{ ansible_operator_meta.namespace }}"
   labels:
-    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
     app.kubernetes.io/managed-by: element-updater
 spec:
   {{ lookup('template', 'templates/any/k8s-image.yaml.j2') | indent(2) }}
@@ -24,7 +23,7 @@ spec:
     {{ lookup('template', 'templates/any/k8s-config.yaml.j2') | indent(4) }}
     defaultMatrixServer:
       baseUrl: {{ components.synapse.k8s.ingress.fqdn }}
-      serverName: {{ global.config.domain_name }}
+      serverName: {{ _global.config.domain_name }}
 {% set _config_template_files = query('fileglob', 'templates/element_web/config/*.json.j2') | sort %}
 {% set _additional_configs = query('template', *_config_template_files, convert_data=false) | select | map('trim') | select | map('from_json') %}
 {% if _additional_configs | length > 0 %}

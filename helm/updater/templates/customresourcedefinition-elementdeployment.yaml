@@ -151,7 +151,7 @@ spec:
                                     secretName:
                                       description: The name of a secret in the cluster that contains TLS certificates
                                       maxLength: 253
-                                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                                      pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                                       type: string
                                   type: object
                               required:
@@ -183,7 +183,7 @@ spec:
                                     type: object
                                   type: array
                                 hostAliases:
-                                  description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                  description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                   items:
                                     properties:
                                       hostnames:
@@ -262,7 +262,7 @@ spec:
                           default: element-web
                           description: The secret data associated to synapse config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present
                           maxLength: 253
-                          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                          pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                           type: string
                       type: object
                     matrixContentScanner:
@@ -387,7 +387,7 @@ spec:
                                         type: object
                                       type: array
                                     hostAliases:
-                                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                      description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                       items:
                                         properties:
                                           hostnames:
@@ -499,7 +499,7 @@ spec:
                                         type: object
                                       type: array
                                     hostAliases:
-                                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                      description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                       items:
                                         properties:
                                           hostnames:
@@ -671,7 +671,7 @@ spec:
                                         type: object
                                       type: array
                                     hostAliases:
-                                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                      description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                       items:
                                         properties:
                                           hostnames:
@@ -751,7 +751,7 @@ spec:
                           default: matrix-content-scanner
                           description: The secret data associated to MatrixContentScanner config
                           maxLength: 253
-                          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                          pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                           type: string
                       type: object
                     slidingSync:
@@ -874,7 +874,7 @@ spec:
                                         type: object
                                       type: array
                                     hostAliases:
-                                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                      description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                       items:
                                         properties:
                                           hostnames:
@@ -1051,7 +1051,7 @@ spec:
                                     secretName:
                                       description: The name of a secret in the cluster that contains TLS certificates
                                       maxLength: 253
-                                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                                      pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                                       type: string
                                   type: object
                               required:
@@ -1062,7 +1062,7 @@ spec:
                           default: sliding-sync
                           description: The secret data associated to SlidingSync config
                           maxLength: 253
-                          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                          pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                           type: string
                       type: object
                     synapse:
@@ -1313,7 +1313,7 @@ spec:
                                         type: object
                                       type: array
                                     hostAliases:
-                                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                      description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                       items:
                                         properties:
                                           hostnames:
@@ -1482,7 +1482,7 @@ spec:
                                     secretName:
                                       description: The name of a secret in the cluster that contains TLS certificates
                                       maxLength: 253
-                                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                                      pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                                       type: string
                                   type: object
                               required:
@@ -1518,7 +1518,7 @@ spec:
                                         type: object
                                       type: array
                                     hostAliases:
-                                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                      description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                       items:
                                         properties:
                                           hostnames:
@@ -1653,7 +1653,7 @@ spec:
                                         type: object
                                       type: array
                                     hostAliases:
-                                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                      description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                       items:
                                         properties:
                                           hostnames:
@@ -1729,7 +1729,7 @@ spec:
                           default: synapse
                           description: The secret data associated to synapse config Key matching `config.macaroonSecretKey`, `config.registrationSharedSecretSecretKey`, `config.signingKeySecretKey`, `config.adminPasswordSecretKey`, `config.telemetry.password` and `config.postgres.passwordSecretKey` must be present. If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present If stun is enabled, key matching `config.stun.sharedSecretSecretKey` must be present. To override synapse default trust store for federation, every keys of `config.federation.certificateAutoritiesSecretKeys` should be present.
                           maxLength: 253
-                          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                          pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                           type: string
                       type: object
                     wellKnownDelegation:
@@ -1852,7 +1852,7 @@ spec:
                                     secretName:
                                       description: The name of a secret in the cluster that contains TLS certificates
                                       maxLength: 253
-                                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                                      pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                                       type: string
                                   type: object
                               type: object
@@ -1882,7 +1882,7 @@ spec:
                                     type: object
                                   type: array
                                 hostAliases:
-                                  description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                                  description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                                   items:
                                     properties:
                                       hostnames:
@@ -1961,7 +1961,7 @@ spec:
                           default: well-known-delegation
                           description: The secret data associated to wellKnownDelegation config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present
                           maxLength: 253
-                          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                          pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                           type: string
                       type: object
                   type: object
@@ -2089,7 +2089,7 @@ spec:
                                 secretName:
                                   description: The name of a secret in the cluster that contains TLS certificates
                                   maxLength: 253
-                                  pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                                  pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                                   type: string
                               type: object
                           type: object
@@ -2145,7 +2145,7 @@ spec:
                               type: array
                             hostAliases:
                               default: []
-                              description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                              description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
                               items:
                                 properties:
                                   hostnames:
@@ -2191,7 +2191,7 @@ spec:
                       default: global
                       description: The secret holding the global data
                       maxLength: 253
-                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+                      pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
                       type: string
                   type: object
               type: object

@@ -9,11 +9,11 @@
 resources:
   - ../../../default-resources/starter-core
   - ../../base/starter-core
-  - elementweb.yaml
-  - matrixContentScanner.yaml
-  - slidingSync.yaml
+  - element_web.yaml
+  - matrix_content_scanner.yaml
+  - sliding_sync.yaml
   - synapse.yaml
-  - wellknowndelegation.yaml
+  - well_known_delegation.yaml
   - global.yaml
   - k8s-common.yaml
   - k8s-services.yaml

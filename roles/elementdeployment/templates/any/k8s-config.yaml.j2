@@ -39,8 +39,8 @@ containersSecurityContext:
     - ALL
 {% if component_k8s_schema_has_replicas %}
 {% if components_k8s_properties.workloads.replicas is mapping %}
-replicas: {{ components_k8s_properties.workloads.replicas.static | default(global.k8s.workloads.replicas) }}
+replicas: {{ components_k8s_properties.workloads.replicas.static | default(_global.k8s.workloads.replicas) }}
 {% else %}
-replicas: {{ components_k8s_properties.workloads.replicas | default(global.k8s.workloads.replicas) }}
+replicas: {{ components_k8s_properties.workloads.replicas | default(_global.k8s.workloads.replicas) }}
 {% endif %}
 {% endif %}

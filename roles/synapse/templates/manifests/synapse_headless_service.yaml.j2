@@ -17,7 +17,6 @@ metadata:
     app.kubernetes.io/version: "{{ image.tag }}"
     k8s.element.io/synapse-instance: "{{ ansible_operator_meta.name }}-synapse"
     k8s.element.io/service-type: headless
-    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
   name: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}-headless"
   namespace: "{{ ansible_operator_meta.namespace }}"
 spec:

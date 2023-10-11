@@ -8,6 +8,6 @@
 - version: v1alpha1
   group: matrix.element.io
   kind: ElementDeployment
-  role: elementdeployment
+  playbook: playbooks/elementdeployment.yml
   watchAnnotationsChanges: true
 #+kubebuilder:scaffold:watch

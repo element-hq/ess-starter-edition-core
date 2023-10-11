@@ -8,15 +8,15 @@ kind: Kustomization
 resources:
   - ../common
 patches:
-  - path: elementweb.yaml
+  - path: element_web.yaml
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io
-  - path: matrixcontentscanner.yaml
+  - path: matrix_content_scanner.yaml
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io
-  - path: slidingsync.yaml
+  - path: sliding_sync.yaml
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io
@@ -24,7 +24,7 @@ patches:
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io
-  - path: wellknowndelegation.yaml
+  - path: well_known_delegation.yaml
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io

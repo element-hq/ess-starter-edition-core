@@ -4,22 +4,8 @@
 
 
 ---
-- name: "Maintain Well-Known Delegation Nginx config"
-  kubernetes.core.k8s:
-    template: manifests/wellknown_nginx_configmap.yaml.j2
-
-- name: "Maintain Well-Known Delegation config"
-  kubernetes.core.k8s:
-    template: manifests/wellknown_configmap.yaml.j2
-
-- name: "Maintain Well-Known Delegation deployment"
-  kubernetes.core.k8s:
-    template: manifests/wellknown_deployment.yaml.j2
-
-- name: "Maintain Well-Known Delegation service"
-  kubernetes.core.k8s:
-    template: manifests/wellknown_service.yaml.j2
-
-- name: "Maintain Well-Known Delegation ingress"
-  kubernetes.core.k8s:
-    template: manifests/wellknown_ingress.yaml.j2
+- name: "Manage manifests"
+  ansible.builtin.include_role:
+    name: "generic_apply"
+  vars:
+    _manifest_files: "{{ query('fileglob', 'templates/manifests/*.yaml.j2') }}"

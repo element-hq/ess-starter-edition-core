@@ -16,10 +16,10 @@ image:
 {% if 'image_digest' in image_details %}
   digest: "{{ image_details.image_digest }}"
 {% endif %}
-{% if components_k8s_properties.workloads.docker_secrets | default(global.k8s.workloads.docker_secrets) | default([])
+{% if components_k8s_properties.workloads.docker_secrets | default(_global.k8s.workloads.docker_secrets) | default([])
       | selectattr('url', '==', image_details.image_repository_server) | list | length > 0 %}
   pullSecrets:
-    - name: {{ (components_k8s_properties.workloads.docker_secrets | default(global.k8s.workloads.docker_secrets)
+    - name: {{ (components_k8s_properties.workloads.docker_secrets | default(_global.k8s.workloads.docker_secrets)
                 | selectattr('url', '==', image_details.image_repository_server) | first).name
             }}
 {% endif %}

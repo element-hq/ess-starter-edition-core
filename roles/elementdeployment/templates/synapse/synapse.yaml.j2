@@ -11,7 +11,6 @@ metadata:
   name: {{ ansible_operator_meta.name }}
   namespace: "{{ ansible_operator_meta.namespace }}"
   labels:
-    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
     app.kubernetes.io/managed-by: element-updater
   annotations:
     k8s.element.io/secretshash: "{{ lookup('template', 'synapse/secrets.yaml.j2') | hash('sha1') }}"
@@ -125,7 +124,7 @@ spec:
     }}
     externalSecret:
       name: {{ ansible_operator_meta.name }}-synapse-secrets
-    serverName: "{{ global.config.domain_name }}"
+    serverName: "{{ _global.config.domain_name }}"
     database:
       host: "{{ components.synapse.config.postgresql.host }}"
       port: {{ components.synapse.config.postgresql.port }}

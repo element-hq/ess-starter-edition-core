@@ -5,5 +5,5 @@
 
 ---
 - name: Import all shared
-  include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: '{{ item }}'
   loop: "{{ query('fileglob', 'shared/*.yml') | sort }}"

@@ -28,7 +28,7 @@ spec:
               description: Docker secret to use for ems image store
       hostAliases:
         type: array
-        description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+        description: The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.
         items:
           type: object
           required:

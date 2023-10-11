@@ -5,30 +5,6 @@
 
 ---
 - name: "SlidingSync"
-  hosts: localhost
-  gather_facts: false
-  module_defaults:
-    kubernetes.core.k8s:
-      apply: true
-      server_side_apply:
-        field_manager: element-operator
-        force_conflicts: true
-  roles:
-  - "slidingsync"
+  ansible.builtin.import_playbook: "any.yml"
   vars:
-    _owner: "{{ lookup('kubernetes.core.k8s',
-                       api_version='matrix.element.io/v1alpha1',
-                       kind='SlidingSync',
-                       namespace=ansible_operator_meta.namespace,
-                       resource_name=ansible_operator_meta.name) }}"
-    # Server Side Apply uses PATCH whilst currently (1.26) operator-sdk only intercepts POST
-    # So we need to add in the correct ownerReferences
-    # Unfortunately we're only given namespace & name as variables, so we need to fetch the uid
-    # and pass in everything else
-    _owner_refs_metadata:
-      metadata:
-        ownerReferences:
-        - apiVersion: "{{ _owner.apiVersion }}"
-          kind: "{{ _owner.kind }}"
-          name: "{{ _owner.metadata.name }}"
-          uid: "{{ _owner.metadata.uid }}"
+    _kind: "SlidingSync"

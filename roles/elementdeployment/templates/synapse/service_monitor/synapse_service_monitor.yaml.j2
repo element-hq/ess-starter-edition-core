@@ -1,0 +1,31 @@
+{#
+Copyright 2023 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{% if component_k8s_service_monitor_deploy %}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ ansible_operator_meta.name }}-synapse
+  namespace: "{{ ansible_operator_meta.namespace }}"
+  labels:
+    app.kubernetes.io/managed-by: element-updater
+spec:
+  endpoints:
+  - interval: 30s
+    port: synapse-metrics
+    relabelings:
+    - targetLabel: instance
+      action: replace
+      replacement: "{{ components.synapse.k8s.ingress.fqdn }}"
+  selector:
+    matchLabels:
+      app.kubernetes.io/managed-by: element-operator
+      app.kubernetes.io/part-of: matrix-stack
+      app.kubernetes.io/component: matrix-server
+      k8s.element.io/synapse-instance: "{{ ansible_operator_meta.name }}-synapse"
+      k8s.element.io/service-type: headless
+{% endif %}

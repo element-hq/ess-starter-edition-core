@@ -11,7 +11,6 @@ metadata:
   name: "{{ ansible_operator_meta.name }}"
   namespace: "{{ ansible_operator_meta.namespace }}"
   labels:
-    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
     app.kubernetes.io/managed-by: element-updater
 spec:
   {{ lookup('template', 'templates/any/k8s-image.yaml.j2') | indent(2) }}
@@ -21,7 +20,7 @@ spec:
   ingress:
     {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2',
         template_vars={'_tls_secret': 'wellknowndelegation-tls-secret',
-                       '_ingress_fqdn': global.config.domain_name}) | indent(4) }}
+                       '_ingress_fqdn': _global.config.domain_name}) | indent(4) }}
   config:
     {{ lookup('template', 'templates/any/k8s-config.yaml.j2') | indent(4) }}
     client:

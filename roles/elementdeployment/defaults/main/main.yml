@@ -4,7 +4,9 @@
 
 
 ---
-generic_shared_secret: "{{ _global_secret.resources[0].data[global.config.generic_shared_secret_secret_key] | b64decode }}"
+_global: "{{ global }}"
+
+generic_shared_secret: "{{ _global_secret.resources[0].data[_global.config.generic_shared_secret_secret_key] | b64decode }}"
 managed_kinds: >
   {{
       dict(element_operator_crds |
@@ -14,16 +16,6 @@ managed_kinds: >
             | list
           )
       | dict2items(key_name='kind', value_name='api_version')
-      + [{
-          'kind': 'ConfigMap',
-          'api_version': 'v1'
-          }, {
-          'kind': 'Secrets',
-          'api_version': 'v1'
-          }, {
-          'kind': 'ServiceMonitor',
-          'api_version': 'monitoring.coreos.com/v1'
-          }]
     | list
   }}
 
@@ -90,7 +82,7 @@ components_k8s_properties_camelled: >
 
 has_service_monitor: >-
   {{
-    ('monitoring.coreos.com/v1' in _cluster_info.apis) and 'ServiceMonitor' in _cluster_info.apis['monitoring.coreos.com/v1']
+    ('monitoring.coreos.com/v1' in _cluster_info.apis) and ('ServiceMonitor' in _cluster_info.apis['monitoring.coreos.com/v1'])
   }}
 
 element_deployment_crd_schema: >-
@@ -125,25 +117,25 @@ component_k8s_workload_container_resources: >-
     )
   }}
 
+_merged_k8s_service_monitor_deploy: >-
+  {{
+    components_k8s_properties.monitoring.service_monitor.deploy | default(_global.k8s.monitoring.service_monitor.deploy)
+  }}
 component_k8s_service_monitor_deploy: >-
-  {{ components_k8s_properties.monitoring.service_monitor.deploy
-    | default(global.k8s.monitoring.service_monitor.deploy) == 'auto'
-    | ternary(has_service_monitor,
-        components_k8s_properties.monitoring.service_monitor.deploy
-        | default(global.k8s.monitoring.service_monitor.deploy) == 'enable'
-      )
+  {{
+    (_merged_k8s_service_monitor_deploy == 'auto') | ternary(has_service_monitor, _merged_k8s_service_monitor_deploy == 'enable')
   }}
 
 component_k8s_security_context_force_uid_gid: >-
   {{
     components_k8s_properties.workloads.security_context.force_uid_gid
-    | default(global.k8s.workloads.security_context.force_uid_gid) == 'enable'
+    | default(_global.k8s.workloads.security_context.force_uid_gid) == 'enable'
   }}
 
 component_k8s_security_context_set_seccomp: >-
   {{
     components_k8s_properties.workloads.security_context.set_sec_comp
-    | default(global.k8s.workloads.security_context.set_sec_comp) == 'enable'
+    | default(_global.k8s.workloads.security_context.set_sec_comp) == 'enable'
   }}
 
 
@@ -170,12 +162,12 @@ components_service_properties: >
 
 components_ingress_tls: >-
   {{
-    (global.k8s.ingresses.tls | default({})) | combine(components_ingress_properties.tls | default({}), recursive=true)
+    (_global.k8s.ingresses.tls | default({})) | combine(components_ingress_properties.tls | default({}), recursive=true)
   }}
 
 components_ingress_ingress_class_name: >-
   {{ components_ingress_properties.ingress_class_name
-    | default(global.k8s.ingresses.ingress_class_name)
+    | default(_global.k8s.ingresses.ingress_class_name)
     | default('')
   }}
 
@@ -195,7 +187,7 @@ selected_components_with_synapse_additional_ingress_paths: >-
 component_config_verify_tls: >-
   {{
     (components[_component_item].config.verify_tls == 'useGlobalSetting')
-    | ternary(global.config.verify_tls,
+    | ternary(_global.config.verify_tls,
               components[_component_item].config.verify_tls == 'force'
              )
   }}

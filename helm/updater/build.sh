@@ -24,7 +24,7 @@ done
 # These files should be fully disabled if not a cluster deployment
 for entry in ./*proxy.yaml ./*metrics*.yaml; do
   sed -i '1 i\{{- if $.Values.clusterDeployment }}' $entry
-  echo "{{ end }}" >>$entry
+  echo "{{ end }}" >> $entry
 done
 
 
@@ -36,9 +36,9 @@ yq "$(cat ../../operator/yq/resource-editor-role.yq)" ../../../watches.updater.y
 yq "$(cat ../../operator/yq/resource-viewer-role.yq)" ../../../watches.updater.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
 
 # We deploy CRDs and their related roles optionaly
-for entry in ./customresourcedefinition-* ./*-editor.yaml ./*-viewer.yaml; do
+for entry in ./customresourcedefinition-*; do
   sed -i '1 i\{{- if $.Values.deployCrds }}' $entry
-  echo "{{ end }}" >>$entry
+  echo "{{ end }}" >> $entry
 done
 
 # Generate the updater main role, which is based on watches.updater.yaml + standard watches.yaml
@@ -64,11 +64,17 @@ do
   else
     sed -i '1 i\{{- if $.Values.deployCrdRoles }}' $entry
     echo "{{ end }}" >> $entry
+
+    if [[ $entry =~ editor\.yaml$ ]]; then
+      sed -i '/namespace:.*/r ../../operator/fragments/ClusterRole-Editor.yaml' $entry
+    elif [[ $entry =~ viewer\.yaml$ ]]; then
+      sed -i '/namespace:.*/r ../../operator/fragments/ClusterRole-Viewer.yaml' $entry
+    fi
   fi
 done
 
 # These files should be fully disabled if not deploying manager
-for entry in ./deployment*.yaml ./service*.yaml  ./role*.yaml
+for entry in ./deployment*.yaml ./service*.yaml ./role*.yaml
 do
   sed -i '1 i\{{- if $.Values.deployManager }}' $entry
   echo "{{ end }}" >> $entry

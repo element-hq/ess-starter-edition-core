@@ -4,10 +4,6 @@
 
 
 ---
-# This allows us to force a recreation of all managed Synapse services, configmaps, statefulsets
-# Change this value, crd_spec_hash will then change and then any resources not updated will be reaped by the teardown plays
-crd_hash_version: "2020-02-09"
-
 synapse_workers: "{{ config.workers | default([]) }}"
 synapse_appservices_registrations: "{{ config.application_services_registrations | default([]) }}"
 synapse_modules_configs: "{{ config.synapse_modules_configs | default([]) }}"
@@ -77,6 +73,7 @@ synapse_available_worker_types:
     - "^/_matrix/client/(r0|v3|unstable)/user/.*/filter(/|$)"
     - "^/_matrix/client/(api/v1|r0|v3|unstable)/directory/room/.*$"
     - "^/_matrix/client/(r0|v3|unstable)/capabilities$"
+    - "^/_matrix/client/(r0|v3|unstable)/notifications$"
     # Registration/login requests
     - "^/_matrix/client/(api/v1|r0|v3|unstable)/login$"
     - "^/_matrix/client/(r0|v3|unstable)/register$"
@@ -164,6 +161,7 @@ synapse_available_worker_types:
     listeners: [client]
     paths: []
   initial-synchrotron:
+    name_override: initial-sync
     app: generic_worker
     single: false
     listeners: [client]

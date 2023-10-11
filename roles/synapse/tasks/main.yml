@@ -59,7 +59,7 @@
   loop_control:
     loop_var: worker
   vars:
-    process_type: "{{ worker.key }}"
+    process_type: "{{ synapse_available_worker_types[worker.key].name_override | default(worker.key) }}"
     process_app: "synapse.app.{{ synapse_available_worker_types[worker.key].app }}"
     process_additional: "{{ worker.value.additional | default('') }}"
     process_resources: "{{ worker.value.resources | default(config.resources) }}"
@@ -72,22 +72,3 @@
 
 - name: Ingress
   ansible.builtin.import_tasks: ingress.yml
-
-- name: Teardown redis
-  ansible.builtin.import_tasks: redis_teardown.yml
-  when: 'not has_any_workers'
-
-- name: "Teardown unused resources"
-  ansible.builtin.include_role:
-    name: teardown
-  vars:
-    kind_list:
-    - api_version: v1
-      kind: Secrets
-    - api_version: v1
-      kind: Service
-    - api_version: apps/v1
-      kind: StatefulSet
-    - api_version: v1
-      kind: ConfigMap
-    kind_owner: Synapse

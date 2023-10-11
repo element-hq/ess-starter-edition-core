@@ -21,19 +21,14 @@
       }}
   when: not synapse_has['initial-synchrotron']
 
-- name: "Maintain Synapse HAProxy configuration"
-  kubernetes.core.k8s:
-    template: manifests/haproxy_configmap.yaml.j2
-
-- name: "Maintain Synapse HAProxy Deployment"
-  kubernetes.core.k8s:
-    template: manifests/haproxy_deployment.yaml.j2
-
-- name: "Maintain Synapse HAProxy HTTP Service"
-  kubernetes.core.k8s:
-    template: manifests/synapse_http_service.yaml.j2
-
-# Also will likely be required to do redirection not-/_matrix and not-/_synapse to Element
-- name: "Maintain Synapse ingress"
-  kubernetes.core.k8s:
-    template: manifests/synapse_ingress.yaml.j2
+- name: "Manage manifests"
+  ansible.builtin.include_role:
+    name: "generic_apply"
+  vars:
+    _manifest_files: >
+      {{
+        query('fileglob', 'templates/manifests/haproxy_*.yaml.j2') + [
+          role_path ~ '/../synapse/templates/manifests/synapse_http_service.yaml.j2',
+          role_path ~ '/../synapse/templates/manifests/synapse_ingress.yaml.j2',
+        ]
+      }}

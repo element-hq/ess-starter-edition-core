@@ -1,0 +1,21 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+kind_list:
+- kind: Deployment
+  api_version: apps/v1
+- kind: StatefulSet
+  api_version: apps/v1
+- kind: DaemonSet
+  api_version: apps/v1
+- kind: Secret
+  api_version: v1
+- kind: ConfigMap
+  api_version: v1
+- kind: Service
+  api_version: v1
+- kind: Ingress
+  api_version: networking.k8s.io/v1

@@ -214,8 +214,9 @@ backend {{ type }}
 
 {% endif -%}
 {%- set max_instances = 1 if synapse_available_worker_types[type].single else 20 %}
+{%- set worker_type = synapse_available_worker_types[type].name_override | default(type) %}
     # Use DNS SRV service discovery on the headless service
-    server-template {{ type }} {{ max_instances }} _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-{{ type }}-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
+    server-template {{ type }} {{ max_instances }} _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-{{ worker_type }}-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
 {% endif %}
 {% endfor%}
 

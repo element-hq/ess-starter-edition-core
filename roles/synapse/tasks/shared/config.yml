@@ -5,5 +5,8 @@
 
 ---
 - name: "Maintain Synapse shared config"
-  kubernetes.core.k8s:
-    template: manifests/synapse_shared_configmap.yaml.j2
+  ansible.builtin.include_role:
+    name: "generic_apply"
+  vars:
+    _manifest_files:
+    - "{{ role_path }}/../synapse/templates/manifests/synapse_shared_configmap.yaml.j2"

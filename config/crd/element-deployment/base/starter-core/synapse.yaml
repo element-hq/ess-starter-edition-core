@@ -13,7 +13,7 @@
         default: synapse
         type: string
         description: The secret data associated to synapse config Key matching `config.macaroonSecretKey`, `config.registrationSharedSecretSecretKey`, `config.signingKeySecretKey`, `config.adminPasswordSecretKey`, `config.telemetry.password` and `config.postgres.passwordSecretKey` must be present. If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present If stun is enabled, key matching `config.stun.sharedSecretSecretKey` must be present. To override synapse default trust store for federation, every keys of `config.federation.certificateAutoritiesSecretKeys` should be present.
-        pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+        pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
         maxLength: 253
       config:
         description: This field will be replaced by kustomize

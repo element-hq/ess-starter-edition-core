@@ -4,14 +4,8 @@
 
 
 ---
-- name: "Maintain Synapse Redis config"
-  kubernetes.core.k8s:
-    template: manifests/redis_configmap.yaml.j2
-
-- name: "Maintain Synapse Redis deployment"
-  kubernetes.core.k8s:
-    template: manifests/redis_deployment.yaml.j2
-
-- name: "Maintain Synapse Redis service"
-  kubernetes.core.k8s:
-    template: manifests/redis_service.yaml.j2
+- name: "Manage Redis manifests"
+  ansible.builtin.include_role:
+    name: "generic_apply"
+  vars:
+    _manifest_files: "{{ query('fileglob', 'templates/manifests/redis_*.yaml.j2') }}"

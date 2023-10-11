@@ -9,29 +9,24 @@
     api_version: v1
     kind: ConfigMap
     namespace: "{{ ansible_operator_meta.namespace }}"
-    name: "{{ item }}"
   register: regfile_found
-  failed_when: regfile_found.resources | length != 1
-  loop: "{{ synapse_appservices_registrations }}"
+  failed_when: >-
+    regfile_found.resources
+    | selectattr('metadata.name', 'in', synapse_appservices_registrations)
+    | length != (synapse_appservices_registrations | length)
 
+# We make sure that all registration files have a registation.yaml key
+# and we build a list of hashes
 - name: "Lookup the registration files hashes"
   ansible.builtin.set_fact:
     _fetched_registration_files_hash: >
       {{
-        (_fetched_registration_files_hash | default([]))
-        + [
-            (_current_cm | first).data['registration.yaml'] | hash('sha1')
-          ]
-      }}
-  vars:
-    _current_cm: >
-      {{
-        query(
-          'kubernetes.core.k8s',
-          api_version='v1',
-          kind='ConfigMap',
-          namespace=ansible_operator_meta.namespace,
-          resource_name=item
+        (
+          regfile_found.resources
+          | selectattr('metadata.name', 'in', synapse_appservices_registrations)
+          | map(attribute='data')
+          | json_query('[]."registration.yaml"')
+          | map('hash', 'sha1')
         )
       }}
-  loop: "{{ synapse_appservices_registrations }}"
+  failed_when: (_fetched_registration_files_hash | length) != (synapse_appservices_registrations | length)

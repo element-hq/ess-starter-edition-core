@@ -16,7 +16,6 @@ metadata:
     app.kubernetes.io/part-of: matrix-stack
     app.kubernetes.io/component: matrix-server
     app.kubernetes.io/version: "{{ image.tag }}"
-    k8s.element.io/crdhash: "{{ crd_spec_hash }}"
     k8s.element.io/confighash: "{{ (homeserver_yaml + log_config_yaml + secrets_hash + specific_worker_yaml) | hash('sha1') }}"
 {% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
@@ -157,12 +156,6 @@ spec:
           mountPath: /as/{{ as_registration }}/registration.yaml
           readOnly: true
           subPath: registration.yaml
-{% endfor %}
-{% for file_mount in workloads.synapse.additional_file_mounts | default([]) %}
-        - name: external-secrets
-          mountPath: {{ file_mount.mount_path }}
-          readOnly: true
-          subPath: {{ file_mount.secret_key }}
 {% endfor %}
 {% endif %}
         - mountPath: /secrets/

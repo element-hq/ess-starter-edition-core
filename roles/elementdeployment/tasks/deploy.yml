@@ -12,63 +12,17 @@
     label: "{{ item.name }}"
   loop:
   - name: "global"
-    input: "{{ global }}"
+    input: "{{ _global }}"
   - name: "components"
     input: "{{ components }}"
   - name: "secret"
     input: "{{ _global_secret }}"
 
-- name: "Display deployed template for all components"
-  ansible.builtin.debug:
-    msg: >
-      {{
-        query('template', *manifests_files)
-        | map('split_regex', '^---$')
-        | flatten
-        | map('trim')
-        | select
-        | list
-      }}
-  when: lookup('env', 'DEBUG_MANIFESTS') | int == 1
+- name: Use generic apply
+  ansible.builtin.include_role:
+    name: "generic_apply"
   vars:
-    manifests_files: "{{ query('fileglob', 'templates/' + _component_item + '/*.j2') | sort | list }}"
+    _manifest_files: "{{ query('fileglob', 'templates/' + _component_item + '/*.j2') | sort | list }}"
   loop: "{{ components.keys() | list }}"
   loop_control:
     loop_var: _component_item
-
-- name: "Deploy component"
-  kubernetes.core.k8s:
-    definition: "{{ resources_definitions }}"
-    apply: true
-    state: present
-  vars:
-    manifests_files: "{{ query('fileglob', 'templates/' + _component_item + '/*.j2') | sort | list }}"
-    resources_definitions: >-
-      {{
-        query('template', *manifests_files)
-        | map('split_regex', '^---$')
-        | flatten
-        | map('trim')
-        | select
-        | map('from_yaml')
-        | select
-        | list
-      }}
-  when: resources_definitions | length > 0
-  loop: "{{ components.keys() | list }}"
-  loop_control:
-    loop_var: _component_item
-  async: 60
-  poll: 0
-  register: async_loop
-
-- name: Wait for components deployment
-  ansible.builtin.async_status:
-    jid: "{{ item.ansible_job_id }}"
-    mode: status
-  retries: 60
-  delay: 1
-  when: item is not skipped
-  loop: "{{ async_loop.results }}"
-  register: async_loop_jobs
-  until: async_loop_jobs.finished

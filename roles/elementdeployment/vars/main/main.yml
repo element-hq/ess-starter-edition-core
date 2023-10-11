@@ -3,12 +3,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
-# vars file for ElementDeployment
-
-crd_spec_hash: "{{ _matrix_element_io_elementdeployment_spec | to_json | hash('sha1')
-  }}"
-
-components_properties: "{{ query('vars', *query('ansible.builtin.varnames', 'component_info_.+')) | list }}"
+components_properties: "{{ query('vars', *query('ansible.builtin.varnames', 'component_info_.+')) | list | flatten }}"
 
 images_digests: '{{ default_images_digests | combine(imported_images_digests | default({}),
   recursive=true) }}'

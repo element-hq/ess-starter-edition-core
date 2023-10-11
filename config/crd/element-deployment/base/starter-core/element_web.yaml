@@ -13,7 +13,7 @@
         default: element-web
         type: string
         description: The secret data associated to synapse config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present
-        pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+        pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
         maxLength: 253
       config:
         description: This field will be replaced by kustomize

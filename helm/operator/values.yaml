@@ -27,11 +27,11 @@ operator:
       allowPrivilegeEscalation: false
       capabilities:
         drop:
-          - ALL
+        - ALL
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-starter-edition-core-operator
-      tag: 2.11.10
+      tag: 2.12.1
 
   rbacProxy:
     resources:
@@ -44,7 +44,7 @@ operator:
       allowPrivilegeEscalation: false
       capabilities:
         drop:
-          - ALL
+        - ALL
     imagePullPolicy: Always
     image:
       repository: gcr.io/kubebuilder/kube-rbac-proxy

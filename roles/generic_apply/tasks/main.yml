@@ -1,0 +1,93 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "Prepare Manifests"
+  ansible.builtin.set_fact:
+    _str_manifests: >
+      {{
+        query('template', *_manifest_files)
+        | map('split_regex', '^---$')
+        | flatten
+        | map('trim')
+        | select
+      }}
+
+- name: "Display deployed template for all components"
+  ansible.builtin.debug:
+    msg: "{{ _str_manifests | list }}"
+  when: lookup('env', 'DEBUG_MANIFESTS') | int == 1
+
+# Because we are using the same field-manager for each reconciliation loop
+# Removing a field from the manifest will effectively drop it from the resource
+# Without this, null values are causing errors such as
+# spec.workloads.synapse: Invalid value: "null" spec.workloads.synapse in body must be of type object
+- name: "Construct Manifests"
+  ansible.builtin.set_fact:
+    _manifests: >
+      {{
+        _str_manifests
+        | map('from_yaml')
+        | map('drop_null_values')
+        | select
+        | map('combine', _generic_apply_mixin, recursive=true)
+      }}
+
+- name: "Teardown non-SSA resources"
+  kubernetes.core.k8s:
+    resource_definition:
+      kind: "{{ _existing_resource[0].kind }}"
+      apiVersion: "{{ _existing_resource[0].apiVersion }}"
+      metadata:
+        name: "{{ _existing_resource[0].metadata.name }}"
+        namespace: "{{ _existing_resource[0].metadata.namespace }}"
+    state: absent
+  when:
+  - _existing_resource | length > 0
+  - >-
+    ((_existing_resource | first).metadata.managedFields)
+    | selectattr('manager', 'eq', 'OpenAPI-Generator')
+    | map(attribute='fieldsV1')
+    | selectattr('f:spec', 'defined')
+    | length > 0
+  vars:
+    _existing_resource: >
+      {{ query('kubernetes.core.k8s',
+            kind=_manifest_item.kind,
+            api_version=_manifest_item.apiVersion,
+            namespace=_manifest_item.metadata.namespace,
+            resource_name=_manifest_item.metadata.name)
+      }}
+    # noqa: jinja[invalid]
+    _filtered_manifests: >
+      {{
+        _manifests
+        | rejectattr('kind', 'eq', 'PersistentVolumeClaim')
+      }}
+  loop: "{{ _filtered_manifests }}"
+  loop_control:
+    loop_var: _manifest_item
+
+
+- name: "Maintain non-StatefulSets resources"
+  kubernetes.core.k8s:
+    resource_definition: "{{ _non_statefulsets_manifests }}"
+  vars:
+    _non_statefulsets_manifests: >
+      {{
+        _manifests
+        | rejectattr('kind', '==', 'StatefulSet')
+      }}
+  when: _non_statefulsets_manifests | length > 0
+
+- name: Maintain StatefulSets resources
+  ansible.builtin.include_tasks: "statefulset.yml"
+  loop: >
+    {{
+      _manifests
+      | selectattr('kind', '==', 'StatefulSet')
+    }}
+  loop_control:
+    loop_var: "_statefulset_manifest"

@@ -48,7 +48,6 @@ haproxy_image_tag: "2.4"
 haproxy_replicas: 2
 
 secrets_hash: "{{ _fetched_synapse_secrets | hash('sha1') }}"
-crd_spec_hash: "{{ ((_matrix_element_io_synapse_spec | to_json) + crd_hash_version) | hash('sha1') }}"
 
 _parsed_synapse_secrets:
   database_password: "{{ _fetched_synapse_secrets.resources[0].data['postgresPassword'] | b64decode }}"

@@ -45,13 +45,3 @@ common_env_overrides:
           user={{ config.database.user }} password=$(POSTGRES_PASSWORD) sslmode={{ config.database.sslmode }}"
 - name: SYNCV3_LOG_LEVEL
   value: "{{ config.log.level }}"
-
-# We convert all the items to dicts, merge them (removing duplicates), and extract them out to items again
-api_env: "{{ {} | combine(([api_env_underrides, api_env_user]
-                    + (query('vars', *(query('ansible.builtin.varnames', '.+_env_overrides$')
-                                      )
-                             ) | list
-                      )
-                    )
-                  | map('items2dict', key_name='name'))
-                | dict2items(key_name='name') }}"

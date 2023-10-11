@@ -5,7 +5,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 #}
 
-{% if components_k8s_properties.workloads.host_aliases | default(global.k8s.workloads.host_aliases) | length > 0 %}
+{% if components_k8s_properties.workloads.host_aliases | default(_global.k8s.workloads.host_aliases) | length > 0 %}
 hostAliases:
-  {{ components_k8s_properties.workloads.host_aliases | default(global.k8s.workloads.host_aliases) | to_nice_yaml(indent=2) | indent(2) }}
+  {{ components_k8s_properties.workloads.host_aliases | default(_global.k8s.workloads.host_aliases) | to_nice_yaml(indent=2) | indent(2) }}
 {% endif %}

@@ -30,9 +30,11 @@ spec:
   ingressClassName: "{{ ingress.ingress_class_name }}"
 {% endif %}
   rules:
+{# Well-known delegated, or non-delegated homeserver traffic will use these paths. #}
   - host: "{{ ingress.domain_name }}"
     http:
       paths:
+{# Include any additionally defined paths. #}
 {% for _external_path in ingress.additional_paths | default([]) %}
 {% if 'match_hostname' not in _external_path or _external_path.match_hostname == ingress.domain_name %}
       - path: {{ _external_path.path }}

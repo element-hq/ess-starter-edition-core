@@ -4,24 +4,8 @@
 
 
 ---
-- name: Maintain sliding sync
-  kubernetes.core.k8s:
-    resource_definition: >
-      {{
-        query('template',
-                *query('fileglob', 'templates/manifests/*.yaml.j2'))
-        | map('trim')
-        | select
-        | map('from_yaml')
-        | select
-        | map('combine', _owner_refs_metadata, recursive=true)
-      }}
-
-- name: "Teardown unused secrets"
+- name: "Manage manifests"
   ansible.builtin.include_role:
-    name: teardown
+    name: "generic_apply"
   vars:
-    kind_list:
-    - kind: Secrets
-      api_version: v1
-    kind_owner: SlidingSync
+    _manifest_files: "{{ query('fileglob', 'templates/manifests/*.yaml.j2') }}"

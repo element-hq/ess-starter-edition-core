@@ -76,4 +76,3 @@ image_icap_pull_policy: "{{ image_icap_has_digest | ternary('IfNotPresent', 'Alw
 
 
 replicas: 2
-crd_spec_hash: "{{ _matrix_element_io_matrixcontentscanner_spec | to_json | hash('sha1') }}"

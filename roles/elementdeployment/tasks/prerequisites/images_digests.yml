@@ -6,14 +6,14 @@
 ---
 
 - name: Fetch overriden images digests
-  when: global.config.images_digests_config_map | default(false)
+  when: _global.config.images_digests_config_map | default(false)
   block:
   - name: Lookup imported images digests
     kubernetes.core.k8s_info:
       api_version: v1
       kind: ConfigMap
       namespace: "{{ ansible_operator_meta.namespace }}"
-      name: "{{ global.config.images_digests_config_map }}"
+      name: "{{ _global.config.images_digests_config_map }}"
     register: _global_images_digests
 
   - name: Set imported images digests

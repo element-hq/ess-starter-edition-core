@@ -10,8 +10,13 @@
     kind: "{{ kind_item.kind }}"
     namespace: "{{ ansible_operator_meta.namespace }}"
     label_selectors:
-    - "app.kubernetes.io/managed-by = element-operator"
-    - "k8s.element.io/crdhash != {{ crd_spec_hash }}"
+    - "app.kubernetes.io/managed-by = {{ kind_managed_by }}"
+    # The operator-sdk complains about "Unable to convert label selectors for the client" here via
+    # https://github.com/operator-framework/operator-sdk/blob/v1.31.0/internal/ansible/proxy/cache_response.go#L254-L261
+    # This in turn uses https://github.com/kubernetes/apimachinery/blob/master/pkg/labels/labels.go#L150-L174
+    # which is looking to split on `=`. This feels like the wrong function to call. However it only impacts the cache
+    # and the right resources are returned so the error should be ignored
+    - "k8s.element.io/crdhash != {{ _crd_spec_hash }}"
     - "k8s.element.io/crdhash"
   register: _orphan_crds
   loop: "{{ kind_list }}"

@@ -1,0 +1,22 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: "ElementDeployment"
+  ansible.builtin.import_playbook: "any.yml"
+  vars:
+    _kind: "ElementDeployment"
+
+    # This is overriding the default from the teardown role:
+    # - the updater doesn't have permissions to manage DaemonSets/Deployments/StatefulSets/Ingresses
+    # - it needs to cleanup ServiceMonitors
+    # - PVCs could be here are deliberately excluded out of an abundance of caution
+    kind_list:
+    - kind: Secret
+      api_version: v1
+    - kind: ConfigMap
+      api_version: v1
+    - kind: ServiceMonitors
+      api_version: monitoring.coreos.com/v1

@@ -18,8 +18,7 @@ yq -s '[.kind, .metadata.name] | join("-") | downcase + ".yaml"' <(kustomize bui
 # We generate all resources and name the files according to their kind and names
 yq -s '[.kind, .metadata.name] | join("-") | downcase + ".yaml"' <(kustomize build ../../../${BASE_CRD_KUSTOMIZE_TARGET})
 
-for entry in ./*
-do
+for entry in ./*; do
   # For each file, we template their values using helm to add a prefix in front of their resources
   yq -i "$(cat ../yq/prefixes.yq)" $entry
   # For each file, we also make sure that ClusterRole can be deployed as Role if we dont use clusterDeployment
@@ -27,29 +26,26 @@ do
 done
 
 # These files should be fully disabled if not a cluster deployment
-for entry in ./*proxy.yaml ./*metrics*.yaml
-do
+for entry in ./*proxy.yaml ./*metrics*.yaml; do
   sed -i '1 i\{{- if $.Values.clusterDeployment }}' $entry
   echo "{{ end }}" >> $entry
 done
 
 # Generate users-facing roles
-yq  "$(cat ../yq/resource-editor-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
-yq  "$(cat ../yq/resource-viewer-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
+yq "$(cat ../yq/resource-editor-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
+yq "$(cat ../yq/resource-viewer-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
 
 # We deploy CRDs and their related roles optionaly
-for entry in ./customresourcedefinition-* ./*-editor.yaml ./*-viewer.yaml
-do
+for entry in ./customresourcedefinition-*; do
   sed -i '1 i\{{- if $.Values.deployCrds }}' $entry
   echo "{{ end }}" >> $entry
 done
 
 # Generate the operator main role
-yq  "$(cat ../yq/main-role.yq)" ../../../watches.yaml > clusterrole-manager.yaml
+yq "$(cat ../yq/main-role.yq)" ../../../watches.yaml > clusterrole-manager.yaml
 
 # For each clusterrole & clusterrolebinding, we add a conditional namespace field under name:
-for entry in ./clusterrole*.yaml
-do
+for entry in ./clusterrole*.yaml; do
   sed -i '0,/^  name: .*/{/^  name: .*/ {
     r ../../operator/fragments/ClusterRole-Namespace.yaml
   }}' $entry
@@ -69,6 +65,12 @@ do
   else
     sed -i '1 i\{{- if $.Values.deployCrdRoles }}' $entry
     echo "{{ end }}" >> $entry
+
+    if [[ $entry =~ editor\.yaml$ ]]; then
+      sed -i '/namespace:.*/r ../../operator/fragments/ClusterRole-Editor.yaml' $entry
+    elif [[ $entry =~ viewer\.yaml$ ]]; then
+      sed -i '/namespace:.*/r ../../operator/fragments/ClusterRole-Viewer.yaml' $entry
+    fi
   fi
 done
 

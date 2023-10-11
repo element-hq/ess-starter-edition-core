@@ -1,0 +1,11 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: Check that the ElementDeployment name isn't too long
+  ansible.builtin.fail:
+    msg: The name of this ElementDeployment is too long. Dependent resources can't be created if
+      its name is longer than 25 characters
+  when: "ansible_operator_meta.name | length > 25"
