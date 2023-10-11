@@ -18,11 +18,6 @@ jobs:
     runs-on: cpu-s
     container: ghcr.io/vector-im/chart-releaser:cr-push-fix
     steps:
-      - name: Configure deps
-        run: |
-          apt update
-          apt install -y unzip curl git make
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
