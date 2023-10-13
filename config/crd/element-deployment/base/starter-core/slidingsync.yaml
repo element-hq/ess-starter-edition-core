@@ -14,7 +14,7 @@
         default: sliding-sync
         type: string
         description: The secret data associated to SlidingSync config
-        pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+        pattern: ^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$
         maxLength: 253
       config:
         description: This field will be replaced by kustomize

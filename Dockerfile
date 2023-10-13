@@ -30,6 +30,7 @@ RUN mkdir ${HOME}/element.io
 WORKDIR ${HOME}/element.io
 ENV ANSIBLE_ROLES_PATH ${HOME}/element.io/roles
 
+
 COPY requirements.yml ${HOME}/element.io/requirements.yml
 RUN ansible-galaxy collection install -r ${HOME}/element.io/requirements.yml \
   && chmod -R ug+rwx ${HOME}/.ansible

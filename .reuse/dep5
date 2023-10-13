@@ -18,3 +18,7 @@ License: AGPL-3.0-or-later
 Files: helm/updater/fragments/*
 Copyright:  Copyright 2023 New Vector Ltd
 License: AGPL-3.0-or-later
+
+Files: requirements.txt
+Copyright:  Copyright 2023 New Vector Ltd
+License: AGPL-3.0-or-later
