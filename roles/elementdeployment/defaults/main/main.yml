@@ -90,7 +90,7 @@ components_k8s_properties_camelled: >
 
 has_service_monitor: >-
   {{
-    ('monitoring.coreos.com/v1' in _cluster_info.apis) and 'ServiceMonitor' in _cluster_info.apis['monitoring.coreos.com/v1']
+    ('monitoring.coreos.com/v1' in _cluster_info.apis) and ('ServiceMonitor' in _cluster_info.apis['monitoring.coreos.com/v1'])
   }}
 
 element_deployment_crd_schema: >-
@@ -125,13 +125,13 @@ component_k8s_workload_container_resources: >-
     )
   }}
 
+_merged_k8s_service_monitor_deploy: >-
+  {{
+    components_k8s_properties.monitoring.service_monitor.deploy | default(global.k8s.monitoring.service_monitor.deploy)
+  }}
 component_k8s_service_monitor_deploy: >-
-  {{ components_k8s_properties.monitoring.service_monitor.deploy
-    | default(global.k8s.monitoring.service_monitor.deploy) == 'auto'
-    | ternary(has_service_monitor,
-        components_k8s_properties.monitoring.service_monitor.deploy
-        | default(global.k8s.monitoring.service_monitor.deploy) == 'enable'
-      )
+  {{
+    (_merged_k8s_service_monitor_deploy == 'auto') | ternary(has_service_monitor, _merged_k8s_service_monitor_deploy == 'enable')
   }}
 
 component_k8s_security_context_force_uid_gid: >-
