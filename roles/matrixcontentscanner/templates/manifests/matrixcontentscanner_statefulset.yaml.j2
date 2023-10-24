@@ -18,8 +18,8 @@ metadata:
   annotations:
     k8s.element.io/confighash: "{{ _matrix_content_scanner_config | hash('sha1') }}"
     k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
-{% if workloads.annotations | default({}) %}
-    {{ _matrix_element_io_matrixcontentscanner_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(4) }}
+{% if workloads.matrix_content_scanner.annotations | default({}) %}
+    {{ _matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.annotations | to_nice_yaml(indent=2) | indent(4) }}
 {% endif %}
   name: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
   namespace: "{{ ansible_operator_meta.namespace }}"
@@ -45,8 +45,8 @@ spec:
       annotations:
         k8s.element.io/confighash: "{{ _matrix_content_scanner_config | hash('sha1') }}"
         k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
-{% if workloads.annotations | default({}) %}
-        {{ _matrix_element_io_matrixcontentscanner_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(8) }}
+{% if workloads.matrix_content_scanner.annotations | default({}) %}
+        {{ _matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.annotations | to_nice_yaml(indent=2) | indent(8) }}
 {% endif %}
     spec:
       automountServiceAccountToken: false

@@ -5,7 +5,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: ess-starter-edition-core
 Upstream-Contact: New-Vector
-Source: https://gitlab.matrix.org
+Source: https://gitlab.element.io
 
 Files: helm/operator/fragments/*
 Copyright:  Copyright 2023 New Vector Ltd
