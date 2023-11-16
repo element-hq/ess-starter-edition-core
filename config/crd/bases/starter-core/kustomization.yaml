@@ -9,3 +9,16 @@ resources:
   - matrix.element.io_slidingsyncs.yaml
   - matrix.element.io_synapses.yaml
   - matrix.element.io_wellknowndelegations.yaml
+  - old/v1alpha1_synapse.yaml
+# Inject old versions
+replacements:
+  - source:
+      kind: KustomizeSchema
+      name: synapse-v1alpha1
+      fieldPath: spec
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: synapses.matrix.element.io
+        fieldPaths:
+          - spec.versions.1

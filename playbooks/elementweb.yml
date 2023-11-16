@@ -7,4 +7,5 @@
 - name: "Element Web"
   ansible.builtin.import_playbook: "any.yml"
   vars:
+    _api_version: 'matrix.element.io/v1alpha1'
     _kind: "ElementWeb"

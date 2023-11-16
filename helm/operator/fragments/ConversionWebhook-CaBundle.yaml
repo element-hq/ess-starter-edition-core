@@ -1,0 +1,3 @@
+{{- if $.Values.operator.conversionWebhook.caBundle }}
+        caBundle: {{ $.Values.operator.conversionWebhook.caBundle }}
+{{- end }}

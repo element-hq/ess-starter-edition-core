@@ -3,8 +3,13 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 element_operator_crds:
-- ElementWeb
-- MatrixContentScanner
-- SlidingSync
-- Synapse
-- WellKnownDelegation
+- kind: ElementWeb
+  api_version: matrix.element.io/v1alpha1
+- kind: MatrixContentScanner
+  api_version: matrix.element.io/v1alpha1
+- kind: SlidingSync
+  api_version: matrix.element.io/v1alpha1
+- kind: Synapse
+  api_version: matrix.element.io/v1alpha2
+- kind: WellKnownDelegation
+  api_version: matrix.element.io/v1alpha1

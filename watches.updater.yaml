@@ -5,7 +5,7 @@
 
 ---
 # Use the 'create api' subcommand to add watches to this file.
-- version: v1alpha1
+- version: v1alpha2
   group: matrix.element.io
   kind: ElementDeployment
   playbook: playbooks/elementdeployment.yml

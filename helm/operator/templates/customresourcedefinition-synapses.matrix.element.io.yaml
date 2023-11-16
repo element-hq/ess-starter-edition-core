@@ -4,7 +4,25 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: synapses.matrix.element.io
+{{- if $.Values.crds.annotations }}
+  annotations:
+    {{- toYaml $.Values.crds.annotations | nindent 4 }}
+{{- end }}
 spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+{{- if $.Values.operator.conversionWebhook.caBundle }}
+        caBundle: {{ $.Values.operator.conversionWebhook.caBundle }}
+{{- end }}
+        service:
+          name: '{{ .Values.prefix }}-conversion-webhook'
+          namespace: '{{ .Release.Namespace }}'
+          path: /convert
+      conversionReviewVersions:
+        - v1
+        - v1beta1
   group: matrix.element.io
   names:
     kind: Synapse
@@ -15,7 +33,7 @@ spec:
     singular: synapse
   scope: Namespaced
   versions:
-    - name: v1alpha1
+    - name: v1alpha2
       schema:
         openAPIV3Schema:
           description: Synapse is the Schema for the synapses API
@@ -734,6 +752,728 @@ spec:
           type: object
       served: true
       storage: true
+      subresources:
+        status: {}
+    - deprecated: true
+      name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Synapse is the Schema for the synapses API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: Spec defines the desired state of Synapse
+              properties:
+                config:
+                  description: Defines how to configure Synapse itself
+                  properties:
+                    applicationServicesRegistrations:
+                      description: |
+                        Name of the ConfigMaps containing the registration.yml files to connect an AS to Synapse.
+                      items:
+                        type: string
+                      type: array
+                    containersSecurityContext:
+                      description: A subset of SecurityContext. ContainersSecurityContext holds pod-level security attributes and common container settings
+                      properties:
+                        allowPrivilegeEscalation:
+                          description: Controls whether a process can gain more privileges than its parent process. This bool directly controls whether the no_new_privs flag gets set on the container process. allowPrivilegeEscalation is always true when the container is run as privileged, or has CAP_SYS_ADMIN
+                          type: boolean
+                        capabilities:
+                          description: Give a process some privileges, but not all the privileges of the root user.
+                          properties:
+                            add:
+                              description: Privileges to add.
+                              items:
+                                type: string
+                              type: array
+                            drop:
+                              description: Privileges to drop.
+                              items:
+                                type: string
+                              type: array
+                          type: object
+                        readOnlyRootFilesystem:
+                          description: Mounts the container's root filesystem as read-only.
+                          type: boolean
+                        seccompProfile:
+                          description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
+                          properties:
+                            localhostProfile:
+                              type: string
+                            type:
+                              enum:
+                                - RuntimeDefault
+                                - Unconfined
+                                - Localhost
+                              type: string
+                          type: object
+                      type: object
+                    database:
+                      description: Configuration of the PostgreSQL database
+                      properties:
+                        host:
+                          description: Database host to connect to
+                          type: string
+                        name:
+                          description: Database within the PostgreSQL instance to use
+                          type: string
+                        port:
+                          default: 5432
+                          description: Port to connect to
+                          maximum: 65535
+                          minimum: 0
+                          type: integer
+                        sslmode:
+                          default: prefer
+                          description: TLS settings to use for the PostgreSQL connection
+                          enum:
+                            - disable
+                            - allow
+                            - prefer
+                            - require
+                            - verify-ca
+                            - verify-full
+                          type: string
+                        user:
+                          description: Username to use for auth
+                          type: string
+                      required:
+                        - host
+                        - user
+                        - name
+                      type: object
+                    externalSecret:
+                      description: |
+                        The Secret that is managed outside of the Synapse CRD lifecycle.
+                        The Secret must contain at least the following keys - macaroon,
+                        postgresPassword, registrationSharedSecret, signingKey.
+
+                        It can optionally contain shared.yaml, main.yaml and <worker type>.yaml.
+                        If these exist they will be added to all Synapse processes, just the main
+                        Synapse process or all processes of a given worker type respectively.
+                      properties:
+                        name:
+                          description: The name of the Secret within the same namespace as the Synapse CRD
+                          type: string
+                      type: object
+                    haproxyContainersSecurityContext:
+                      description: A subset of SecurityContext. ContainersSecurityContext holds pod-level security attributes and common container settings
+                      properties:
+                        allowPrivilegeEscalation:
+                          description: Controls whether a process can gain more privileges than its parent process. This bool directly controls whether the no_new_privs flag gets set on the container process. allowPrivilegeEscalation is always true when the container is run as privileged, or has CAP_SYS_ADMIN
+                          type: boolean
+                        capabilities:
+                          description: Give a process some privileges, but not all the privileges of the root user.
+                          properties:
+                            add:
+                              description: Privileges to add.
+                              items:
+                                type: string
+                              type: array
+                            drop:
+                              description: Privileges to drop.
+                              items:
+                                type: string
+                              type: array
+                          type: object
+                        readOnlyRootFilesystem:
+                          description: Mounts the container's root filesystem as read-only.
+                          type: boolean
+                        seccompProfile:
+                          description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
+                          properties:
+                            localhostProfile:
+                              type: string
+                            type:
+                              enum:
+                                - RuntimeDefault
+                                - Unconfined
+                                - Localhost
+                              type: string
+                          type: object
+                      type: object
+                    haproxyPodSecurityContext:
+                      description: A subset of PodSecurityContext. PodSecurityContext holds pod-level security attributes and common container settings
+                      properties:
+                        fsGroup:
+                          description: |
+                            A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to
+                            change the ownership of that volume to be owned by the pod:
+
+                            1. The owning GID will be the FSGroup
+                            2. The setgid bit is set (new files created in the volume will be owned by FSGroup)
+                            3. The permission bits are OR'd with rw-rw----
+
+                            If unset, the Kubelet will not modify the ownership and permissions of any volume.
+                          format: int64
+                          type: integer
+                        fsGroupChangePolicy:
+                          description: 'fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used.'
+                          type: string
+                        runAsGroup:
+                          description: The GID to run the entrypoint of the container process. Uses runtime default if unset.
+                          format: int64
+                          type: integer
+                        runAsNonRoot:
+                          description: Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed.
+                          type: boolean
+                        runAsUser:
+                          description: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
+                          format: int64
+                          type: integer
+                        seccompProfile:
+                          description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
+                          properties:
+                            localhostProfile:
+                              type: string
+                            type:
+                              enum:
+                                - RuntimeDefault
+                                - Unconfined
+                                - Localhost
+                              type: string
+                          type: object
+                        supplementalGroups:
+                          description: A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container.
+                          items:
+                            format: int64
+                            type: integer
+                          type: array
+                      type: object
+                    haproxyReplicas:
+                      default: 2
+                      description: Number of HAProxy replicas to start up. Defaults to 2
+                      minimum: 1
+                      type: integer
+                    haproxyResources:
+                      default: {}
+                      description: Kubernetes resources to allocate to each instance.
+                      properties:
+                        limits:
+                          additionalProperties:
+                            anyOf:
+                              - type: integer
+                              - type: string
+                            pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                            x-kubernetes-int-or-string: true
+                          default:
+                            memory: 200Mi
+                          description: 'Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                        requests:
+                          additionalProperties:
+                            anyOf:
+                              - type: integer
+                              - type: string
+                            pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                            x-kubernetes-int-or-string: true
+                          default:
+                            cpu: 1
+                            memory: 100Mi
+                          description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                      type: object
+                    hostAliases:
+                      description: The list of hosts aliases to configure on the pod spec. It should be avoid as much as possible to use this feature. Please prefer using an DNS entry to resolve your hostnames. This can be used as a workaround when entries cannot be resolved using DNS, for example for our automated testings.
+                      items:
+                        properties:
+                          hostnames:
+                            items:
+                              description: An hostname of the associated ip to add to /etc/hosts
+                              type: string
+                            type: array
+                          ip:
+                            description: An IP resolution to add to /etc/hosts
+                            type: string
+                        type: object
+                      type: array
+                    log:
+                      default: {}
+                      description: Synapse Logging settings
+                      properties:
+                        levelOverrides:
+                          additionalProperties:
+                            description: The maximum level of Synapse log output for this specific logger
+                            enum:
+                              - Critical
+                              - Error
+                              - Warning
+                              - Info
+                              - Debug
+                            type: string
+                          description: Logging level overrides for specific Synapse loggers
+                          type: object
+                        rootLevel:
+                          default: Info
+                          description: The maximum level of Synapse log output before any overrides
+                          enum:
+                            - Critical
+                            - Error
+                            - Warning
+                            - Info
+                            - Debug
+                          type: string
+                      type: object
+                    media:
+                      description: Configuration of Synapse's Media store
+                      properties:
+                        volumeClaim:
+                          description: PersistentVolumeClaim that exists within the same namespace as the Synapse CRD
+                          type: string
+                      required:
+                        - volumeClaim
+                      type: object
+                    podSecurityContext:
+                      description: A subset of PodSecurityContext. PodSecurityContext holds pod-level security attributes and common container settings
+                      properties:
+                        fsGroup:
+                          description: |
+                            A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to
+                            change the ownership of that volume to be owned by the pod:
+
+                            1. The owning GID will be the FSGroup
+                            2. The setgid bit is set (new files created in the volume will be owned by FSGroup)
+                            3. The permission bits are OR'd with rw-rw----
+
+                            If unset, the Kubelet will not modify the ownership and permissions of any volume.
+                          format: int64
+                          type: integer
+                        fsGroupChangePolicy:
+                          description: 'fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used.'
+                          type: string
+                        runAsGroup:
+                          description: The GID to run the entrypoint of the container process. Uses runtime default if unset.
+                          format: int64
+                          type: integer
+                        runAsNonRoot:
+                          description: Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed.
+                          type: boolean
+                        runAsUser:
+                          description: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
+                          format: int64
+                          type: integer
+                        seccompProfile:
+                          description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
+                          properties:
+                            localhostProfile:
+                              type: string
+                            type:
+                              enum:
+                                - RuntimeDefault
+                                - Unconfined
+                                - Localhost
+                              type: string
+                          type: object
+                        supplementalGroups:
+                          description: A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container.
+                          items:
+                            format: int64
+                            type: integer
+                          type: array
+                      type: object
+                    redisContainersSecurityContext:
+                      description: A subset of SecurityContext. ContainersSecurityContext holds pod-level security attributes and common container settings
+                      properties:
+                        allowPrivilegeEscalation:
+                          description: Controls whether a process can gain more privileges than its parent process. This bool directly controls whether the no_new_privs flag gets set on the container process. allowPrivilegeEscalation is always true when the container is run as privileged, or has CAP_SYS_ADMIN
+                          type: boolean
+                        capabilities:
+                          description: Give a process some privileges, but not all the privileges of the root user.
+                          properties:
+                            add:
+                              description: Privileges to add.
+                              items:
+                                type: string
+                              type: array
+                            drop:
+                              description: Privileges to drop.
+                              items:
+                                type: string
+                              type: array
+                          type: object
+                        readOnlyRootFilesystem:
+                          description: Mounts the container's root filesystem as read-only.
+                          type: boolean
+                        seccompProfile:
+                          description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
+                          properties:
+                            localhostProfile:
+                              type: string
+                            type:
+                              enum:
+                                - RuntimeDefault
+                                - Unconfined
+                                - Localhost
+                              type: string
+                          type: object
+                      type: object
+                    redisPodSecurityContext:
+                      description: A subset of PodSecurityContext. PodSecurityContext holds pod-level security attributes and common container settings
+                      properties:
+                        fsGroup:
+                          description: |
+                            A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to
+                            change the ownership of that volume to be owned by the pod:
+
+                            1. The owning GID will be the FSGroup
+                            2. The setgid bit is set (new files created in the volume will be owned by FSGroup)
+                            3. The permission bits are OR'd with rw-rw----
+
+                            If unset, the Kubelet will not modify the ownership and permissions of any volume.
+                          format: int64
+                          type: integer
+                        fsGroupChangePolicy:
+                          description: 'fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used.'
+                          type: string
+                        runAsGroup:
+                          description: The GID to run the entrypoint of the container process. Uses runtime default if unset.
+                          format: int64
+                          type: integer
+                        runAsNonRoot:
+                          description: Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed.
+                          type: boolean
+                        runAsUser:
+                          description: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
+                          format: int64
+                          type: integer
+                        seccompProfile:
+                          description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
+                          properties:
+                            localhostProfile:
+                              type: string
+                            type:
+                              enum:
+                                - RuntimeDefault
+                                - Unconfined
+                                - Localhost
+                              type: string
+                          type: object
+                        supplementalGroups:
+                          description: A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container.
+                          items:
+                            format: int64
+                            type: integer
+                          type: array
+                      type: object
+                    redisResources:
+                      default: {}
+                      description: Kubernetes resources to allocate to each instance.
+                      properties:
+                        limits:
+                          additionalProperties:
+                            anyOf:
+                              - type: integer
+                              - type: string
+                            pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                            x-kubernetes-int-or-string: true
+                          default:
+                            memory: 50Mi
+                          description: 'Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                        requests:
+                          additionalProperties:
+                            anyOf:
+                              - type: integer
+                              - type: string
+                            pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                            x-kubernetes-int-or-string: true
+                          default:
+                            cpu: 200m
+                            memory: 50Mi
+                          description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                      type: object
+                    resources:
+                      default: {}
+                      description: Kubernetes resources to allocate to each instance.
+                      properties:
+                        limits:
+                          additionalProperties:
+                            anyOf:
+                              - type: integer
+                              - type: string
+                            pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                            x-kubernetes-int-or-string: true
+                          default:
+                            memory: 4Gi
+                          description: 'Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                        requests:
+                          additionalProperties:
+                            anyOf:
+                              - type: integer
+                              - type: string
+                            pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                            x-kubernetes-int-or-string: true
+                          default:
+                            cpu: 1
+                            memory: 2Gi
+                          description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                      type: object
+                    serverName:
+                      description: The server name that User/Room/Group IDs will use in Matrix
+                      type: string
+                    workers:
+                      description: The list of the workers to use
+                      items:
+                        properties:
+                          instances:
+                            default: 1
+                            description: Number of instances of this worker type
+                            type: integer
+                          resources:
+                            default: {}
+                            description: Kubernetes resources to allocate to each instance.
+                            properties:
+                              limits:
+                                additionalProperties:
+                                  anyOf:
+                                    - type: integer
+                                    - type: string
+                                  pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                                  x-kubernetes-int-or-string: true
+                                default:
+                                  memory: 4Gi
+                                description: 'Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                                type: object
+                              requests:
+                                additionalProperties:
+                                  anyOf:
+                                    - type: integer
+                                    - type: string
+                                  pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                                  x-kubernetes-int-or-string: true
+                                default:
+                                  cpu: 1
+                                  memory: 2Gi
+                                description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                                type: object
+                            type: object
+                          type:
+                            description: Type of worker being configured.
+                            enum:
+                              - appservice
+                              - background
+                              - client-reader
+                              - encryption
+                              - event-creator
+                              - event-persister
+                              - federation-inbound
+                              - federation-reader
+                              - federation-sender
+                              - initial-synchrotron
+                              - media-repository
+                              - presence-writer
+                              - pusher
+                              - receipts-account
+                              - sso-login
+                              - synchrotron
+                              - typing-persister
+                              - user-dir
+                            type: string
+                        type: object
+                      type: array
+                  type: object
+                image:
+                  description: Defines the image to be used for Synapse & associated helpers
+                  properties:
+                    digest:
+                      description: Image digest. If defined, this will be used instead of image tag. Image tag is still mandatory to render annotations on the statefulsets and deployments.
+                      type: string
+                    haproxyDigest:
+                      description: Image digest in the repository to use for Synapse's Haproxy
+                      type: string
+                    haproxyPullPolicy:
+                      description: Image pull policy for HAProxy
+                      enum:
+                        - Always
+                        - IfNotPresent
+                        - Never
+                      type: string
+                    haproxyRepository:
+                      description: Image repository to use for Synapse's Haproxy
+                      type: string
+                    haproxyTag:
+                      description: Image tag in the repository to use for Synapse's Haproxy
+                      type: string
+                    passUserIdToSynapse:
+                      description: Whether to override detection of UID environment flag passed into the synapse docker image
+                      enum:
+                        - Always
+                        - Never
+                      type: string
+                    pullPolicy:
+                      description: Image pull policy for Synapse
+                      enum:
+                        - Always
+                        - IfNotPresent
+                        - Never
+                      type: string
+                    pullSecrets:
+                      description: Pull secrets to make available for any of the images below
+                      items:
+                        properties:
+                          name:
+                            description: The name of the image pull secret in this namespace to use
+                            type: string
+                        type: object
+                      type: array
+                    redisDigest:
+                      description: Image digest in the repository to use for Synapse's Redis
+                      type: string
+                    redisPullPolicy:
+                      description: Image pull policy for Redis
+                      enum:
+                        - Always
+                        - IfNotPresent
+                        - Never
+                      type: string
+                    redisRepository:
+                      description: Image repository to use for Synapse's Redis
+                      type: string
+                    redisTag:
+                      description: Image tag in the repository to use for Synapse's Redis
+                      type: string
+                    repository:
+                      description: Image repository to use for Synapse
+                      type: string
+                    tag:
+                      description: Image tag in the repository to use for Synapse
+                      type: string
+                  type: object
+                ingress:
+                  description: Defines how to access this resource
+                  properties:
+                    additionalPaths:
+                      description: Additional prefixed path to load in synapse ingress
+                      items:
+                        description: An additional path to load in synapse ingress
+                        properties:
+                          matchHostname:
+                            description: Hostname to target for the additional path. Empty if not required..
+                            type: string
+                          path:
+                            description: A prefix path
+                            type: string
+                          service:
+                            description: The targetted service name and port
+                            properties:
+                              name:
+                                description: The service name
+                                type: string
+                              port:
+                                oneOf:
+                                  - required:
+                                      - name
+                                  - required:
+                                      - number
+                                properties:
+                                  name:
+                                    description: The port name
+                                    type: string
+                                  number:
+                                    description: The port number
+                                    type: number
+                                type: object
+                            required:
+                              - name
+                              - port
+                            type: object
+                        required:
+                          - path
+                          - service
+                        type: object
+                      type: array
+                    annotations:
+                      additionalProperties:
+                        type: string
+                      description: Defines the annotations to add to the ingress object
+                      type: object
+                    domainName:
+                      description: What domain name to create this ingress at
+                      type: string
+                    ingressClassName:
+                      description: An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer external to the operator.
+                      type: string
+                    tlsSecret:
+                      description: An optional TLS secret to be used to secure this ingress with. Optional as if used in OpenShift the default Router certificates can be used
+                      type: string
+                  type: object
+                service:
+                  description: Describes the service created to expose this resource
+                  properties:
+                    type:
+                      description: What type of service to create
+                      enum:
+                        - ClusterIP
+                        - NodePort
+                        - LoadBalancer
+                      type: string
+                  type: object
+                workloads:
+                  description: Custom properties on Synapse workloads
+                  properties:
+                    haproxy:
+                      description: Custom properties on workloads
+                      properties:
+                        annotations:
+                          additionalProperties:
+                            type: string
+                          description: Defines the annotations to add to the workloads
+                          type: object
+                      type: object
+                    redis:
+                      description: Custom properties on workloads
+                      properties:
+                        annotations:
+                          additionalProperties:
+                            type: string
+                          description: Defines the annotations to add to the workloads
+                          type: object
+                      type: object
+                    synapse:
+                      description: Custom properties on workloads
+                      properties:
+                        annotations:
+                          additionalProperties:
+                            type: string
+                          description: Defines the annotations to add to the workloads
+                          type: object
+                        extraEnv:
+                          description: Defines additional environment variables to be injected onto this workload
+                          items:
+                            description: A single env var to be injected onto this workload
+                            properties:
+                              name:
+                                description: Name of the environment variable
+                                type: string
+                              value:
+                                description: Value of the environment variable
+                                type: string
+                            required:
+                              - name
+                              - value
+                            type: object
+                          type: array
+                      type: object
+                  type: object
+              type: object
+            status:
+              description: Status defines the observed state of Synapse
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+          type: object
+      served: true
+      storage: false
       subresources:
         status: {}
 {{ end }}

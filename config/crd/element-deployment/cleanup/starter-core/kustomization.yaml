@@ -95,3 +95,8 @@ patches:
     metadata:
       name: postgres-libpq
     $patch: delete
+  - |
+    kind: KustomizeSchema
+    metadata:
+      name: elementdeployment-starter-core-v1alpha1
+    $patch: delete

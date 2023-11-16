@@ -18,8 +18,20 @@ spec:
     shortNames:
       - syn
   scope: Namespaced
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundleReplacedByHelmBuild:
+        service:
+          namespace: system
+          name: element-conversion-webhook
+          path: /convert
+      conversionReviewVersions:
+        - v1
+        - v1beta1
   versions:
-    - name: v1alpha1
+    - name: v1alpha2
       schema:
         openAPIV3Schema:
           description: Synapse is the Schema for the synapses API
@@ -250,3 +262,5 @@ spec:
       storage: true
       subresources:
         status: {}
+    - name: v1alpha1
+      description: Will be replaced by kustomize

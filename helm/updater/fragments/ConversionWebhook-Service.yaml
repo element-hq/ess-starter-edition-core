@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+{{- if $.Values.updater.annotations }}
+  annotations:
+    {{- toYaml $.Values.updater.annotations | nindent 4 }}
+{{- end }}
+  name: '{{ .Values.prefix }}-conversion-webhook'
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  ports:
+    - port: 443
+      protocol: TCP
+      targetPort: 7443
+  selector:
+    app.kubernetes.io/instance: element-updater-controller-manager

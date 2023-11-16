@@ -12,7 +12,7 @@
     register: _sts
   rescue:
   - name: Destroy StatefulSet when they cant be redeployed
-    when: "'updates to statefulset spec for fields other than' in _sts.msg"
+    when: ('updates to statefulset spec for fields other than' in _sts.msg)
     block:
     - name: Destroy StatefulSet
       kubernetes.core.k8s:
@@ -24,6 +24,6 @@
         resource_definition: "{{ _statefulset_manifest }}"
 
   - name: Throw error if it is not StatefulSet spec update related
-    when: "'updates to statefulset spec for fields other than' not in _sts.msg"
+    when: ('updates to statefulset spec for fields other than' not in _sts.msg)
     ansible.builtin.fail:
       msg: "{{ _sts.msg }}"

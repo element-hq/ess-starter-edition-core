@@ -18,7 +18,7 @@
     # and the right resources are returned so the error should be ignored
     - "k8s.element.io/crdhash != {{ _crd_spec_hash }}"
     - "k8s.element.io/crdhash"
-  loop: "{{ managed_kinds }}"
+  loop: "{{ element_operator_crds }}"
   loop_control:
     loop_var: kind_item
     label: kind_item

@@ -7,6 +7,7 @@
 - name: "ElementDeployment"
   ansible.builtin.import_playbook: "any.yml"
   vars:
+    _api_version: 'matrix.element.io/v1alpha2'
     _kind: "ElementDeployment"
 
     # This is overriding the default from the teardown role:

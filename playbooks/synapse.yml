@@ -8,4 +8,5 @@
   ansible.builtin.import_playbook: "any.yml"
   vars:
     _kind: "Synapse"
+    _api_version: "matrix.element.io/v1alpha2"
     _crd_hash_version: "2023-10-10"

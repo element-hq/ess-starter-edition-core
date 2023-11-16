@@ -27,7 +27,9 @@ build-all-crds: build-crds build-crds-ui
 .PHONY: buildah-build
 buildah-build:  ## Build docker image with the manager.
 	buildah bud -t operator
-	buildah bud -t updater  -f Dockerfile.updater
+	buildah bud -t operator-conversion-webhook -f Dockerfile.operator conversion/
+	buildah bud -t updater -f Dockerfile.updater
+	buildah bud -t updater-conversion-webhook -f Dockerfile.updater conversion/
 
 .PHONY: local-build
 local-build:

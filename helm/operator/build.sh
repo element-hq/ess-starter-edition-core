@@ -37,7 +37,17 @@ yq "$(cat ../yq/resource-viewer-role.yq)" ../../../watches.yaml -s '["ClusterRol
 
 # We deploy CRDs and their related roles optionaly
 for entry in ./customresourcedefinition-*; do
-  sed -i '1 i\{{- if $.Values.deployCrds }}' $entry
+  if grep -q caBundleReplacedByHelmBuild "$entry"; then
+    yq "$(cat ../yq/crds-conversion.yq)" $entry | diff -Bw "$entry" - | patch "$entry" -
+    # for each CRD with a conversion webhook, we had a conditional annotations field under name
+    sed -i -e '/caBundleReplacedByHelmBuild/{r ../fragments/ConversionWebhook-CaBundle.yaml' -e ' d}' $entry
+    sed -i '0,/^  name: .*/{/^  name: .*/ {
+    r ../../operator/fragments/CustomResourceDefinition-Annotations.yaml
+  }}' $entry
+  fi
+
+  sed -i -e '1 i\{{- if $.Values.deployCrds }}' $entry
+
   echo "{{ end }}" >> $entry
 done
 
@@ -55,6 +65,7 @@ done
 cat ../fragments/Operator-Permissions.yaml >> clusterrole-manager.yaml
 
 cp ../fragments/Deployment-element-operator-controller-manager.yaml ./deployment-element-operator-controller-manager.yaml
+cp ../fragments/ConversionWebhook-Service.yaml ./service-element-conversion-webhook.yaml
 
 # These files should be fully disabled if not deploying roles
 exclude_files=".\/clusterrole(-element-.+-(metrics-reader|proxy))|(-element-.*-)|(-manager)|(binding-element-.*-(manager|proxy)).yaml"

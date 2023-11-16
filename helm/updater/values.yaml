@@ -9,6 +9,9 @@ deployCrds: true
 deployCrdRoles: true
 deployManager: true
 
+crds:
+  annotations: {}
+
 updater:
   extraPodSpec: {}
   manager:
@@ -30,8 +33,26 @@ updater:
         drop:
         - ALL
     image:
-      repository: docker.io/vectorim/ess-starter-edition-core-updater
-      tag: 2.12.8
+      repository: docker.io/vectorim/ess-core-updater
+      tag: 2.13.0
+
+  conversionWebhook:
+    tlsSecretName:
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 50Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+    imagePullPolicy: Always
+    image:
+      repository: docker.io/vectorim/ess-core-updater-conversion-webhook
+      tag: 2.13.0
 
   rbacProxy:
     resources:
@@ -49,3 +70,6 @@ updater:
     image:
       repository: gcr.io/kubebuilder/kube-rbac-proxy
       tag: v0.13.1
+  conversion-webhook:
+    image:
+      repository: ""

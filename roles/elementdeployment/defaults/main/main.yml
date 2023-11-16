@@ -7,17 +7,6 @@
 _global: "{{ global }}"
 
 generic_shared_secret: "{{ _global_secret.resources[0].data[_global.config.generic_shared_secret_secret_key] | b64decode }}"
-managed_kinds: >
-  {{
-      dict(element_operator_crds |
-            zip(query('sequence', "start=0 end=" ~ (element_operator_crds | length) ~ " format=e%d")
-                | map('regex_replace', 'e[0-9]+', 'matrix.element.io/v1alpha1')
-               )
-            | list
-          )
-      | dict2items(key_name='kind', value_name='api_version')
-    | list
-  }}
 
 _all_secrets: >
   {{

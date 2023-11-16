@@ -82,16 +82,14 @@ enable_metrics: true
 
 registration_shared_secret: {{ _parsed_synapse_secrets.registration_shared | to_json }}
 
-use_presence: {{ not synapse_has['presence-writer'] }}
+presence:
+  enabled: {{ not synapse_has['presence-writer'] }}
 
 {% if synapse_has['user-dir'] %}
 update_user_directory_from_worker: user-dir-0
 {% endif %}
 
 require_auth_for_profile_requests: true
-limit_profile_requests_to_users_who_share_rooms: false
-allow_public_rooms_without_auth: false
-allow_public_rooms_over_federation: false
 
 {% if synapse_has['appservice'] %}
 notify_appservices_from_worker: appservice-0

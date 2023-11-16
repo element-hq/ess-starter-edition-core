@@ -77,3 +77,8 @@ patches:
     metadata:
       name: replacements-common-starter-core
     $patch: delete
+  - |-
+    kind: KustomizeSchema
+    metadata:
+      name: synapse-v1alpha1-starter-core
+    $patch: delete

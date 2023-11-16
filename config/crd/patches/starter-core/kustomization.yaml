@@ -12,7 +12,6 @@ patches:
     path: synapse-add-external-ingress-path.yaml
   # Remove extraEnv from workloads that couldn't possibly benefit from it
   # These are all Nginx's, HAProxies or Redis
-  # Chatterbox should also be excluded here but doesn't have any workloads at present
   - target:
       kind: CustomResourceDefinition
       name: (elementweb|wellknowndelegation)s.matrix.element.io

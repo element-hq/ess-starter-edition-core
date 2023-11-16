@@ -79,8 +79,19 @@
       {{
         _manifests
         | rejectattr('kind', '==', 'StatefulSet')
+        | rejectattr('apiVersion', 'match', 'matrix.element.io')
       }}
   when: _non_statefulsets_manifests | length > 0
+
+- name: "Maintain matrix.element.io resources"
+  ansible.builtin.include_tasks: "ssa_conversion.yml"
+  loop: >
+    {{
+      _manifests
+      | selectattr('apiVersion', 'match', 'matrix.element.io')
+    }}
+  loop_control:
+    loop_var: "_element_manifest"
 
 - name: Maintain StatefulSets resources
   ansible.builtin.include_tasks: "statefulset.yml"

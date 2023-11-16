@@ -1,0 +1,3 @@
+{{- if $.Values.updater.conversionWebhook.caBundle }}
+        caBundle: {{ $.Values.updater.conversionWebhook.caBundle }}
+{{- end }}

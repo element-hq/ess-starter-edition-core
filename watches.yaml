@@ -17,7 +17,7 @@
   kind: SlidingSync
   playbook: playbooks/slidingsync.yml
   watchAnnotationsChanges: true
-- version: v1alpha1
+- version: v1alpha2
   group: matrix.element.io
   kind: Synapse
   playbook: playbooks/synapse.yml

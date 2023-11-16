@@ -1,0 +1,18 @@
+// Copyright 2023 New Vector Ltd
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+package v1alpha1
+
+import (
+	"element.io/conversion-webhook/internal/pkg/converter/kubernetes"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+)
+
+func Convert(Object *unstructured.Unstructured) (*unstructured.Unstructured, metav1.Status) {
+	convertedObject := Object.DeepCopy()
+	convertedObject.SetAPIVersion("matrix.element.io/v1alpha1")
+	return convertedObject, kubernetes.StatusSucceed()
+}

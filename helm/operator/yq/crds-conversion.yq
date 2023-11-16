@@ -1,0 +1,3 @@
+. |
+(.spec | select(has("conversion")).conversion.webhook.clientConfig.service.name) |= "{{ .Values.prefix }}-conversion-webhook" |
+(.spec | select(has("conversion")).conversion.webhook.clientConfig.service.namespace) |= "{{ .Release.Namespace }}"

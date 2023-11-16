@@ -35,6 +35,50 @@ spec:
       - name: {{ $.Values.updater.imagePullSecret }}
 {{- end }}
       containers:
+      - name: conversion-webhook
+        image: '{{ .Values.updater.conversionWebhook.image.repository }}{{ hasKey .Values.updater.conversionWebhook.image "digest" | ternary (print "@" .Values.updater.conversionWebhook.image.digest) (print ":" .Values.updater.conversionWebhook.image.tag) }}'
+        imagePullPolicy: '{{ .Values.updater.conversionWebhook.imagePullPolicy }}'
+        ports:
+        - containerPort: 7443
+          name: webhook-server
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /k8s-webhook-server/serving-certs
+          name: webhook-cert
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /readyz
+            port: 7443
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /readyz
+            port: 7443
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /readyz
+            port: 7443
+          periodSeconds: 10
+          initialDelaySeconds: 5
+        args:
+        - --tls-cert-file
+        - /k8s-webhook-server/serving-certs/tls.crt
+        - --tls-private-key-file
+        - /k8s-webhook-server/serving-certs/tls.key
+        - --port
+        - "7443"
+      {{- with $.Values.updater.conversionWebhook.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if $.Values.updater.conversionWebhook.extraContainerSpec }}
+        {{- toYaml $.Values.updater.conversionWebhook.extraContainerSpec | nindent 8 }}
+      {{- end }}
 {{- if $.Values.clusterDeployment }}
       - args:
           - --secure-listen-address=0.0.0.0:8443
@@ -116,3 +160,7 @@ spec:
       - emptyDir:
           medium: Memory
         name: ansible-async
+      - name: webhook-cert
+        secret:
+          defaultMode: 420
+          secretName: {{ $.Values.updater.conversionWebhook.tlsSecretName }}
