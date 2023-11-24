@@ -32,10 +32,10 @@ spec:
   ingressClassName: "{{ ingress.ingress_class_name }}"
 {% endif %}
   rules:
-{% for path in ["/client", "/_matrix/client/v3/sync", "/_matrix/client/unstable/org.matrix.msc3575/sync"]%}
   - host: "{{ ingress.domain_name }}"
     http:
       paths:
+{% for path in ["/client", "/_matrix/client/v3/sync", "/_matrix/client/unstable/org.matrix.msc3575/sync"] %}
       - path: "{{ path }}"
         pathType: Prefix
         backend:

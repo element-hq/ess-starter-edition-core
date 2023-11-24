@@ -19,7 +19,7 @@ metadata:
     k8s.element.io/confighash: "{{ (homeserver_yaml + log_config_yaml + secrets_hash + specific_worker_yaml) | hash('sha1') }}"
 {% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
-    k8s.element.io/{{ as_registration }}hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
+    k8s.element.io/as-registration-{{ loop.index0 }}-hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
 {% endfor %}
 {% endif %}
 {% if workloads.synapse.annotations | default({}) %}
@@ -50,7 +50,7 @@ spec:
         k8s.element.io/confighash: "{{ (homeserver_yaml + log_config_yaml + secrets_hash + specific_worker_yaml) | hash('sha1') }}"
 {% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
-        k8s.element.io/{{ as_registration }}hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
+        k8s.element.io/as-registration-{{ loop.index0 }}-hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
 {% endfor %}
 {% endif %}
 {% if workloads.synapse.annotations | default({}) %}
