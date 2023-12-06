@@ -1,0 +1,20 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+---
+- name: Maintain Manifest
+  block:
+  - name: Apply Manifest
+    kubernetes.core.k8s:
+      resource_definition: "{{ _manifest }}"
+  rescue:
+  - name: Destroy Manifest
+    kubernetes.core.k8s:
+      state: absent
+      resource_definition: "{{ _manifest }}"
+
+  - name: Apply Manifest from scratch
+    kubernetes.core.k8s:
+      resource_definition: "{{ _manifest }}"
