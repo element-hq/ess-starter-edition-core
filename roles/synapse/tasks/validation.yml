@@ -19,17 +19,24 @@
     - "'data' in _fetched_synapse_secrets.resources[0]"
     fail_msg: "spec.config.externalSecret.name must be a secret that exists within this namespace"
 
-- name: "Assert Synapse secret configured correctly"
-  ansible.builtin.assert:
-    that:
-    - item in _fetched_synapse_secrets.resources[0].data
-    - _fetched_synapse_secrets.resources[0].data[item] | length > 0
-    fail_msg: "The secret {{ config.external_secret.name }} must contain {{ item }}"
-  loop:
-  - macaroon
-  - postgresPassword
-  - registrationSharedSecret
-  - signingKey
+- name: "Assert Synapse secret configured correctly, error out to status if an issue occurs"
+  block:
+  - name: "Assert Synapse secret configured correctly"
+    ansible.builtin.assert:
+      that:
+      - item in _fetched_synapse_secrets.resources[0].data
+      - _fetched_synapse_secrets.resources[0].data[item] | length > 0
+      fail_msg: "The secret {{ config.external_secret.name }} must contain {{ item }}"
+    loop:
+    - macaroon
+    - postgresPassword
+    - registrationSharedSecret
+    - signingKey
+    register: assertions
+  rescue:
+  - name: "Assert Synapse secret configured correctly"
+    ansible.builtin.fail:
+      msg: "{{ assertions.results | selectattr('failed', 'eq', true) | map(attribute='msg') | join('\n') }}"
 
 - name: "Fetch Synapse media volume"
   kubernetes.core.k8s_info:
@@ -46,19 +53,33 @@
     - _synapse_media_volume_claim.resources | length > 0
     fail_msg: "spec.config.media.volumeClaim must be a PersistentVolumeClaim that exists"
 
-- name: "Assert supported number of workers"
-  ansible.builtin.assert:
-    that:
-    - "item.instances is defined"
-    - "item.instances > 0"
-    - "(synapse_available_worker_types[item.type].single and item.instances == 1) or not synapse_available_worker_types[item.type].single"
-    fail_msg: "spec.config.workers of type={{ item.type }} must correctly set instances. \
-      single={{ synapse_available_worker_types[item.type].single }} for type={{ item.type }}"
-  loop: "{{ synapse_workers }}"
+- name: "Assert supported number of workers, error out to status if an issue occurs"
+  block:
+  - name: "Assert supporter number of workers"
+    ansible.builtin.assert:
+      that:
+      - "item.instances is defined"
+      - "item.instances > 0"
+      - "(synapse_available_worker_types[item.type].single and item.instances == 1) or not synapse_available_worker_types[item.type].single"
+      fail_msg: "spec.config.workers of type={{ item.type }} must correctly set instances number. \
+        single={{ synapse_available_worker_types[item.type].single }} for type={{ item.type }}"
+    loop: "{{ synapse_workers }}"
+    register: assertions
+  rescue:
+  - name: "Assert supporter number of workers failed"
+    ansible.builtin.fail:
+      msg: "{{ assertions.results | selectattr('failed', 'eq', true) | map(attribute='msg') | join('\n') }}"
 
-- name: "Assert only single configuration of each worker type"
-  ansible.builtin.assert:
-    that:
-    - "item.1 | length == 1"
-    fail_msg: "spec.config.workers must have at most 1 instance of type={{ item.0 }}. It currently has {{ item.1 | length }}"
-  loop: "{{ synapse_workers | groupby('type') }}"
+- name: "Assert only single configuration of each worker type, error out to status if an issue occurs"
+  block:
+  - name: "Assert only single configuration of each worker type"
+    ansible.builtin.assert:
+      that:
+      - "item.1 | length == 1"
+      fail_msg: "spec.config.workers must have at most 1 instance of type={{ item.0 }}. It currently has {{ item.1 | length }}"
+    loop: "{{ synapse_workers | groupby('type') }}"
+    register: assertions
+  rescue:
+  - name: "Assert only single configuration of each worker type failed"
+    ansible.builtin.fail:
+      msg: "{{ assertions.results | selectattr('failed', 'eq', true) | map(attribute='msg') | join('\n') }}"

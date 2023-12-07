@@ -34,7 +34,7 @@ operator:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-operator
-      tag: 2.13.2
+      tag: 2.13.3
 
   conversionWebhook:
     tlsSecretName:
@@ -52,7 +52,7 @@ operator:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-operator-conversion-webhook
-      tag: 2.13.2
+      tag: 2.13.3
 
   rbacProxy:
     resources:
