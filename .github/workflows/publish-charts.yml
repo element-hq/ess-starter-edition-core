@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    container: ghcr.io/vector-im/chart-releaser:cr-push-fix
+    container: ghcr.io/element-hq/chart-releaser:cr-push-fix
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
         uses: azure/setup-helm@v3
 
       - name: Run chart-releaser
-        uses: vector-im/chart-releaser-action@1389a6afc9af1b11ab9e79267f371d694e4995b2
+        uses: element-hq/chart-releaser-action@1389a6afc9af1b11ab9e79267f371d694e4995b2
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
