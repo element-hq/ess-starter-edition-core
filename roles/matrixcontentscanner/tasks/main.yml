@@ -4,6 +4,15 @@
 
 
 ---
+- name: "Fetch Matrix Content Scanner secrets"
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Secret
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    name: "{{ config.external_secret.name }}"
+  register: _fetched_matrix_content_scanner_secrets
+  failed_when: _fetched_matrix_content_scanner_secrets.resources | length != 1
+
 - name: "Manage manifests"
   ansible.builtin.include_role:
     name: "generic_apply"

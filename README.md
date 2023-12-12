@@ -40,7 +40,7 @@ The first step is to start on a machine with helm v3 installed and configured wi
 First, let's add the starter edition repository to helm:
 
 ```bash
-helm repo add ess-starter-edition-core https://vector-im.github.io/ess-starter-edition-core
+helm repo add ess-starter-edition-core https://element-hq.github.io/ess-starter-edition-core
 ```
 
 Now that we have the repositories configured, we can verify this by:
@@ -53,7 +53,7 @@ and should see the following in that output:
 
 ```
 NAME                                    URL
-ess-starter-edition-core                https://vector-im.github.io/ess-starter-edition-core
+ess-starter-edition-core                https://element-hq.github.io/ess-starter-edition-core
 ```
 
 #### Creating namespaces for the `element-operator` and `element-updater`
@@ -314,4 +314,3 @@ register_new_matrix_user -c /config/homeserver.yaml
 and this will allow us to register a new matrix user. 
 
 N.B. You will need to register an admin user to perform administrative functions on the server.
-

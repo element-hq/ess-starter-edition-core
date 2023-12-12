@@ -11,11 +11,11 @@ default_images_digests:
   matrix_content_scanner:
     icap:
       image_repository_server: ghcr.io
-      image_repository_path: vector-im/docker-icap
+      image_repository_path: element-hq/docker-icap
       image_tag: core-0.5.10-mod-0.5.5
     clam_anti_virus:
       image_repository_server: ghcr.io
-      image_repository_path: vector-im/docker-clamav
+      image_repository_path: element-hq/docker-clamav
       image_tag: "1.1"
     matrix_content_scanner:
       image_repository_server: docker.io

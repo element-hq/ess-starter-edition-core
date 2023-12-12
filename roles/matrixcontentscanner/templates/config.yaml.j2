@@ -31,7 +31,7 @@ result_cache:
 
 download:
   base_homeserver_url: {{ config.matrix_server.base_url }}
-{# Until https://github.com/vector-im/matrix-content-scanner-python/pull/47 is in a release
+{# Until https://github.com/element-hq/matrix-content-scanner-python/pull/47 is in a release
 {% if 'additional_headers' in config.download | default({}) | length > 0 %}
   additional_headers:
     {{ config.download.additional_headers | to_nice_yaml(indent=2) | indent(6) }}

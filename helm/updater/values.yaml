@@ -31,7 +31,7 @@ updater:
         - ALL
     image:
       repository: docker.io/vectorim/ess-starter-edition-core-updater
-      tag: 2.12.14
+      tag: 2.12.15
 
   rbacProxy:
     resources:
