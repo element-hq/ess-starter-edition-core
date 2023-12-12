@@ -34,7 +34,7 @@ DatabaseMirror {{ mirror }}
 {% if config.clam_anti_virus.freshclam.proxy | default(false) %}
 {% if config.clam_anti_virus.freshclam.proxy.username | default(false) %}
 HTTPProxyUsername {{ config.clam_anti_virus.freshclam.proxy.username }}
-HTTPProxyPassword {{ _matrix_content_scanner_external_secret['proxyPassword'] | b64decode }}
+HTTPProxyPassword {{ _fetched_matrix_content_scanner_secrets.resources[0].data['proxyPassword'] | b64decode }}
 HTTPProxyServer {{ config.clam_anti_virus.freshclam.proxy.server }}
 HTTPProxyPort {{ config.clam_anti_virus.freshclam.proxy.port }}
 {% endif %}

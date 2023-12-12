@@ -251,6 +251,10 @@ spec:
                                       type: object
                                   type: object
                                 securityContext:
+                                  anyOf:
+                                    - required:
+                                        - seLinuxOptions
+                                    - {}
                                   default: {}
                                   properties:
                                     forceUidGid:
@@ -267,6 +271,21 @@ spec:
                                       default: 10004
                                       description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                       type: number
+                                    seLinuxOptions:
+                                      properties:
+                                        level:
+                                          description: Level is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        role:
+                                          description: Role is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        type:
+                                          description: Type is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        user:
+                                          description: User is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                      type: object
                                     setSecComp:
                                       description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                       enum:
@@ -451,6 +470,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -467,6 +490,21 @@ spec:
                                           default: 10150
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -563,6 +601,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -579,6 +621,21 @@ spec:
                                           default: 10152
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -735,6 +792,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -751,6 +812,21 @@ spec:
                                           default: 10151
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -938,6 +1014,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -954,6 +1034,21 @@ spec:
                                           default: 10130
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -1381,6 +1476,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -1397,6 +1496,21 @@ spec:
                                           default: 10001
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -1582,6 +1696,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -1598,6 +1716,21 @@ spec:
                                           default: 10002
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -1717,6 +1850,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -1733,6 +1870,21 @@ spec:
                                           default: 10991
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -1950,6 +2102,10 @@ spec:
                                       type: object
                                   type: object
                                 securityContext:
+                                  anyOf:
+                                    - required:
+                                        - seLinuxOptions
+                                    - {}
                                   default: {}
                                   properties:
                                     forceUidGid:
@@ -1966,6 +2122,21 @@ spec:
                                       default: 10003
                                       description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                       type: number
+                                    seLinuxOptions:
+                                      properties:
+                                        level:
+                                          description: Level is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        role:
+                                          description: Role is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        type:
+                                          description: Type is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        user:
+                                          description: User is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                      type: object
                                     setSecComp:
                                       description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                       enum:
@@ -2186,6 +2357,10 @@ spec:
                               minimum: 1
                               type: number
                             securityContext:
+                              anyOf:
+                                - required:
+                                    - seLinuxOptions
+                                - {}
                               default: {}
                               properties:
                                 forceUidGid:
@@ -2195,6 +2370,21 @@ spec:
                                     - enable
                                     - disable
                                   type: string
+                                seLinuxOptions:
+                                  properties:
+                                    level:
+                                      description: Level is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                    role:
+                                      description: Role is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                    type:
+                                      description: Type is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                    user:
+                                      description: User is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                  type: object
                                 setSecComp:
                                   default: enable
                                   description: Enable RuntimeDefault pod seccomp. disable if it should not be used.

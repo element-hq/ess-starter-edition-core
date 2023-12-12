@@ -119,6 +119,22 @@ spec:
                           description: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
                           format: int64
                           type: integer
+                        seLinuxOptions:
+                          description: SELinuxOptions are the labels to be applied to all the pod containers
+                          properties:
+                            level:
+                              description: Level is SELinux level label that applies to the container.
+                              type: string
+                            role:
+                              description: Role is a SELinux role label that applies to the container.
+                              type: string
+                            type:
+                              description: Type is a SELinux type label that applies to the container.
+                              type: string
+                            user:
+                              description: User is a SELinux user label that applies to the container.
+                              type: string
+                          type: object
                         seccompProfile:
                           description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
                           properties:

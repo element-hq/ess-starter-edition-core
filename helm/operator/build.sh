@@ -18,6 +18,9 @@ yq -s '[.kind, .metadata.name] | join("-") | downcase + ".yaml"' <(kustomize bui
 # We generate all resources and name the files according to their kind and names
 yq -s '[.kind, .metadata.name] | join("-") | downcase + ".yaml"' <(kustomize build ../../../${BASE_CRD_KUSTOMIZE_TARGET})
 
+# Escape any {{ }} in the underlying templates to Helm
+sed -i 's/{{\(.*\)}}/{{ "{{" }}\1{{ "}}" }}/' *
+
 for entry in ./*; do
   # For each file, we template their values using helm to add a prefix in front of their resources
   yq -i "$(cat ../yq/prefixes.yq)" $entry

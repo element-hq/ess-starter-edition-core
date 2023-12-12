@@ -47,6 +47,10 @@ spec:
       securityContext:
         type: object
         default: {}
+        anyOf:
+          - required:
+              - seLinuxOptions
+          - {}
         properties:
           forceUidGid:
             type: string
@@ -66,6 +70,21 @@ spec:
           fsGroup:
             type: number
             description: The fsGroup GID to use if securityContextForceUidGid is enabled
+          seLinuxOptions:
+            type: object
+            properties:
+              level:
+                type: string
+                description: Level is SELinux level label that applies to all the workload containers.
+              role:
+                type: string
+                description: Role is SELinux level label that applies to all the workload containers.
+              type:
+                type: string
+                description: Type is SELinux level label that applies to all the workload containers.
+              user:
+                type: string
+                description: User is SELinux level label that applies to all the workload containers.
       annotations:
         description: The annotations to add to the workload
         type: object

@@ -9,21 +9,6 @@ _matrix_content_scanner_web_port: 8080
 _clamav_icap_port: 1344
 _clamav_port: 3310
 
-_matrix_content_scanner_external_secret_found: >-
-  {{
-    query('k8s', resource_name=config.external_secret.name,
-          kind='Secret',
-          api_version='v1',
-          namespace=ansible_operator_meta.namespace)
-    + [{'data': {}}]
-  }}
-
-# if we did not find a secret, we fall back to empty one
-_matrix_content_scanner_external_secret: >-
-  {{
-    _matrix_content_scanner_external_secret_found | first
-  }}
-
 _matrix_content_scanner_config: "{{ lookup('template', 'templates/config.yaml.j2') }}"
 _freshclam_config: "{{ lookup('template', 'templates/freshclam.conf.j2') }}"
 _clamd_config: "{{ lookup('template', 'templates/clamd.conf.j2') }}"

@@ -13,7 +13,7 @@ collections:
   source: https://github.com/operator-framework/operator-sdk-ansible-util.git,v0.5.0
   type: git
 - name: kubernetes.core
-  source: https://github.com/vector-im/kubernetes.core.git,gaelg/add-async-k8s-info
+  source: https://github.com/element-hq/kubernetes.core.git,gaelg/add-async-k8s-info
   type: git
 - name: community.postgresql
   source: https://github.com/ansible-collections/community.postgresql.git

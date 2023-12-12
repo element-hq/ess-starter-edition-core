@@ -4,6 +4,15 @@
 
 
 ---
+- name: "Fetch Sliding Sync secrets"
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Secret
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    name: "{{ config.external_secret.name }}"
+  register: _fetched_slidingsync_secrets
+  failed_when: _fetched_slidingsync_secrets.resources | length != 1
+
 - name: "Manage manifests"
   ansible.builtin.include_role:
     name: "generic_apply"

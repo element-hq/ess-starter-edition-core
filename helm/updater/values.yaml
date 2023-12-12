@@ -34,7 +34,7 @@ updater:
         - ALL
     image:
       repository: docker.io/vectorim/ess-core-updater
-      tag: 2.13.3
+      tag: 2.14.1
 
   conversionWebhook:
     tlsSecretName:
@@ -52,7 +52,7 @@ updater:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-updater-conversion-webhook
-      tag: 2.13.3
+      tag: 2.14.1
 
   rbacProxy:
     resources:

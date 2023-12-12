@@ -39,6 +39,7 @@
   check_mode: true
   kubernetes.core.k8s:
     resource_definition: "{{ _manifests }}"
+  when: _manifests | length > 0
   register: result
   failed_when:
   - ('msg' in result)

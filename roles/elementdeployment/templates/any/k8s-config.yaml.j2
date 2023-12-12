@@ -26,6 +26,10 @@ podSecurityContext:
   seccompProfile:
     type: RuntimeDefault
 {% endif %}
+{% if component_k8s_security_context_selinux_options %}
+  seLinuxOptions:
+    {{ component_k8s_security_context_selinux_options | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
 {% endif %}
 containersSecurityContext:
 {% if component_k8s_security_context_force_uid_gid %}

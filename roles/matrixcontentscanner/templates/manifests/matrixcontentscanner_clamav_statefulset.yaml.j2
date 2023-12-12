@@ -17,7 +17,7 @@ metadata:
     app.kubernetes.io/version: "{{ image.clam_anti_virus.tag }}"
   annotations:
     k8s.element.io/confighash: "{{ lookup('template', 'manifests/matrixcontentscanner_clamav_configmap.yaml.j2') | hash('sha1') }}"
-    k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
+    k8s.element.io/secretshash: "{{ _fetched_matrix_content_scanner_secrets | to_yaml | hash('sha1') }}"
 {% if workloads.clam_anti_virus.annotations | default({}) %}
     {{ _matrix_element_io_matrixcontentscanner_spec.workloads.clamAntiVirus.annotations | to_nice_yaml(indent=2) | indent(4) }}
 {% endif %}
@@ -44,7 +44,7 @@ spec:
         app.kubernetes.io/version: "{{ image.clam_anti_virus.tag }}"
       annotations:
         k8s.element.io/confighash: "{{ lookup('template', 'manifests/matrixcontentscanner_clamav_configmap.yaml.j2') | hash('sha1') }}"
-        k8s.element.io/secretshash: "{{ _matrix_content_scanner_external_secret | to_yaml | hash('sha1') }}"
+        k8s.element.io/secretshash: "{{ _fetched_matrix_content_scanner_secrets | to_yaml | hash('sha1') }}"
 {% if workloads.clam_anti_virus.annotations | default({}) %}
         {{ _matrix_element_io_matrixcontentscanner_spec.workloads.clamAntiVirus.annotations | to_nice_yaml(indent=2) | indent(8) }}
 {% endif %}

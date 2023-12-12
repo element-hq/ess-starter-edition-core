@@ -127,6 +127,12 @@ component_k8s_security_context_set_seccomp: >-
     | default(_global.k8s.workloads.security_context.set_sec_comp) == 'enable'
   }}
 
+component_k8s_security_context_selinux_options: >-
+  {{
+    components_k8s_properties.workloads.security_context.se_linux_options
+    | default(_global.k8s.workloads.security_context.se_linux_options)
+    | default({})
+  }}
 
 components_ingress_properties: >
   {{ _ingress is defined | ternary(components[_component_item].k8s.ingresses[_ingress | default('so that it does not explode')],

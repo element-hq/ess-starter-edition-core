@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+{{- if $.Values.operator.labels }}
+    {{- toYaml $.Values.operator.labels | nindent 4 }}
+{{- end }}
   name: '{{ .Values.prefix }}-controller-manager'
   namespace: '{{ .Release.Namespace }}'
 {{- if $.Values.operator.annotations }}
@@ -25,6 +28,9 @@ spec:
 {{- end }}
       labels:
         app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+{{- if $.Values.operator.labels }}
+        {{- toYaml $.Values.operator.labels | nindent 8 }}
+{{- end }}
     spec:
     {{- if $.Values.operator.extraPodSpec }}
       {{- toYaml $.Values.operator.extraPodSpec | nindent 6 }}
