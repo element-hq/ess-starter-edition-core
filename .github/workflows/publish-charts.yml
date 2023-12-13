@@ -15,7 +15,7 @@ jobs:
     # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
     permissions:
       contents: write
-    runs-on: ubuntu-latest
+    runs-on: cpu-s
     container: ghcr.io/element-hq/chart-releaser:cr-push-fix
     steps:
       - name: Checkout
