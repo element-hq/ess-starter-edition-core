@@ -7,7 +7,6 @@ package v1alpha2
 
 import (
 	"element.io/conversion-webhook/internal/pkg/converter/kubernetes"
-	"element.io/conversion-webhook/internal/pkg/converter/v1alpha2/enterprise"
 	"element.io/conversion-webhook/internal/pkg/converter/v1alpha2/starter"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
