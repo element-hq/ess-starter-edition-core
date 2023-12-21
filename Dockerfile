@@ -19,7 +19,7 @@ RUN pip3 install -r /root/requirements.txt && rm /root/requirements.txt
 
 # Install Helm
 RUN yum install -y wget && \
-  export HELM_ARCH="${TARGETPLATFORM#"linux/"}" && \
+  export HELM_ARCH=$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') && \
   echo https://get.helm.sh/helm-${HELM_VERSION}-linux-${HELM_ARCH}.tar.gz && \
   wget https://get.helm.sh/helm-${HELM_VERSION}-linux-${HELM_ARCH}.tar.gz && \
   tar xf helm-${HELM_VERSION}-linux-${HELM_ARCH}.tar.gz && \
