@@ -74,7 +74,7 @@ helm install element-updater ess-starter-edition-core/element-updater --namespac
 helm install element-operator ess-starter-edition-core/element-operator --namespace element-operator
 ```
 
-Now at this point, you should have the following two containers up and running:
+Now at this point, you should have the following two pods up and running:
 
 ```bash
 [user@helm ~]$ kubectl get pods -n element-updater
@@ -87,7 +87,7 @@ element-operator-controller-manager-778c8bfbcf-4zzpl   2/2     Running   6 (8h a
 
 #### Generating the ElementDeployment CRD to Deploy Element Server Suite
 
-1) Create a CRD definition on your own starting from this base template:
+1) Create a `ElementDeployment` custom resource on your own starting from this base template:
 
    ```yaml
    apiVersion: matrix.element.io/v1alpha1
@@ -166,7 +166,7 @@ element-operator-controller-manager-778c8bfbcf-4zzpl   2/2     Running   6 (8h a
 
 *N.B. This guide assumes that you are using the `element-onprem` namespace for deploying Element. You can call it whatever you want and if it doesn't exist yet, you can create it with: `kubectl create ns element-onprem`.*
 
-Now we need to load secrets into kubernetes so that the deployment can access them. If you built your own CRD from scratch, you will need to follow our Element Deployment CRD documentation. 
+Now we need to load secrets into kubernetes so that the deployment can access them. If you built your own custom resource from scratch, you will need to follow our Element Deployment CRD documentation. 
 
 Here is a basic python script to build the secrets you need to get started:
 
@@ -241,11 +241,11 @@ print(f"Done. Secrets are in {SECRETS_FILE}.")
 
 ```
 
-create a file `build_secrets.py` with this content and then run it with `python3 ./build_secrets.py` to creat a `secrets.yml` that can be added to the `element-onprem` namespace with `kubectl apply -f secrets.yml`
+create a file `build_secrets.py` with this content and then run it with `python3 ./build_secrets.py` to create a `secrets.yml` that can be added to the `element-onprem` namespace with `kubectl apply -f secrets.yml`
 
-#### Deploying the actual CRD
+#### Deploying the actual `ElementDeployment`
 
-At this point, we are ready to deploy the ElementDeployment CRD into our cluster with the following command:
+At this point, we are ready to deploy the `ElementDeployment` custom resource into our cluster with the following command:
 
 ```bash
 kubectl apply -f ./deployment.yml -n element-onprem
