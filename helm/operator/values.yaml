@@ -37,7 +37,7 @@ operator:
       tag: 2.14.3
 
   conversionWebhook:
-    tlsSecretName:
+    tlsSecretName: element-operator-conversion-webhook-tls
     resources:
       limits:
         memory: 128Mi
