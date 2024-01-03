@@ -31,7 +31,7 @@ This document will walk you through how to get started with our Element Starter 
   * [`cert-manager`](https://cert-manager.io) will need to be installed and provide an appropriately configured `ClusterIssuer` named `letsencrypt`
   * Ingress Controller with an `IngressClass` (in this case, we are using an ingress controller with a class name of `public`)
 * [Helm](https://helm.sh/)
-* PostgreSQL database with a UTF-8 encoding and a C Locale.
+* PostgreSQL database with a UTF-8 encoding and a C Locale. See ["Set up database" in Synapse docs](https://github.com/element-hq/synapse/blob/bc4372a/docs/postgres.md#set-up-database).
 
 
 #### Installing the Helm Chart Repositories
@@ -82,7 +82,7 @@ element-operator-controller-manager-778c8bfbcf-4zzpl   2/2     Running   6 (8h a
 1) Create a `ElementDeployment` custom resource on your own starting from this base template:
 
    ```yaml
-   apiVersion: matrix.element.io/v1alpha1
+   apiVersion: matrix.element.io/v1alpha2
    kind: ElementDeployment
    metadata:
      name: first-element
@@ -134,6 +134,7 @@ element-operator-controller-manager-778c8bfbcf-4zzpl   2/2     Running   6 (8h a
                  issuer: letsencrypt
                mode: certmanager
        slidingSync:
+         secretName: external-sliding-sync-secrets
          config:
            postgresql:
              host: web.element.demo
@@ -164,6 +165,8 @@ Here is a basic python script to build the secrets you need to get started:
 
 ```py
 import os
+import random
+import string
 import base64
 import signedjson.key
 from datetime import datetime
@@ -171,22 +174,27 @@ from datetime import datetime
 ## Define the secrets file
 SECRETS_FILE = 'secrets.yml'
 
+## Function to encode string as base64
+def to_base64(value):
+    return base64.b64encode(value.encode('utf-8')).decode('utf-8')
+
+## Function to generate a secret and format it properly
+def generate_random(len):
+    return ''.join(random.choice(string.ascii_letters) for i in range(len))
+
+## Function to format a secret
+def encode_secret(name, value):
+    return f'  {name}: "{to_base64(value)}"'
+
 ## Function to generate a secret and format it properly
 def generate_secret(name):
-    value = base64.b64encode(os.urandom(32)).decode('utf-8')
-    return f'  {name}: "{value}"'
-
-## Function to format postgres password
-def encode_pgpassword(name, pgpassword):
-    encoded_value = base64.b64encode(pgpassword.encode('utf-8')).decode('utf-8')
-    return f'  {name}: "{encoded_value}"'
+    return encode_secret(name, generate_random(32))
 
 ## Function to generate unique signing key for Synapse
 def generate_signing_key(name):
     signing_key = signedjson.key.generate_signing_key(0)
     value = f'{signing_key.alg} {signing_key.version} {signedjson.key.encode_signing_key_base64(signing_key)}'
-    encoded_value = base64.b64encode(value.encode('utf-8')).decode('utf-8')
-    return f'  {name}: "{encoded_value}"'
+    return encode_secret(name, value)
 
 ## Check if the secrets file exists
 if os.path.isfile(SECRETS_FILE):
@@ -203,8 +211,22 @@ pgpassword = input("Enter your Postgres Password: ")
 ## Populate secrets
 print("Populating secrets.")
 
+syncSecret = generate_random(32)
+
 with open(SECRETS_FILE, 'a') as f:
     f.write('''apiVersion: v1
+kind: Secret
+metadata:
+  name: external-sliding-sync-secrets
+  namespace: element-onprem
+data:
+''')
+
+    f.write(encode_secret("syncSecret", syncSecret) + '\n')
+    f.write(encode_secret("pgpassword", pgpassword) + '\n')
+
+    f.write('''---
+apiVersion: v1
 kind: Secret
 metadata:
   name: global
@@ -226,7 +248,8 @@ data:
     f.write(generate_secret("macaroon") + '\n')
     f.write(generate_secret("registrationSharedSecret") + '\n')
     f.write(generate_signing_key("signingKey") + '\n')
-    f.write(encode_pgpassword("pgpassword", pgpassword) + '\n')
+    f.write(encode_secret("pgpassword", pgpassword) + '\n')
+    f.write(encode_secret("syncSecret", syncSecret) + '\n')
 
 ## Tell the user we are done
 print(f"Done. Secrets are in {SECRETS_FILE}.")
