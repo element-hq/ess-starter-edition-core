@@ -164,11 +164,11 @@ Now we need to load secrets into kubernetes so that the deployment can access th
 Here is a basic python script to build the secrets you need to get started:
 
 ```py
-import os
-import random
-import string
 import base64
+import os
+import secrets
 import signedjson.key
+import string
 from datetime import datetime
 
 ## Define the secrets file
@@ -179,8 +179,10 @@ def to_base64(value):
     return base64.b64encode(value.encode('utf-8')).decode('utf-8')
 
 ## Function to generate a secret and format it properly
-def generate_random(len):
-    return ''.join(random.choice(string.ascii_letters) for i in range(len))
+## Roughly copied from https://github.com/element-hq/synapse/blob/8e1e62c/synapse/util/stringutils.py#L53
+## under AGPL version 3
+def generate_random(length):
+    return "".join(secrets.choice((string.digits + string.ascii_letters + ".,;:^&*-_+=#~@")) for _ in range(lenth))
 
 ## Function to format a secret
 def encode_secret(name, value):
