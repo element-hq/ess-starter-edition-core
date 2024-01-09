@@ -1,4 +1,5 @@
-{{- if $.Values.crds.annotations }}
   annotations:
-    {{- toYaml $.Values.crds.annotations | nindent 4 }}
-{{- end }}
+    {{- with .Values.crds.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ .Values.prefix }}-serving-cert
