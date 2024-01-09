@@ -298,6 +298,34 @@ helm upgrade element-updater ess-starter-edition-core/element-updater --namespac
 helm upgrade element-operator ess-starter-edition-core/element-operator --namespace element-operator
 ```
 
+#### Overriding container images
+
+In case you want to override container images, you can do so by creating a ConfigMap and referencing it in your `ElementDeployment` CR. The updater uses the `data.images_digests` field to update default image digests defined in [roles/elementdeployment/defaults/main/images.yml](roles/elementdeployment/defaults/main/images.yml). Check the file to see the required format.
+
+Example ConfigMap:
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: first-element-images
+  namespace: element-onprem
+data:
+  images_digests: |-
+    element_web:
+      element_web:
+        image_repository_path: vectorim/element-web
+        image_repository_server: docker.io
+        image_tag: v1.11.53
+    synapse:
+      synapse:
+        image_repository_path: element-hq/synapse
+        image_repository_server: ghcr.io
+        image_tag: v1.98.0
+```
+
+Once the ConfigMap is present in your cluster, change your `ElementDeployment` to include `spec.global.config.imagesDigestsConfigMap`. Set it point to your new ConfigMap.
+
 #### Registering a new user
 
 If you have registration closed, you will need to be able to create new users. To do that with the starter edition core, you can use `kubectl exec` to open a shell in the synapse pod and use the `register_new_matrix_user` command to accomplish this action.
