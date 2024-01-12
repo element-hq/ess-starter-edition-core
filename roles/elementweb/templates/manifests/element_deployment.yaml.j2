@@ -42,9 +42,6 @@ spec:
         app.kubernetes.io/version: "{{ image.tag }}"
         k8s.element.io/confighash: "{{  lookup('template', 'config.json.j2') | hash('sha1') }}"
         k8s.element.io/nginxhash: "{{ lookup('template', 'nginx.conf.j2') | hash('sha1') }}"
-{% if inject is defined %}
-        k8s.element.io/injecthash: "{{ lookup('template', 'inject-config.json.j2') | hash('sha1') }}"
-{% endif %}
 {% if workloads.annotations | default({}) %}
       annotations:
         {{ _matrix_element_io_elementweb_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(8) }}

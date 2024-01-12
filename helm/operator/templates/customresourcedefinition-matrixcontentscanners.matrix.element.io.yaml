@@ -246,7 +246,7 @@ spec:
                                 x-kubernetes-int-or-string: true
                               default:
                                 cpu: 100m
-                                memory: 200Mi
+                                memory: 100Mi
                               description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                               type: object
                           type: object
@@ -350,7 +350,7 @@ spec:
                                 x-kubernetes-int-or-string: true
                               default:
                                 cpu: 100m
-                                memory: 200Mi
+                                memory: 100Mi
                               description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                               type: object
                           type: object
@@ -503,7 +503,7 @@ spec:
                                 x-kubernetes-int-or-string: true
                               default:
                                 cpu: 100m
-                                memory: 200Mi
+                                memory: 100Mi
                               description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                               type: object
                           type: object
