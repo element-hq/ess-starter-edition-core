@@ -182,7 +182,7 @@ def to_base64(value):
 ## Roughly copied from https://github.com/element-hq/synapse/blob/8e1e62c/synapse/util/stringutils.py#L53
 ## under AGPL version 3
 def generate_random(length):
-    return "".join(secrets.choice((string.digits + string.ascii_letters + ".,;:^&*-_+=#~@")) for _ in range(lenth))
+    return "".join(secrets.choice((string.digits + string.ascii_letters + ".,;:^&*-_+=#~@")) for _ in range(length))
 
 ## Function to format a secret
 def encode_secret(name, value):
