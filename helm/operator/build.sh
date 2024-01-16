@@ -69,6 +69,8 @@ cat ../fragments/Operator-Permissions.yaml >> clusterrole-manager.yaml
 
 cp ../fragments/Deployment-element-operator-controller-manager.yaml ./deployment-element-operator-controller-manager.yaml
 cp ../fragments/ConversionWebhook-Service.yaml ./service-element-conversion-webhook.yaml
+cp ../fragments/certificate-conversion-webhook.yaml ./certificate-conversion-webhook.yaml
+cp ../fragments/issuer-selfsigned.yaml ./issuer-selfsigned.yaml
 
 # These files should be fully disabled if not deploying roles
 exclude_files=".\/clusterrole(-element-.+-(metrics-reader|proxy))|(-element-.*-)|(-manager)|(binding-element-.*-(manager|proxy)).yaml"

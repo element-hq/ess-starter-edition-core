@@ -37,7 +37,7 @@ updater:
       tag: 2.14.3
 
   conversionWebhook:
-    tlsSecretName:
+    tlsSecretName: element-updater-conversion-webhook-tls
     resources:
       limits:
         memory: 128Mi

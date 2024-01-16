@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.prefix }}-serving-cert
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  dnsNames:
+  - {{ .Values.prefix }}-conversion-webhook.{{ .Release.Namespace }}.svc
+  - {{ .Values.prefix }}-conversion-webhook.{{ .Release.Namespace }}.svc.cluster.local
+  issuerRef:
+    kind: Issuer
+    name: {{ .Values.prefix }}-selfsigned-issuer
+  secretName: {{ .Values.updater.conversionWebhook.tlsSecretName }}
