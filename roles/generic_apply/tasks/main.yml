@@ -33,6 +33,7 @@
         | map('drop_null_values')
         | select
         | map('combine', _generic_apply_mixin, recursive=true)
+        | sort_apply_order
       }}
 
 - name: Apply Manifest in check_mode
