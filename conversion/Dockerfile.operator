@@ -3,18 +3,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
-FROM golang:1.21-alpine AS buildstage
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
+FROM golang:1.21 AS buildstage
 
 WORKDIR /app
 COPY . /app
 RUN go mod download
-RUN go build -o /app/conversion-webhook cmd/operator/main.go
+RUN CGO_ENABLED=0 go build -o /app/conversion-webhook cmd/operator/main.go
 
-FROM alpine:latest
+FROM gcr.io/distroless/static-debian12
+# Label this image with the repo and commit that built it, for freshmaking purposes.
+ARG GIT_COMMIT=devel
+LABEL git_commit=$GIT_COMMIT
+USER nonroot
 WORKDIR /
-COPY --from=buildstage /app/conversion-webhook /usr/bin/conversion-webhook
+
+COPY --from=buildstage --chown=nonroot:nonroot /app/conversion-webhook /
 EXPOSE 8443
-USER 1000:1000
-ENTRYPOINT ["/usr/bin/conversion-webhook"]
+ENTRYPOINT ["/conversion-webhook"]

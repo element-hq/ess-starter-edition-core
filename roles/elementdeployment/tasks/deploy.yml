@@ -23,6 +23,6 @@
     name: "generic_apply"
   vars:
     _manifest_files: "{{ query('fileglob', 'templates/' + _component_item + '/*.j2') | sort | list }}"
-  loop: "{{ components.keys() | list }}"
+  loop: "{{ components.keys() | sort_apply_order | list }}"
   loop_control:
     loop_var: _component_item

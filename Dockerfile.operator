@@ -1,0 +1,42 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+ARG DISTROLESS_BASE_IMAGE=registry.gitlab.element.io/engineering/ess/operator/element-kubernetes-operator/base:latest
+
+
+# We need to run a first build step to remove elementdeployment role
+FROM python:3.11-slim-bookworm AS build
+ARG TARGETPLATFORM
+ENV HELM_VERSION=v3.12.3
+
+# Install Helm
+RUN apt update && apt install -y wget && \
+  export HELM_ARCH=$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') && \
+  echo https://get.helm.sh/helm-${HELM_VERSION}-linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').tar.gz && \
+  wget https://get.helm.sh/helm-${HELM_VERSION}-linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').tar.gz && \
+  wget https://get.helm.sh/helm-${HELM_VERSION}-linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').tar.gz.sha256sum && \
+  sha256sum --check --status helm-${HELM_VERSION}-linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').tar.gz.sha256sum && \
+  tar xf helm-${HELM_VERSION}-linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').tar.gz && \
+  cp linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}')/helm /bin && \
+  rm -rfv linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') helm-${HELM_VERSION}-linux-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').tar.gz && \
+  apt remove -y wget
+
+COPY LICENSES/operator /element.io/LICENSES
+COPY watches.yaml /element.io/watches.yaml
+
+COPY roles/ /tmp/prepare/roles/
+COPY playbooks/ /tmp/prepare/playbooks/
+# We copy to the target directory using rsync to be able to exclude some files
+RUN apt update && apt install -y rsync && \
+    rsync -av --progress /tmp/prepare/ /element.io/ --exclude roles/elementdeployment --exclude playbooks/elementdeployment.yml && \
+    apt remove -y rsync
+
+FROM $DISTROLESS_BASE_IMAGE as base
+
+# Label this image with the repo and commit that built it, for freshmaking purposes.
+ARG GIT_COMMIT=devel
+LABEL git_commit=$GIT_COMMIT
+
+COPY --from=build /bin/helm /bin/helm
+COPY --from=build --chown=nonroot:nonroot /element.io /element.io

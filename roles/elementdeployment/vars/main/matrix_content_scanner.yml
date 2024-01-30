@@ -7,7 +7,6 @@ component_info_matrix_content_scanner:
 - id: matrix_content_scanner
   application_services: false
   is_bridge: false
-  synapse_module_config_names: []
   supports_encryption: true
   synapse_additional_ingress_paths:
   - path: /_matrix/media_proxy

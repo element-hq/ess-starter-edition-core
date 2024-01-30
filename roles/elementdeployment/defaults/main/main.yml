@@ -8,14 +8,6 @@ _global: "{{ global }}"
 
 generic_shared_secret: "{{ _global_secret.resources[0].data[_global.config.generic_shared_secret_secret_key] | b64decode }}"
 
-_all_secrets: >
-  {{
-    query('kubernetes.core.k8s',
-            kind='Secret',
-            api_version='v1',
-            namespace=ansible_operator_meta.namespace)
-  }}
-
 _component_secret: >
   {{
     (

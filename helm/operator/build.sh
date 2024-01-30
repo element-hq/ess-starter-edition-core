@@ -11,6 +11,7 @@ rm -rf templates
 mkdir templates
 cd templates
 
+chart_functions_namespace="elementOperator"
 
 # We generate all resources and name the files according to their kind and names
 yq -s '[.kind, .metadata.name] | join("-") | downcase + ".yaml"' <(kustomize build ../../../config/default)
@@ -24,6 +25,7 @@ sed -i 's/{{\(.*\)}}/{{ "{{" }}\1{{ "}}" }}/' *
 for entry in ./*; do
   # For each file, we template their values using helm to add a prefix in front of their resources
   yq -i "$(cat ../yq/prefixes.yq)" $entry
+  sed -i "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" $entry
   # For each file, we also make sure that ClusterRole can be deployed as Role if we dont use clusterDeployment
   yq -i "$(cat ../yq/clusterdeployment.yq)" $entry
 done
@@ -42,6 +44,7 @@ yq "$(cat ../yq/resource-viewer-role.yq)" ../../../watches.yaml -s '["ClusterRol
 for entry in ./customresourcedefinition-*; do
   if grep -q caBundleReplacedByHelmBuild "$entry"; then
     yq "$(cat ../yq/crds-conversion.yq)" $entry | diff -Bw "$entry" - | patch "$entry" -
+    sed -i "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" $entry
     # for each CRD with a conversion webhook, we had a conditional annotations field under name
     sed -i -e '/caBundleReplacedByHelmBuild/{r ../fragments/ConversionWebhook-CaBundle.yaml' -e ' d}' $entry
     sed -i '0,/^  name: .*/{/^  name: .*/ {
@@ -55,7 +58,7 @@ for entry in ./customresourcedefinition-*; do
 done
 
 # Generate the operator main role
-yq "$(cat ../yq/main-role.yq)" ../../../watches.yaml > clusterrole-manager.yaml
+yq "$(cat ../yq/main-role.yq)" ../../../watches.yaml | sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" > clusterrole-manager.yaml
 
 # For each clusterrole & clusterrolebinding, we add a conditional namespace field under name:
 for entry in ./clusterrole*.yaml; do
@@ -68,7 +71,10 @@ done
 cat ../fragments/Operator-Permissions.yaml >> clusterrole-manager.yaml
 
 cp ../fragments/Deployment-element-operator-controller-manager.yaml ./deployment-element-operator-controller-manager.yaml
-cp ../fragments/ConversionWebhook-Service.yaml ./service-element-conversion-webhook.yaml
+sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/ServiceAccount-conversion-webhook.yaml > ./serviceaccount-conversion-webhook.yaml
+sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/ConversionWebhook-Service.yaml > ./service-element-conversion-webhook.yaml
+sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/Deployment-conversion-webhook.yaml > ./deployment-conversion-webhook.yaml
+sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/_helpers.tpl > ./helpers.tpl
 
 # These files should be fully disabled if not deploying roles
 exclude_files=".\/clusterrole(-element-.+-(metrics-reader|proxy))|(-element-.*-)|(-manager)|(binding-element-.*-(manager|proxy)).yaml"
@@ -89,7 +95,7 @@ do
 done
 
 # These files should be fully disabled if not deploying manager
-for entry in ./deployment*.yaml ./service*.yaml ./role*.yaml
+for entry in ./deployment*manager.yaml ./service*manager-metrics.yaml ./role*.yaml
 do
   sed -i '1 i\{{- if $.Values.deployManager }}' $entry
   echo "{{ end }}" >> $entry

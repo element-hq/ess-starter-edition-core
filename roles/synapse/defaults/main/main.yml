@@ -56,3 +56,8 @@ _parsed_synapse_secrets:
 homeserver_yaml: "{{ lookup('template', 'homeserver.yaml.j2') }}"
 log_config_yaml: "{{ lookup('template', 'log_config.yaml.j2') }}"
 redis_config: "{{ lookup('template', 'redis.conf.j2') }}"
+
+core_dependencies: >-
+  {{
+    (synapse_appservices_registrations)
+  }}

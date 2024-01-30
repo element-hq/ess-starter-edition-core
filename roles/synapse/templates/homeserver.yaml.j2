@@ -145,11 +145,11 @@ pusher_instances:
 {% endfor %}
 
 {% endif %}
+
+{% if not (bootstrap | default(false)) %}
 {% if config.additional is defined %}
 {{ config.additional }}
 {% endif %}
-
-{% if not (bootstrap | default(false)) %}
 
 
 {% if synapse_appservices_registrations | length > 0 %}

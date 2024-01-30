@@ -14,8 +14,18 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                           | dict2items
                           | rejectattr('value', 'equalto', '')
                           | items2dict %}
+
+{%- set _workload_node_selector = components_k8s_properties_camelled.workloads.nodeSelector
+                                | default(_matrix_element_io_elementdeployment_spec.global.k8s.workloads.nodeSelector, true)
+                                | default({}) %}
+{%- set _workload_tolerations = components_k8s_properties_camelled.workloads.tolerations
+                                | default(_matrix_element_io_elementdeployment_spec.global.k8s.workloads.tolerations, true)
+                                | default([]) %}
 {%- set _workload_env = _extraEnv | default([]) %}
-{% if _workload_annotations | length > 0 or _workload_env | length > 0 %}
+{% if _workload_annotations | length > 0
+    or _workload_env | length > 0
+    or _workload_node_selector | length > 0
+    or _workload_tolerations | length > 0 %}
 workloads:
 {% if _workload_annotations | length > 0 %}
   annotations:
@@ -24,5 +34,13 @@ workloads:
 {% if  _workload_env | length > 0 %}
   extraEnv:
   {{ _workload_env | to_nice_yaml(indent=2) | indent(2) }}
+{% endif %}
+{% if _workload_node_selector | length > 0 %}
+  nodeSelector:
+    {{ _workload_node_selector | to_nice_yaml(indent=2) | indent(4) }}
+{% endif %}
+{% if _workload_tolerations | length > 0 %}
+  tolerations:
+    {{ _workload_tolerations | to_nice_yaml(indent=2) | indent(4) }}
 {% endif %}
 {% endif %}

@@ -1,12 +1,11 @@
-{{- if $.Values.deployManager }}
 apiVersion: v1
 kind: Service
 metadata:
-{{- if $.Values.operator.annotations }}
+{{- if $.Values.crds.conversionWebhook.annotations }}
   annotations:
-    {{- toYaml $.Values.operator.annotations | nindent 4 }}
+    {{- toYaml $.Values.crds.conversionWebhook.annotations | nindent 4 }}
 {{- end }}
-  name: '{{ .Values.prefix }}-conversion-webhook'
+  name: '{{ include "elementOperator.conversionWebhookFullname" . }}'
   namespace: '{{ .Release.Namespace }}'
 spec:
   ports:
@@ -14,5 +13,4 @@ spec:
       protocol: TCP
       targetPort: 7443
   selector:
-    app.kubernetes.io/instance: element-operator-controller-manager
-{{ end }}
+    app.kubernetes.io/instance: '{{ include "elementOperator.conversionWebhookFullname" . }}'

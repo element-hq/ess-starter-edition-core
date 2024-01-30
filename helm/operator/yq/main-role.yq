@@ -2,7 +2,7 @@
   "apiVersion": "rbac.authorization.k8s.io/v1",
   "kind": "{{ .Values.clusterDeployment | ternary \"ClusterRole\" \"Role\" }}",
   "metadata": {
-    "name": "{{ .Values.prefix }}-manager"
+    "name": "{{ include \"__CHART_FUNCTIONS_NAMESPACE__.prefix\" . }}-manager"
   },
   "rules": ((sort_by(.kind | downcase).[] as $item ireduce({}; [] + . + {
             "apiGroups": ["matrix.element.io"],

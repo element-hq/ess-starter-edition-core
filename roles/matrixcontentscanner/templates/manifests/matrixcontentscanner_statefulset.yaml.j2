@@ -62,6 +62,14 @@ spec:
       hostAliases:
         {{ _matrix_element_io_matrixcontentscanner_spec.config.hostAliases | to_nice_yaml(indent=2) | indent(8) }}
 {% endif %}
+{% if (_matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.nodeSelector | default({})) | length > 0 %}
+      nodeSelector:
+        {{ _matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.nodeSelector | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+{% if (_matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.tolerations | default({})) | length > 0 %}
+      tolerations:
+        {{ _matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.tolerations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
       containers:
       - name: matrix-content-scanner
 {% if image_matrixcontentscanner_has_digest %}

@@ -56,6 +56,14 @@ spec:
       securityContext:
         {{ _matrix_element_io_synapse_spec.config.haproxyPodSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
 {% endif %}
+{% if (_matrix_element_io_synapse_spec.workloads.haproxy.nodeSelector | default({})) | length > 0 %}
+      nodeSelector:
+        {{ _matrix_element_io_synapse_spec.workloads.haproxy.nodeSelector | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+{% if (_matrix_element_io_synapse_spec.workloads.haproxy.tolerations | default({})) | length > 0 %}
+      tolerations:
+        {{ _matrix_element_io_synapse_spec.workloads.haproxy.tolerations | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
       containers:
       - name: haproxy
 {% if image_haproxy_has_digest %}

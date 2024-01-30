@@ -2,35 +2,18 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+ARG DISTROLESS_BASE_IMAGE=registry.gitlab.element.io/engineering/ess/operator/element-kubernetes-operator/base:latest
 
-FROM quay.io/operator-framework/ansible-operator:v1.31.0
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
+FROM $DISTROLESS_BASE_IMAGE as base
 
-USER root
-RUN yum install -y git
+# Label this image with the repo and commit that built it, for freshmaking purposes.
+ARG GIT_COMMIT=devel
+LABEL git_commit=$GIT_COMMIT
 
-COPY requirements.txt /root/requirements.txt
-RUN pip3 install -r /root/requirements.txt && rm /root/requirements.txt
+COPY --chown=nonroot:nonroot LICENSES/updater ${HOME}/element.io/LICENSES
+COPY --chown=nonroot:nonroot watches.updater.yaml ${HOME}/element.io/watches.yaml
 
-USER ${USER_UID}
-
-RUN mkdir ${HOME}/element.io
-WORKDIR ${HOME}/element.io
-ENV ANSIBLE_ROLES_PATH ${HOME}/element.io/roles
-
-COPY requirements.yml ${HOME}/element.io/requirements.yml
-RUN ansible-galaxy collection install -r ${HOME}/element.io/requirements.yml \
-  && chmod -R ug+rwx ${HOME}/.ansible
-
-USER root
-RUN yum remove -y git
-
-USER ${USER_UID}
-COPY LICENSES/updater ${HOME}/element.io/LICENSES
-COPY watches.updater.yaml ${HOME}/element.io/watches.yaml
-RUN mkdir -p ${HOME}/element.io/roles ${HOME}/element.io/playbooks
-COPY roles/elementdeployment ${HOME}/element.io/roles/elementdeployment/
-COPY roles/teardown ${HOME}/element.io/roles/teardown/
-COPY roles/generic_apply ${HOME}/element.io/roles/generic_apply/
-COPY playbooks/elementdeployment.yml playbooks/any.yml ${HOME}/element.io/playbooks/
+COPY --chown=nonroot:nonroot roles/elementdeployment   ${HOME}/element.io/roles/elementdeployment/
+COPY --chown=nonroot:nonroot roles/teardown   ${HOME}/element.io/roles/teardown/
+COPY --chown=nonroot:nonroot roles/generic_apply   ${HOME}/element.io/roles/generic_apply/
+COPY --chown=nonroot:nonroot playbooks/elementdeployment.yml playbooks/any.yml ${HOME}/element.io/playbooks/

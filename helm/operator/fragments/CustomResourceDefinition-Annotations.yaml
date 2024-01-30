@@ -1,4 +1,6 @@
 {{- if $.Values.crds.annotations }}
   annotations:
-    {{- toYaml $.Values.crds.annotations | nindent 4 }}
+{{- range $key, $value := $.Values.crds.annotations  }}
+    {{ $key }}: {{ tpl $value $ }}
+{{- end }}
 {{- end }}

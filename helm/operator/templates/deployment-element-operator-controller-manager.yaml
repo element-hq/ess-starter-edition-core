@@ -3,11 +3,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+    app.kubernetes.io/instance: '{{ include "elementOperator.controllerManagerFullname" . }}'
 {{- if $.Values.operator.labels }}
     {{- toYaml $.Values.operator.labels | nindent 4 }}
 {{- end }}
-  name: '{{ .Values.prefix }}-controller-manager'
+  name: '{{ include "elementOperator.controllerManagerFullname" . }}'
   namespace: '{{ .Release.Namespace }}'
 {{- if $.Values.operator.annotations }}
   annotations:
@@ -17,7 +17,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+      app.kubernetes.io/instance: '{{ include "elementOperator.controllerManagerFullname" . }}'
   strategy:
     type: Recreate
   template:
@@ -28,7 +28,7 @@ spec:
         {{- toYaml $.Values.operator.annotations | nindent 8 }}
 {{- end }}
       labels:
-        app.kubernetes.io/instance: '{{ .Values.prefix }}-controller-manager'
+        app.kubernetes.io/instance: '{{ include "elementOperator.controllerManagerFullname" . }}'
 {{- if $.Values.operator.labels }}
         {{- toYaml $.Values.operator.labels | nindent 8 }}
 {{- end }}
@@ -38,53 +38,9 @@ spec:
     {{- end }}
 {{- if $.Values.operator.imagePullSecret }}
       imagePullSecrets:
-      - name: {{ $.Values.operator.imagePullSecret }}
+      - name: {{ tpl $.Values.operator.imagePullSecret . }}
 {{- end }}
       containers:
-      - name: conversion-webhook
-        image: '{{ .Values.operator.conversionWebhook.image.repository }}{{ hasKey .Values.operator.conversionWebhook.image "digest" | ternary (print "@" .Values.operator.conversionWebhook.image.digest) (print ":" .Values.operator.conversionWebhook.image.tag) }}'
-        imagePullPolicy: '{{ .Values.operator.conversionWebhook.imagePullPolicy }}'
-        ports:
-        - containerPort: 7443
-          name: webhook-server
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /k8s-webhook-server/serving-certs
-          name: webhook-cert
-          readOnly: true
-        livenessProbe:
-          httpGet:
-            scheme: HTTPS
-            path: /readyz
-            port: 7443
-          periodSeconds: 20
-        readinessProbe:
-          httpGet:
-            scheme: HTTPS
-            path: /readyz
-            port: 7443
-          periodSeconds: 10
-        startupProbe:
-          httpGet:
-            scheme: HTTPS
-            path: /readyz
-            port: 7443
-          periodSeconds: 10
-          initialDelaySeconds: 5
-        args:
-        - --tls-cert-file
-        - /k8s-webhook-server/serving-certs/tls.crt
-        - --tls-private-key-file
-        - /k8s-webhook-server/serving-certs/tls.key
-        - --port
-        - "7443"
-      {{- with $.Values.operator.conversionWebhook.resources }}
-        resources:
-          {{- toYaml . | nindent 10 }}
-      {{- end }}
-      {{- if $.Values.operator.conversionWebhook.extraContainerSpec }}
-        {{- toYaml $.Values.operator.conversionWebhook.extraContainerSpec | nindent 8 }}
-      {{- end }}
 {{- if $.Values.clusterDeployment }}
       - args:
           - --secure-listen-address=0.0.0.0:8443
@@ -150,9 +106,9 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: manager-tmp
-        - mountPath: /opt/ansible/.ansible/tmp/
+        - mountPath: /home/nonroot/.ansible/tmp/
           name: ansible-tmp
-      serviceAccountName: '{{ .Values.prefix }}-controller-manager'
+      serviceAccountName: '{{ include "elementOperator.controllerManagerFullname" . }}'
       terminationGracePeriodSeconds: 10
       volumes:
       - emptyDir:
@@ -161,8 +117,4 @@ spec:
       - emptyDir:
           medium: Memory
         name: ansible-tmp
-      - name: webhook-cert
-        secret:
-          defaultMode: 420
-          secretName: {{ $.Values.operator.conversionWebhook.tlsSecretName }}
 {{ end }}

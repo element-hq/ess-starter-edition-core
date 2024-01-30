@@ -18,10 +18,10 @@
   when: _synapse_main_sts.resources | length == 0
   block:
   - name: Bootstrap an initial configuration if no synapse pod is running
-    ansible.builtin.import_tasks: shared.yml
+    ansible.builtin.include_tasks: shared.yml
 
   - name: Bootstrap an initial synapse sts if no synapse pod is running
-    ansible.builtin.import_tasks: synapse_process.yml
+    ansible.builtin.include_tasks: synapse_process.yml
     vars:
       process_type: main
       process_app: synapse.app.homeserver

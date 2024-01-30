@@ -11,7 +11,7 @@ spec:
       limits:
         memory: 200Mi
       requests:
-        cpu: 100m
+        cpu: 50m
         memory: 50Mi
     matrixContentScanner:
       icap:
@@ -19,54 +19,54 @@ spec:
           memory: 1Gi
         requests:
           cpu: 100m
-          memory: 200Mi
+          memory: 100Mi
       clamAntiVirus:
         limits:
           memory: 4Gi
         requests:
           cpu: 100m
-          memory: 200Mi
+          memory: 100Mi
       matrixContentScanner:
         limits:
           memory: 500Mi
         requests:
           cpu: 100m
-          memory: 200Mi
+          memory: 100Mi
     slidingSync:
       api:
         limits:
           memory: 4Gi
         requests:
-          cpu: 200m
-          memory: 2Gi
+          cpu: 100m
+          memory: 200Mi
     synapse:
       haproxy:
         limits:
           memory: 200Mi
         requests:
-          cpu: 1
+          cpu: 100m
           memory: 100Mi
       redis:
         limits:
           memory: 50Mi
         requests:
-          cpu: 200m
+          cpu: 50m
           memory: 50Mi
       synapse:
         limits:
           memory: 4Gi
         requests:
-          cpu: 1
-          memory: 2Gi
+          cpu: 100m
+          memory: 100Mi
       workers:
         limits:
           memory: 4Gi
         requests:
-          cpu: 1
-          memory: 2Gi
+          cpu: 100m
+          memory: 100Mi
     wellKnownDelegation:
       limits:
         memory: 200Mi
       requests:
-        cpu: 100m
+        cpu: 50m
         memory: 50Mi

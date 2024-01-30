@@ -42,9 +42,6 @@ spec:
         app.kubernetes.io/version: "{{ image.tag }}"
         k8s.element.io/confighash: "{{  lookup('template', 'config.json.j2') | hash('sha1') }}"
         k8s.element.io/nginxhash: "{{ lookup('template', 'nginx.conf.j2') | hash('sha1') }}"
-{% if inject is defined %}
-        k8s.element.io/injecthash: "{{ lookup('template', 'inject-config.json.j2') | hash('sha1') }}"
-{% endif %}
 {% if workloads.annotations | default({}) %}
       annotations:
         {{ _matrix_element_io_elementweb_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(8) }}
@@ -70,6 +67,14 @@ spec:
 {% if (_matrix_element_io_elementweb_spec.config.podSecurityContext | default({})) | length > 0 %}
       securityContext:
         {{ _matrix_element_io_elementweb_spec.config.podSecurityContext | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+{% if _matrix_element_io_elementweb_spec.workloads.nodeSelector | default(false) %}
+      nodeSelector:
+        {{ _matrix_element_io_elementweb_spec.workloads.nodeSelector | to_nice_yaml(indent=2) | indent(8) }}
+{% endif %}
+{% if _matrix_element_io_elementweb_spec.workloads.tolerations | default(false) %}
+      tolerations:
+        {{ _matrix_element_io_elementweb_spec.workloads.tolerations | to_nice_yaml(indent=2) | indent(8) }}
 {% endif %}
       containers:
       - name: element-web

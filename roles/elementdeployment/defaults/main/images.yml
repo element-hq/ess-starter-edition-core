@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -7,7 +7,7 @@ default_images_digests:
     element_web:
       image_repository_server: docker.io
       image_repository_path: vectorim/element-web
-      image_tag: v1.11.51
+      image_tag: v1.11.53
   matrix_content_scanner:
     icap:
       image_repository_server: ghcr.io
@@ -25,7 +25,7 @@ default_images_digests:
     api:
       image_repository_server: ghcr.io
       image_repository_path: matrix-org/sliding-sync
-      image_tag: v0.99.13
+      image_tag: v0.99.14
   synapse:
     haproxy:
       image_repository_server: docker.io

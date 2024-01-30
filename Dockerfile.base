@@ -1,0 +1,84 @@
+# Copyright 2023 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+FROM python:3.11-slim-bookworm AS build
+RUN apt --yes update && apt --yes install git curl libc-bin && \
+    ls -l /usr/lib/locale
+
+FROM build AS base-builder
+ARG TARGETPLATFORM
+
+WORKDIR /workspace
+
+RUN mkdir -p /etc/ansible \
+  && echo "localhost ansible_connection=local" > /etc/ansible/hosts \
+  && echo '[defaults]' > /etc/ansible/ansible.cfg \
+  && echo 'roles_path = /element.io/roles' >> /etc/ansible/ansible.cfg \
+  && echo 'collections_path = /ansible/collections' >> /etc/ansible/ansible.cfg \
+  && echo 'library = /usr/share/ansible/openshift' >> /etc/ansible/ansible.cfg
+
+ENV TINI_VERSION=v0.19.0
+ENV OPERATOR_SDK_VERSION=v1.31.0
+
+RUN curl -L -o /workspace/tini-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') && \
+    curl -L -o /workspace/tini-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').sha256 https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').sha256sum && \
+    sha256sum --check --status /workspace/tini-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}').sha256 && \
+    mv /workspace/tini-$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') /usr/local/bin/tini
+# We use operator-sdk because the ansible-operator-plugins v1.31.0 has a regression with MarkUnsafe
+# https://github.com/operator-framework/ansible-operator-plugins/issues/41
+RUN curl -L -o /workspace/ansible-operator_linux_$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}/ansible-operator_linux_$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') && \
+    curl -L -o /workspace/checksums.txt https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}/checksums.txt && \
+    sed -i -n "/ansible-operator_linux_"$( sh -c 'echo ${TARGETPLATFORM#"linux/"}')"/p" /workspace/checksums.txt && \
+    sha256sum --check --status /workspace/checksums.txt && \
+    mv /workspace/ansible-operator_linux_$( sh -c 'echo ${TARGETPLATFORM#"linux/"}') /usr/local/bin/ansible-operator
+
+# Ensure directory permissions are properly set
+RUN chmod +x /usr/local/bin/tini && /usr/local/bin/tini --version && \
+    chmod +x /usr/local/bin/ansible-operator && /usr/local/bin/ansible-operator version
+
+WORKDIR /element.io
+COPY requirements.yml /element.io/requirements.yml
+COPY requirements.txt /tmp/requirements.txt
+
+RUN  pip install -r /tmp/requirements.txt
+
+RUN ansible-galaxy collection install -r /element.io/requirements.yml -p /ansible/collections
+
+
+# We prepare required libs here because we can determine the path using uname -m in RUN
+RUN mkdir /required-libs && \
+    cp /lib/$( sh -c 'uname -m' )-linux-gnu/libselinux.so.1 /required-libs && \
+    cp /lib/$( sh -c 'uname -m' )-linux-gnu/libpcre2-8.so.0 /required-libs
+
+FROM gcr.io/distroless/python3-debian12 as base
+
+# Label this image with the repo and commit that built it, for freshmaking purposes.
+ARG GIT_COMMIT=devel
+LABEL git_commit=$GIT_COMMIT
+
+COPY --from=base-builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=base-builder /etc/ansible /etc/ansible
+COPY --from=base-builder /ansible /ansible
+COPY --from=base-builder /usr/local/bin /usr/local/bin
+# /bin/sh is required or ansible complains with
+#  failed to find the executable specified /bin/sh. Please verify if the executable exists and re-try
+COPY --from=base-builder /usr/bin/dash /bin/sh
+# Copy required binaries
+COPY --from=base-builder /bin/sleep /bin/sleep
+COPY --from=base-builder /bin/chmod /bin/chmod
+COPY --from=base-builder /bin/mkdir /bin/mkdir
+COPY --from=base-builder /bin/rm /bin/rm
+# Copy shared libraries into distroless image
+COPY --from=base-builder /required-libs /lib/
+COPY --from=base-builder /usr/local/lib /usr/local/lib
+COPY --from=base-builder /usr/lib/locale/C.utf8 /usr/lib/locale/C.utf8
+COPY --from=base-builder --chown=nonroot:nonroot /element.io /element.io
+
+USER nonroot
+
+WORKDIR /element.io
+ENV LC_ALL "C.UTF-8"
+ENV LANG "C.UTF-8"
+ENV PATH "/usr/local/bin:$PATH"
+ENTRYPOINT ["/usr/local/bin/tini", "--", "/usr/local/bin/ansible-operator", "run", "--watches-file=/element.io/watches.yaml"]

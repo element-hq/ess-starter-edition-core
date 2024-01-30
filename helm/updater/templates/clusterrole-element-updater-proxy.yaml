@@ -3,7 +3,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: '{{ .Values.clusterDeployment | ternary "ClusterRole" "Role" }}'
 metadata:
-  name: '{{ .Values.prefix }}-proxy'
+  name: '{{ include "elementUpdater.prefix" . }}-proxy'
   {{- if not $.Values.clusterDeployment }}
   namespace: {{ $.Release.Namespace }}
   {{- end }}

@@ -5,18 +5,20 @@ metadata:
   name: elementdeployments.matrix.element.io
 {{- if $.Values.crds.annotations }}
   annotations:
-    {{- toYaml $.Values.crds.annotations | nindent 4 }}
+{{- range $key, $value := $.Values.crds.annotations  }}
+    {{ $key }}: {{ tpl $value $ }}
+{{- end }}
 {{- end }}
 spec:
   conversion:
     strategy: Webhook
     webhook:
       clientConfig:
-{{- if $.Values.updater.conversionWebhook.caBundle }}
-        caBundle: {{ $.Values.updater.conversionWebhook.caBundle }}
+{{- if $.Values.crds.conversionWebhook.caBundle }}
+        caBundle: {{ $.Values.crds.conversionWebhook.caBundle }}
 {{- end }}
         service:
-          name: '{{ .Values.prefix }}-conversion-webhook'
+          name: '{{ include "elementUpdater.conversionWebhookFullname" . }}'
           namespace: '{{ .Release.Namespace }}'
           path: /convert
       conversionReviewVersions:
@@ -218,6 +220,11 @@ spec:
                                       - hostnames
                                     type: object
                                   type: array
+                                nodeSelector:
+                                  additionalProperties:
+                                    type: string
+                                  description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                  type: object
                                 replicas:
                                   description: The number of Element Web replicas
                                   minimum: 1
@@ -245,7 +252,7 @@ spec:
                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                         x-kubernetes-int-or-string: true
                                       default:
-                                        cpu: 100m
+                                        cpu: 50m
                                         memory: 50Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
@@ -293,6 +300,28 @@ spec:
                                         - disable
                                       type: string
                                   type: object
+                                tolerations:
+                                  description: Workload tolerations
+                                  items:
+                                    description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                    properties:
+                                      effect:
+                                        description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                        type: string
+                                      key:
+                                        description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                        type: string
+                                      operator:
+                                        description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                        type: string
+                                      tolerationSeconds:
+                                        description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                        type: number
+                                      value:
+                                        description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                        type: string
+                                    type: object
+                                  type: array
                               type: object
                           type: object
                         secretName:
@@ -441,6 +470,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -465,7 +499,7 @@ spec:
                                             x-kubernetes-int-or-string: true
                                           default:
                                             cpu: 100m
-                                            memory: 200Mi
+                                            memory: 100Mi
                                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                           type: object
                                       type: object
@@ -512,6 +546,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             common:
@@ -572,6 +628,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -596,7 +657,7 @@ spec:
                                             x-kubernetes-int-or-string: true
                                           default:
                                             cpu: 100m
-                                            memory: 200Mi
+                                            memory: 100Mi
                                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                           type: object
                                       type: object
@@ -643,6 +704,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             matrixContentScanner:
@@ -763,6 +846,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -787,7 +875,7 @@ spec:
                                             x-kubernetes-int-or-string: true
                                           default:
                                             cpu: 100m
-                                            memory: 200Mi
+                                            memory: 100Mi
                                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                           type: object
                                       type: object
@@ -834,6 +922,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               required:
                                 - storage
@@ -985,6 +1095,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -1008,8 +1123,8 @@ spec:
                                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                             x-kubernetes-int-or-string: true
                                           default:
-                                            cpu: 200m
-                                            memory: 2Gi
+                                            cpu: 100m
+                                            memory: 200Mi
                                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                           type: object
                                       type: object
@@ -1056,6 +1171,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             common:
@@ -1348,8 +1485,8 @@ spec:
                                           pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                           x-kubernetes-int-or-string: true
                                         default:
-                                          cpu: 1
-                                          memory: 2Gi
+                                          cpu: 100m
+                                          memory: 100Mi
                                         description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                         type: object
                                     type: object
@@ -1443,6 +1580,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     replicas:
                                       description: The number of Synapse HAProxy replicas
                                       minimum: 1
@@ -1470,7 +1612,7 @@ spec:
                                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                             x-kubernetes-int-or-string: true
                                           default:
-                                            cpu: 1
+                                            cpu: 100m
                                             memory: 100Mi
                                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                           type: object
@@ -1518,6 +1660,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             ingress:
@@ -1667,6 +1831,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -1690,7 +1859,7 @@ spec:
                                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                             x-kubernetes-int-or-string: true
                                           default:
-                                            cpu: 200m
+                                            cpu: 50m
                                             memory: 50Mi
                                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                           type: object
@@ -1738,6 +1907,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             synapse:
@@ -1821,6 +2012,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -1844,8 +2040,8 @@ spec:
                                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                             x-kubernetes-int-or-string: true
                                           default:
-                                            cpu: 1
-                                            memory: 2Gi
+                                            cpu: 100m
+                                            memory: 100Mi
                                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                           type: object
                                       type: object
@@ -1892,6 +2088,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                           type: object
@@ -2069,6 +2287,11 @@ spec:
                                       - hostnames
                                     type: object
                                   type: array
+                                nodeSelector:
+                                  additionalProperties:
+                                    type: string
+                                  description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                  type: object
                                 replicas:
                                   description: The number of Well-Known Delegation replicas
                                   minimum: 1
@@ -2096,7 +2319,7 @@ spec:
                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                         x-kubernetes-int-or-string: true
                                       default:
-                                        cpu: 100m
+                                        cpu: 50m
                                         memory: 50Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
@@ -2144,6 +2367,28 @@ spec:
                                         - disable
                                       type: string
                                   type: object
+                                tolerations:
+                                  description: Workload tolerations
+                                  items:
+                                    description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                    properties:
+                                      effect:
+                                        description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                        type: string
+                                      key:
+                                        description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                        type: string
+                                      operator:
+                                        description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                        type: string
+                                      tolerationSeconds:
+                                        description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                        type: number
+                                      value:
+                                        description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                        type: string
+                                    type: object
+                                  type: array
                               type: object
                           type: object
                         secretName:
@@ -2351,6 +2596,11 @@ spec:
                                   - hostnames
                                 type: object
                               type: array
+                            nodeSelector:
+                              additionalProperties:
+                                type: string
+                              description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                              type: object
                             replicas:
                               default: 2
                               description: The number of replicas for workloads supporting it
@@ -2393,6 +2643,28 @@ spec:
                                     - disable
                                   type: string
                               type: object
+                            tolerations:
+                              description: Workload tolerations
+                              items:
+                                description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                properties:
+                                  effect:
+                                    description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                    type: string
+                                  key:
+                                    description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                    type: string
+                                  operator:
+                                    description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                    type: string
+                                  tolerationSeconds:
+                                    description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                    type: number
+                                  value:
+                                    description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                    type: string
+                                type: object
+                              type: array
                           type: object
                       type: object
                     secretName:

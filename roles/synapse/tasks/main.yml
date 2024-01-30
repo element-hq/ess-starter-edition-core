@@ -27,9 +27,11 @@
 
 - name: Validation
   ansible.builtin.import_tasks: validation.yml
+
 - name: Bootstrap
   ansible.builtin.import_tasks: bootstrap.yml
-  when: (synapse_appservices_registrations | length) + (synapse_modules_configs | length) > 0
+  when:
+  - (core_dependencies | length) > 0
 
 - name: Dependencies
   ansible.builtin.import_tasks: dependencies.yml
