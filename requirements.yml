@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -30,4 +30,4 @@ collections:
 - name: community.crypto
   source: https://github.com/ansible-collections/community.crypto
   type: git
-  version: "2.15.1"
+  version: "2.17.1"
