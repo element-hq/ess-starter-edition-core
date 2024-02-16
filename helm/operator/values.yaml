@@ -34,7 +34,7 @@ crds:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-operator-conversion-webhook
-      tag: 2.15.3
+      tag: 2.16.0
 
 operator:
   extraPodSpec:
@@ -64,7 +64,7 @@ operator:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-operator
-      tag: 2.15.3
+      tag: 2.16.0
 
   rbacProxy:
     resources:

@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -39,8 +39,12 @@ containersSecurityContext:
 {% endif %}
   readOnlyRootFilesystem: true
   capabilities:
+{% if _override_capabilities | default(false) %}
+    {{ _override_capabilities | to_nice_yaml(indent=2) | indent(4) }}
+{% else %}
     drop:
     - ALL
+{% endif %}
 {% if component_k8s_schema_has_replicas %}
 {% if components_k8s_properties.workloads.replicas is mapping %}
 replicas: {{ components_k8s_properties.workloads.replicas.static | default(_global.k8s.workloads.replicas) }}

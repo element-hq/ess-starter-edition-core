@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -46,6 +46,21 @@ spec:
 {% endif %}
 {% endfor %}
 {% for _synapse_path in ["/_matrix", "/_synapse"] %}
+{# Determine if this path is equal to, or a subset of, one of the
+   defined additional paths. If so, let the other service handle it and don't
+   add it here. #}
+{% set _path_already_defined = false %}
+{% for _additional_path in ingress.additional_paths | default([]) %}
+{% if 'match_hostname' not in _additional_path or _additional_path.match_hostname == ingress.domain_name %}
+{% if _synapse_path.startswith(_additional_path.path) %}
+{% set _path_already_defined = true %}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+{# The path, or a superset of, has not already been defined in _additional_paths.
+   Define it here. #}
+{% if not _path_already_defined %}
       - path: {{ _synapse_path }}
         pathType: Prefix
         backend:
@@ -53,4 +68,5 @@ spec:
             name: "{{ ansible_operator_meta.name }}-synapse-haproxy"
             port:
               name: haproxy-http
+{% endif %}
 {% endfor %}
