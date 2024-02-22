@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -12,7 +12,6 @@ metadata:
   labels:
     app.kubernetes.io/part-of: matrix-stack
     app.kubernetes.io/component: matrix-delegation
-    app.kubernetes.io/managed-by: element-operator
     app.kubernetes.io/name: well-known
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-well-known"
     app.kubernetes.io/version: "{{ image.tag | default(image_tag) }}"

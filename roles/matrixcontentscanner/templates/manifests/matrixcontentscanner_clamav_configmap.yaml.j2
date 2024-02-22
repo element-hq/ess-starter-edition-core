@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -11,7 +11,6 @@ metadata:
   name: "{{ ansible_operator_meta.name }}-clamav-config"
   namespace: "{{ ansible_operator_meta.namespace }}"
   labels:
-    app.kubernetes.io/managed-by: element-operator
     app.kubernetes.io/name: clamav
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-clamav"
     app.kubernetes.io/version: "{{ image.clam_anti_virus.tag }}"

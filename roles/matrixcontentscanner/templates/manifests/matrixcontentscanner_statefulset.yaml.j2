@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,7 +9,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
-    app.kubernetes.io/managed-by: element-operator
     app.kubernetes.io/part-of: matrix-stack
     app.kubernetes.io/component: matrix-content-scanner
     app.kubernetes.io/name: matrix-content-scanner
@@ -36,7 +35,6 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/managed-by: element-operator
         app.kubernetes.io/part-of: matrix-stack
         app.kubernetes.io/component: matrix-content-scanner
         app.kubernetes.io/name: matrix-content-scanner

@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -13,7 +13,6 @@ metadata:
   annotations:
     {{ _matrix_element_io_slidingsync_spec.ingress.annotations | default({}) | to_nice_yaml(2) | indent(4) }}
   labels:
-    app.kubernetes.io/managed-by: element-operator
     app.kubernetes.io/component: matrix-sliding-sync
     app.kubernetes.io/part-of: matrix-stack
     app.kubernetes.io/name: sliding-sync

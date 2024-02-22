@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -13,7 +13,6 @@ metadata:
   name: "{{ ansible_operator_meta.name }}-appservice-{{ key }}-config"
   namespace: "{{ ansible_operator_meta.namespace }}"
   labels:
-    app.kubernetes.io/managed-by: element-updater
     app.kubernetes.io/component: external-appservice
   annotations:
 data:

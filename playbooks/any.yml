@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -22,7 +22,7 @@
     ansible.builtin.import_role:
       name: "teardown"
     vars:
-      kind_managed_by: "{{ 'element-updater' if _kind == 'ElementDeployment' else 'element-operator' }}"
+      kind_managed_by: "{{ _managed_by }}"
       kind_owner: "{{ _kind }}"
   vars:
     _owner: "{{ lookup('kubernetes.core.k8s',
@@ -52,4 +52,10 @@
         labels:
           k8s.element.io/crdhash: "{{ _crd_spec_hash }}"
 
-    _generic_apply_mixin: "{{ {} | combine([_owner_refs_metadata, _crd_spec_hash_metadata], recursive=true) }}"
+    _managed_by: "{{ 'element-updater' if _kind == 'ElementDeployment' else 'element-operator' }}"
+    _managed_by_metadata:
+      metadata:
+        labels:
+          app.kubernetes.io/managed-by: "{{ _managed_by }}"
+
+    _generic_apply_mixin: "{{ {} | combine([_owner_refs_metadata, _crd_spec_hash_metadata, _managed_by_metadata], recursive=true) }}"

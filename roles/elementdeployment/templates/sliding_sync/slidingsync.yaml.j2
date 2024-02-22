@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -12,8 +12,6 @@ metadata:
   namespace: "{{ ansible_operator_meta.namespace }}"
   annotations:
     k8s.element.io/secretshash: "{{ lookup('template', 'sliding_sync/secrets.yaml.j2') | hash('sha1') }}"
-  labels:
-    app.kubernetes.io/managed-by: element-updater
 spec:
   image:
     {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'api'})

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -8,5 +8,5 @@
   ansible.builtin.include_role:
     name: "generic_apply"
   vars:
-    _manifest_files:
+    _manifest_template_filenames:
     - "{{ role_path }}/../synapse/templates/manifests/synapse_shared_configmap.yaml.j2"

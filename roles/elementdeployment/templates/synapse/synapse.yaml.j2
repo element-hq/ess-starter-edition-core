@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -10,8 +10,6 @@ kind: Synapse
 metadata:
   name: {{ ansible_operator_meta.name }}
   namespace: "{{ ansible_operator_meta.namespace }}"
-  labels:
-    app.kubernetes.io/managed-by: element-updater
   annotations:
     k8s.element.io/secretshash: "{{ lookup('template', 'synapse/secrets.yaml.j2') | hash('sha1') }}"
 spec:

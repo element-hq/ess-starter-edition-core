@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,7 +9,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/managed-by: element-operator
     app.kubernetes.io/name: synapse-haproxy
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"
     app.kubernetes.io/part-of: matrix-stack
@@ -35,7 +34,6 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/managed-by: element-operator
         app.kubernetes.io/name: synapse-haproxy
         app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"
         app.kubernetes.io/part-of: matrix-stack

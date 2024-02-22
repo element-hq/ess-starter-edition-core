@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -8,4 +8,4 @@
   ansible.builtin.include_role:
     name: "generic_apply"
   vars:
-    _manifest_files: "{{ query('fileglob', 'templates/manifests/redis_*.yaml.j2') }}"
+    _manifest_template_filenames: "{{ query('fileglob', 'templates/manifests/redis_*.yaml.j2') }}"

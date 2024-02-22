@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -11,8 +11,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ ansible_operator_meta.name }}-{{ _component_item | regex_replace('_', '-') }}
   namespace: {{ ansible_operator_meta.namespace }}
-  labels:
-    app.kubernetes.io/managed-by: element-updater
 spec:
 {% if components_k8s_properties.storage.storage_class_name | default(_global.k8s.storage.storage_class_name) | default(false) %}
   storageClassName: "{{ components_k8s_properties.storage.storage_class_name | default(_global.k8s.storage.storage_class_name) }}"
