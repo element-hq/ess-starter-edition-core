@@ -9,7 +9,12 @@
     # These are strings each containing a single YAML document
     _individual_manifest_strings: >
       {{
-        query('template', *_manifest_template_filenames)
+        (
+          (_rendered_manifests_strings | default([]))
+          + query('template',
+                  *(_manifest_template_filenames | default([]))
+                 )
+        )
         | map('split_regex', '^---$')
         | flatten
         | map('trim')
@@ -38,6 +43,7 @@
         | sort_apply_order
       }}
 
+
 - name: Apply Manifest in check_mode
   check_mode: true
   kubernetes.core.k8s:
@@ -52,15 +58,15 @@
 
 - name: "Maintain resources that risk to not support recreation"
   kubernetes.core.k8s:
-    resource_definition: "{{ _risky_manifest_objectss }}"
+    resource_definition: "{{ _risky_manifest_objects }}"
   vars:
     # noqa: jinja[invalid]
-    _risky_manifest_objectss: >
+    _risky_manifest_objects: >
       {{
         _prepared_manifest_objects
         | selectattr('kind', 'eq', 'PersistentVolumeClaim')
       }}
-  when: _risky_manifest_objectss | length > 0
+  when: _risky_manifest_objects | length > 0
 
 - name: Maintain resources that support recreation
   ansible.builtin.include_tasks: "apply_then_recreate.yml"

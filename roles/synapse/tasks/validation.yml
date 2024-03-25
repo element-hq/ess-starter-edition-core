@@ -1,22 +1,26 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 ---
 - name: "Fetch Synapse secrets"
-  kubernetes.core.k8s_info:
-    api_version: v1
-    kind: Secret
-    namespace: "{{ ansible_operator_meta.namespace }}"
-    name: "{{ config.external_secret.name }}"
-  register: _fetched_synapse_secrets
+  ansible.builtin.set_fact:
+    _fetched_synapse_secrets: >-
+      {{
+        query('k8s',
+              api_version="v1",
+              kind="Secret",
+              namespace=ansible_operator_meta.namespace,
+              resource_name=config.external_secret.name
+            )
+      }}
 
 - name: "Assert Synapse secret exists"
   ansible.builtin.assert:
     that:
-    - _fetched_synapse_secrets.resources | length > 0
-    - "'data' in _fetched_synapse_secrets.resources[0]"
+    - _fetched_synapse_secrets | length == 1
+    - "'data' in _fetched_synapse_secrets[0]"
     fail_msg: "spec.config.externalSecret.name must be a secret that exists within this namespace"
 
 - name: "Assert Synapse secret configured correctly, error out to status if an issue occurs"
@@ -24,8 +28,8 @@
   - name: "Assert Synapse secret configured correctly"
     ansible.builtin.assert:
       that:
-      - item in _fetched_synapse_secrets.resources[0].data
-      - _fetched_synapse_secrets.resources[0].data[item] | length > 0
+      - item in _fetched_synapse_secrets[0].data
+      - _fetched_synapse_secrets[0].data[item] | length > 0
       fail_msg: "The secret {{ config.external_secret.name }} must contain {{ item }}"
     loop:
     - macaroon
@@ -38,20 +42,26 @@
     ansible.builtin.fail:
       msg: "{{ assertions.results | selectattr('failed', 'eq', true) | map(attribute='msg') | join('\n') }}"
 
-- name: "Fetch Synapse media volume"
-  kubernetes.core.k8s_info:
-    api_version: v1
-    kind: PersistentVolumeClaim
-    namespace: "{{ ansible_operator_meta.namespace }}"
-    name: "{{ config.media.volume_claim }}"
-  register: _synapse_media_volume_claim
-#  when: "config.media.volume_claim is defined" when we have multiple modes of storing media
+- name: "Validate Synapse media volume if applicable"
+  when: config.media.volume_claim | default("") | length > 0
+  block:
+  - name: "Fetch Synapse media volume"
+    ansible.builtin.set_fact:
+      _synapse_media_volume_claim: >-
+        {{
+          query('k8s',
+                namespace=ansible_operator_meta.namespace,
+                resource_name=config.media.volume_claim,
+                kind="PersistentVolumeClaim",
+                api_version="v1"
+              )
+        }}
 
-- name: "Assert Synapse media volume claim exists"
-  ansible.builtin.assert:
-    that:
-    - _synapse_media_volume_claim.resources | length > 0
-    fail_msg: "spec.config.media.volumeClaim must be a PersistentVolumeClaim that exists"
+  - name: "Assert Synapse media volume claim exists"
+    ansible.builtin.assert:
+      that:
+      - _synapse_media_volume_claim | length > 0
+      fail_msg: "spec.config.media.volumeClaim must be a PersistentVolumeClaim that exists"
 
 - name: "Assert supported number of workers, error out to status if an issue occurs"
   block:

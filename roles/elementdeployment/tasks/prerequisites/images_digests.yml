@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,13 +9,26 @@
   when: _global.config.images_digests_config_map | default(false)
   block:
   - name: Lookup imported images digests
-    kubernetes.core.k8s_info:
-      api_version: v1
-      kind: ConfigMap
-      namespace: "{{ ansible_operator_meta.namespace }}"
-      name: "{{ _global.config.images_digests_config_map }}"
-    register: _global_images_digests
+    ansible.builtin.set_fact:
+      _global_images_digests: >
+        {{
+            query('kubernetes.core.k8s',
+                  kind='ConfigMap',
+                  api_version='v1',
+                  resource_name=_global.config.images_digests_config_map,
+                  namespace=ansible_operator_meta.namespace)
+        }}
+
+  - name: Check that the images digests cm was found
+    ansible.builtin.assert:
+      that: _global_images_digests | length == 1
+      msg: Missing images digests config map {{ _global.config.images_digests_config_map }}
+
+  - name: Check that the images digests cm contains `images_digests` key
+    ansible.builtin.assert:
+      that: ('images_digests' in _global_images_digests[0].data)
+      msg: Missing `images_digests` entry from configmap {{ _global.config.images_digests_config_map }}
 
   - name: Set imported images digests
     ansible.builtin.set_fact:
-      imported_images_digests: "{{ _global_images_digests.resources[0].data.images_digests | from_yaml }}"
+      imported_images_digests: "{{ _global_images_digests[0].data.images_digests | from_yaml }}"

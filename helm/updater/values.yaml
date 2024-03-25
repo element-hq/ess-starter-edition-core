@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -34,7 +34,7 @@ crds:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-updater-conversion-webhook
-      tag: 2.16.3
+      tag: 2.17.1
 
 updater:
   extraPodSpec:
@@ -43,6 +43,11 @@ updater:
       runAsUser: 65532
       fsGroup: 65532
   manager:
+    # maxConcurrentReconciles should be a factor of the memory limit
+    # as a rule of thumb, each reconciles need ~256Mi at peak
+    # the value is computed automatically if a memoryLimit is set
+    # and this value is not set
+    # maxConcurrentReconciles:
     resources:
       limits:
         memory: 2Gi
@@ -64,7 +69,7 @@ updater:
           - ALL
     image:
       repository: docker.io/vectorim/ess-core-updater
-      tag: 2.16.3
+      tag: 2.17.1
 
   rbacProxy:
     resources:
@@ -83,7 +88,7 @@ updater:
     imagePullPolicy: Always
     image:
       repository: gcr.io/kubebuilder/kube-rbac-proxy
-      tag: v0.13.1
+      tag: v0.14.1
   conversion-webhook:
     image:
       repository: ""

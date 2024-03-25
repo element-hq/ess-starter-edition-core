@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -8,6 +8,7 @@ component_info_matrix_content_scanner:
   application_services: false
   is_bridge: false
   supports_encryption: true
+  secret_name_is_optional: true
   synapse_additional_ingress_paths:
   - path: /_matrix/media_proxy
     matchHostname: '{{ components.synapse.k8s.ingress.fqdn }}'

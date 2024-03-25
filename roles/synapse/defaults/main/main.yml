@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -50,9 +50,9 @@ haproxy_replicas: 2
 secrets_hash: "{{ _fetched_synapse_secrets | hash('sha1') }}"
 
 _parsed_synapse_secrets:
-  database_password: "{{ _fetched_synapse_secrets.resources[0].data['postgresPassword'] | b64decode }}"
-  macaroon: "{{ _fetched_synapse_secrets.resources[0].data['macaroon'] | b64decode }}"
-  registration_shared: "{{ _fetched_synapse_secrets.resources[0].data['registrationSharedSecret'] | b64decode }}"
+  database_password: "{{ _fetched_synapse_secrets[0].data['postgresPassword'] | b64decode }}"
+  macaroon: "{{ _fetched_synapse_secrets[0].data['macaroon'] | b64decode }}"
+  registration_shared: "{{ _fetched_synapse_secrets[0].data['registrationSharedSecret'] | b64decode }}"
 homeserver_yaml: "{{ lookup('template', 'homeserver.yaml.j2') }}"
 log_config_yaml: "{{ lookup('template', 'log_config.yaml.j2') }}"
 redis_config: "{{ lookup('template', 'redis.conf.j2') }}"
@@ -61,3 +61,7 @@ core_dependencies: >-
   {{
     (synapse_appservices_registrations)
   }}
+
+# media_storage_providers shouldn't be included if has_media as there's an implict filesystem provider of path media_store_path
+# We do want it included if not has_media so that we can turn storage off
+_include_media_storage_providers: "{{ not has_media }}"

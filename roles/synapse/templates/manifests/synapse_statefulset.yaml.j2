@@ -51,8 +51,9 @@ spec:
         k8s.element.io/as-registration-{{ loop.index0 }}-hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
 {% endfor %}
 {% endif %}
-{% if workloads.synapse.annotations | default({}) %}
       annotations:
+        kubectl.kubernetes.io/default-container: synapse
+{% if workloads.synapse.annotations | default({}) %}
         {{ _matrix_element_io_synapse_spec.workloads.synapse.annotations | to_nice_yaml(indent=2) | indent(8) }}
 {% endif %}
     spec:
@@ -96,14 +97,14 @@ spec:
         - >
           sed "s/REPLACE_HOSTNAME/$(hostname -s | sed 's/.*-synapse-//g')/g" /config/instance_template.yaml > /config/rendered/instance.yaml;
           /start.py run --config-path=/config/homeserver.yaml
-          {%- if not (bootstrap | default(false)) and 'shared.yaml' in _fetched_synapse_secrets.resources[0].data -%}
+          {%- if not (bootstrap | default(false)) and 'shared.yaml' in _fetched_synapse_secrets[0].data -%}
           {% raw %} {% endraw %}--config-path=/secrets/shared.yaml
           {%- endif -%}
-          {%- if (bootstrap | default(false)) and 'bootstrap.yaml' in _fetched_synapse_secrets.resources[0].data -%}
+          {%- if (bootstrap | default(false)) and 'bootstrap.yaml' in _fetched_synapse_secrets[0].data -%}
           {% raw %} {% endraw %}--config-path=/secrets/bootstrap.yaml
           {%- endif -%}
           {% raw %} {% endraw %}--config-path=/config/rendered/instance.yaml
-          {%- if (process_type ~ '.yaml') in _fetched_synapse_secrets.resources[0].data -%}
+          {%- if (process_type ~ '.yaml') in _fetched_synapse_secrets[0].data -%}
           {% raw %} {% endraw %}--config-path=/secrets/{{ process_type }}.yaml
           {% endif %}
 
@@ -208,7 +209,7 @@ spec:
         name: {{ as_registration }}
 {% endfor %}
 {% endif %}
-{% if (process_type == "main" and not synapse_has['media-repository']) or (process_type == "media-repository" and synapse_has['media-repository'])%}
+{% if has_media and config.media.volume_claim | default("") | length > 0 %}
       - persistentVolumeClaim:
           claimName: "{{ config.media.volume_claim }}"
         name: "media"

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -17,3 +17,5 @@ COPY --chown=nonroot:nonroot roles/elementdeployment   ${HOME}/element.io/roles/
 COPY --chown=nonroot:nonroot roles/teardown   ${HOME}/element.io/roles/teardown/
 COPY --chown=nonroot:nonroot roles/generic_apply   ${HOME}/element.io/roles/generic_apply/
 COPY --chown=nonroot:nonroot playbooks/elementdeployment.yml playbooks/any.yml ${HOME}/element.io/playbooks/
+
+

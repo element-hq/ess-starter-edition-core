@@ -1,14 +1,19 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
 #}
 
 worker_app: {{ process_app }}
+
+{% if process_type == 'main' %}
+listeners:
+{% else %}
 worker_name: REPLACE_HOSTNAME
 
 worker_listeners:
+{% endif %}
 {% if has_http %}
 - port: 8008
   tls: false
@@ -19,7 +24,8 @@ worker_listeners:
   - names:
     - client
     - federation
-{% if process_type == 'media-repository '%}
+{# main always loads this if client or federation is set. media-repo workers need it explicitly set.... #}
+{% if process_type == 'media-repository' %}
     - media
 {% endif %}
     compress: false
@@ -64,13 +70,16 @@ database:
     keepalives_interval: 10
     keepalives_count: 3
 
-{% if process_type != 'media-repository' %}
+{% if _include_media_storage_providers %}
 media_storage_providers:
- - module: file_system
-   store_local: false
-   store_remote: false
-   config:
-     directory: "/media/media_store"
+{% if not has_media %}
+- module: file_system
+  store_local: false
+  store_remote: false
+  store_synchronous: false
+  config:
+    directory: "/media/media_store"
+{% endif %}
 {% endif %}
 
 {% if process_additional | length > 0 %}

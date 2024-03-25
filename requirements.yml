@@ -18,14 +18,13 @@ collections:
 - name: community.postgresql
   source: https://github.com/ansible-collections/community.postgresql.git
   type: git
-  version: "2.3.2"
+  version: "3.4.0"
 - name: community.general
   source: https://github.com/ansible-collections/community.general.git
   type: git
-  version: "4.6.1"
+  version: "8.3.0"
 - name: ansible.utils
-  source: https://github.com/ansible-collections/ansible.utils.git
-  version: "2.9.0"
+  source: https://github.com/ansible-collections/ansible.utils.git,v3.1.0
   type: git
 - name: community.crypto
   source: https://github.com/ansible-collections/community.crypto

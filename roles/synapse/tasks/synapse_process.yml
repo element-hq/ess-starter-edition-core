@@ -6,7 +6,7 @@
 ---
 - name: "Set specific_worker_yaml for {{ process_type }}"
   ansible.builtin.set_fact:
-    specific_worker_yaml: "{{ lookup('template', specific_yaml_template) }}"
+    specific_worker_yaml: "{{ lookup('template', 'worker.yaml.j2') }}"
 
 # It is somewhat tempting to put the specific ConfigMap into the shared ConfigMap however
 # a) that isn't needed

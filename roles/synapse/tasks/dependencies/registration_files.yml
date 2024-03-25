@@ -1,19 +1,37 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 ---
-- name: "Wait for the ApplicationServices registration files to be ready"
-  kubernetes.core.k8s_info:
-    api_version: v1
-    kind: ConfigMap
-    namespace: "{{ ansible_operator_meta.namespace }}"
-  register: regfile_found
-  failed_when: >-
-    regfile_found.resources
-    | selectattr('metadata.name', 'in', synapse_appservices_registrations)
-    | length != (synapse_appservices_registrations | length)
+- name: "Init ApplicationServices registration files found"
+  ansible.builtin.set_fact:
+    regfile_found: []
+
+- name: "Fetch ApplicationServices registration files"
+  ansible.builtin.set_fact:
+    regfile_found: >-
+      {{
+        regfile_found +
+          query('k8s',
+              api_version="v1",
+              kind="ConfigMap",
+              namespace=ansible_operator_meta.namespace,
+              resource_name=_cm_name_item
+            )
+      }}
+  loop: "{{ synapse_appservices_registrations }}"
+  loop_control:
+    loop_var: _cm_name_item
+
+- name: "Assert ApplicationServices registration files found"
+  ansible.builtin.assert:
+    that:
+    - (regfile_found | length) == (synapse_appservices_registrations | length)
+    msg: |
+        Some ApplicationServices registration files are missing
+        Expected : {{ synapse_appservices_registrations | join(', ') }}
+        Found : {{ regfile_found | map(attribute='metadata.name') | join(', ') }}
 
 # We make sure that all registration files have a registation.yaml key
 # and we build a list of hashes
@@ -22,10 +40,9 @@
     _fetched_registration_files_hash: >
       {{
         (
-          regfile_found.resources
-          | selectattr('metadata.name', 'in', synapse_appservices_registrations)
+          regfile_found
           | map(attribute='data')
-          | json_query('[]."registration.yaml"')
+          | community.general.json_query('[]."registration.yaml"')
           | map('hash', 'sha1')
         )
       }}

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -11,13 +11,22 @@
     _kind: "ElementDeployment"
 
     # This is overriding the default from the teardown role:
-    # - the updater doesn't have permissions to manage DaemonSets/Deployments/StatefulSets/Ingresses
     # - it needs to cleanup ServiceMonitors
-    # - PVCs could be here are deliberately excluded out of an abundance of caution
+    # - PVCs could be here but are deliberately excluded out of an abundance of caution
     kind_list:
+    - kind: Deployment
+      api_version: apps/v1
+    - kind: StatefulSet
+      api_version: apps/v1
+    - kind: DaemonSet
+      api_version: apps/v1
     - kind: Secret
       api_version: v1
     - kind: ConfigMap
       api_version: v1
-    - kind: ServiceMonitors
+    - kind: Service
+      api_version: v1
+    - kind: Ingress
+      api_version: networking.k8s.io/v1
+    - kind: ServiceMonitor
       api_version: monitoring.coreos.com/v1

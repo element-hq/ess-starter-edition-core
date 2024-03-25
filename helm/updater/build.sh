@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -12,6 +12,7 @@ mkdir templates
 cd templates
 
 chart_functions_namespace="elementUpdater"
+values_manager_parent_key="updater"
 
 # We generate all resources and name the files according to their kind and names
 yq -s '[.kind, .metadata.name] | join("-") | downcase + ".yaml"' <(kustomize build ../../../config/updater/default)
@@ -66,7 +67,8 @@ cp ../fragments/Deployment-element-updater-controller-manager.yaml ./deployment-
 sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../../operator/fragments/ServiceAccount-conversion-webhook.yaml > ./serviceaccount-conversion-webhook.yaml
 sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../../operator/fragments/ConversionWebhook-Service.yaml > ./service-element-conversion-webhook.yaml
 sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../../operator/fragments/Deployment-conversion-webhook.yaml > ./deployment-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../../operator/fragments/_helpers.tpl > ./_helpers.tpl
+sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ../../operator/fragments/_helpers.tpl > ./_helpers.tpl
+cp ../fragments/_variables.tpl ./_variables.tpl
 
 # These files should be fully disabled if not deploying roles
 exclude_files=".\/clusterrole(-element-.+-(metrics-reader|proxy))|(-element-.*-)|(-manager)|(binding-element-.*-(manager|proxy)).yaml"

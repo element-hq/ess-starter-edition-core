@@ -1,29 +1,43 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 ---
-- name: "Detect OpenShift"
-  kubernetes.core.k8s_info:
-    api_version: project.openshift.io/v1
-    kind: Project
-    name: "{{ ansible_operator_meta.namespace }}"
-  register: _project
+- name: Fetch APIs available
+  kubernetes.core.k8s_cluster_info:
+  register: _cluster_info
 
 - name: "Save whether OpenShift or not"
   ansible.builtin.set_fact:
-    is_openshift: "{{ _project.api_found }}"
+    is_openshift: >-
+      {{
+        ('project.openshift.io/v1' in _cluster_info.apis)
+        and ('Project' in _cluster_info.apis['project.openshift.io/v1'])
+      }}
 
-- name: "Read out flags"
-  ansible.builtin.debug:
-    msg: "Got >{{ _pass_uid }}< from >{{ image.pass_user_id_to_synapse | default('MISSING') }}, maybe look at >{{ image }}<"
-
-- name: "Save OpenShift UID/GID ranges"
-  ansible.builtin.set_fact:
-    openshift_uid_base: "{{ _project.resources[0].metadata.annotations['openshift.io/sa.scc.uid-range'].split('/')[0] }}"
-    openshift_gid_base: "{{ _project.resources[0].metadata.annotations['openshift.io/sa.scc.supplemental-groups'].split('/')[0] }}"
+- name: "Detect OpenShift project metadata"
   when: is_openshift
+  block:
+  - name: Detect Openshift project
+    ansible.builtin.set_fact:
+      _project: >-
+        {{
+          query('k8s',
+                api_version="v1",
+                kind="Project",
+                resource_name=ansible_operator_meta.namespace,
+              )
+        }}
+
+  - name: "Read out flags"
+    ansible.builtin.debug:
+      msg: "Got >{{ _pass_uid }}< from >{{ image.pass_user_id_to_synapse | default('MISSING') }}, maybe look at >{{ image }}<"
+
+  - name: "Save OpenShift UID/GID ranges"
+    ansible.builtin.set_fact:
+      openshift_uid_base: "{{ _project[0].metadata.annotations['openshift.io/sa.scc.uid-range'].split('/')[0] }}"
+      openshift_gid_base: "{{ _project[0].metadata.annotations['openshift.io/sa.scc.supplemental-groups'].split('/')[0] }}"
 
 - name: Validation
   ansible.builtin.import_tasks: validation.yml
@@ -49,9 +63,9 @@
     process_app: synapse.app.homeserver
     process_additional: "{{ config.additional_main | default('') }}"
     process_resources: "{{ config.resources | default(synapse_resources) }}"
-    specific_yaml_template: "main.yaml.j2"
     has_replication: true
     has_http: true
+    has_media: "{{ not synapse_has['media-repository'] }}"
     num_instances: 1
     can_only_have_one: true
 
@@ -65,10 +79,10 @@
     process_app: "synapse.app.{{ synapse_available_worker_types[worker.key].app }}"
     process_additional: "{{ worker.value.additional | default('') }}"
     process_resources: "{{ worker.value.resources | default(config.resources) }}"
-    specific_yaml_template: "worker.yaml.j2"
     has_replication: "{{ 'replication' in synapse_available_worker_types[worker.key].listeners }}"
     has_http: "{{ 'client' in synapse_available_worker_types[worker.key].listeners or \
                   'federation' in synapse_available_worker_types[worker.key].listeners }}"
+    has_media: "{{ worker.key == 'media-repository' }}"
     num_instances: "{{ worker.value.instances }}"
     can_only_have_one: "{{ synapse_available_worker_types[worker.key].single }}"
 

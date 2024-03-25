@@ -39,10 +39,34 @@ spec:
       imagePullSecrets:
       - name: {{ tpl $.Values.operator.imagePullSecret . }}
 {{- end }}
+      initContainers:
+      - command:
+        - "/bin/sh"
+        - "-xc"
+        args:
+        - rm -rfv /tmp/* /tmp/.* /home/nonroot/.ansible/tmp/* /home/nonroot/.ansible/tmp/.* || true
+        env:
+        {{- include "elementOperator.managerEnv" . | nindent 8 }}
+        image: '{{ .Values.operator.manager.image.repository }}{{ hasKey .Values.operator.manager.image "digest" | ternary (print "@" .Values.operator.manager.image.digest) (print ":" .Values.operator.manager.image.tag) }}'
+        imagePullPolicy: '{{ .Values.operator.manager.imagePullPolicy }}'
+        name: cleanup
+      {{- with $.Values.operator.manager.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if $.Values.operator.manager.extraContainerSpec }}
+        {{- toYaml $.Values.operator.manager.extraContainerSpec | nindent 8 }}
+      {{- end }}
+        volumeMounts:
+        - mountPath: /tmp
+          name: manager-tmp
+        - mountPath: /home/nonroot/.ansible/tmp/
+          name: ansible-tmp
       containers:
 {{- if $.Values.clusterDeployment }}
       - args:
           - --secure-listen-address=0.0.0.0:8443
+          - --proxy-endpoints-port=8789
           - --upstream=http://127.0.0.1:8080/
           - --logtostderr=true
           - --v=0
@@ -60,22 +84,39 @@ spec:
           - containerPort: 8443
             name: https
             protocol: TCP
-{{- end }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8789
+            scheme: HTTPS
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8789
+            scheme: HTTPS
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /healthz
+            port: 8789
+            scheme: HTTPS
+          periodSeconds: 10
+{{ end }}
       - args:
           - --health-probe-bind-address=:6789
           - --metrics-bind-address=127.0.0.1:8080
           - --leader-elect
           - --leader-election-id=element-operator
+{{- if or .Values.operator.manager.resources.limits.memory .Values.operator.manager.maxReconciliationProcesses }}
+{{- if .Values.operator.manager.maxReconciliationProcesses }}
+          - --max-concurrent-reconciles={{ .Values.operator.manager.maxReconciliationProcesses }}
+{{ else }}
+          - --max-concurrent-reconciles={{ include "elementOperator.managerMaxReconciliationProcesses" . }}
+{{- end }}
+{{- end }}
         env:
-        - name: ANSIBLE_GATHERING
-          value: "explicit"
-        {{- if not $.Values.clusterDeployment }}
-        - name: WATCH_NAMESPACE
-          value: '{{ .Release.Namespace }}'
-        {{- end }}
-        {{- if $.Values.operator.manager.extraEnvs }}
-          {{- toYaml $.Values.operator.manager.extraEnvs | nindent 8 }}
-        {{- end }}
+        {{- include "elementOperator.managerEnv" . | nindent 8 }}
         image: '{{ .Values.operator.manager.image.repository }}{{ hasKey .Values.operator.manager.image "digest" | ternary (print "@" .Values.operator.manager.image.digest) (print ":" .Values.operator.manager.image.tag) }}'
         imagePullPolicy: '{{ .Values.operator.manager.imagePullPolicy }}'
         livenessProbe:

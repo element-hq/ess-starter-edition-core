@@ -81,9 +81,6 @@ rules:
       - ""
     resources:
       - secrets
-      - pods
-      - pods/exec
-      - pods/log
       - configmaps
       - services
     verbs:
@@ -99,7 +96,6 @@ rules:
     resources:
       - deployments
       - daemonsets
-      - replicasets
       - statefulsets
     verbs:
       - create

@@ -7,23 +7,33 @@
   kind: ElementWeb
   playbook: playbooks/elementweb.yml
   watchAnnotationsChanges: true
+  markUnsafe: true
+  maxRunnerArtifacts: 0
 - version: v1alpha1
   group: matrix.element.io
   kind: MatrixContentScanner
   playbook: playbooks/matrixcontentscanner.yml
   watchAnnotationsChanges: true
+  markUnsafe: true
+  maxRunnerArtifacts: 0
 - version: v1alpha1
   group: matrix.element.io
   kind: SlidingSync
   playbook: playbooks/slidingsync.yml
   watchAnnotationsChanges: true
+  markUnsafe: true
+  maxRunnerArtifacts: 0
 - version: v1alpha2
   group: matrix.element.io
   kind: Synapse
   playbook: playbooks/synapse.yml
   watchAnnotationsChanges: true
+  markUnsafe: true
+  maxRunnerArtifacts: 0
 - version: v1alpha1
   group: matrix.element.io
   kind: WellKnownDelegation
   playbook: playbooks/wellknowndelegation.yml
   watchAnnotationsChanges: true
+  markUnsafe: true
+  maxRunnerArtifacts: 0

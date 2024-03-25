@@ -1,53 +1,28 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 ---
-- name: "Find unused crds"
-  kubernetes.core.k8s_info:
-    api_version: "{{ kind_item.api_version }}"
-    kind: "{{ kind_item.kind }}"
-    namespace: "{{ ansible_operator_meta.namespace }}"
-    label_selectors:
-    - "app.kubernetes.io/managed-by = element-updater"
-    # The operator-sdk complains about "Unable to convert label selectors for the client" here via
-    # https://github.com/operator-framework/operator-sdk/blob/v1.31.0/internal/ansible/proxy/cache_response.go#L254-L261
-    # This in turn uses https://github.com/kubernetes/apimachinery/blob/master/pkg/labels/labels.go#L150-L174
-    # which is looking to split on `=`. This feels like the wrong function to call. However it only impacts the cache
-    # and the right resources are returned so the error should be ignored
-    - "k8s.element.io/crdhash != {{ _crd_spec_hash }}"
+- name: "Find unused resources"
+  vars:
+    _label_selectors:
+    - "app.kubernetes.io/managed-by=element-updater"
+    - "k8s.element.io/crdhash!={{ _crd_spec_hash }}"
     - "k8s.element.io/crdhash"
-  loop: "{{ element_operator_crds }}"
-  loop_control:
-    loop_var: kind_item
-    label: kind_item
-  async: 60
-  poll: 0
-  register: async_loop
-
-- name: Wait for components deployment
-  ansible.builtin.async_status:
-    jid: "{{ item.ansible_job_id }}"
-    mode: status
-  retries: 60
-  delay: 1
-  loop: "{{ async_loop.results }}"
-  register: _orphan_crds
-  until: _orphan_crds.finished
-
-- name: Gather results
   ansible.builtin.set_fact:
-    _orphan_crds_results: >
-      {{
-        query('file', *(
-                    _orphan_crds.results
-                    | flatten
-                    | map(attribute='results_file')
-                )
+    _orphan_crds: |
+      {% for kind_item in element_operator_crds %}
+      {{ query('k8s',
+                namespace=ansible_operator_meta.namespace,
+                kind=kind_item.kind,
+                api_version=kind_item.api_version,
+                label_selector=_label_selectors | join(',')
               )
-        | map('from_json')
-      }}
+        | mapattributes(['apiVersion', 'kind', 'metadata'])
+        | to_nice_yaml }}
+      ---
+      {% endfor %}
 
 # Filter the above lists to remove items without
 # an ownerReferences that refers to `kind: ElementDeployment`
@@ -57,8 +32,10 @@
 - name: "Filter resources managed by ElementDeployment CRD"
   ansible.builtin.set_fact:
     _filtered_kind: >-
-      {{ _orphan_crds_results
-          | map(attribute='resources')
+      {{ _orphan_crds
+          | split("---")
+          | select
+          | map('from_yaml')
           | map('json_query', query)
           | flatten
       }}
@@ -78,7 +55,6 @@
     definition: >-
       {{
         _filtered
-        | mapattributes(['apiVersion', 'kind', 'metadata'])
       }}
 
 # Any Secrets/ConfigMaps/etc will be taken down by the generic teardown role

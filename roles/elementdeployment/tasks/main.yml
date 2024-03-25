@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -10,8 +10,16 @@
   loop_control:
     loop_var: prerequisite_task
 
-- name: "Deploy contents"
-  ansible.builtin.include_tasks: deploy.yml
+- name: "Prepare all components manifests"
+  ansible.builtin.include_tasks: prepare.yml
+
+
+- name: Use generic apply
+  ansible.builtin.include_role:
+    name: "generic_apply"
+  vars:
+    _rendered_manifests_strings: "{{ _all_components_manifests_content }}"
+  when: "_all_components_manifests_content | length > 0"
 
 - name: "Finalising tasks"
   ansible.builtin.include_tasks: "{{ finalising_task }}"

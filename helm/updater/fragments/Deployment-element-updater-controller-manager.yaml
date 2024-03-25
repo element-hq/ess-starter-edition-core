@@ -40,10 +40,34 @@ spec:
       imagePullSecrets:
       - name: {{ tpl $.Values.updater.imagePullSecret . }}
 {{- end }}
+      initContainers:
+      - command:
+        - "/bin/sh"
+        - "-xc"
+        args:
+        - rm -rfv /tmp/* /tmp/.* /home/nonroot/.ansible/tmp/* /home/nonroot/.ansible/tmp/.* || true
+        env:
+        {{- include "elementUpdater.managerEnv" . | nindent 8 }}
+        image: '{{ .Values.updater.manager.image.repository }}{{ hasKey .Values.updater.manager.image "digest" | ternary (print "@" .Values.updater.manager.image.digest) (print ":" .Values.updater.manager.image.tag) }}'
+        imagePullPolicy: '{{ .Values.updater.manager.imagePullPolicy }}'
+        name: cleanup
+      {{- with $.Values.updater.manager.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if $.Values.updater.manager.extraContainerSpec }}
+        {{- toYaml $.Values.updater.manager.extraContainerSpec | nindent 8 }}
+      {{- end }}
+        volumeMounts:
+        - mountPath: /tmp
+          name: manager-tmp
+        - mountPath: /home/nonroot/.ansible/tmp/
+          name: ansible-tmp
       containers:
 {{- if $.Values.clusterDeployment }}
       - args:
           - --secure-listen-address=0.0.0.0:8443
+          - --proxy-endpoints-port=8789
           - --upstream=http://127.0.0.1:8080/
           - --logtostderr=true
           - --v=0
@@ -61,22 +85,38 @@ spec:
           - containerPort: 8443
             name: https
             protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8789
+            scheme: HTTPS
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8789
+            scheme: HTTPS
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /healthz
+            port: 8789
+            scheme: HTTPS
 {{ end }}
       - args:
           - --health-probe-bind-address=:6789
           - --metrics-bind-address=127.0.0.1:8080
           - --leader-elect
           - --leader-election-id=element-updater
+{{- if or .Values.updater.manager.resources.limits.memory .Values.updater.manager.maxReconciliationProcesses }}
+{{- if .Values.updater.manager.maxReconciliationProcesses }}
+          - --max-concurrent-reconciles={{ .Values.updater.manager.maxReconciliationProcesses }}
+{{ else }}
+          - --max-concurrent-reconciles={{ include "elementUpdater.managerMaxReconciliationProcesses" . }}
+{{- end }}
+{{- end }}
         env:
-        - name: ANSIBLE_GATHERING
-          value: "explicit"
-        {{- if not $.Values.clusterDeployment }}
-        - name: WATCH_NAMESPACE
-          value: '{{ .Release.Namespace }}'
-        {{- end }}
-        {{- if $.Values.updater.manager.extraEnvs }}
-          {{- toYaml $.Values.updater.manager.extraEnvs | nindent 8 }}
-        {{- end }}
+        {{- include "elementUpdater.managerEnv" . | nindent 8 }}
         image: '{{ .Values.updater.manager.image.repository }}{{ hasKey .Values.updater.manager.image "digest" | ternary (print "@" .Values.updater.manager.image.digest) (print ":" .Values.updater.manager.image.tag) }}'
         imagePullPolicy: '{{ .Values.updater.manager.imagePullPolicy }}'
         livenessProbe:

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -10,4 +10,5 @@
   kind: ElementDeployment
   playbook: playbooks/elementdeployment.yml
   watchAnnotationsChanges: true
+  markUnsafe: true
 #+kubebuilder:scaffold:watch

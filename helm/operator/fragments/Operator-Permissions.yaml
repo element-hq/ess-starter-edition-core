@@ -3,9 +3,6 @@
       - ""
     resources:
       - secrets
-      - pods
-      - pods/exec
-      - pods/log
       - configmaps
       - services
     verbs:
@@ -21,7 +18,6 @@
     resources:
       - deployments
       - daemonsets
-      - replicasets
       - statefulsets
     verbs:
       - create

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -12,6 +12,7 @@ mkdir templates
 cd templates
 
 chart_functions_namespace="elementOperator"
+values_manager_parent_key="operator"
 
 # We generate all resources and name the files according to their kind and names
 yq -s '[.kind, .metadata.name] | join("-") | downcase + ".yaml"' <(kustomize build ../../../config/default)
@@ -39,6 +40,7 @@ done
 # Generate users-facing roles
 yq "$(cat ../yq/resource-editor-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
 yq "$(cat ../yq/resource-viewer-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
+
 
 # We deploy CRDs and their related roles optionaly
 for entry in ./customresourcedefinition-*; do
@@ -74,7 +76,8 @@ cp ../fragments/Deployment-element-operator-controller-manager.yaml ./deployment
 sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/ServiceAccount-conversion-webhook.yaml > ./serviceaccount-conversion-webhook.yaml
 sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/ConversionWebhook-Service.yaml > ./service-element-conversion-webhook.yaml
 sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/Deployment-conversion-webhook.yaml > ./deployment-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/_helpers.tpl > ./helpers.tpl
+sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ../fragments/_helpers.tpl > ./helpers.tpl
+cp ../fragments/_variables.tpl ./_variables.tpl
 
 # These files should be fully disabled if not deploying roles
 exclude_files=".\/clusterrole(-element-.+-(metrics-reader|proxy))|(-element-.*-)|(-manager)|(binding-element-.*-(manager|proxy)).yaml"

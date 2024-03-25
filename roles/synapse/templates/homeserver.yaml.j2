@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -34,36 +34,6 @@ ip_range_blacklist:
 - 'ff00::/8'
 - 'fec0::/10'
 
-listeners:
-- port: 8008
-  tls: false
-  bind_addresses: ['0.0.0.0']
-  type: http
-  x_forwarded: true
-  resources:
-  - names: [client, federation]
-    compress: false
-- port: 9093
-  tls: false
-  bind_addresses: ['0.0.0.0']
-  type: http
-  x_forwarded: false
-  resources:
-  - names: [replication]
-    compress: false
-- type: metrics
-  port: 9001
-  bind_addresses: ['0.0.0.0']
-# Unfortunately the metrics type doesn't get the health endpoint
-- port: 8080
-  tls: false
-  bind_addresses: ['0.0.0.0']
-  type: http
-  x_forwarded: false
-  resources:
-  - names: []
-    compress: false
-
 {% if has_any_workers %}
 redis:
   enabled: true
@@ -71,8 +41,8 @@ redis:
 
 {% endif %}
 enabled_media_repo: {{ not synapse_has['media-repository'] }}
+{# This is still required despite media_storage_providers as otherwise Synapse attempts to mkdir /media_store #}
 media_store_path: "/media/media_store"
-uploads_path: "/media/uploads"
 {% if synapse_has['media-repository'] %}
 media_instance_running_background_jobs: "media-repository-0"
 {% endif %}

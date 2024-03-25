@@ -1,28 +1,28 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 ---
 - name: "Find unused resources"
-  kubernetes.core.k8s_info:
-    api_version: "{{ kind_item.api_version }}"
-    kind: "{{ kind_item.kind }}"
-    namespace: "{{ ansible_operator_meta.namespace }}"
-    label_selectors:
-    - "app.kubernetes.io/managed-by = {{ kind_managed_by }}"
-    # The operator-sdk complains about "Unable to convert label selectors for the client" here via
-    # https://github.com/operator-framework/operator-sdk/blob/v1.31.0/internal/ansible/proxy/cache_response.go#L254-L261
-    # This in turn uses https://github.com/kubernetes/apimachinery/blob/master/pkg/labels/labels.go#L150-L174
-    # which is looking to split on `=`. This feels like the wrong function to call. However it only impacts the cache
-    # and the right resources are returned so the error should be ignored
-    - "k8s.element.io/crdhash != {{ _crd_spec_hash }}"
+  vars:
+    _label_selectors:
+    - "app.kubernetes.io/managed-by={{ kind_managed_by }}"
+    - "k8s.element.io/crdhash!={{ _crd_spec_hash }}"
     - "k8s.element.io/crdhash"
-  register: _orphan_crds
-  loop: "{{ kind_list }}"
-  loop_control:
-    loop_var: kind_item
-    label: kind_item
+  ansible.builtin.set_fact:
+    _orphan_crds: |
+      {% for kind_item in kind_list %}
+      {{ query('k8s',
+                namespace=ansible_operator_meta.namespace,
+                kind=kind_item.kind,
+                api_version=kind_item.api_version,
+                label_selector=_label_selectors | join(',')
+              )
+        | mapattributes(['apiVersion', 'kind', 'metadata'])
+        | to_nice_yaml }}
+      ---
+      {% endfor %}
 
 # Filter the above lists to remove items without
 # an ownerReferences that refers to kind
@@ -32,9 +32,11 @@
 - name: "Filter resources managed by CRD"
   ansible.builtin.set_fact:
     _filtered_kind: >-
-      {{ (_orphan_crds.results
-          | map(attribute='resources')
-          | map('json_query', query))
+      {{ _orphan_crds
+          | split("---")
+          | select
+          | map('from_yaml')
+          | map('json_query', query)
           | flatten
       }}
   vars:
@@ -49,10 +51,7 @@
 - name: "Remove unused resources - {{ item.kind ~ '/' ~ item.apiVersion ~ '/' ~ item.metadata.name }}"
   kubernetes.core.k8s:
     state: absent
-    definition:
-      apiVersion: "{{ item.apiVersion }}"
-      kind: "{{ item.kind }}"
-      metadata:
-        name: "{{ item.metadata.name }}"
-        namespace: "{{ ansible_operator_meta.namespace }}"
-  loop: "{{ _filtered }}"
+    definition: >-
+      {{
+        _filtered
+      }}
