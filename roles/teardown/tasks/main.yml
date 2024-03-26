@@ -11,17 +11,20 @@
     - "k8s.element.io/crdhash!={{ _crd_spec_hash }}"
     - "k8s.element.io/crdhash"
   ansible.builtin.set_fact:
-    _orphan_crds: |
-      {% for kind_item in kind_list %}
+    _teardown_candidates: |
+      {% for kind_to_teardown in kinds_to_teardown %}
+      {% if kind_to_teardown.api_version in _cluster_info.apis
+          and kind_to_teardown.kind in _cluster_info.apis[kind_to_teardown.api_version] %}
       {{ query('k8s',
                 namespace=ansible_operator_meta.namespace,
-                kind=kind_item.kind,
-                api_version=kind_item.api_version,
+                kind=kind_to_teardown.kind,
+                api_version=kind_to_teardown.api_version,
                 label_selector=_label_selectors | join(',')
               )
         | mapattributes(['apiVersion', 'kind', 'metadata'])
         | to_nice_yaml }}
       ---
+      {% endif %}
       {% endfor %}
 
 # Filter the above lists to remove items without
@@ -29,10 +32,10 @@
 # `name: {{ ansible_operator_meta.name }}`
 # Doing as two step process for debugging
 
-- name: "Filter resources managed by CRD"
+- name: "Filter resources managed by this kind of CRD"
   ansible.builtin.set_fact:
-    _filtered_kind: >-
-      {{ _orphan_crds
+    _teardown_candidates_with_correct_owner_kind: >-
+      {{ _teardown_candidates
           | split("---")
           | select
           | map('from_yaml')
@@ -44,7 +47,7 @@
 
 - name: "Remove resources under control of something not named {{ ansible_operator_meta.name }}"
   ansible.builtin.set_fact:
-    _filtered: "{{ _filtered_kind | json_query(query) }}"
+    _to_teardown: "{{ _teardown_candidates_with_correct_owner_kind | json_query(query) }}"
   vars:
     query: "[?metadata.ownerReferences[?name == '{{ ansible_operator_meta.name }}']]"
 
@@ -53,5 +56,5 @@
     state: absent
     definition: >-
       {{
-        _filtered
+        _to_teardown
       }}

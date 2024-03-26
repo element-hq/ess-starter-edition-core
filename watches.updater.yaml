@@ -2,13 +2,24 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-
----
-# Use the 'create api' subcommand to add watches to this file.
 - version: v1alpha2
   group: matrix.element.io
   kind: ElementDeployment
   playbook: playbooks/elementdeployment.yml
   watchAnnotationsChanges: true
   markUnsafe: true
-#+kubebuilder:scaffold:watch
+  maxRunnerArtifacts: 0
+  vars:
+    _kind: ElementDeployment
+    _api_version: matrix.element.io/v1alpha2
+    element_operator_crds:
+      - kind: ElementWeb
+        api_version: matrix.element.io/v1alpha1
+      - kind: MatrixContentScanner
+        api_version: matrix.element.io/v1alpha1
+      - kind: SlidingSync
+        api_version: matrix.element.io/v1alpha1
+      - kind: Synapse
+        api_version: matrix.element.io/v1alpha2
+      - kind: WellKnownDelegation
+        api_version: matrix.element.io/v1alpha1

@@ -4,10 +4,6 @@
 
 
 ---
-- name: Fetch APIs available
-  kubernetes.core.k8s_cluster_info:
-  register: _cluster_info
-
 - name: "Save whether OpenShift or not"
   ansible.builtin.set_fact:
     is_openshift: >-

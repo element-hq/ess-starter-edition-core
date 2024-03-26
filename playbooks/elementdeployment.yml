@@ -7,26 +7,8 @@
 - name: "ElementDeployment"
   ansible.builtin.import_playbook: "any.yml"
   vars:
-    _api_version: 'matrix.element.io/v1alpha2'
-    _kind: "ElementDeployment"
-
-    # This is overriding the default from the teardown role:
+    # - it needs to cleanup the same kinds as the operator CRDs (default_kinds_to_teardown in the role)
     # - it needs to cleanup ServiceMonitors
+    # - it needs to cleanup operator managed CRDs
     # - PVCs could be here but are deliberately excluded out of an abundance of caution
-    kind_list:
-    - kind: Deployment
-      api_version: apps/v1
-    - kind: StatefulSet
-      api_version: apps/v1
-    - kind: DaemonSet
-      api_version: apps/v1
-    - kind: Secret
-      api_version: v1
-    - kind: ConfigMap
-      api_version: v1
-    - kind: Service
-      api_version: v1
-    - kind: Ingress
-      api_version: networking.k8s.io/v1
-    - kind: ServiceMonitor
-      api_version: monitoring.coreos.com/v1
+    additional_kinds_to_teardown: "{{ element_operator_crds + [{'kind': 'ServiceMonitor', 'api_version': 'monitoring.coreos.com/v1'}] }}"

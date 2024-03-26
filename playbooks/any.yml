@@ -14,6 +14,10 @@
         field_manager: element-operator
         force_conflicts: true
   tasks:
+  - name: Fetch APIs available
+    kubernetes.core.k8s_cluster_info:
+    register: _cluster_info
+
   - name: "Run {{ _kind | lower }}"
     ansible.builtin.import_role:
       name: "{{ _kind | lower }}"
@@ -44,7 +48,9 @@
 
     # This allows us to force a recreation of all managed resources
     # Change this value, _crd_spec_hash will then change and then any resources not updated will be reaped by the teardown plays
-    _crd_hash_version: ""
+    _crd_hash_versions_by_kind:
+      "Synapse": "2023-10-10"
+    _crd_hash_version: "{{ _crd_hash_versions_by_kind[_kind] | default('') }}"
     _crd_spec_json: "{{ hostvars[inventory_hostname]['_matrix_element_io_' ~ (_kind | lower) ~ '_spec'] | to_json }}"
     _crd_spec_hash: "{{ (_crd_spec_json + (_owner.metadata.annotations | default({}) | to_json) + _crd_hash_version) | hash('sha1') }}"
     _crd_spec_hash_metadata:
