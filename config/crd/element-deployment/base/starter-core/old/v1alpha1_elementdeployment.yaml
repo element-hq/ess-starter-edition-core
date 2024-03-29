@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -7,11 +7,6 @@ metadata:
   name: elementdeployment-starter-core-v1alpha1
 spec:
   name: v1alpha1
-  served: true
-  storage: false
-  deprecated: true
-  subresources:
-    status: {}
   schema:
     openAPIV3Schema:
       description: ElementDeployment is the Schema for the elementdeployments API
@@ -226,7 +221,7 @@ spec:
                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                     x-kubernetes-int-or-string: true
                                   default:
-                                    cpu: 100m
+                                    cpu: 50m
                                     memory: 50Mi
                                   description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                   type: object
@@ -427,7 +422,7 @@ spec:
                                         x-kubernetes-int-or-string: true
                                       default:
                                         cpu: 100m
-                                        memory: 200Mi
+                                        memory: 100Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
                                   type: object
@@ -539,7 +534,7 @@ spec:
                                         x-kubernetes-int-or-string: true
                                       default:
                                         cpu: 100m
-                                        memory: 200Mi
+                                        memory: 100Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
                                   type: object
@@ -711,7 +706,7 @@ spec:
                                         x-kubernetes-int-or-string: true
                                       default:
                                         cpu: 100m
-                                        memory: 200Mi
+                                        memory: 100Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
                                   type: object
@@ -913,8 +908,8 @@ spec:
                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                         x-kubernetes-int-or-string: true
                                       default:
-                                        cpu: 200m
-                                        memory: 2Gi
+                                        cpu: 100m
+                                        memory: 200Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
                                   type: object
@@ -1234,8 +1229,8 @@ spec:
                                       pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                       x-kubernetes-int-or-string: true
                                     default:
-                                      cpu: 1
-                                      memory: 2Gi
+                                      cpu: 100m
+                                      memory: 100Mi
                                     description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                     type: object
                                 type: object
@@ -1356,7 +1351,7 @@ spec:
                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                         x-kubernetes-int-or-string: true
                                       default:
-                                        cpu: 1
+                                        cpu: 100m
                                         memory: 100Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
@@ -1557,7 +1552,7 @@ spec:
                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                         x-kubernetes-int-or-string: true
                                       default:
-                                        cpu: 200m
+                                        cpu: 50m
                                         memory: 50Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
@@ -1692,8 +1687,8 @@ spec:
                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                         x-kubernetes-int-or-string: true
                                       default:
-                                        cpu: 1
-                                        memory: 2Gi
+                                        cpu: 100m
+                                        memory: 100Mi
                                       description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                       type: object
                                   type: object
@@ -1925,7 +1920,7 @@ spec:
                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                     x-kubernetes-int-or-string: true
                                   default:
-                                    cpu: 100m
+                                    cpu: 50m
                                     memory: 50Mi
                                   description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                   type: object
@@ -2199,3 +2194,8 @@ spec:
           type: object
           x-kubernetes-preserve-unknown-fields: true
       type: object
+  served: true
+  storage: false
+  subresources:
+    status: {}
+  deprecated: true
