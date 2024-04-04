@@ -1,4 +1,4 @@
-// Copyright 2023-2024 New Vector Ltd
+// Copyright 2024 New Vector Ltd
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -16,10 +16,10 @@ func Convert(Object *unstructured.Unstructured) (*unstructured.Unstructured, met
 	convertedObject := Object.DeepCopy()
 	switch Object.Object["kind"] {
 	case "Synapse":
-		klog.Info("Converting starter Synapse to v1alpha2")
+		klog.Info("Downgrading starter Synapse ")
 		return ConvertSynapse(convertedObject)
 	case "ElementDeployment":
-		klog.Info("Converting starter ElementDeployment to v1alpha2")
+		klog.Info("Downgrading starter ElementDeployment ")
 		return ConvertElementDeployment(convertedObject)
 	default:
 		return nil, kubernetes.StatusErrorWithMessage("unexpected kind conversion %q", Object.Object["kind"])

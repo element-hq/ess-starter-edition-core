@@ -1,4 +1,4 @@
-// Copyright 2023 New Vector Ltd
+// Copyright 2023-2024 New Vector Ltd
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -6,6 +6,8 @@
 package converter
 
 import (
+	"fmt"
+
 	"element.io/conversion-webhook/internal/pkg/converter/kubernetes"
 	"element.io/conversion-webhook/internal/pkg/converter/v1alpha1"
 	"element.io/conversion-webhook/internal/pkg/converter/v1alpha2"
@@ -59,8 +61,7 @@ func Process(Object *unstructured.Unstructured, toVersion string) (*unstructured
 
 func upgrade(Object *unstructured.Unstructured, toVersion string) (*unstructured.Unstructured, metav1.Status) {
 	fromVersion := Object.GetAPIVersion()
-	klog.Info(fromVersion)
-	klog.Info(toVersion)
+	klog.Info(fmt.Sprintf("Upgrading %q from %q to %q", Object.Object["kind"], fromVersion, toVersion))
 	if toVersion == fromVersion {
 		return Object, kubernetes.StatusSucceed()
 	}
@@ -79,8 +80,7 @@ func upgrade(Object *unstructured.Unstructured, toVersion string) (*unstructured
 
 func downgrade(Object *unstructured.Unstructured, toVersion string) (*unstructured.Unstructured, metav1.Status) {
 	fromVersion := Object.GetAPIVersion()
-	klog.Info(fromVersion)
-	klog.Info(toVersion)
+	klog.Info(fmt.Sprintf("Downgrading %q from %q to %q", Object.Object["kind"], fromVersion, toVersion))
 	if toVersion == fromVersion {
 		return Object, kubernetes.StatusSucceed()
 	}
@@ -88,7 +88,7 @@ func downgrade(Object *unstructured.Unstructured, toVersion string) (*unstructur
 	case "matrix.element.io/v1alpha2":
 		convertedObject, status := v1alpha1.Convert(Object)
 		if status.Status == metav1.StatusSuccess {
-			return upgrade(convertedObject, toVersion)
+			return downgrade(convertedObject, toVersion)
 		} else {
 			return nil, status
 		}
