@@ -1060,6 +1060,22 @@ spec:
                           description: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
                           format: int64
                           type: integer
+                        seLinuxOptions:
+                          description: SELinuxOptions are the labels to be applied to all the pod containers
+                          properties:
+                            level:
+                              description: Level is SELinux level label that applies to the container.
+                              type: string
+                            role:
+                              description: Role is a SELinux role label that applies to the container.
+                              type: string
+                            type:
+                              description: Type is a SELinux type label that applies to the container.
+                              type: string
+                            user:
+                              description: User is a SELinux user label that applies to the container.
+                              type: string
+                          type: object
                         seccompProfile:
                           description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
                           properties:
@@ -1107,7 +1123,7 @@ spec:
                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                             x-kubernetes-int-or-string: true
                           default:
-                            cpu: 1
+                            cpu: 100m
                             memory: 100Mi
                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                           type: object
@@ -1191,6 +1207,22 @@ spec:
                           description: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
                           format: int64
                           type: integer
+                        seLinuxOptions:
+                          description: SELinuxOptions are the labels to be applied to all the pod containers
+                          properties:
+                            level:
+                              description: Level is SELinux level label that applies to the container.
+                              type: string
+                            role:
+                              description: Role is a SELinux role label that applies to the container.
+                              type: string
+                            type:
+                              description: Type is a SELinux type label that applies to the container.
+                              type: string
+                            user:
+                              description: User is a SELinux user label that applies to the container.
+                              type: string
+                          type: object
                         seccompProfile:
                           description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
                           properties:
@@ -1275,6 +1307,22 @@ spec:
                           description: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
                           format: int64
                           type: integer
+                        seLinuxOptions:
+                          description: SELinuxOptions are the labels to be applied to all the pod containers
+                          properties:
+                            level:
+                              description: Level is SELinux level label that applies to the container.
+                              type: string
+                            role:
+                              description: Role is a SELinux role label that applies to the container.
+                              type: string
+                            type:
+                              description: Type is a SELinux type label that applies to the container.
+                              type: string
+                            user:
+                              description: User is a SELinux user label that applies to the container.
+                              type: string
+                          type: object
                         seccompProfile:
                           description: To set the Seccomp profile for a Container, include the seccompProfile field in the securityContext section of your Pod or Container manifest. The seccompProfile field is a SeccompProfile object consisting of type and localhostProfile. Valid options for type include RuntimeDefault, Unconfined, and Localhost. localhostProfile must only be set set if type Localhost. It indicates the path of the pre-configured profile on the node, relative to the kubelet's configured Seccomp profile location (configured with the --root-dir flag).
                           properties:
@@ -1317,7 +1365,7 @@ spec:
                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                             x-kubernetes-int-or-string: true
                           default:
-                            cpu: 200m
+                            cpu: 50m
                             memory: 50Mi
                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                           type: object
@@ -1345,8 +1393,8 @@ spec:
                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                             x-kubernetes-int-or-string: true
                           default:
-                            cpu: 1
-                            memory: 2Gi
+                            cpu: 100m
+                            memory: 100Mi
                           description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                           type: object
                       type: object
@@ -1384,8 +1432,8 @@ spec:
                                   pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                   x-kubernetes-int-or-string: true
                                 default:
-                                  cpu: 1
-                                  memory: 2Gi
+                                  cpu: 100m
+                                  memory: 100Mi
                                 description: 'Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                                 type: object
                             type: object
@@ -1561,6 +1609,33 @@ spec:
                             type: string
                           description: Defines the annotations to add to the workloads
                           type: object
+                        nodeSelector:
+                          additionalProperties:
+                            type: string
+                          description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                          type: object
+                        tolerations:
+                          description: Workload tolerations
+                          items:
+                            description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                            properties:
+                              effect:
+                                description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                type: string
+                              key:
+                                description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                type: string
+                              operator:
+                                description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                type: string
+                              tolerationSeconds:
+                                description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                type: number
+                              value:
+                                description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                type: string
+                            type: object
+                          type: array
                       type: object
                     redis:
                       description: Custom properties on workloads
@@ -1570,6 +1645,33 @@ spec:
                             type: string
                           description: Defines the annotations to add to the workloads
                           type: object
+                        nodeSelector:
+                          additionalProperties:
+                            type: string
+                          description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                          type: object
+                        tolerations:
+                          description: Workload tolerations
+                          items:
+                            description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                            properties:
+                              effect:
+                                description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                type: string
+                              key:
+                                description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                type: string
+                              operator:
+                                description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                type: string
+                              tolerationSeconds:
+                                description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                type: number
+                              value:
+                                description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                type: string
+                            type: object
+                          type: array
                       type: object
                     synapse:
                       description: Custom properties on workloads
@@ -1593,6 +1695,33 @@ spec:
                             required:
                               - name
                               - value
+                            type: object
+                          type: array
+                        nodeSelector:
+                          additionalProperties:
+                            type: string
+                          description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                          type: object
+                        tolerations:
+                          description: Workload tolerations
+                          items:
+                            description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                            properties:
+                              effect:
+                                description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                type: string
+                              key:
+                                description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                type: string
+                              operator:
+                                description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                type: string
+                              tolerationSeconds:
+                                description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                type: number
+                              value:
+                                description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                type: string
                             type: object
                           type: array
                       type: object

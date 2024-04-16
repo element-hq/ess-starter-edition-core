@@ -16,6 +16,7 @@
   tasks:
   - name: Fetch APIs available
     kubernetes.core.k8s_cluster_info:
+      invalidate_cache: false
     register: _cluster_info
 
   - name: "Run {{ _kind | lower }}"

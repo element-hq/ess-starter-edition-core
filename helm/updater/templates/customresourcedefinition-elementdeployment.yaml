@@ -2873,6 +2873,11 @@ spec:
                                       - hostnames
                                     type: object
                                   type: array
+                                nodeSelector:
+                                  additionalProperties:
+                                    type: string
+                                  description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                  type: object
                                 replicas:
                                   description: The number of Element Web replicas
                                   minimum: 1
@@ -2906,6 +2911,10 @@ spec:
                                       type: object
                                   type: object
                                 securityContext:
+                                  anyOf:
+                                    - required:
+                                        - seLinuxOptions
+                                    - {}
                                   default: {}
                                   properties:
                                     forceUidGid:
@@ -2922,6 +2931,21 @@ spec:
                                       default: 10004
                                       description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                       type: number
+                                    seLinuxOptions:
+                                      properties:
+                                        level:
+                                          description: Level is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        role:
+                                          description: Role is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        type:
+                                          description: Type is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        user:
+                                          description: User is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                      type: object
                                     setSecComp:
                                       description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                       enum:
@@ -2929,6 +2953,28 @@ spec:
                                         - disable
                                       type: string
                                   type: object
+                                tolerations:
+                                  description: Workload tolerations
+                                  items:
+                                    description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                    properties:
+                                      effect:
+                                        description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                        type: string
+                                      key:
+                                        description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                        type: string
+                                      operator:
+                                        description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                        type: string
+                                      tolerationSeconds:
+                                        description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                        type: number
+                                      value:
+                                        description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                        type: string
+                                    type: object
+                                  type: array
                               type: object
                           type: object
                         secretName:
@@ -3077,6 +3123,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -3106,6 +3157,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -3122,6 +3177,21 @@ spec:
                                           default: 10150
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -3129,6 +3199,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             common:
@@ -3189,6 +3281,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -3218,6 +3315,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -3234,6 +3335,21 @@ spec:
                                           default: 10152
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -3241,6 +3357,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             matrixContentScanner:
@@ -3361,6 +3499,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -3390,6 +3533,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -3406,6 +3553,21 @@ spec:
                                           default: 10151
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -3413,6 +3575,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               required:
                                 - storage
@@ -3564,6 +3748,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -3593,6 +3782,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -3609,6 +3802,21 @@ spec:
                                           default: 10130
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -3616,6 +3824,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             common:
@@ -4003,6 +4233,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     replicas:
                                       description: The number of Synapse HAProxy replicas
                                       minimum: 1
@@ -4036,6 +4271,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -4052,6 +4291,21 @@ spec:
                                           default: 10001
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -4059,6 +4313,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             ingress:
@@ -4208,6 +4484,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -4237,6 +4518,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -4253,6 +4538,21 @@ spec:
                                           default: 10002
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -4260,6 +4560,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                             synapse:
@@ -4343,6 +4665,11 @@ spec:
                                           - hostnames
                                         type: object
                                       type: array
+                                    nodeSelector:
+                                      additionalProperties:
+                                        type: string
+                                      description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                      type: object
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -4372,6 +4699,10 @@ spec:
                                           type: object
                                       type: object
                                     securityContext:
+                                      anyOf:
+                                        - required:
+                                            - seLinuxOptions
+                                        - {}
                                       default: {}
                                       properties:
                                         forceUidGid:
@@ -4388,6 +4719,21 @@ spec:
                                           default: 10991
                                           description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                           type: number
+                                        seLinuxOptions:
+                                          properties:
+                                            level:
+                                              description: Level is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            role:
+                                              description: Role is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            type:
+                                              description: Type is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                            user:
+                                              description: User is SELinux level label that applies to all the workload containers.
+                                              type: string
+                                          type: object
                                         setSecComp:
                                           description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                           enum:
@@ -4395,6 +4741,28 @@ spec:
                                             - disable
                                           type: string
                                       type: object
+                                    tolerations:
+                                      description: Workload tolerations
+                                      items:
+                                        description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                        properties:
+                                          effect:
+                                            description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                            type: string
+                                          key:
+                                            description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                            type: string
+                                          operator:
+                                            description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                            type: string
+                                          tolerationSeconds:
+                                            description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                            type: number
+                                          value:
+                                            description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                            type: string
+                                        type: object
+                                      type: array
                                   type: object
                               type: object
                           type: object
@@ -4572,6 +4940,11 @@ spec:
                                       - hostnames
                                     type: object
                                   type: array
+                                nodeSelector:
+                                  additionalProperties:
+                                    type: string
+                                  description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                                  type: object
                                 replicas:
                                   description: The number of Well-Known Delegation replicas
                                   minimum: 1
@@ -4605,6 +4978,10 @@ spec:
                                       type: object
                                   type: object
                                 securityContext:
+                                  anyOf:
+                                    - required:
+                                        - seLinuxOptions
+                                    - {}
                                   default: {}
                                   properties:
                                     forceUidGid:
@@ -4621,6 +4998,21 @@ spec:
                                       default: 10003
                                       description: The runAsUser UID to use if securityContextForceUidGid is enabled
                                       type: number
+                                    seLinuxOptions:
+                                      properties:
+                                        level:
+                                          description: Level is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        role:
+                                          description: Role is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        type:
+                                          description: Type is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                        user:
+                                          description: User is SELinux level label that applies to all the workload containers.
+                                          type: string
+                                      type: object
                                     setSecComp:
                                       description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
                                       enum:
@@ -4628,6 +5020,28 @@ spec:
                                         - disable
                                       type: string
                                   type: object
+                                tolerations:
+                                  description: Workload tolerations
+                                  items:
+                                    description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                    properties:
+                                      effect:
+                                        description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                        type: string
+                                      key:
+                                        description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                        type: string
+                                      operator:
+                                        description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                        type: string
+                                      tolerationSeconds:
+                                        description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                        type: number
+                                      value:
+                                        description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                        type: string
+                                    type: object
+                                  type: array
                               type: object
                           type: object
                         secretName:
@@ -4835,12 +5249,21 @@ spec:
                                   - hostnames
                                 type: object
                               type: array
+                            nodeSelector:
+                              additionalProperties:
+                                type: string
+                              description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
+                              type: object
                             replicas:
                               default: 2
                               description: The number of replicas for workloads supporting it
                               minimum: 1
                               type: number
                             securityContext:
+                              anyOf:
+                                - required:
+                                    - seLinuxOptions
+                                - {}
                               default: {}
                               properties:
                                 forceUidGid:
@@ -4850,6 +5273,21 @@ spec:
                                     - enable
                                     - disable
                                   type: string
+                                seLinuxOptions:
+                                  properties:
+                                    level:
+                                      description: Level is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                    role:
+                                      description: Role is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                    type:
+                                      description: Type is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                    user:
+                                      description: User is SELinux level label that applies to all the workload containers.
+                                      type: string
+                                  type: object
                                 setSecComp:
                                   default: enable
                                   description: Enable RuntimeDefault pod seccomp. disable if it should not be used.
@@ -4858,6 +5296,28 @@ spec:
                                     - disable
                                   type: string
                               type: object
+                            tolerations:
+                              description: Workload tolerations
+                              items:
+                                description: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+                                properties:
+                                  effect:
+                                    description: Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+                                    type: string
+                                  key:
+                                    description: Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+                                    type: string
+                                  operator:
+                                    description: Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+                                    type: string
+                                  tolerationSeconds:
+                                    description: TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+                                    type: number
+                                  value:
+                                    description: Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+                                    type: string
+                                type: object
+                              type: array
                           type: object
                       type: object
                     secretName:

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -7,7 +7,7 @@
 # since it depends on service name and namespace that are out of this kustomize package.
 # It should be run by config/default
 resources:
-  - ../../inline-patches/starter-core
+  - ../../deprecated-patches/starter-core
 patches:
   - |-
     kind: KustomizeSchema
@@ -94,9 +94,4 @@ patches:
     kind: KustomizeSchema
     metadata:
       name: postgres-libpq
-    $patch: delete
-  - |
-    kind: KustomizeSchema
-    metadata:
-      name: elementdeployment-starter-core-v1alpha1
     $patch: delete

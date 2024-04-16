@@ -1,0 +1,21 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+resources:
+  - ../../inline-patches/starter-core
+# Make old version properties consistent for round-trip conversions to work properly
+# Compatible properties get added to all CRD versions
+# Incompatible properties rely on annotations via the conversion webhook
+replacements:
+  - source:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io
+      fieldPath: spec.versions.0.schema.openAPIV3Schema.properties.spec
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: elementdeployments.matrix.element.io
+        fieldPaths:
+          - spec.versions.1.schema.openAPIV3Schema.properties.spec

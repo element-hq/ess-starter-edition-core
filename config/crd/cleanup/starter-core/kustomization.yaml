@@ -1,10 +1,10 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 resources:
-  - ../../patches/starter-core
+  - ../../deprecated-patches/starter-core
 patches:
   - |-
     kind: KustomizeSchema
@@ -76,9 +76,4 @@ patches:
     apiVersion: kustomize.config.k8s.io/v1beta1
     metadata:
       name: replacements-common-starter-core
-    $patch: delete
-  - |-
-    kind: KustomizeSchema
-    metadata:
-      name: synapse-v1alpha1-starter-core
     $patch: delete

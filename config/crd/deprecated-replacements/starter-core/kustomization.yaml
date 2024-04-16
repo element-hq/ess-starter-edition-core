@@ -1,0 +1,19 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+resources:
+  - ../../patches/starter-core
+# Inject old versions
+replacements:
+  - source:
+      kind: CustomResourceDefinition
+      name: synapses.matrix.element.io
+      fieldPath: spec.versions.0.schema.openAPIV3Schema.properties.spec
+    targets:
+      - select:
+          kind: CustomResourceDefinition
+          name: synapses.matrix.element.io
+        fieldPaths:
+          - spec.versions.1.schema.openAPIV3Schema.properties.spec
