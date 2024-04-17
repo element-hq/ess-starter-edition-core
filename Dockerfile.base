@@ -28,6 +28,9 @@ WORKDIR /workspace
 RUN mkdir -p /etc/ansible \
   && echo "localhost ansible_connection=local" > /etc/ansible/hosts \
   && echo '[defaults]' > /etc/ansible/ansible.cfg \
+  && echo "callback_whitelist = ansible.posix.profile_task" >> /etc/ansible/ansible.cfg \
+  && echo "stdout_callback = yaml" >> /etc/ansible/ansible.cfg \
+  && echo "internal_poll_interval = 0.01" >> /etc/ansible/ansible.cfg \
   && echo 'roles_path = /element.io/roles' >> /etc/ansible/ansible.cfg \
   && echo 'collections_path = /ansible/collections' >> /etc/ansible/ansible.cfg \
   && echo 'library = /usr/share/ansible/openshift' >> /etc/ansible/ansible.cfg
