@@ -14,6 +14,14 @@
         field_manager: element-operator
         force_conflicts: true
   tasks:
+  - name: Fetch owner metadata
+    ansible.builtin.set_fact:
+      _owner: "{{ lookup('kubernetes.core.k8s',
+                        api_version=_api_version,
+                        kind=_kind,
+                        namespace=ansible_operator_meta.namespace,
+                        resource_name=ansible_operator_meta.name) }}"
+
   - name: Fetch APIs available
     kubernetes.core.k8s_cluster_info:
       invalidate_cache: false
@@ -30,11 +38,6 @@
       kind_managed_by: "{{ _managed_by }}"
       kind_owner: "{{ _kind }}"
   vars:
-    _owner: "{{ lookup('kubernetes.core.k8s',
-                      api_version=_api_version,
-                      kind=_kind,
-                      namespace=ansible_operator_meta.namespace,
-                      resource_name=ansible_operator_meta.name) }}"
     # Server Side Apply uses PATCH whilst currently (1.29) operator-sdk only intercepts POST
     # So we need to add in the correct ownerReferences
     # Unfortunately we're only given namespace & name as variables, so we need to fetch the uid
