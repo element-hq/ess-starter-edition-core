@@ -34,7 +34,7 @@ crds:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-updater-conversion-webhook
-      tag: 2.17.12
+      tag: 2.17.13
 
 updater:
   extraPodSpec:
@@ -69,7 +69,7 @@ updater:
           - ALL
     image:
       repository: docker.io/vectorim/ess-core-updater
-      tag: 2.17.12
+      tag: 2.17.13
 
   rbacProxy:
     resources:
