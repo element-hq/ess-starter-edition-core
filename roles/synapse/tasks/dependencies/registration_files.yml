@@ -4,25 +4,25 @@
 
 
 ---
-- name: "Init ApplicationServices registration files found"
-  ansible.builtin.set_fact:
-    regfile_found: []
-
 - name: "Fetch ApplicationServices registration files"
-  ansible.builtin.set_fact:
-    regfile_found: >-
-      {{
-        regfile_found +
-          query('k8s',
+  vars:
+    regfile_found_str: |
+      {% for _cm_name_item in synapse_appservices_registrations %}
+      {% set _res = query('k8s',
               api_version="v1",
               kind="ConfigMap",
               namespace=ansible_operator_meta.namespace,
               resource_name=_cm_name_item
-            )
+            ) %}
+      {% if _res | length > 0 %}
+      {{ _res | to_nice_yaml }}
+      {% endif %}
+      {% endfor %}
+  ansible.builtin.set_fact:
+    regfile_found: >-
+      {{
+        regfile_found_str | from_yaml | select
       }}
-  loop: "{{ synapse_appservices_registrations }}"
-  loop_control:
-    loop_var: _cm_name_item
 
 - name: "Assert ApplicationServices registration files found"
   ansible.builtin.assert:

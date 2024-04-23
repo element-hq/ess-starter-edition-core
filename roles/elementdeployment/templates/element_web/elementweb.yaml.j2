@@ -11,19 +11,19 @@ metadata:
   name: "{{ ansible_operator_meta.name }}"
   namespace: "{{ ansible_operator_meta.namespace }}"
 spec:
-  {{ lookup('template', 'templates/any/k8s-image.yaml.j2') | indent(2) }}
-  {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2') | indent(2) }}
+  {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item})  | indent(2) }}
+  {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item})  | indent(2) }}
   ingress:
-    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_tls_secret': 'element-tls-secret'}) | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_component_item': _component_item, '_tls_secret': 'element-tls-secret'}) | indent(4) }}
   service:
-    {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   config:
-    {{ lookup('template', 'templates/any/k8s-config.yaml.j2') | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
     defaultMatrixServer:
       baseUrl: {{ components.synapse.k8s.ingress.fqdn }}
       serverName: {{ _global.config.domain_name }}
 {% set _config_template_files = query('fileglob', 'templates/element_web/config/*.json.j2') | sort %}
-{% set _additional_configs = query('template', *_config_template_files, convert_data=false) | select | map('trim') | select | map('from_json') %}
+{% set _additional_configs = query('template', *_config_template_files, convert_data=false, template_vars={'_component_item': _component_item}) | select | map('trim') | select | map('from_json') %}
 {% if _additional_configs | length > 0 %}
     additional: |
       {{ ({} | combine(_additional_configs, recursive=true) | to_nice_json(indent=2) | indent(6) | trim)[1:-1] }}

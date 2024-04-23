@@ -18,7 +18,7 @@
   ansible.builtin.include_role:
     name: "generic_apply"
   vars:
-    _rendered_manifests_strings: "{{ _all_components_manifests_content }}"
+    _rendered_manifests_strings: "{{ [_all_components_manifests_content] }}"
   when: "_all_components_manifests_content | length > 0"
 
 - name: "Finalising tasks"

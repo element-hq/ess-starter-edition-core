@@ -11,22 +11,22 @@ metadata:
   name: "{{ ansible_operator_meta.name }}"
   namespace: "{{ ansible_operator_meta.namespace }}"
   annotations:
-    k8s.element.io/secretshash: "{{ lookup('template', 'sliding_sync/secrets.yaml.j2') | hash('sha1') }}"
+    k8s.element.io/secretshash: "{{ lookup('template', 'sliding_sync/secrets.yaml.j2', template_vars={'_component_item': _component_item}) | hash('sha1') }}"
 spec:
   image:
-    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'api'})
+    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'api'})
       | regex_replace('image:', 'api:') | indent(6) }}
   workloads:
-    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'api'})
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'api'})
       | regex_replace('workloads:', 'api:')
       | indent(4) }}
   ingress:
-    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_tls_secret': 'sliding-sync-tls-secret'}) | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_component_item': _component_item, '_tls_secret': 'sliding-sync-tls-secret'}) | indent(4) }}
   service:
-    {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   config:
     api:
-      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'api'})
+      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'api'})
           | indent(6) }}
     log:
       level: {{ components.sliding_sync.config.log.level }}

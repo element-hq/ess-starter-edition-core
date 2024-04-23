@@ -11,35 +11,35 @@ metadata:
   name: "{{ ansible_operator_meta.name }}"
   namespace: "{{ ansible_operator_meta.namespace }}"
   annotations:
-    k8s.element.io/secretshash: "{{ lookup('template', 'matrix_content_scanner/secrets.yaml.j2') | hash('sha1') }}"
+    k8s.element.io/secretshash: "{{ lookup('template', 'matrix_content_scanner/secrets.yaml.j2', template_vars={'_component_item': _component_item}) | hash('sha1') }}"
 spec:
   image:
-    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'matrix_content_scanner'})
+    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'matrix_content_scanner'})
       | regex_replace('image:', 'matrixContentScanner:') | indent(4) }}
-    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'clam_anti_virus'})
+    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'clam_anti_virus'})
       | regex_replace('image:', 'clamAntiVirus:') | indent(4) }}
-    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'icap'})
+    {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'icap'})
       | regex_replace('image:', 'icap:') | indent(4) }}
   workloads:
-    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'matrix_content_scanner'})
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'matrix_content_scanner'})
       | regex_replace('workloads:', 'matrixContentScanner:') | indent(4) }}
-    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'clam_anti_virus'})
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'clam_anti_virus'})
       | regex_replace('workloads:', 'clamAntiVirus:') | indent(4) }}
   service:
-    {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   config:
     matrixContentScanner:
-      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'matrix_content_scanner'}) | indent(6) }}
+      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'matrix_content_scanner'}) | indent(6) }}
     clamAntiVirus:
-      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'clam_anti_virus'}) | indent(6) }}
+      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'clam_anti_virus'}) | indent(6) }}
       volumeClaim: {{ ansible_operator_meta.name }}-matrix-content-scanner
     icap:
-      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'icap'})
+      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'icap'})
        | from_yaml
        | ansible.utils.remove_keys(target=['podSecurityContext'])
        | to_nice_yaml(indent=2)
        | indent(6) }}
-    {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2') | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
     externalSecret:
       name: {{ ansible_operator_meta.name }}-matrix-content-scanner-secrets
     matrixServer:

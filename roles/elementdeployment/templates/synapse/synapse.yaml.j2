@@ -11,9 +11,9 @@ metadata:
   name: {{ ansible_operator_meta.name }}
   namespace: "{{ ansible_operator_meta.namespace }}"
   annotations:
-    k8s.element.io/secretshash: "{{ lookup('template', 'synapse/secrets.yaml.j2') | hash('sha1') }}"
+    k8s.element.io/secretshash: "{{ lookup('template', 'synapse/secrets.yaml.j2', template_vars={'_component_item': _component_item}) | hash('sha1') }}"
 spec:
-  {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'synapse'})
+  {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'synapse'})
     | from_yaml
     | ansible.utils.remove_keys(target='pullSecrets')
     | to_nice_yaml(indent=2)
@@ -21,7 +21,7 @@ spec:
   }}
     {{
       (
-        lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+        lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'haproxy'})
         | from_yaml
       ).image
       | ansible.utils.replace_keys(target=[
@@ -35,7 +35,7 @@ spec:
     }}
     {{
       (
-        lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'redis'})
+        lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'redis'})
         | from_yaml
       ).image
       | ansible.utils.replace_keys(target=[
@@ -51,15 +51,15 @@ spec:
       {
         'pullSecrets': [
           (
-            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'synapse'})
+            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'synapse'})
             | from_yaml
           ).image.pullSecrets | default([]),
           (
-            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'haproxy'})
             | from_yaml
           ).image.pullSecrets | default([]),
           (
-            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_subcomponent':'redis'})
+            lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'redis'})
             | from_yaml
           ).image.pullSecrets | default([])
         ] | community.general.lists_mergeby('name')
@@ -74,25 +74,25 @@ spec:
 {% endif %}
   workloads:
     haproxy:
-    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'haproxy'})
         | regex_replace('workloads:\n', '')
         | indent(4)
     }}
     redis:
-    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'redis'})
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'redis'})
         | regex_replace('workloads:\n', '')
         | indent(4)
     }}
     synapse:
 {% set _env = [] %}
-    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_subcomponent':'synapse', '_extraEnv': _env})
+    {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'synapse', '_extraEnv': _env})
         | regex_replace('workloads:\n', '')
         | indent(4)
     }}
   service:
-    {{ lookup('template', 'templates/any/k8s-services.yaml.j2') | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   ingress:
-    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_tls_secret': 'synapse-tls-secret'}) | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_component_item': _component_item, '_tls_secret': 'synapse-tls-secret'}) | indent(4) }}
 {% if selected_components_with_synapse_additional_ingress_paths | length > 0 %}
     additionalPaths:
     {{
@@ -105,16 +105,16 @@ spec:
 {% endif %}
   config:
     haproxyReplicas: 1
-    {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2', template_vars={'_subcomponent':'synapse'}) | indent(4) }}
-    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'synapse'}) | indent(4) }}
-    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'haproxy'})
+    {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'synapse'}) | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'synapse'}) | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'haproxy'})
         | regex_replace('resources:', 'haproxyResources:')
         | regex_replace('replicas:', 'haproxyReplicas:')
         | regex_replace('podSecurityContext:', 'haproxyPodSecurityContext:')
         | regex_replace('containersSecurityContext:', 'haproxyContainersSecurityContext:')
         | indent(4)
      }}
-    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_subcomponent':'redis'})
+    {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'redis'})
       | regex_replace('resources:', 'redisResources:')
       | regex_replace('podSecurityContext:', 'redisPodSecurityContext:')
       | regex_replace('containersSecurityContext:', 'redisContainersSecurityContext:')

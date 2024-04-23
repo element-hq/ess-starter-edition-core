@@ -19,17 +19,22 @@
     input: "{{ _global_secret }}"
 
 - name: "Build all components manifests"
-  ansible.builtin.set_fact:
-    _all_components_manifests_content: >-
-      {{
-        _all_components_manifests_content | default([]) + (
-          query('template', *_manifest_template_filenames)
-        )
-      }}
   vars:
-    _manifest_template_filenames: "{{ query('fileglob', 'templates/' + _component_item + '/*.j2') | sort | list }}"
-  when: "_manifest_template_filenames | length > 0"
-  loop: "{{ components.keys() | sort_apply_order | list }}"
-  loop_control:
-    loop_var: _component_item
-    label: _component_item
+    # We cannot use `{% set _component_item = ... %}` because the variable used in the set is not reachable outside of jinja engine
+    # and ansible cannot use the macros defined in defaults.
+    # Instead we use a magic variable injected by ansible into the jinja engine
+    # https://github.com/ansible/ansible/blob/devel/lib/ansible/template/__init__.py#L105
+    _component_item: "{{ template_path | dirname | basename }}"
+  ansible.builtin.set_fact:
+    _all_components_manifests_content: |
+      {% for _comp in components %}
+      {% set _manifest_template_filenames = query('fileglob', 'templates/' + _comp + '/*.j2') | sort | list %}
+      {% if _manifest_template_filenames | length > 0 %}
+      {% for _template in query('template', *_manifest_template_filenames) %}
+      {% if _template | select | length > 0 %}
+      {{ _template }}
+      ---
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
