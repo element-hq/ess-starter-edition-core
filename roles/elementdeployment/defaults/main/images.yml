@@ -38,7 +38,7 @@ default_images_digests:
     synapse:
       image_repository_server: docker.io
       image_repository_path: matrixdotorg/synapse
-      image_tag: v1.99.0
+      image_tag: v1.105.1
   well_known_delegation:
     well_known_delegation:
       image_repository_server: docker.io
