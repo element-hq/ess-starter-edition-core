@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 {% if config.client is defined %}
   "m.homeserver": {
     "base_url": "{{ config.client.homeserver_base_url }}"
-  }{% if config.client.additional is defined %},
+  }{% if config.client.additional | default("") | trim | length > 0 %},
   {{ config.client.additional }}
   {% endif %}
 {% endif %}

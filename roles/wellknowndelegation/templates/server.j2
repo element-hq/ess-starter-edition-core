@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -7,7 +7,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 {
 {% if config.federation is defined %}
-  "m.server": "{{ config.federation.endpoint }}"{% if config.federation.additional is defined %},
+  "m.server": "{{ config.federation.endpoint }}"{% if config.federation.additional | default("") | trim | length > 0 %},
   {{ config.federation.additional }}
   {% endif %}
 {% endif %}
