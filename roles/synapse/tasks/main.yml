@@ -20,7 +20,7 @@
       _project: >-
         {{
           query('k8s',
-                api_version="v1",
+                api_version="project.openshift.io/v1",
                 kind="Project",
                 resource_name=ansible_operator_meta.namespace,
               )

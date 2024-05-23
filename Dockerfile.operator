@@ -6,7 +6,7 @@ ARG DISTROLESS_BASE_IMAGE=registry.gitlab.element.io/engineering/ess/operator/el
 
 
 # We need to run a first build step to remove elementdeployment role
-FROM python:3.11-slim-bookworm AS build
+FROM python:3.11-slim-bookworm AS build-tmp
 
 COPY LICENSES/operator /element.io/LICENSES
 COPY watches.yaml /element.io/watches.yaml
@@ -26,4 +26,5 @@ FROM $DISTROLESS_BASE_IMAGE as base
 ARG GIT_COMMIT=devel
 LABEL git_commit=$GIT_COMMIT
 
-COPY --from=build --chown=nonroot:nonroot /element.io /element.io
+COPY --from=build-tmp   /element.io /element.io
+RUN chmod -R 0755 /element.io

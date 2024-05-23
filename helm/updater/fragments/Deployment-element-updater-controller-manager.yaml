@@ -45,7 +45,7 @@ spec:
         - "/bin/sh"
         - "-xc"
         args:
-        - rm -rfv /tmp/* /tmp/.* /home/nonroot/.ansible/tmp/* /home/nonroot/.ansible/tmp/.* || true
+        - rm -rfv /tmp/* /tmp/.* /.ansible/tmp/* /.ansible/tmp/.* || true
         env:
         {{- include "elementUpdater.managerEnv" . | nindent 8 }}
         image: '{{ .Values.updater.manager.image.repository }}{{ hasKey .Values.updater.manager.image "digest" | ternary (print "@" .Values.updater.manager.image.digest) (print ":" .Values.updater.manager.image.tag) }}'
@@ -61,7 +61,7 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: manager-tmp
-        - mountPath: /home/nonroot/.ansible/tmp/
+        - mountPath: /.ansible/tmp/
           name: ansible-tmp
       containers:
 {{- if $.Values.clusterDeployment }}
@@ -146,9 +146,9 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: manager-tmp
-        - mountPath: /home/nonroot/.ansible/tmp/
+        - mountPath: /.ansible/tmp/
           name: ansible-tmp
-        - mountPath: /home/nonroot/.ansible_async
+        - mountPath: /.ansible_async
           name: ansible-async
       serviceAccountName: '{{ include "elementUpdater.controllerManagerFullname" . }}'
       terminationGracePeriodSeconds: 10

@@ -34,14 +34,14 @@ crds:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-updater-conversion-webhook
-      tag: 2.17.18
+      tag: 2.17.19
 
 updater:
   extraPodSpec:
     securityContext:
       runAsNonRoot: true
-      runAsUser: 65532
-      fsGroup: 65532
+      runAsUser: 65201
+      fsGroup: 65201
   manager:
     # maxConcurrentReconciles should be a factor of the memory limit
     # as a rule of thumb, each reconciles need ~256Mi at peak
@@ -69,7 +69,7 @@ updater:
           - ALL
     image:
       repository: docker.io/vectorim/ess-core-updater
-      tag: 2.17.18
+      tag: 2.17.19
 
   rbacProxy:
     resources:

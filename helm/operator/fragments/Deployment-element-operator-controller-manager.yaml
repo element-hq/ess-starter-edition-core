@@ -44,7 +44,7 @@ spec:
         - "/bin/sh"
         - "-xc"
         args:
-        - rm -rfv /tmp/* /tmp/.* /home/nonroot/.ansible/tmp/* /home/nonroot/.ansible/tmp/.* || true
+        - rm -rfv /tmp/* /tmp/.* /.ansible/tmp/* /.ansible/tmp/.* || true
         env:
         {{- include "elementOperator.managerEnv" . | nindent 8 }}
         image: '{{ .Values.operator.manager.image.repository }}{{ hasKey .Values.operator.manager.image "digest" | ternary (print "@" .Values.operator.manager.image.digest) (print ":" .Values.operator.manager.image.tag) }}'
@@ -60,7 +60,7 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: manager-tmp
-        - mountPath: /home/nonroot/.ansible/tmp/
+        - mountPath: /.ansible/tmp/
           name: ansible-tmp
       containers:
 {{- if $.Values.clusterDeployment }}
@@ -146,7 +146,7 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: manager-tmp
-        - mountPath: /home/nonroot/.ansible/tmp/
+        - mountPath: /.ansible/tmp/
           name: ansible-tmp
       serviceAccountName: '{{ include "elementOperator.controllerManagerFullname" . }}'
       terminationGracePeriodSeconds: 10

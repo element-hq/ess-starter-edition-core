@@ -10,12 +10,13 @@ FROM $DISTROLESS_BASE_IMAGE as base
 ARG GIT_COMMIT=devel
 LABEL git_commit=$GIT_COMMIT
 
-COPY --chown=nonroot:nonroot LICENSES/updater ${HOME}/element.io/LICENSES
-COPY --chown=nonroot:nonroot watches.updater.yaml ${HOME}/element.io/watches.yaml
+COPY LICENSES/updater /element.io/LICENSES
+COPY watches.updater.yaml /element.io/watches.yaml
 
-COPY --chown=nonroot:nonroot roles/elementdeployment   ${HOME}/element.io/roles/elementdeployment/
-COPY --chown=nonroot:nonroot roles/teardown   ${HOME}/element.io/roles/teardown/
-COPY --chown=nonroot:nonroot roles/generic_apply   ${HOME}/element.io/roles/generic_apply/
-COPY --chown=nonroot:nonroot playbooks/elementdeployment.yml playbooks/any.yml ${HOME}/element.io/playbooks/
+COPY roles/elementdeployment   /element.io/roles/elementdeployment/
+COPY roles/teardown   /element.io/roles/teardown/
+COPY roles/generic_apply  /element.io/roles/generic_apply/
+COPY playbooks/elementdeployment.yml playbooks/any.yml /element.io/playbooks/
 
 
+RUN chmod -R 0755 /element.io
