@@ -15,8 +15,8 @@ crds:
     extraPodSpec:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65200
-        fsGroup: 65200
+        runAsUser: 65100
+        fsGroup: 65100
     extraContainerSpec:
       securityContext:
         allowPrivilegeEscalation: false
@@ -34,7 +34,7 @@ crds:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-operator-conversion-webhook
-      tag: 2.17.19
+      tag: 2.17.20
 
 operator:
   extraPodSpec:
@@ -69,7 +69,7 @@ operator:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-operator
-      tag: 2.17.19
+      tag: 2.17.20
 
   rbacProxy:
     resources:

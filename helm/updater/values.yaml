@@ -15,8 +15,8 @@ crds:
     extraPodSpec:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65532
-        fsGroup: 65532
+        runAsUser: 65101
+        fsGroup: 65101
     extraContainerSpec:
       securityContext:
         allowPrivilegeEscalation: false
@@ -34,7 +34,7 @@ crds:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-updater-conversion-webhook
-      tag: 2.17.19
+      tag: 2.17.20
 
 updater:
   extraPodSpec:
@@ -69,7 +69,7 @@ updater:
           - ALL
     image:
       repository: docker.io/vectorim/ess-core-updater
-      tag: 2.17.19
+      tag: 2.17.20
 
   rbacProxy:
     resources:
