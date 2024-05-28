@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   element-operator:
   - apiVersion: v2
+    appVersion: 2.17.20
+    created: "2024-05-28T09:29:48.961516483Z"
+    description: A Helm chart for Kubernetes
+    digest: 0d08849222a793443888c5b2d1233eedd2c23dfec9741cf91279bc62db04b05c
+    name: element-operator
+    type: application
+    urls:
+    - element-operator-2.17.20.tgz
+    version: 2.17.20
+  - apiVersion: v2
     appVersion: 2.17.19
     created: "2024-05-23T13:09:51.888331103Z"
     description: A Helm chart for Kubernetes
@@ -523,6 +533,16 @@ entries:
     version: 2.11.8
   element-updater:
   - apiVersion: v2
+    appVersion: 2.17.20
+    created: "2024-05-28T09:29:49.200152788Z"
+    description: A Helm chart for Kubernetes
+    digest: c7e1593b7f7cf33d4e72c7ddd17e00b5dd635a580b820ee2f72ea3dfdf13c452
+    name: element-updater
+    type: application
+    urls:
+    - element-updater-2.17.20.tgz
+    version: 2.17.20
+  - apiVersion: v2
     appVersion: 2.17.19
     created: "2024-05-23T13:09:52.110862443Z"
     description: A Helm chart for Kubernetes
@@ -1042,4 +1062,4 @@ entries:
     urls:
     - element-updater-2.11.8.tgz
     version: 2.11.8
-generated: "2024-05-23T13:09:52.111145787Z"
+generated: "2024-05-28T09:29:49.20047583Z"
