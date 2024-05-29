@@ -55,6 +55,7 @@
   - ("in body must be of type object:" not in result.msg)
   - ("updates to statefulset spec for fields other than" not in result.msg)
   - ("missing metadata in converted object" not in result.msg)
+  - '("MatchExpressions:[]v1.LabelSelectorRequirement(nil)}: field is immutable" not in result.msg)'
 
 - name: "Maintain resources that risk to not support recreation"
   kubernetes.core.k8s:

@@ -1370,7 +1370,9 @@ spec:
                               description: The key of the k8s secret containing Synapse Macaroon
                               type: string
                             media:
-                              default: {}
+                              default:
+                                volume:
+                                  size: 50Gi
                               properties:
                                 volume:
                                   default:
@@ -4023,7 +4025,9 @@ spec:
                               description: The key of the k8s secret containing Synapse Macaroon
                               type: string
                             media:
-                              default: {}
+                              default:
+                                volume:
+                                  size: 50Gi
                               properties:
                                 volume:
                                   default:

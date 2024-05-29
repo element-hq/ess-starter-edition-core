@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -32,13 +32,15 @@ spec:
               description: A configmap name
       media:
         type: object
-        default: {}
+        default:
+          volume:
+            size: 50Gi
         properties:
           volume:
             type: object
+            description: The volume holding media
             default:
               size: 50Gi
-            description: The volume holding media
             oneOf:
               - required:
                   - size

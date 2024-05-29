@@ -48,10 +48,12 @@ spec:
         - containerPort: 7443
           name: webhook-server
           protocol: TCP
+{{- if $.Values.crds.conversionWebhook.tlsSecretName }}
         volumeMounts:
-        - mountPath: /k8s-webhook-server/serving-certs
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
           name: webhook-cert
           readOnly: true
+{{- end }}
         livenessProbe:
           httpGet:
             scheme: HTTPS
@@ -73,9 +75,9 @@ spec:
           initialDelaySeconds: 5
         args:
         - --tls-cert-file
-        - /k8s-webhook-server/serving-certs/tls.crt
+        - /tmp/k8s-webhook-server/serving-certs/tls.crt
         - --tls-private-key-file
-        - /k8s-webhook-server/serving-certs/tls.key
+        - /tmp/k8s-webhook-server/serving-certs/tls.key
         - --port
         - "7443"
       {{- with $.Values.crds.conversionWebhook.resources }}
@@ -87,9 +89,11 @@ spec:
       {{- end }}
       serviceAccountName: '{{ include "elementOperator.conversionWebhookFullname" . }}'
       terminationGracePeriodSeconds: 10
+{{- if $.Values.crds.conversionWebhook.tlsSecretName }}
       volumes:
       - name: webhook-cert
         secret:
           defaultMode: 420
           secretName: {{ tpl $.Values.crds.conversionWebhook.tlsSecretName . }}
+{{- end }}
 {{ end }}
