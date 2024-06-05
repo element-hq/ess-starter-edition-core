@@ -14,26 +14,11 @@ image_haproxy_pull_policy: "{{ image_haproxy_has_digest | ternary('IfNotPresent'
 image_redis_has_digest: "{{ (image.redis_digest | default('')) | length > 0 }}"
 image_redis_pull_policy: "{{ image_redis_has_digest | ternary('IfNotPresent', 'Always') }}"
 
-_pass_uid_lookup:
-  Always: true
-  Never: false
-
-_pass_uid_default: 'Always'
-_pass_uid: "{{ is_openshift and _pass_uid_lookup[image.pass_user_id_to_synapse | default(_pass_uid_default)] }}"
-
 env_underrides: []
 env_user: "{{ workloads.synapse.extra_env | default([]) }}"
-env_overrides: "{{ env_default + (_pass_uid | ternary(env_openshift, [])) }}"
-env_default:
-- name: SYNAPSE_WORKER
-  value: "{{ process_app }}"
+env_overrides:
 - name: SSL_CERT_DIR
   value: "/etc/ssl/certs"
-env_openshift:
-- name: UID
-  value: "{{ openshift_uid_base | default(100000) }}"
-- name: GID
-  value: "0"
 
 # We convert all the items to dicts, merge them (removing duplicates), and extract them out to items again
 env: "{{ {} | combine([env_underrides, env_user, env_overrides] | map('items2dict', key_name='name'))

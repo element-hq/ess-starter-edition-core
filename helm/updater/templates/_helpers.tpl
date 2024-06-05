@@ -31,6 +31,8 @@
 {{ end -}}
 {{- end -}}
 
+
+
 {{- define "elementUpdater.managerMaxReconciliationProcesses" }}
 {{- $memoryLimit := .Values.updater.manager.resources.limits.memory -}}
 {{- $value := regexFind "\\d+" $memoryLimit -}}
@@ -42,3 +44,4 @@
 {{- end -}}
 {{ $reconciliationProcesses }}
 {{- end -}}
+

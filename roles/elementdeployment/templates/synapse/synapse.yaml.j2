@@ -67,11 +67,6 @@ spec:
     | to_nice_yaml(indent=2)
     | indent(4)
     }}
-{% if component_k8s_security_context_force_uid_gid %}
-    passUserIdToSynapse: Always
-{% else %}
-    passUserIdToSynapse: Never
-{% endif %}
   workloads:
     haproxy:
     {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'haproxy'})

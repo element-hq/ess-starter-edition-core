@@ -4,37 +4,6 @@
 
 
 ---
-- name: "Save whether OpenShift or not"
-  ansible.builtin.set_fact:
-    is_openshift: >-
-      {{
-        ('project.openshift.io/v1' in _cluster_info.apis)
-        and ('Project' in _cluster_info.apis['project.openshift.io/v1'])
-      }}
-
-- name: "Detect OpenShift project metadata"
-  when: is_openshift
-  block:
-  - name: Detect Openshift project
-    ansible.builtin.set_fact:
-      _project: >-
-        {{
-          query('k8s',
-                api_version="project.openshift.io/v1",
-                kind="Project",
-                resource_name=ansible_operator_meta.namespace,
-              )
-        }}
-
-  - name: "Read out flags"
-    ansible.builtin.debug:
-      msg: "Got >{{ _pass_uid }}< from >{{ image.pass_user_id_to_synapse | default('MISSING') }}, maybe look at >{{ image }}<"
-
-  - name: "Save OpenShift UID/GID ranges"
-    ansible.builtin.set_fact:
-      openshift_uid_base: "{{ _project[0].metadata.annotations['openshift.io/sa.scc.uid-range'].split('/')[0] }}"
-      openshift_gid_base: "{{ _project[0].metadata.annotations['openshift.io/sa.scc.supplemental-groups'].split('/')[0] }}"
-
 - name: Validation
   ansible.builtin.import_tasks: validation.yml
 

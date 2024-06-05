@@ -37,7 +37,6 @@ for entry in ./*proxy.yaml ./*metrics*.yaml; do
   echo "{{ end }}" >> $entry
 done
 
-# Generate users-facing roles
 yq "$(cat ../yq/resource-editor-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
 yq "$(cat ../yq/resource-viewer-role.yq)" ../../../watches.yaml -s '["ClusterRole", .metadata.name] | join("-") | downcase + ".yaml"'
 
@@ -68,7 +67,6 @@ for entry in ./clusterrole*.yaml; do
     r ../../operator/fragments/ClusterRole-Namespace.yaml
   }}' $entry
 done
-
 
 cat ../fragments/Operator-Permissions.yaml >> clusterrole-manager.yaml
 

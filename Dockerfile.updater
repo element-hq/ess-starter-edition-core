@@ -18,5 +18,4 @@ COPY roles/teardown   /element.io/roles/teardown/
 COPY roles/generic_apply  /element.io/roles/generic_apply/
 COPY playbooks/elementdeployment.yml playbooks/any.yml /element.io/playbooks/
 
-
 RUN chmod -R 0755 /element.io

@@ -51,7 +51,6 @@ for entry in ./customresourcedefinition-*; do
   echo "{{ end }}" >> $entry
 done
 
-# Generate the updater main role, which is based on watches.updater.yaml + standard watches.yaml
 yq ". *+ load(\"../../../watches.updater.yaml\") | $(cat ../../operator/yq/main-role.yq)" ../../../watches.yaml  | sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" >clusterrole-manager.yaml
 
 # For each clusterrole & clusterrolebinding, we add a conditional namespace field under name:
@@ -60,7 +59,6 @@ for entry in ./clusterrole*.yaml; do
     r ../../operator/fragments/ClusterRole-Namespace.yaml
   }}' $entry
 done
-
 cat ../fragments/Updater-Permissions.yaml >>clusterrole-manager.yaml
 
 cp ../fragments/Deployment-element-updater-controller-manager.yaml ./deployment-element-updater-controller-manager.yaml

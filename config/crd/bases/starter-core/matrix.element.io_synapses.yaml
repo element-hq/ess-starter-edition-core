@@ -91,7 +91,7 @@ spec:
                       description: Image digest in the repository to use for Synapse's Redis
                       type: string
                     passUserIdToSynapse:
-                      description: Whether to override detection of UID environment flag passed into the synapse docker image
+                      description: Deprecated, ignored. Whether to override detection of UID environment flag passed into the synapse docker image
                       type: string
                       enum:
                         - Always

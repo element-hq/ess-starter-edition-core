@@ -96,7 +96,8 @@ spec:
         - "-cx"
         - >
           sed "s/REPLACE_HOSTNAME/$(hostname -s | sed 's/.*-synapse-//g')/g" /config/instance_template.yaml > /config/rendered/instance.yaml;
-          /start.py run --config-path=/config/homeserver.yaml
+          [ -e "/usr/lib/`uname -m`-linux-gnu/libjemalloc.so.2" ] && export LD_PRELOAD="/usr/lib/`uname -m`-linux-gnu/libjemalloc.so.2";
+          python3 -m {{ process_app }} --config-path=/config/homeserver.yaml
           {%- if not (bootstrap | default(false)) and 'shared.yaml' in _fetched_synapse_secrets[0].data -%}
           {% raw %} {% endraw %}--config-path=/secrets/shared.yaml
           {%- endif -%}

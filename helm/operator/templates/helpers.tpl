@@ -31,6 +31,8 @@
 {{ end -}}
 {{- end -}}
 
+
+
 {{- define "elementOperator.managerMaxReconciliationProcesses" }}
 {{- $memoryLimit := .Values.operator.manager.resources.limits.memory -}}
 {{- $value := regexFind "\\d+" $memoryLimit -}}
@@ -42,3 +44,4 @@
 {{- end -}}
 {{ $reconciliationProcesses }}
 {{- end -}}
+

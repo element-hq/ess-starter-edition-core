@@ -31,6 +31,8 @@
 {{ end -}}
 {{- end -}}
 
+
+
 {{- define "__CHART_FUNCTIONS_NAMESPACE__.managerMaxReconciliationProcesses" }}
 {{- $memoryLimit := .Values.__VALUES_MANAGER_PARENT_KEY__.manager.resources.limits.memory -}}
 {{- $value := regexFind "\\d+" $memoryLimit -}}
@@ -42,3 +44,4 @@
 {{- end -}}
 {{ $reconciliationProcesses }}
 {{- end -}}
+
