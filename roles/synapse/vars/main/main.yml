@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -141,6 +141,8 @@ synapse_available_worker_types:
     - "^/_matrix/federation/v1/make_leave/"
     - "^/_matrix/federation/(v1|v2)/send_join/"
     - "^/_matrix/federation/(v1|v2)/send_leave/"
+    - "^/_matrix/federation/v1/make_knock/"
+    - "^/_matrix/federation/v1/send_knock/"
     - "^/_matrix/federation/(v1|v2)/invite/"
     # Not in public docs but on matrix.org
     - "^/_matrix/federation/v1/query_auth/"
