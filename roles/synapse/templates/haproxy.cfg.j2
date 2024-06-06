@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -73,7 +73,7 @@ resolvers kubedns
     hold refused 600s
 
 frontend http-in
-    bind :::8008 v4v6
+    bind *:8008
 
     maxconn 20000
 
