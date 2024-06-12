@@ -134,7 +134,9 @@ spec:
       name: temp
     spec:
       accessModes: [ "ReadWriteOnce" ]
+{% if "storage_class_name" in config.caching.persistent_volume_claim_template %}
       storageClassName: "{{ config.caching.persistent_volume_claim_template.storage_class_name }}"
+{% endif %}
       resources:
         requests:
           storage: {{ config.caching.persistent_volume_claim_template.size }}

@@ -57,7 +57,9 @@ spec:
 {% endif %}
       persistentVolumeClaimTemplate:
         size: {{ components_k8s_properties.matrix_content_scanner.storage.size }}
-        storageClassName: {{ components_k8s_properties.matrix_content_scanner.storage.storage_class_name | default(_global.k8s.storage.storage_class_name) }}
+{% if components_k8s_properties.storage.storage_class_name | default(_global.k8s.storage.storage_class_name) | default(false) %}
+        storageClassName: "{{ components_k8s_properties.storage.storage_class_name | default(_global.k8s.storage.storage_class_name) }}"
+{% endif %}
 {% if 'selector' in components_k8s_properties.matrix_content_scanner.storage %}
         selector:
           {{ components_k8s_properties.matrix_content_scanner.storage.selector | to_nice_yaml(indent=2) | indent(10) }}

@@ -135,6 +135,10 @@ spec:
             port: 6789
           periodSeconds: 10
           initialDelaySeconds: 5
+        ports:
+        - name: metrics-ctrl
+          containerPort: 8080
+          protocol: TCP
         name: manager
       {{- with $.Values.updater.manager.resources }}
         resources:

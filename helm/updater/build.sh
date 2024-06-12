@@ -62,11 +62,15 @@ done
 cat ../fragments/Updater-Permissions.yaml >>clusterrole-manager.yaml
 
 cp ../fragments/Deployment-element-updater-controller-manager.yaml ./deployment-element-updater-controller-manager.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../../operator/fragments/ServiceAccount-conversion-webhook.yaml > ./serviceaccount-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../../operator/fragments/ConversionWebhook-Service.yaml > ./service-element-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../../operator/fragments/Deployment-conversion-webhook.yaml > ./deployment-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ../../operator/fragments/_helpers.tpl > ./_helpers.tpl
+cp ../../operator/fragments/ServiceAccount-conversion-webhook.yaml ./serviceaccount-conversion-webhook.yaml
+cp  ../../operator/fragments/ConversionWebhook-Service.yaml ./service-element-conversion-webhook.yaml
+cp  ../../operator/fragments/Deployment-conversion-webhook.yaml ./deployment-conversion-webhook.yaml
+cp ../../operator/fragments/_helpers.tpl ./_helpers.tpl
+cp ../fragments/Updater-Service.yaml ./service-manager-metrics.yaml
+cp ../fragments/Updater-ServiceMonitor.yaml ./service-monitor-manager.yaml
 cp ../fragments/_variables.tpl ./_variables.tpl
+sed -i "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ./*.yaml
+sed -i "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ./*.tpl
 
 # These files should be fully disabled if not deploying roles
 exclude_files=".\/clusterrole(-element-.+-(metrics-reader|proxy))|(-element-.*-)|(-manager)|(binding-element-.*-(manager|proxy)).yaml"
@@ -87,8 +91,11 @@ do
 done
 
 # These files should be fully disabled if not deploying manager
-for entry in ./deployment*manager.yaml ./service*manager-metrics.yaml ./role*.yaml
+for entry in ./deployment*manager.yaml ./service-manager-metrics.yaml ./role*.yaml
 do
   sed -i '1 i\{{- if $.Values.deployManager }}' $entry
   echo "{{ end }}" >> $entry
 done
+
+cd ..
+cp ./source-values.yaml ./values.yaml

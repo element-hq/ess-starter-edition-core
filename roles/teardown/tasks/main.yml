@@ -51,6 +51,7 @@
   vars:
     query: "[?metadata.ownerReferences[?name == '{{ ansible_operator_meta.name }}']]"
 
+
 - name: "Remove unused resources - {{ item.kind ~ '/' ~ item.apiVersion ~ '/' ~ item.metadata.name }}"
   kubernetes.core.k8s:
     state: absent

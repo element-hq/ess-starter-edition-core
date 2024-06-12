@@ -1,0 +1,26 @@
+{{- if .Capabilities.APIVersions.Has "monitoring.coreos.com/v1/ServiceMonitor" }}
+{{- if $.Values.deployServiceMonitor }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+{{- if $.Values.updater.annotations }}
+  annotations:
+    {{- toYaml $.Values.updater.annotations | nindent 4 }}
+{{- end }}
+{{- if $.Values.updater.labels }}
+  labels:
+    {{- toYaml $.Values.updater.labels | nindent 4 }}
+{{- end }}
+  name: '{{ include "elementUpdater.controllerManagerFullname" . }}-metrics'
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  endpoints:
+  - interval: 30s
+    port: metrics-ctrl
+  - interval: 30s
+    port: metrics-watch
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: '{{ include "elementUpdater.controllerManagerFullname" . }}'
+{{- end }}
+{{- end }}

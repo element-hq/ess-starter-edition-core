@@ -1,20 +1,24 @@
 {{- if $.Values.deployManager }}
-{{- if $.Values.clusterDeployment }}
----
 apiVersion: v1
 kind: Service
 metadata:
+{{- if $.Values.operator.annotations }}
+  annotations:
+    {{- toYaml $.Values.operator.annotations | nindent 4 }}
+{{- end }}
   labels:
     app.kubernetes.io/instance: '{{ include "elementOperator.controllerManagerFullname" . }}'
-  name: '{{ include "elementOperator.prefix" . }}-controller-manager-metrics'
+{{- if $.Values.operator.labels }}
+    {{- toYaml $.Values.operator.labels | nindent 4 }}
+{{- end }}
+  name: '{{ include "elementOperator.controllerManagerFullname" . }}-metrics'
   namespace: '{{ .Release.Namespace }}'
 spec:
   ports:
-    - name: https
-      port: 8443
+    - port: 8080
       protocol: TCP
-      targetPort: https
+      name: metrics
+      targetPort: 8080
   selector:
     app.kubernetes.io/instance: '{{ include "elementOperator.controllerManagerFullname" . }}'
-{{ end }}
 {{ end }}

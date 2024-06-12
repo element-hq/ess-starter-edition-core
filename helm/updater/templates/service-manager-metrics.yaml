@@ -1,0 +1,28 @@
+{{- if $.Values.deployManager }}
+apiVersion: v1
+kind: Service
+metadata:
+{{- if $.Values.updater.annotations }}
+  annotations:
+    {{- toYaml $.Values.updater.annotations | nindent 4 }}
+{{- end }}
+  labels:
+    app.kubernetes.io/instance: '{{ include "elementUpdater.controllerManagerFullname" . }}'
+{{- if $.Values.updater.labels }}
+    {{- toYaml $.Values.updater.labels | nindent 4 }}
+{{- end }}
+  name: '{{ include "elementUpdater.controllerManagerFullname" . }}-metrics'
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      name: metrics-controller
+    - port: 8090
+      protocol: TCP
+      targetPort: 8090
+      name: metrics-watch
+  selector:
+    app.kubernetes.io/instance: '{{ include "elementUpdater.controllerManagerFullname" . }}'
+{{ end }}

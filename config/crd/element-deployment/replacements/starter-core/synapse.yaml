@@ -9,7 +9,8 @@ metadata:
 spec:
   schema:
     type: object
-    default: {}
+    required:
+      - postgresql
     properties:
       externalAppservices:
         type: object

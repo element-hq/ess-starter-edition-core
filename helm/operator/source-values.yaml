@@ -15,8 +15,8 @@ crds:
     extraPodSpec:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65101
-        fsGroup: 65101
+        runAsUser: 65100
+        fsGroup: 65100
     extraContainerSpec:
       securityContext:
         allowPrivilegeEscalation: false
@@ -33,14 +33,14 @@ crds:
         memory: 50Mi
     imagePullPolicy: Always
     image:
-      repository: docker.io/vectorim/ess-core-updater-conversion-webhook
+      repository: docker.io/vectorim/ess-core-operator-conversion-webhook
       tag: 2.18.2
-updater:
+operator:
   extraPodSpec:
     securityContext:
       runAsNonRoot: true
-      runAsUser: 65201
-      fsGroup: 65201
+      runAsUser: 65200
+      fsGroup: 65200
   manager:
     # maxConcurrentReconciles should be a factor of the memory limit
     # as a rule of thumb, each reconciles need ~256Mi at peak
@@ -53,7 +53,6 @@ updater:
       requests:
         cpu: 10m
         memory: 256Mi
-    imagePullPolicy: Always
     extraEnvs:
       - name: DEBUG_MANIFESTS
         value: "0"
@@ -66,8 +65,9 @@ updater:
         capabilities:
           drop:
             - ALL
+    imagePullPolicy: Always
     image:
-      repository: docker.io/vectorim/ess-core-updater
+      repository: docker.io/vectorim/ess-core-operator
       tag: 2.18.2
   rbacProxy:
     resources:
@@ -76,6 +76,11 @@ updater:
       requests:
         cpu: 10m
         memory: 256Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
     extraContainerSpec:
       securityContext:
         allowPrivilegeEscalation: false
@@ -87,6 +92,3 @@ updater:
     image:
       repository: gcr.io/kubebuilder/kube-rbac-proxy
       tag: v0.14.1
-  conversion-webhook:
-    image:
-      repository: ""

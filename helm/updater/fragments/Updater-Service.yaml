@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+{{- if $.Values.__VALUES_MANAGER_PARENT_KEY__.annotations }}
+  annotations:
+    {{- toYaml $.Values.__VALUES_MANAGER_PARENT_KEY__.annotations | nindent 4 }}
+{{- end }}
+  labels:
+    app.kubernetes.io/instance: '{{ include "__CHART_FUNCTIONS_NAMESPACE__.controllerManagerFullname" . }}'
+{{- if $.Values.__VALUES_MANAGER_PARENT_KEY__.labels }}
+    {{- toYaml $.Values.__VALUES_MANAGER_PARENT_KEY__.labels | nindent 4 }}
+{{- end }}
+  name: '{{ include "__CHART_FUNCTIONS_NAMESPACE__.controllerManagerFullname" . }}-metrics'
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      name: metrics-controller
+    - port: 8090
+      protocol: TCP
+      targetPort: 8090
+      name: metrics-watch
+  selector:
+    app.kubernetes.io/instance: '{{ include "__CHART_FUNCTIONS_NAMESPACE__.controllerManagerFullname" . }}'

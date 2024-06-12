@@ -1314,7 +1314,6 @@ spec:
                       description: This is a matrix homeserver.
                       properties:
                         config:
-                          default: {}
                           properties:
                             additional:
                               description: Additional config to inject
@@ -1513,6 +1512,8 @@ spec:
                                   - type
                                 type: object
                               type: array
+                          required:
+                            - postgresql
                           type: object
                         k8s:
                           default: {}
@@ -2147,6 +2148,7 @@ spec:
                                   type: object
                               type: object
                             ingress:
+                              default: {}
                               description: Settings dedicated to k8s ingresses
                               properties:
                                 annotations:
@@ -2433,6 +2435,7 @@ spec:
                               type: object
                           type: object
                         ingresses:
+                          default: {}
                           description: Settings dedicated to k8s ingresses
                           properties:
                             annotations:
@@ -3969,7 +3972,6 @@ spec:
                       description: This is a matrix homeserver.
                       properties:
                         config:
-                          default: {}
                           properties:
                             additional:
                               description: Additional config to inject
@@ -4168,6 +4170,8 @@ spec:
                                   - type
                                 type: object
                               type: array
+                          required:
+                            - postgresql
                           type: object
                         k8s:
                           default: {}
@@ -4802,6 +4806,7 @@ spec:
                                   type: object
                               type: object
                             ingress:
+                              default: {}
                               description: Settings dedicated to k8s ingresses
                               properties:
                                 annotations:
@@ -5088,6 +5093,7 @@ spec:
                               type: object
                           type: object
                         ingresses:
+                          default: {}
                           description: Settings dedicated to k8s ingresses
                           properties:
                             annotations:

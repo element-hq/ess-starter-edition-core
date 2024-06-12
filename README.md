@@ -37,52 +37,89 @@ This document will walk you through how to get started with our Element Starter 
 
 The first step is to start on a machine with helm v3 installed and configured with your kubernetes cluster and pull down the two charts that you will need.
 
-First, let's add the starter edition repository to helm:
 
 ```bash
 helm repo add ess-starter-edition-core https://element-hq.github.io/ess-starter-edition-core
 ```
 
-Now that we have the repositories configured, we can verify this by:
-
-```bash
-helm repo list
-```
-
-and should see the following in that output:
-
-```
-NAME                                    URL
-ess-starter-edition-core                https://element-hq.github.io/ess-starter-edition-core
-```
-
-#### Creating namespaces for the `element-operator` and `element-updater`
-
-To be able to run the helm charts, they will need a namespace to run in. You can make this whatever you would like, but for the sake of this guide, we will create an `element-operator` namespace and an `element-updater` namespace. To do this, please follow this step:
-
-```bash
-kubectl create ns element-operator
-kubectl create ns element-updater
-```
-
-#### Installing the helm charts for the `element-updater` and the `element-operator`
-
 To install the helm charts and actually deploy the `element-updater` and the `element-operator` with their default configurations, simply run:
 
 ```bash
-helm install element-updater ess-starter-edition-core/element-updater --namespace element-updater
-helm install element-operator ess-starter-edition-core/element-operator --namespace element-operator
+helm install element-updater ess-starter-edition-core/element-updater --namespace element-updater --create-namespace
+helm install element-operator ess-starter-edition-core/element-operator --namespace element-operator --create-namespace
 ```
 
-Now at this point, you should have the following two containers up and running:
+*N.B. This guide assumes that you are using the `element-updater` and  `element-operator`  namespaces. You can call it whatever you want and if it doesn't exist yet, you can create it with: `kubectl create ns <name>`.*
 
-```bash
-[user@helm ~]$ kubectl get pods -n element-updater
-NAME                                                  READY   STATUS    RESTARTS     AGE
-element-updater-controller-manager-5b4f9cc5d4-9krv6   2/2     Running   6 (8h ago)   2d
+#### Generating a TLS secret for the webhook
+
+The conversion webhooks need their own self-signed CA and TLS certificate to be integrated into kubernetes.
+
+For example using `easy-rsa` : 
+```
+easyrsa init-pki
+easyrsa --batch "--req-cn=ESS-CA`date +%s`" build-ca nopass
+easyrsa --subject-alt-name="DNS:element-operator-conversion-webhook.element-operator"\
+  --days=10000 \
+  build-server-full element-operator-conversion-webhook nopass
+easyrsa --subject-alt-name="DNS:element-updater-conversion-webhook.element-updater"\
+  --days=10000 \
+  build-server-full element-updater-conversion-webhook nopass
+```
+
+Create a secret for each of these two certificates : 
+
+```
+kubectl create secret tls element-operator-conversion-webhook --cert=pki/issued/element-operator-conversion-webhook.crt --key=pki/private/element-operator-conversion-webhook.key  --namespace element-operator
+kubectl create secret tls element-updater-conversion-webhook --cert=pki/issued/element-updater-conversion-webhook.crt --key=pki/private/element-updater-conversion-webhook.key  --namespace element-updater
+```
+
+#### Installing the helm chart for the `element-updater` and the `element-operator`
+
+Create the following values file to deploy the controller managers in their namespace :
+
+`values.element-operator.yml` : 
+```
+clusterDeployment: true
+deployCrds: true  # Deploys the CRDs and the Conversion Webhooks
+deployCrdRoles: true  # Deploys roles to give permissions to users to manage specific ESS CRs
+deployManager: true  # Deploys the controller managers
+crds:
+  conversionWebhook:
+    caBundle: # Paste here the content of `base64 pki/ca.crt -w 0`
+    tlsSecretName: element-operator-conversion-webhook
+```
+
+`values.element-updater.yml` : 
+```
+clusterDeployment: true
+deployCrds: true  # Deploys the CRDs and the Conversion Webhooks
+deployCrdRoles: true  # Deploys roles to give permissions to users to manage specific ESS CRs
+deployManager: true  # Deploys the controller managers
+crds:
+  conversionWebhook:
+    caBundle: # Paste here the content of `base64 pki/ca.crt -w 0`
+    tlsSecretName: element-updater-conversion-webhook
+```
+
+Run the helm install command : 
+
+```
+helm install element-operator element-operator/element-operator --namespace element-operator -f values.yaml 
+helm install element-updater element-updater/element-updater --namespace element-updater -f values.yaml
+```
+
+Now at this point, you should have the following 4 containers up and running:
+
+```
 [user@helm ~]$ kubectl get pods -n element-operator
-NAME                                                   READY   STATUS    RESTARTS     AGE
-element-operator-controller-manager-778c8bfbcf-4zzpl   2/2     Running   6 (8h ago)   2d
+NAMESPACE            NAME                                                   READY   STATUS    RESTARTS        AGE
+element-operator     element-operator-controller-manager-c8fc5c47-nzt2t     2/2     Running   0               6m5s
+element-operator     element-operator-conversion-webhook-7477d98c9b-xc89s   1/1     Running   0               6m5s
+[user@helm ~]$ kubectl get pods -n element-updater
+NAMESPACE            NAME                                                   READY   STATUS    RESTARTS        AGE
+element-updater      element-updater-controller-manager-6f8476f6cb-74nx5    2/2     Running   0               106s
+element-updater      element-updater-conversion-webhook-65ddcbb569-qzbfs    1/1     Running   0               81s
 ```
 
 #### Generating the ElementDeployment CRD to Deploy Element Server Suite

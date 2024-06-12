@@ -71,11 +71,17 @@ done
 cat ../fragments/Operator-Permissions.yaml >> clusterrole-manager.yaml
 
 cp ../fragments/Deployment-element-operator-controller-manager.yaml ./deployment-element-operator-controller-manager.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/ServiceAccount-conversion-webhook.yaml > ./serviceaccount-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/ConversionWebhook-Service.yaml > ./service-element-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g" ../fragments/Deployment-conversion-webhook.yaml > ./deployment-conversion-webhook.yaml
-sed "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ../fragments/_helpers.tpl > ./helpers.tpl
+cp ../fragments/ServiceAccount-conversion-webhook.yaml ./serviceaccount-conversion-webhook.yaml
+cp ../fragments/ConversionWebhook-Service.yaml ./service-element-conversion-webhook.yaml
+cp ../fragments/Deployment-conversion-webhook.yaml ./deployment-conversion-webhook.yaml
+cp ../fragments/_helpers.tpl ./helpers.tpl
+cp ../fragments/Operator-Service.yaml ./service-manager-metrics.yaml
+cp ../fragments/Operator-ServiceMonitor.yaml ./service-monitor-manager.yaml
 cp ../fragments/_variables.tpl ./_variables.tpl
+
+sed -i "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ./*.yaml
+sed -i "s/__CHART_FUNCTIONS_NAMESPACE__/$chart_functions_namespace/g;s/__VALUES_MANAGER_PARENT_KEY__/$values_manager_parent_key/g" ./*.tpl
+
 
 # These files should be fully disabled if not deploying roles
 exclude_files=".\/clusterrole(-element-.+-(metrics-reader|proxy))|(-element-.*-)|(-manager)|(binding-element-.*-(manager|proxy)).yaml"
@@ -96,8 +102,11 @@ do
 done
 
 # These files should be fully disabled if not deploying manager
-for entry in ./deployment*manager.yaml ./service*manager-metrics.yaml ./role*.yaml
+for entry in ./deployment*manager.yaml ./service-manager-metrics.yaml ./role*.yaml
 do
   sed -i '1 i\{{- if $.Values.deployManager }}' $entry
   echo "{{ end }}" >> $entry
 done
+
+cd ..
+cp ./source-values.yaml ./values.yaml

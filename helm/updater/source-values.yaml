@@ -87,6 +87,3 @@ updater:
     image:
       repository: gcr.io/kubebuilder/kube-rbac-proxy
       tag: v0.14.1
-  conversion-webhook:
-    image:
-      repository: ""
