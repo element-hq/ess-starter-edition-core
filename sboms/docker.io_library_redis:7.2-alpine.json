@@ -1,0 +1,5055 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:0c3b29d8-ffb4-44d1-84d1-f27edb95c0ec",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2024-06-18T12:33:11Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "author": "anchore",
+          "name": "grype",
+          "version": "0.78.0"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "2d449a96288ef504",
+      "type": "container",
+      "name": "docker.io/library/redis:7.2-alpine",
+      "version": "7.2-alpine"
+    },
+    "properties": null
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:apk/alpine/.redis-rundeps@20240524.005537?arch=noarch&distro=alpine-3.20.0&package-id=4fa97caa35b84bcd",
+      "type": "library",
+      "name": ".redis-rundeps",
+      "version": "20240524.005537",
+      "description": "virtual meta package",
+      "cpe": "cpe:2.3:a:.redis-rundeps:.redis-rundeps:20240524.005537:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/.redis-rundeps@20240524.005537?arch=noarch&distro=alpine-3.20.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:.redis-rundeps:.redis_rundeps:20240524.005537:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:.redis_rundeps:.redis-rundeps:20240524.005537:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:.redis_rundeps:.redis_rundeps:20240524.005537:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:.redis:.redis-rundeps:20240524.005537:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:.redis:.redis_rundeps:20240524.005537:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "0"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1mww6jXiD06LsM8vMuXQtsnQH8oQ="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:1",
+          "value": "so:libcrypto.so.3"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:2",
+          "value": "so:libssl.so.3"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=08c208ae832e3bf1",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "alpine-baselayout",
+      "version": "3.6.5-r0",
+      "description": "Alpine base dir structure and init scripts",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:alpine-baselayout:alpine-baselayout:3.6.5-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://git.alpinelinux.org/cgit/aports/tree/main/alpine-baselayout",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine-baselayout:alpine_baselayout:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_baselayout:alpine-baselayout:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_baselayout:alpine_baselayout:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine:alpine-baselayout:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine:alpine_baselayout:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "66187892e05b03a41d08e9acabd19b7576a1c875"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "315392"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "alpine-baselayout"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1qKcZ+j23xssAXmgQhkOO8dHnbWw="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "alpine-baselayout-data=3.6.5-r0"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:1",
+          "value": "/bin/sh"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "8515"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.0&package-id=eb22ad614104fc6e",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "alpine-baselayout-data",
+      "version": "3.6.5-r0",
+      "description": "Alpine base dir structure and init scripts",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:alpine-baselayout-data:alpine-baselayout-data:3.6.5-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://git.alpinelinux.org/cgit/aports/tree/main/alpine-baselayout",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine-baselayout-data:alpine_baselayout_data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_baselayout_data:alpine-baselayout-data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_baselayout_data:alpine_baselayout_data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine-baselayout:alpine-baselayout-data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine-baselayout:alpine_baselayout_data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_baselayout:alpine-baselayout-data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_baselayout:alpine_baselayout_data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine:alpine-baselayout-data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine:alpine_baselayout_data:3.6.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "66187892e05b03a41d08e9acabd19b7576a1c875"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "77824"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "alpine-baselayout"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q17mim+wL35iMEtCiwQEovweL8NT0="
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "11235"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=alpine-3.20.0&package-id=e67e6d4359a4d2c7",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "alpine-keys",
+      "version": "2.4-r1",
+      "description": "Public keys for Alpine Linux packages",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:alpine-keys:alpine-keys:2.4-r1:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://alpinelinux.org",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine-keys:alpine_keys:2.4-r1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_keys:alpine-keys:2.4-r1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine_keys:alpine_keys:2.4-r1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine:alpine-keys:2.4-r1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:alpine:alpine_keys:2.4-r1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "aab68f8c9ab434a46710de8e12fb3206e2930a59"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "159744"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "alpine-keys"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1eKtRUKORnkdCBOD5GXLRzwo0T50="
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "13328"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.0&package-id=5603df547f73b9d9",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "apk-tools",
+      "version": "2.14.4-r0",
+      "description": "Alpine Package Keeper - package manager for alpine",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:apk-tools:apk-tools:2.14.4-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/apk-tools",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apk-tools:apk_tools:2.14.4-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apk_tools:apk-tools:2.14.4-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apk_tools:apk_tools:2.14.4-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apk:apk-tools:2.14.4-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apk:apk_tools:2.14.4-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "d435c805af8af4171438da3ec3429c094aac4c6e"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "303104"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "apk-tools"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "so:libapk.so.2.14.0=2.14.0"
+        },
+        {
+          "name": "syft:metadata:provides:1",
+          "value": "cmd:apk=2.14.4-r0"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1qMXsJFGxI6xX45sMts7M2vJtUJk="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "musl>=1.2.3_git20230424"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:1",
+          "value": "ca-certificates-bundle"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:2",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:3",
+          "value": "so:libcrypto.so.3"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:4",
+          "value": "so:libssl.so.3"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:5",
+          "value": "so:libz.so.1"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "121532"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/busybox@1.36.1-r28?arch=x86_64&distro=alpine-3.20.0&package-id=5161f029ea7d79cd",
+      "type": "library",
+      "publisher": "Sören Tempel <soeren+alpine@soeren-tempel.net>",
+      "name": "busybox",
+      "version": "1.36.1-r28",
+      "description": "Size optimized toolbox of many common UNIX utilities",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:busybox:busybox:1.36.1-r28:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/busybox@1.36.1-r28?arch=x86_64&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://busybox.net/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "4d9b7d8e9f37907d4ecf8e01e21854e95937e4a8"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "929792"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "busybox"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "cmd:busybox=1.36.1-r28"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1BnbDrplFjyNe/NOohC0zcWNufL4="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "504469"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=327d204cc7219fb2",
+      "type": "library",
+      "publisher": "Sören Tempel <soeren+alpine@soeren-tempel.net>",
+      "name": "busybox-binsh",
+      "version": "1.36.1-r28",
+      "description": "busybox ash /bin/sh",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:busybox-binsh:busybox-binsh:1.36.1-r28:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/busybox-binsh@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://busybox.net/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:busybox-binsh:busybox_binsh:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:busybox_binsh:busybox-binsh:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:busybox_binsh:busybox_binsh:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:busybox:busybox-binsh:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:busybox:busybox_binsh:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "4d9b7d8e9f37907d4ecf8e01e21854e95937e4a8"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "8192"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "busybox"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "/bin/sh"
+        },
+        {
+          "name": "syft:metadata:provides:1",
+          "value": "cmd:sh=1.36.1-r28"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1vMh4YPmJ9GplMmKmx2yehqD21Uk="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "busybox=1.36.1-r28"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "1513"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20240226-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.0&package-id=043c23dee155cbae",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "ca-certificates-bundle",
+      "version": "20240226-r0",
+      "description": "Pre generated bundle of Mozilla certificates",
+      "licenses": [
+        {
+          "expression": "MPL-2.0 AND MIT"
+        }
+      ],
+      "cpe": "cpe:2.3:a:ca-certificates-bundle:ca-certificates-bundle:20240226-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/ca-certificates-bundle@20240226-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca-certificates-bundle:ca_certificates_bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca_certificates_bundle:ca-certificates-bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca_certificates_bundle:ca_certificates_bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca-certificates:ca-certificates-bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca-certificates:ca_certificates_bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca_certificates:ca-certificates-bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca_certificates:ca_certificates_bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:mozilla:ca-certificates-bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:mozilla:ca_certificates_bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca:ca-certificates-bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ca:ca_certificates_bundle:20240226-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "56fb003da0adcea3b59373ef6a633d0c5bfef3ac"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "241664"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "ca-certificates"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "ca-certificates-cacert=20240226-r0"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1EYRwNW4IimTxlMMqlaJPta+guGc="
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "130213"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/moby/sys@v0.1.0?package-id=ee165e286debc751#user",
+      "type": "library",
+      "name": "github.com/moby/sys/user",
+      "version": "v0.1.0",
+      "cpe": "cpe:2.3:a:moby:sys\\/user:v0.1.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/moby/sys@v0.1.0#user",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e2fd657ad42de3524a7b2768d2dad4db4ca665fe89dd04669bda9787bd482444"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/gosu"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.2"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:WmZ93f5Ux6het5iituh9x2zAG7NFY9Aqi49jjE1PaQg="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/tianon/gosu"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/tianon/gosu@(devel)?package-id=0028854aa5a73897",
+      "type": "library",
+      "name": "github.com/tianon/gosu",
+      "version": "(devel)",
+      "cpe": "cpe:2.3:a:tianon:gosu:\\(devel\\):*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/tianon/gosu@(devel)",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e2fd657ad42de3524a7b2768d2dad4db4ca665fe89dd04669bda9787bd482444"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/gosu"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.2"
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/tianon/gosu"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.13.0?package-id=a669bc14b34a9768",
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.13.0",
+      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.13.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sys@v0.13.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e2fd657ad42de3524a7b2768d2dad4db4ca665fe89dd04669bda9787bd482444"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/gosu"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.2"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Af8nKPmuFypiUBjVoU9V20FiaFXOcuZI21p0ycVYYGE="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/tianon/gosu"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "libcrypto3",
+      "version": "3.3.0-r2",
+      "description": "Crypto library from openssl",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:libcrypto3:libcrypto3:3.3.0-r2:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://www.openssl.org/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:libcrypto3:libcrypto:3.3.0-r2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:libcrypto:libcrypto3:3.3.0-r2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:libcrypto:libcrypto:3.3.0-r2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "6758e15d502acb632d3ed521a992f1308c6e2fd8"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "4767744"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "openssl"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "so:libcrypto.so.3=3"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1aWJ0d+mKwR16IlBoP1XJ8O6+HO4="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "1816575"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=6023392ec412f382",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "libssl3",
+      "version": "3.3.0-r2",
+      "description": "SSL shared libraries",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:libssl3:libssl3:3.3.0-r2:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://www.openssl.org/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:libssl3:libssl:3.3.0-r2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:libssl:libssl3:3.3.0-r2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:libssl:libssl:3.3.0-r2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "6758e15d502acb632d3ed521a992f1308c6e2fd8"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "815104"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "openssl"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "so:libssl.so.3=3"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1YSraxrllpJILdFY3S/HsNDg5Af8="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "libcrypto3=3.3.0-r2"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:1",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:2",
+          "value": "so:libcrypto.so.3"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "357100"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "musl",
+      "version": "1.2.5-r0",
+      "description": "the musl c library (libc) implementation",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:musl-libc:musl:1.2.5-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://musl.libc.org/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl_libc:musl:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl:musl:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "4fe5bdbe47b100daa6380f81c4c8ea3f99b61362"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "667648"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "musl"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "so:libc.musl-x86_64.so.1=1"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1PS2iNeHDH3BF6TgqSMu/pcc3XIY="
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "407468"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.0&package-id=a52be0ebb34aa881",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "musl-utils",
+      "version": "1.2.5-r0",
+      "description": "the musl c library (libc) implementation",
+      "licenses": [
+        {
+          "expression": "MIT AND BSD-2-Clause AND GPL-2.0-or-later"
+        }
+      ],
+      "cpe": "cpe:2.3:a:musl-utils:musl-utils:1.2.5-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://musl.libc.org/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl-utils:musl_utils:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl_utils:musl-utils:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl_utils:musl_utils:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl-libc:musl-utils:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl-libc:musl_utils:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl:musl-utils:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:musl:musl_utils:1.2.5-r0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "4fe5bdbe47b100daa6380f81c4c8ea3f99b61362"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "131072"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "musl"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "libc-utils=1.2.5-r0"
+        },
+        {
+          "name": "syft:metadata:provides:1",
+          "value": "cmd:getconf=1.2.5-r0"
+        },
+        {
+          "name": "syft:metadata:provides:2",
+          "value": "cmd:getent=1.2.5-r0"
+        },
+        {
+          "name": "syft:metadata:provides:3",
+          "value": "cmd:iconv=1.2.5-r0"
+        },
+        {
+          "name": "syft:metadata:provides:4",
+          "value": "cmd:ldconfig=1.2.5-r0"
+        },
+        {
+          "name": "syft:metadata:provides:5",
+          "value": "cmd:ldd=1.2.5-r0"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q14RZx5CbcLYGJFVkG0AfDm+HrE2c="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "scanelf"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:1",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "36219"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:generic/redis@7.2.5?package-id=45cf21ec3d7a550b",
+      "type": "application",
+      "name": "redis",
+      "version": "7.2.5",
+      "cpe": "cpe:2.3:a:redislabs:redis:7.2.5:*:*:*:*:*:*:*",
+      "purl": "pkg:generic/redis@7.2.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "binary-classifier-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "binary"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "binary-signature"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:redis:redis:7.2.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/redis-server"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.0&package-id=786da1fbab465741",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "scanelf",
+      "version": "1.3.7-r2",
+      "description": "Scan ELF binaries for stuff",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:scanelf:scanelf:1.3.7-r2:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "e65a4f2d0470e70d862ef2b5c412ecf2cb9ad0a6"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "81920"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "pax-utils"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "cmd:scanelf=1.3.7-r2"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1yEsLSREUhcsIdEgi+bNKn6lST8w="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "32390"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/ssl_client@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=25cd376deae772db",
+      "type": "library",
+      "publisher": "Sören Tempel <soeren+alpine@soeren-tempel.net>",
+      "name": "ssl_client",
+      "version": "1.36.1-r28",
+      "description": "EXternal ssl_client for busybox wget",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:ssl-client:ssl-client:1.36.1-r28:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/ssl_client@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://busybox.net/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ssl-client:ssl_client:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ssl_client:ssl-client:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ssl_client:ssl_client:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ssl:ssl-client:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:ssl:ssl_client:1.36.1-r28:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "4d9b7d8e9f37907d4ecf8e01e21854e95937e4a8"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "28672"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "busybox"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "cmd:ssl_client=1.36.1-r28"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1XdhI3LisSANL9kWGpF2qCuhNhQk="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:1",
+          "value": "so:libcrypto.so.3"
+        },
+        {
+          "name": "syft:metadata:pullDependencies:2",
+          "value": "so:libssl.so.3"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "4697"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f",
+      "type": "library",
+      "name": "stdlib",
+      "version": "go1.18.2",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:golang:go:1.18.2:-:*:*:*:*:*:*",
+      "purl": "pkg:golang/stdlib@1.18.2",
+      "properties": [
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e2fd657ad42de3524a7b2768d2dad4db4ca665fe89dd04669bda9787bd482444"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/gosu"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.2"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/tzdata@2024a-r1?arch=x86_64&distro=alpine-3.20.0&package-id=e48826702bf8708c",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "tzdata",
+      "version": "2024a-r1",
+      "description": "Timezone data",
+      "licenses": [
+        {
+          "license": {
+            "name": "Public-Domain"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:tzdata:tzdata:2024a-r1:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/tzdata@2024a-r1?arch=x86_64&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://www.iana.org/time-zones",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "2f6222856ae23244ec06ea6d83aad1b0aac41c72"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "1597440"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "tzdata"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1PFPAW966Rr3VLskX2bfL3xdNHVk="
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "203072"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.0&package-id=6dd4db84efbbb0de",
+      "type": "library",
+      "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
+      "name": "zlib",
+      "version": "1.3.1-r1",
+      "description": "A compression/decompression Library",
+      "licenses": [
+        {
+          "license": {
+            "id": "Zlib"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:zlib:zlib:1.3.1-r1:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.0",
+      "externalReferences": [
+        {
+          "url": "https://zlib.net/",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "apk-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "apk"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "apk-db-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:e4c5c846e8e99d5c12a810b2849b111e53a2ae45622f38ec0fbe70841a61c0d9"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/lib/apk/db/installed"
+        },
+        {
+          "name": "syft:metadata:gitCommitOfApkPort",
+          "value": "fad2d175bd85eb4c5566765375392a7394dfbcf2"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "110592"
+        },
+        {
+          "name": "syft:metadata:originPackage",
+          "value": "zlib"
+        },
+        {
+          "name": "syft:metadata:provides:0",
+          "value": "so:libz.so.1=1.3.1"
+        },
+        {
+          "name": "syft:metadata:pullChecksum",
+          "value": "Q1m6byU+KYLg5ucctBh+PWtsS7rpk="
+        },
+        {
+          "name": "syft:metadata:pullDependencies:0",
+          "value": "so:libc.musl-x86_64.so.1"
+        },
+        {
+          "name": "syft:metadata:size",
+          "value": "53904"
+        }
+      ]
+    },
+    {
+      "bom-ref": "os:alpine@3.20.0",
+      "type": "operating-system",
+      "name": "alpine",
+      "version": "3.20.0",
+      "description": "Alpine Linux v3.20",
+      "swid": {
+        "tagId": "alpine",
+        "name": "alpine",
+        "version": "3.20.0"
+      },
+      "externalReferences": [
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/aports/-/issues",
+          "type": "issue-tracker"
+        },
+        {
+          "url": "https://alpinelinux.org/",
+          "type": "website"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:distro:id",
+          "value": "alpine"
+        },
+        {
+          "name": "syft:distro:prettyName",
+          "value": "Alpine Linux v3.20"
+        },
+        {
+          "name": "syft:distro:versionID",
+          "value": "3.20.0"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:apk/alpine/.redis-rundeps@20240524.005537?arch=noarch&distro=alpine-3.20.0&package-id=4fa97caa35b84bcd",
+      "dependsOn": [
+        "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9",
+        "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=6023392ec412f382",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=08c208ae832e3bf1",
+      "dependsOn": [
+        "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.0&package-id=eb22ad614104fc6e",
+        "pkg:apk/alpine/busybox-binsh@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=327d204cc7219fb2"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.0&package-id=5603df547f73b9d9",
+      "dependsOn": [
+        "pkg:apk/alpine/ca-certificates-bundle@20240226-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.0&package-id=043c23dee155cbae",
+        "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9",
+        "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=6023392ec412f382",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73",
+        "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.0&package-id=6dd4db84efbbb0de"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=327d204cc7219fb2",
+      "dependsOn": [
+        "pkg:apk/alpine/busybox@1.36.1-r28?arch=x86_64&distro=alpine-3.20.0&package-id=5161f029ea7d79cd"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/busybox@1.36.1-r28?arch=x86_64&distro=alpine-3.20.0&package-id=5161f029ea7d79cd",
+      "dependsOn": [
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9",
+      "dependsOn": [
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=6023392ec412f382",
+      "dependsOn": [
+        "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.0&package-id=a52be0ebb34aa881",
+      "dependsOn": [
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73",
+        "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.0&package-id=786da1fbab465741"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.0&package-id=786da1fbab465741",
+      "dependsOn": [
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/ssl_client@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=25cd376deae772db",
+      "dependsOn": [
+        "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9",
+        "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=6023392ec412f382",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    },
+    {
+      "ref": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.0&package-id=6dd4db84efbbb0de",
+      "dependsOn": [
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    },
+    {
+      "ref": "pkg:generic/redis@7.2.5?package-id=45cf21ec3d7a550b",
+      "dependsOn": [
+        "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9",
+        "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=6023392ec412f382",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.0&package-id=3ea0974d202d0c73"
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "bom-ref": "urn:uuid:ccb499f4-e9e3-413f-966a-f8d864f110ab",
+      "id": "CVE-2022-1705",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-1705"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-1705",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-1705"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 6.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "description": "Acceptance of some invalid Transfer-Encoding headers in the HTTP/1 client in net/http before Go 1.17.12 and Go 1.18.4 allows HTTP request smuggling if combined with an intermediate server that also improperly fails to reject the header as invalid.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/409874"
+        },
+        {
+          "url": "https://go.dev/cl/410714"
+        },
+        {
+          "url": "https://go.dev/issue/53188"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/e5017a93fcde94f09836200bca55324af037ee5f"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0525"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:c64cefce-71e8-4edb-88c7-b61b5a79a284",
+      "id": "CVE-2022-1962",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-1962"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-1962",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-1962"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Uncontrolled recursion in the Parse functions in go/parser before Go 1.17.12 and Go 1.18.4 allow an attacker to cause a panic due to stack exhaustion via deeply nested types or declarations.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417063"
+        },
+        {
+          "url": "https://go.dev/issue/53616"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/695be961d57508da5a82217f7415200a11845879"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0515"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:eb62cb0b-0bb4-4d9d-9961-91bbdabd20fc",
+      "id": "CVE-2022-27664",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-27664"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-27664",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-27664"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "In net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error.",
+      "advisories": [
+        {
+          "url": "https://groups.google.com/g/golang-announce"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/x49AQzIVX-s"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/JXKTHIGE5F576MAPFYCIJXNRGBSPISUF/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/TXS2OQ57KZC5XZKK5UW4SYKPVQAHIOJX/"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202209-26"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20220923-0004/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:56eb5475-8ba9-45c9-84bc-c7169d84178b",
+      "id": "CVE-2022-28131",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-28131"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-28131",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-28131"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Uncontrolled recursion in Decoder.Skip in encoding/xml before Go 1.17.12 and Go 1.18.4 allows an attacker to cause a panic due to stack exhaustion via a deeply nested XML document.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417062"
+        },
+        {
+          "url": "https://go.dev/issue/53614"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/08c46ed43d80bbb67cb904944ea3417989be4af3"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0521"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:db5e0325-a259-443f-b824-c95163d897bc",
+      "id": "CVE-2022-2879",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-2879"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-2879",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-2879"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Reader.Read does not set a limit on the maximum size of file headers. A maliciously crafted archive could cause Read to allocate unbounded amounts of memory, potentially causing resource exhaustion or panics. After fix, Reader.Read limits the maximum size of header blocks to 1 MiB.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/439355"
+        },
+        {
+          "url": "https://go.dev/issue/54853"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/xtuG5faxtaU"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-1037"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:2f760fc6-3a26-4c09-87c8-309f6fc3148a",
+      "id": "CVE-2022-2880",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-2880"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-2880",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-2880"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+        }
+      ],
+      "description": "Requests forwarded by ReverseProxy include the raw query parameters from the inbound request, including unparsable parameters rejected by net/http. This could permit query parameter smuggling when a Go proxy forwards a parameter with an unparsable value. After fix, ReverseProxy sanitizes the query parameters in the forwarded query when the outbound request's Form field is set after the ReverseProxy. Director function returns, indicating that the proxy has parsed the query parameters. Proxies which do not parse query parameters continue to forward the original query parameters unchanged.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/432976"
+        },
+        {
+          "url": "https://go.dev/issue/54663"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/xtuG5faxtaU"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-1038"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:d3b4eb2a-9760-4ff8-821f-4632e22ce837",
+      "id": "CVE-2022-30580",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30580"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-30580",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30580"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.8,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "Code injection in Cmd.Start in os/exec before Go 1.17.11 and Go 1.18.3 allows execution of any binaries in the working directory named either \"..com\" or \"..exe\" by calling Cmd.Run, Cmd.Start, Cmd.Output, or Cmd.CombinedOutput when Cmd.Path is unset.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/403759"
+        },
+        {
+          "url": "https://go.dev/issue/52574"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/960ffa98ce73ef2c2060c84c7ac28d37a83f345e"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/TzIC9-t8Ytg/m/IWz5T6x7AAAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0532"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:3adfbb72-8e1f-4b3b-8883-220e363a3c96",
+      "id": "CVE-2022-30629",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30629"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-30629",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30629"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 3.1,
+          "severity": "low",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "description": "Non-random values for ticket_age_add in session tickets in crypto/tls before Go 1.17.11 and Go 1.18.3 allow an attacker that can observe TLS handshakes to correlate successive connections by comparing ticket ages during session resumption.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/405994"
+        },
+        {
+          "url": "https://go.dev/issue/52814"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/fe4de36198794c447fbd9d7cc2d7199a506c76a5"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/TzIC9-t8Ytg/m/IWz5T6x7AAAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0531"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:8c6d8275-d48c-4277-83ee-cbc78332f5c9",
+      "id": "CVE-2022-30630",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30630"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-30630",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30630"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Uncontrolled recursion in Glob in io/fs before Go 1.17.12 and Go 1.18.4 allows an attacker to cause a panic due to stack exhaustion via a path which contains a large number of path separators.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417065"
+        },
+        {
+          "url": "https://go.dev/issue/53415"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/fa2d41d0ca736f3ad6b200b2a4e134364e9acc59"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0527"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:04a458cb-81d0-4ffd-b5eb-d02d3528876e",
+      "id": "CVE-2022-30631",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30631"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-30631",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30631"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Uncontrolled recursion in Reader.Read in compress/gzip before Go 1.17.12 and Go 1.18.4 allows an attacker to cause a panic due to stack exhaustion via an archive containing a large number of concatenated 0-length compressed files.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417067"
+        },
+        {
+          "url": "https://go.dev/issue/53168"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/b2b8872c876201eac2d0707276c6999ff3eb185e"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0524"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:a7b95a87-7b54-47ac-9470-4049f62902f1",
+      "id": "CVE-2022-30632",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30632"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-30632",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30632"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Uncontrolled recursion in Glob in path/filepath before Go 1.17.12 and Go 1.18.4 allows an attacker to cause a panic due to stack exhaustion via a path containing a large number of path separators.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417066"
+        },
+        {
+          "url": "https://go.dev/issue/53416"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/ac68c6c683409f98250d34ad282b9e1b0c9095ef"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0522"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:5b7db4fb-37f1-4e23-b302-350e1cfc1659",
+      "id": "CVE-2022-30633",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30633"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-30633",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30633"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Uncontrolled recursion in Unmarshal in encoding/xml before Go 1.17.12 and Go 1.18.4 allows an attacker to cause a panic due to stack exhaustion via unmarshalling an XML document into a Go struct which has a nested field that uses the 'any' field tag.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417061"
+        },
+        {
+          "url": "https://go.dev/issue/53611"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/c4c1993fd2a5b26fe45c09592af6d3388a3b2e08"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0523"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:4942529c-57c9-4b70-83a6-05b5c8d9c2b4",
+      "id": "CVE-2022-30635",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30635"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-30635",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-30635"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Uncontrolled recursion in Decoder.Decode in encoding/gob before Go 1.17.12 and Go 1.18.4 allows an attacker to cause a panic due to stack exhaustion via a message which contains deeply nested structures.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417064"
+        },
+        {
+          "url": "https://go.dev/issue/53615"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/6fa37e98ea4382bf881428ee0c150ce591500eb7"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0526"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:73bb1b37-1bd1-4bb0-b7fc-9569f976ae94",
+      "id": "CVE-2022-32148",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-32148"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-32148",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-32148"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 6.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "description": "Improper exposure of client IP addresses in net/http before Go 1.17.12 and Go 1.18.4 can be triggered by calling httputil.ReverseProxy.ServeHTTP with a Request.Header map containing a nil value for the X-Forwarded-For header, which causes ReverseProxy to set the client IP as the value of the X-Forwarded-For header.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/412857"
+        },
+        {
+          "url": "https://go.dev/issue/53423"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/b2cc0fecc2ccd80e6d5d16542cc684f97b3a9c8a"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/nqrv9fbR0zE"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0520"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:d6a49758-891a-47dc-995a-3f88d8152823",
+      "id": "CVE-2022-32189",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-32189"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-32189",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-32189"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "A too-short encoded message can cause a panic in Float.GobDecode and Rat GobDecode in math/big in Go before 1.17.13 and 1.18.5, potentially allowing a denial of service.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/417774"
+        },
+        {
+          "url": "https://go.dev/issue/53871"
+        },
+        {
+          "url": "https://go.googlesource.com/go/+/055113ef364337607e3e72ed7d48df67fde6fc66"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/YqYYG87xB10"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-0537"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:3382a41e-8fa1-4f49-82c8-6ba38cdbdf49",
+      "id": "CVE-2022-41715",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41715"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-41715",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41715"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Programs which compile regular expressions from untrusted sources may be vulnerable to memory exhaustion or denial of service. The parsed regexp representation is linear in the size of the input, but in some cases the constant factor can be as high as 40,000, making relatively small regexps consume much larger amounts of memory. After fix, each regexp being parsed is limited to a 256 MB memory footprint. Regular expressions whose representation would use more space than that are rejected. Normal use of regular expressions is unaffected.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/439356"
+        },
+        {
+          "url": "https://go.dev/issue/55949"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/xtuG5faxtaU"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-1039"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:ae0b6764-9196-4ab5-ac4b-853a513ce906",
+      "id": "CVE-2022-41717",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41717"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-41717",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41717"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ],
+      "description": "An attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/455635"
+        },
+        {
+          "url": "https://go.dev/cl/455717"
+        },
+        {
+          "url": "https://go.dev/issue/56350"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/L_3rmdT0BMU/m/yZDrXjIiBQAJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4BUK2ZIAGCULOOYDNH25JPU6JBES5NF2/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4SBIUECMLNC572P23DDOKJNKPJVX26SP/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/56B2FFESRYYP6IY2AZ3UWXLWKZ5IYZN4/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5RSKA2II6QTD4YUKUNDVJQSRYSFC4VFR/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ANIOPUXWIHVRA6CEWXCGOMX3YYS6KFHG/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHITS4PUOZAKFIUBQAQZC7JWXMOYE4B/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CSVIS6MTMFVBA7JPMRAUNKUOYEVSJYSB/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KEOTKBUPZXHE3F352JBYNTSNRXYLWD6P/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NQGNAXK3YBPMUP3J4TECIRDHFGW37522/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PUM4DIVOLJCBK5ZDP4LJOL24GXT3YSIR/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PW3XC47AUW5J5M2ULJX7WCCL3B2ETLMT/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Q52IQI754YAE4XPR4QBRWPIVZWYGZ4FS/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/QBKBAZBIOXZV5QCFHZNSVXULR32XJCYD/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/REMHVVIBDNKSRKNOTV7EQSB7CYQWOUOU/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/T7N5GV4CHH6WAGX3GFMDD3COEOVCZ4RI/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WPEIZ7AMEJCZXU3FEJZMVRNHQZXX5P3I/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZSVEMQV5ROY5YW5QE3I57HT3ITWG5GCV/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2022-1144"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:d890075c-6f5d-49e3-85e0-ffc5390414ce",
+      "id": "CVE-2022-41722",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41722"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-41722",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41722"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "description": "A path traversal vulnerability exists in filepath.Clean on Windows. On Windows, the filepath.Clean function could transform an invalid path such as \"a/../c:/b\" into the valid path \"c:\\b\". This transformation of a relative (if invalid) path into an absolute path could enable a directory traversal attack. After fix, the filepath.Clean function transforms this path into the relative (but still invalid) path \".\\c:\\b\".",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/468123"
+        },
+        {
+          "url": "https://go.dev/issue/57274"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/V0aBFqaFs_E"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1568"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:65ba4cfa-87dd-4ae0-a666-d7332e29828c",
+      "id": "CVE-2022-41723",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41723"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-41723",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41723"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "A maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/468135"
+        },
+        {
+          "url": "https://go.dev/cl/468295"
+        },
+        {
+          "url": "https://go.dev/issue/57855"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/V0aBFqaFs_E"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4BUK2ZIAGCULOOYDNH25JPU6JBES5NF2/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4MA5XS5DAOJ5PKKNG5TUXKPQOFHT5VBC/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/REMHVVIBDNKSRKNOTV7EQSB7CYQWOUOU/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RGW7GE2Z32ZT47UFAQFDRQE33B7Q7LMT/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RLBQ3A7ROLEQXQLXFDLNJ7MYPKG5GULE/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/T7N5GV4CHH6WAGX3GFMDD3COEOVCZ4RI/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XX3IMUTZKRQ73PBZM4E2JP4BKYH4C6XE/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1571"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://www.couchbase.com/alerts/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:b1e0d2dc-a92e-47f8-8457-39800efdabcc",
+      "id": "CVE-2022-41724",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41724"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-41724",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41724"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Large handshake records may cause panics in crypto/tls. Both clients and servers may send large TLS handshake records which cause servers and clients, respectively, to panic when attempting to construct responses. This affects all TLS 1.3 clients, TLS 1.2 clients which explicitly enable session resumption (by setting Config.ClientSessionCache to a non-nil value), and TLS 1.3 servers which request client certificates (by setting Config.ClientAuth >= RequestClientCert).",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/468125"
+        },
+        {
+          "url": "https://go.dev/issue/58001"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/V0aBFqaFs_E"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1570"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:30f08c90-ae30-4ada-830f-ca2a96dc1d7f",
+      "id": "CVE-2022-41725",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41725"
+      },
+      "references": [
+        {
+          "id": "CVE-2022-41725",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-41725"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "A denial of service is possible from excessive resource consumption in net/http and mime/multipart. Multipart form parsing with mime/multipart.Reader.ReadForm can consume largely unlimited amounts of memory and disk files. This also affects form parsing in the net/http package with the Request methods FormFile, FormValue, ParseMultipartForm, and PostFormValue. ReadForm takes a maxMemory parameter, and is documented as storing \"up to maxMemory bytes +10MB (reserved for non-file parts) in memory\". File parts which cannot be stored in memory are stored on disk in temporary files. The unconfigurable 10MB reserved for non-file parts is excessively large and can potentially open a denial of service vector on its own. However, ReadForm did not properly account for all memory consumed by a parsed form, such as map entry overhead, part names, and MIME headers, permitting a maliciously crafted form to consume well over 10MB. In addition, ReadForm contained no limit on the number of disk files created, permitting a relatively small request body to create a large number of disk temporary files. With fix, ReadForm now properly accounts for various forms of memory overhead, and should now stay within its documented limit of 10MB + maxMemory bytes of memory consumption. Users should still be aware that this limit is high and may still be hazardous. In addition, ReadForm now creates at most one on-disk temporary file, combining multiple form parts into a single temporary file. The mime/multipart.File interface type's documentation states, \"If stored on disk, the File's underlying concrete type will be an *os.File.\". This is no longer the case when a form contains more than one file part, due to this coalescing of parts into a single file. The previous behavior of using distinct files for each form part may be reenabled with the environment variable GODEBUG=multipartfiles=distinct. Users should be aware that multipart.ReadForm and the http.Request methods that call it do not limit the amount of disk consumed by temporary files. Callers can limit the size of form data with http.MaxBytesReader.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/468124"
+        },
+        {
+          "url": "https://go.dev/issue/58006"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/V0aBFqaFs_E"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1569"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:a41703eb-2504-4cb9-99fd-4e4680a59031",
+      "id": "CVE-2023-24532",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24532"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24532",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24532"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "description": "The ScalarMult and ScalarBaseMult methods of the P256 Curve may return an incorrect result if called with some specific unreduced scalars (a scalar larger than the order of the curve). This does not impact usages of crypto/ecdsa or crypto/ecdh.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/471255"
+        },
+        {
+          "url": "https://go.dev/issue/58647"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/3-TpUx48iQY"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1621"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:50367fc4-5d11-4f13-a743-02b6cf989c0d",
+      "id": "CVE-2023-24534",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24534"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24534",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24534"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "HTTP and MIME header parsing can allocate large amounts of memory, even when parsing small inputs, potentially leading to a denial of service. Certain unusual patterns of input data can cause the common function used to parse HTTP and MIME headers to allocate substantially more memory than required to hold the parsed headers. An attacker can exploit this behavior to cause an HTTP server to allocate large amounts of memory from a small request, potentially leading to memory exhaustion and a denial of service. With fix, header parsing now correctly allocates only the memory required to hold parsed headers.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/481994"
+        },
+        {
+          "url": "https://go.dev/issue/58975"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/Xdv6JL9ENs8"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1704"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20230526-0007/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:37abcbd5-7b51-467d-a41e-70f695733bf4",
+      "id": "CVE-2023-24536",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24536"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24536",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24536"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Multipart form parsing can consume large amounts of CPU and memory when processing form inputs containing very large numbers of parts. This stems from several causes: 1. mime/multipart.Reader.ReadForm limits the total memory a parsed multipart form can consume. ReadForm can undercount the amount of memory consumed, leading it to accept larger inputs than intended. 2. Limiting total memory does not account for increased pressure on the garbage collector from large numbers of small allocations in forms with many parts. 3. ReadForm can allocate a large number of short-lived buffers, further increasing pressure on the garbage collector. The combination of these factors can permit an attacker to cause an program that parses multipart forms to consume large amounts of CPU and memory, potentially resulting in a denial of service. This affects programs that use mime/multipart.Reader.ReadForm, as well as form parsing in the net/http package with the Request methods FormFile, FormValue, ParseMultipartForm, and PostFormValue. With fix, ReadForm now does a better job of estimating the memory consumption of parsed forms, and performs many fewer short-lived allocations. In addition, the fixed mime/multipart.Reader imposes the following limits on the size of parsed forms: 1. Forms parsed with ReadForm may contain no more than 1000 parts. This limit may be adjusted with the environment variable GODEBUG=multipartmaxparts=. 2. Form parts parsed with NextPart and NextRawPart may contain no more than 10,000 header fields. In addition, forms parsed with ReadForm may contain no more than 10,000 header fields across all parts. This limit may be adjusted with the environment variable GODEBUG=multipartmaxheaders=.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/482075"
+        },
+        {
+          "url": "https://go.dev/cl/482076"
+        },
+        {
+          "url": "https://go.dev/cl/482077"
+        },
+        {
+          "url": "https://go.dev/issue/59153"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/Xdv6JL9ENs8"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1705"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20230526-0007/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:7ca08c4b-5875-485c-aaa2-541b96b3f329",
+      "id": "CVE-2023-24537",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24537"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24537",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24537"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Calling any of the Parse functions on Go source code which contains //line directives with very large line numbers can cause an infinite loop due to integer overflow.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/482078"
+        },
+        {
+          "url": "https://go.dev/issue/59180"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/Xdv6JL9ENs8"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1702"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:d954f516-5f59-44b2-8141-cc614ce72238",
+      "id": "CVE-2023-24538",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24538"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24538",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24538"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "Templates do not properly consider backticks (`) as Javascript string delimiters, and do not escape them as expected. Backticks are used, since ES6, for JS template literals. If a template contains a Go template action within a Javascript template literal, the contents of the action can be used to terminate the literal, injecting arbitrary Javascript code into the Go template. As ES6 template literals are rather complex, and themselves can do string interpolation, the decision was made to simply disallow Go template actions from being used inside of them (e.g. \"var a = {{.}}\"), since there is no obviously safe way to allow this behavior. This takes the same approach as github.com/google/safehtml. With fix, Template.Parse returns an Error when it encounters templates like this, with an ErrorCode of value 12. This ErrorCode is currently unexported, but will be exported in the release of Go 1.21. Users who rely on the previous behavior can re-enable it using the GODEBUG flag jstmpllitinterp=1, with the caveat that backticks will now be escaped. This should be used with caution.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/482079"
+        },
+        {
+          "url": "https://go.dev/issue/59234"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/Xdv6JL9ENs8"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1703"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:baf08514-a531-49f2-bcf0-29fc2c5cd3f1",
+      "id": "CVE-2023-24539",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24539"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24539",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24539"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.3,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+        }
+      ],
+      "description": "Angle brackets (<>) are not considered dangerous characters when inserted into CSS contexts. Templates containing multiple actions separated by a '/' character can result in unexpectedly closing the CSS context and allowing for injection of unexpected HTML, if executed with untrusted input.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/491615"
+        },
+        {
+          "url": "https://go.dev/issue/59720"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/MEb0UyuSMsU"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1751"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:b29cf684-2959-4df9-bb10-033988cf574a",
+      "id": "CVE-2023-24540",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24540"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24540",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24540"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "Not all valid JavaScript whitespace characters are considered to be whitespace. Templates containing whitespace characters outside of the character set \"\\t\\n\\f\\r\\u0020\\u2028\\u2029\" in JavaScript contexts that also contain actions may not be properly sanitized during execution.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/491616"
+        },
+        {
+          "url": "https://go.dev/issue/59721"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/MEb0UyuSMsU"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1752"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:6aeef8b6-104a-4209-a735-17687c8191a3",
+      "id": "CVE-2023-29400",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29400"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-29400",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29400"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.3,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L"
+        }
+      ],
+      "description": "Templates containing actions in unquoted HTML attributes (e.g. \"attr={{.}}\") executed with empty input can result in output with unexpected results when parsed due to HTML normalization rules. This may allow injection of arbitrary attributes into tags.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/491617"
+        },
+        {
+          "url": "https://go.dev/issue/59722"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/MEb0UyuSMsU"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1753"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:fde702d7-8d50-44f4-ab45-40772e74d6c2",
+      "id": "CVE-2023-29402",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29402"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-29402",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29402"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "The go command may generate unexpected code at build time when using cgo. This may result in unexpected behavior when running a go program which uses cgo. This may occur when running an untrusted module which contains directories with newline characters in their names. Modules which are retrieved using the go command, i.e. via \"go get\", are not affected (modules retrieved using GOPATH-mode, i.e. GO111MODULE=off, may be affected).",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/501226"
+        },
+        {
+          "url": "https://go.dev/issue/60167"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/q5135a9d924/m/j0ZoAJOHAwAJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NZ2O6YCO2IZMZJELQGZYR2WAUNEDLYV6/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XBS3IIK6ADV24C5ULQU55QLT2UE762ZX/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1839"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:c93869cc-6c19-4984-85ec-54dc74a6d6d9",
+      "id": "CVE-2023-29403",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29403"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-29403",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29403"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.8,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "On Unix platforms, the Go runtime does not behave differently when a binary is run with the setuid/setgid bits. This can be dangerous in certain cases, such as when dumping memory state, or assuming the status of standard i/o file descriptors. If a setuid/setgid binary is executed with standard I/O file descriptors closed, opening any files can result in unexpected content being read or written with elevated privileges. Similarly, if a setuid/setgid program is terminated, either via panic or signal, it may leak the contents of its registers.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/501223"
+        },
+        {
+          "url": "https://go.dev/issue/60272"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/q5135a9d924/m/j0ZoAJOHAwAJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NZ2O6YCO2IZMZJELQGZYR2WAUNEDLYV6/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XBS3IIK6ADV24C5ULQU55QLT2UE762ZX/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1840"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:638daaca-0811-4975-892f-1ad75ae87cfb",
+      "id": "CVE-2023-29404",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29404"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-29404",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29404"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "The go command may execute arbitrary code at build time when using cgo. This may occur when running \"go get\" on a malicious module, or when running any other command which builds untrusted code. This is can by triggered by linker flags, specified via a \"#cgo LDFLAGS\" directive. The arguments for a number of flags which are non-optional are incorrectly considered optional, allowing disallowed flags to be smuggled through the LDFLAGS sanitization. This affects usage of both the gc and gccgo compilers.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/501225"
+        },
+        {
+          "url": "https://go.dev/issue/60305"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/q5135a9d924/m/j0ZoAJOHAwAJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NZ2O6YCO2IZMZJELQGZYR2WAUNEDLYV6/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XBS3IIK6ADV24C5ULQU55QLT2UE762ZX/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1841"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:0d442436-2b9f-4971-9d5a-1bd09ff74fc0",
+      "id": "CVE-2023-29405",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29405"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-29405",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29405"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "The go command may execute arbitrary code at build time when using cgo. This may occur when running \"go get\" on a malicious module, or when running any other command which builds untrusted code. This is can by triggered by linker flags, specified via a \"#cgo LDFLAGS\" directive. Flags containing embedded spaces are mishandled, allowing disallowed flags to be smuggled through the LDFLAGS sanitization by including them in the argument of another flag. This only affects usage of the gccgo compiler.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/501224"
+        },
+        {
+          "url": "https://go.dev/issue/60306"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/q5135a9d924/m/j0ZoAJOHAwAJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NZ2O6YCO2IZMZJELQGZYR2WAUNEDLYV6/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XBS3IIK6ADV24C5ULQU55QLT2UE762ZX/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1842"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:24684ce3-9034-4992-9ec1-13c1366c67f3",
+      "id": "CVE-2023-29406",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29406"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-29406",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29406"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 6.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N"
+        }
+      ],
+      "description": "The HTTP/1 client does not fully validate the contents of the Host header. A maliciously crafted Host header can inject additional headers or entire requests. With fix, the HTTP/1 client now refuses to send requests containing an invalid Request.Host or Request.URL.Host value.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/506996"
+        },
+        {
+          "url": "https://go.dev/issue/60374"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/2q13H6LEEx0"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1878"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20230814-0002/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:91905b4f-29e7-4596-a1d1-60aaa01767c2",
+      "id": "CVE-2023-29409",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29409"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-29409",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-29409"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ],
+      "description": "Extremely large RSA keys in certificate chains can cause a client/server to expend significant CPU time verifying signatures. With fix, the size of RSA keys transmitted during handshakes is restricted to <= 8192 bits. Based on a survey of publicly trusted RSA keys, there are currently only three certificates in circulation with keys larger than this, and all three appear to be test certificates that are not actively deployed. It is possible there are larger keys in use in private PKIs, but we target the web PKI, so causing breakage here in the interests of increasing the default safety of users of crypto/tls seems reasonable.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/515257"
+        },
+        {
+          "url": "https://go.dev/issue/61460"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/X0b6CsSAaYI/m/Efv5DbZ9AwAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-1987"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20230831-0010/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:3939c99b-5284-478f-b915-7b2a443c2c2e",
+      "id": "CVE-2023-39318",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39318"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-39318",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39318"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 6.1,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+        }
+      ],
+      "description": "The html/template package does not properly handle HTML-like \"\" comment tokens, nor hashbang \"#!\" comment tokens, in <script> contexts. This may cause the template parser to improperly interpret the contents of <script> contexts, causing actions to be improperly escaped. This may be leveraged to perform an XSS attack.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/526156"
+        },
+        {
+          "url": "https://go.dev/issue/62196"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/2C5vbR-UNkI/m/L1hdrPhfBAAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-2041"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20231020-0009/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:a05c9dd9-5e1f-4649-8fd0-8e9324c407d0",
+      "id": "CVE-2023-39319",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39319"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-39319",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39319"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 6.1,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+        }
+      ],
+      "description": "The html/template package does not apply the proper rules for handling occurrences of \"<script\", \"<!--\", and \"</script\" within JS literals in <script> contexts. This may cause the template parser to improperly consider script contexts to be terminated early, causing actions to be improperly escaped. This could be leveraged to perform an XSS attack.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/526157"
+        },
+        {
+          "url": "https://go.dev/issue/62197"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/2C5vbR-UNkI/m/L1hdrPhfBAAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-2043"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20231020-0009/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:ec5ef7c7-b9f3-4f6a-b1e9-5806c29fe1e6",
+      "id": "CVE-2023-39323",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39323"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-39323",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39323"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 8.1,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ],
+      "description": "Line directives (\"//line\") can be used to bypass the restrictions on \"//go:cgo_\" directives, allowing blocked linker and compiler flags to be passed during compilation. This can result in unexpected execution of arbitrary code when running \"go build\". The line directive requires the absolute path of the file in which the directive lives, which makes exploiting this issue significantly more complex.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/533215"
+        },
+        {
+          "url": "https://go.dev/issue/63211"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/XBa1oHDevAo"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CLB4TW7KALB3EEQWNWCN7OUIWWVWWCG2/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KSEGD2IWKNUO3DWY4KQGUQM5BISRWHQE/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XFOIBB4YFICHDM7IBOP7PWXW3FX4HLL2/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-2095"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20231020-0001/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:c36f7641-cadc-49d8-ba5f-707a14995748",
+      "id": "CVE-2023-39326",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39326"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-39326",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-39326"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "description": "A malicious HTTP sender can use chunk extensions to cause a receiver reading from a request or response body to read many more bytes from the network than are in the body. A malicious HTTP client can further exploit this to cause a server to automatically read a large amount of data (up to about 1GiB) when a handler fails to read the entire body of a request. Chunk extensions are a little-used HTTP feature which permit including additional metadata in a request or response body sent using the chunked encoding. The net/http chunked encoding reader discards this metadata. A sender can exploit this by inserting a large metadata segment with each byte transferred. The chunk reader now produces an error if the ratio of real body to encoded bytes grows too small.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/547335"
+        },
+        {
+          "url": "https://go.dev/issue/64433"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/6ypN5EjibjM/m/KmLVYH_uAgAJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/UIU6HOGV6RRIKWM57LOXQA75BGZSIH6G/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-2382"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:ec01c53f-37f8-41c3-b24c-7fb6b33f0015",
+      "id": "CVE-2023-42364",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-42364",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/busybox@1.36.1-r28?arch=x86_64&distro=alpine-3.20.0&package-id=5161f029ea7d79cd"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:b4679060-cf7a-419c-bf98-72f445c95c9a",
+      "id": "CVE-2023-42364",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-42364",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=327d204cc7219fb2"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:30368334-d8e7-44c9-8d82-b813efc10c7a",
+      "id": "CVE-2023-42364",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-42364",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2023-42364"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/ssl_client@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=25cd376deae772db"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:eed7ddb1-fa73-452b-a18c-fa4978500698",
+      "id": "CVE-2023-42365",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-42365",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/busybox@1.36.1-r28?arch=x86_64&distro=alpine-3.20.0&package-id=5161f029ea7d79cd"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:b75f3070-d345-4d09-a07b-63ffcf83a195",
+      "id": "CVE-2023-42365",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-42365",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=327d204cc7219fb2"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:c08df72b-471b-44e9-a92e-bbc249c2d8e1",
+      "id": "CVE-2023-42365",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-42365",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2023-42365"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/ssl_client@1.36.1-r28?arch=x86_64&upstream=busybox&distro=alpine-3.20.0&package-id=25cd376deae772db"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:e3b0695e-d56e-4d87-91f6-3bd2680a7c29",
+      "id": "CVE-2023-44487",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-44487"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-44487",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-44487"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "The HTTP/2 protocol allows a denial of service (server resource consumption) because request cancellation can reset many streams quickly, as exploited in the wild in August through October 2023.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/13/4"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/13/9"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/18/4"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/18/8"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/19/6"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2023/10/20/8"
+        },
+        {
+          "url": "https://access.redhat.com/security/cve/cve-2023-44487"
+        },
+        {
+          "url": "https://arstechnica.com/security/2023/10/how-ddosers-used-the-http-2-protocol-to-deliver-attacks-of-unprecedented-size/"
+        },
+        {
+          "url": "https://aws.amazon.com/security/security-bulletins/AWS-2023-011/"
+        },
+        {
+          "url": "https://blog.cloudflare.com/technical-breakdown-http2-rapid-reset-ddos-attack/"
+        },
+        {
+          "url": "https://blog.cloudflare.com/zero-day-rapid-reset-http2-record-breaking-ddos-attack/"
+        },
+        {
+          "url": "https://blog.litespeedtech.com/2023/10/11/rapid-reset-http-2-vulnerablilty/"
+        },
+        {
+          "url": "https://blog.qualys.com/vulnerabilities-threat-research/2023/10/10/cve-2023-44487-http-2-rapid-reset-attack"
+        },
+        {
+          "url": "https://blog.vespa.ai/cve-2023-44487/"
+        },
+        {
+          "url": "https://bugzilla.proxmox.com/show_bug.cgi?id=4988"
+        },
+        {
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2242803"
+        },
+        {
+          "url": "https://bugzilla.suse.com/show_bug.cgi?id=1216123"
+        },
+        {
+          "url": "https://cgit.freebsd.org/ports/commit/?id=c64c329c2c1752f46b73e3e6ce9f4329be6629f9"
+        },
+        {
+          "url": "https://cloud.google.com/blog/products/identity-security/google-cloud-mitigated-largest-ddos-attack-peaking-above-398-million-rps/"
+        },
+        {
+          "url": "https://cloud.google.com/blog/products/identity-security/how-it-works-the-novel-http2-rapid-reset-ddos-attack"
+        },
+        {
+          "url": "https://community.traefik.io/t/is-traefik-vulnerable-to-cve-2023-44487/20125"
+        },
+        {
+          "url": "https://discuss.hashicorp.com/t/hcsec-2023-32-vault-consul-and-boundary-affected-by-http-2-rapid-reset-denial-of-service-vulnerability-cve-2023-44487/59715"
+        },
+        {
+          "url": "https://edg.io/lp/blog/resets-leaks-ddos-and-the-tale-of-a-hidden-cve"
+        },
+        {
+          "url": "https://forums.swift.org/t/swift-nio-http2-security-update-cve-2023-44487-http-2-dos/67764"
+        },
+        {
+          "url": "https://gist.github.com/adulau/7c2bfb8e9cdbe4b35a5e131c66a0c088"
+        },
+        {
+          "url": "https://github.com/Azure/AKS/issues/3947"
+        },
+        {
+          "url": "https://github.com/Kong/kong/discussions/11741"
+        },
+        {
+          "url": "https://github.com/advisories/GHSA-qppj-fm5r-hxr3"
+        },
+        {
+          "url": "https://github.com/advisories/GHSA-vx74-f528-fxqg"
+        },
+        {
+          "url": "https://github.com/advisories/GHSA-xpw8-rcwv-8f8p"
+        },
+        {
+          "url": "https://github.com/akka/akka-http/issues/4323"
+        },
+        {
+          "url": "https://github.com/alibaba/tengine/issues/1872"
+        },
+        {
+          "url": "https://github.com/apache/apisix/issues/10320"
+        },
+        {
+          "url": "https://github.com/apache/httpd-site/pull/10"
+        },
+        {
+          "url": "https://github.com/apache/httpd/blob/afcdbeebbff4b0c50ea26cdd16e178c0d1f24152/modules/http2/h2_mplx.c#L1101-L1113"
+        },
+        {
+          "url": "https://github.com/apache/tomcat/tree/main/java/org/apache/coyote/http2"
+        },
+        {
+          "url": "https://github.com/apache/trafficserver/pull/10564"
+        },
+        {
+          "url": "https://github.com/arkrwn/PoC/tree/main/CVE-2023-44487"
+        },
+        {
+          "url": "https://github.com/bcdannyboy/CVE-2023-44487"
+        },
+        {
+          "url": "https://github.com/caddyserver/caddy/issues/5877"
+        },
+        {
+          "url": "https://github.com/caddyserver/caddy/releases/tag/v2.7.5"
+        },
+        {
+          "url": "https://github.com/dotnet/announcements/issues/277"
+        },
+        {
+          "url": "https://github.com/dotnet/core/blob/e4613450ea0da7fd2fc6b61dfb2c1c1dec1ce9ec/release-notes/6.0/6.0.23/6.0.23.md?plain=1#L73"
+        },
+        {
+          "url": "https://github.com/eclipse/jetty.project/issues/10679"
+        },
+        {
+          "url": "https://github.com/envoyproxy/envoy/pull/30055"
+        },
+        {
+          "url": "https://github.com/etcd-io/etcd/issues/16740"
+        },
+        {
+          "url": "https://github.com/facebook/proxygen/pull/466"
+        },
+        {
+          "url": "https://github.com/golang/go/issues/63417"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go/pull/6703"
+        },
+        {
+          "url": "https://github.com/h2o/h2o/pull/3291"
+        },
+        {
+          "url": "https://github.com/h2o/h2o/security/advisories/GHSA-2m7v-gc89-fjqf"
+        },
+        {
+          "url": "https://github.com/haproxy/haproxy/issues/2312"
+        },
+        {
+          "url": "https://github.com/icing/mod_h2/blob/0a864782af0a942aa2ad4ed960a6b32cd35bcf0a/mod_http2/README.md?plain=1#L239-L244"
+        },
+        {
+          "url": "https://github.com/junkurihara/rust-rpxy/issues/97"
+        },
+        {
+          "url": "https://github.com/kazu-yamamoto/http2/commit/f61d41a502bd0f60eb24e1ce14edc7b6df6722a1"
+        },
+        {
+          "url": "https://github.com/kazu-yamamoto/http2/issues/93"
+        },
+        {
+          "url": "https://github.com/kubernetes/kubernetes/pull/121120"
+        },
+        {
+          "url": "https://github.com/line/armeria/pull/5232"
+        },
+        {
+          "url": "https://github.com/linkerd/website/pull/1695/commits/4b9c6836471bc8270ab48aae6fd2181bc73fd632"
+        },
+        {
+          "url": "https://github.com/micrictor/http2-rst-stream"
+        },
+        {
+          "url": "https://github.com/microsoft/CBL-Mariner/pull/6381"
+        },
+        {
+          "url": "https://github.com/netty/netty/commit/58f75f665aa81a8cbcf6ffa74820042a285c5e61"
+        },
+        {
+          "url": "https://github.com/nghttp2/nghttp2/pull/1961"
+        },
+        {
+          "url": "https://github.com/nghttp2/nghttp2/releases/tag/v1.57.0"
+        },
+        {
+          "url": "https://github.com/ninenines/cowboy/issues/1615"
+        },
+        {
+          "url": "https://github.com/nodejs/node/pull/50121"
+        },
+        {
+          "url": "https://github.com/openresty/openresty/issues/930"
+        },
+        {
+          "url": "https://github.com/opensearch-project/data-prepper/issues/3474"
+        },
+        {
+          "url": "https://github.com/oqtane/oqtane.framework/discussions/3367"
+        },
+        {
+          "url": "https://github.com/projectcontour/contour/pull/5826"
+        },
+        {
+          "url": "https://github.com/tempesta-tech/tempesta/issues/1986"
+        },
+        {
+          "url": "https://github.com/varnishcache/varnish-cache/issues/3996"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/iNNxDTCjZvo"
+        },
+        {
+          "url": "https://istio.io/latest/news/security/istio-security-2023-004/"
+        },
+        {
+          "url": "https://linkerd.io/2023/10/12/linkerd-cve-2023-44487/"
+        },
+        {
+          "url": "https://lists.apache.org/thread/5py8h42mxfsn8l1wy6o41xwhsjlsd87q"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00020.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00023.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00024.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00045.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/10/msg00047.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/11/msg00001.html"
+        },
+        {
+          "url": "https://lists.debian.org/debian-lts-announce/2023/11/msg00012.html"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/2MBEPPC36UBVOZZNAXFHKLFGSLCMN5LI/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3N4NJ7FR4X4FPZUGNTQAPSTVB2HB2Y4A/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/BFQD3KUEMFBHPAPBGLWQC34L4OWL5HAZ/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/CLB4TW7KALB3EEQWNWCN7OUIWWVWWCG2/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/E72T67UPDRXHIDLO3OROR25YAMN4GGW5/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/FNA62Q767CFAFHBCDKYNPBMZWB7TWYVU/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/HT7T2R4MQKLIF4ODV4BDLPARWFPCJ5CZ/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/JIZSEFC3YKCGABA2BZW6ZJRMDZJMB7PJ/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/JMEXY22BFG5Q64HQCM5CK2Q7KDKVV4TY/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/KSEGD2IWKNUO3DWY4KQGUQM5BISRWHQE/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/LKYHSZQFDNR7RSA7LHVLLIAQMVYCUGBG/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/LNMZJCDHGLJJLXO4OXWJMTVQRNWOC7UL/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/VHUHTSXLXGXS7JYKBXTA3VINUPHTNGVU/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/VSRDIV77HNKUSM7SJC5BKE5JSHLHU2NK/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/WE2I52RHNNU42PX6NZ2RBUHSFFJ2LVZX/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/WLPRQ5TWUQQXYWBJM7ECYDAIL2YVKIUH/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/X6QXN4ORIVF6XBW4WWFE7VNPVC74S45Y/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/XFOIBB4YFICHDM7IBOP7PWXW3FX4HLL2/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ZB43REMKRQR62NJEI7I5NQ4FSXNLBKRT/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ZKQSIKIAT5TJ3WSLU3RDBQ35YX4GY4V3/"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ZLU6U2R2IC2K64NDPNMV55AUAO65MAF4/"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/ietf-http-wg/2023OctDec/0025.html"
+        },
+        {
+          "url": "https://mailman.nginx.org/pipermail/nginx-devel/2023-October/S36Q5HBXR7CAIMPLLPRSSSYR4PCMWILK.html"
+        },
+        {
+          "url": "https://martinthomson.github.io/h2-stream-limits/draft-thomson-httpbis-h2-stream-limits.html"
+        },
+        {
+          "url": "https://msrc.microsoft.com/blog/2023/10/microsoft-response-to-distributed-denial-of-service-ddos-attacks-against-http/2/"
+        },
+        {
+          "url": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-44487"
+        },
+        {
+          "url": "https://my.f5.com/manage/s/article/K000137106"
+        },
+        {
+          "url": "https://netty.io/news/2023/10/10/4-1-100-Final.html"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37830987"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37830998"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37831062"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=37837043"
+        },
+        {
+          "url": "https://openssf.org/blog/2023/10/10/http-2-rapid-reset-vulnerability-highlights-need-for-rapid-response/"
+        },
+        {
+          "url": "https://seanmonstar.com/post/730794151136935936/hyper-http2-rapid-reset-unaffected"
+        },
+        {
+          "url": "https://security.gentoo.org/glsa/202311-09"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20231016-0001/"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240426-0007/"
+        },
+        {
+          "url": "https://security.paloaltonetworks.com/CVE-2023-44487"
+        },
+        {
+          "url": "https://tomcat.apache.org/security-10.html#Fixed_in_Apache_Tomcat_10.1.14"
+        },
+        {
+          "url": "https://ubuntu.com/security/CVE-2023-44487"
+        },
+        {
+          "url": "https://www.bleepingcomputer.com/news/security/new-http-2-rapid-reset-zero-day-attack-breaks-ddos-records/"
+        },
+        {
+          "url": "https://www.cisa.gov/news-events/alerts/2023/10/10/http2-rapid-reset-vulnerability-cve-2023-44487"
+        },
+        {
+          "url": "https://www.darkreading.com/cloud/internet-wide-zero-day-bug-fuels-largest-ever-ddos-event"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5521"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5522"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5540"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5549"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5558"
+        },
+        {
+          "url": "https://www.debian.org/security/2023/dsa-5570"
+        },
+        {
+          "url": "https://www.haproxy.com/blog/haproxy-is-not-affected-by-the-http-2-rapid-reset-attack-cve-2023-44487"
+        },
+        {
+          "url": "https://www.netlify.com/blog/netlify-successfully-mitigates-cve-2023-44487/"
+        },
+        {
+          "url": "https://www.nginx.com/blog/http-2-rapid-reset-attack-impacting-f5-nginx-products/"
+        },
+        {
+          "url": "https://www.openwall.com/lists/oss-security/2023/10/10/6"
+        },
+        {
+          "url": "https://www.phoronix.com/news/HTTP2-Rapid-Reset-Attack"
+        },
+        {
+          "url": "https://www.theregister.com/2023/10/10/http2_rapid_reset_zeroday/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:687823a8-6eb0-4aba-ad41-73b466ca2e19",
+      "id": "CVE-2023-45285",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45285"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-45285",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45285"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "description": "Using go get to fetch a module with the \".git\" suffix may unexpectedly fallback to the insecure \"git://\" protocol if the module is unavailable via the secure \"https://\" and \"git+ssh://\" protocols, even if GOINSECURE is not set for said module. This only affects users who are not using the module proxy and are fetching modules directly (i.e. GOPROXY=off).",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/540257"
+        },
+        {
+          "url": "https://go.dev/issue/63845"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/6ypN5EjibjM/m/KmLVYH_uAgAJ"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/UIU6HOGV6RRIKWM57LOXQA75BGZSIH6G/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-2383"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:3ee05eaf-5719-4ab7-8bdd-02bddd8c0a74",
+      "id": "CVE-2023-45287",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45287"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-45287",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45287"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "description": "Before Go 1.20, the RSA based TLS key exchanges used the math/big library, which is not constant time. RSA blinding was applied to prevent timing attacks, but analysis shows this may not have been fully effective. In particular it appears as if the removal of PKCS#1 padding may leak timing information, which in turn could be used to recover session key bits. In Go 1.20, the crypto/tls library switched to a fully constant time RSA implementation, which we do not believe exhibits any timing side channels.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/326012/26"
+        },
+        {
+          "url": "https://go.dev/issue/20654"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/QMK8IQALDvA"
+        },
+        {
+          "url": "https://people.redhat.com/~hkario/marvin/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2023-2375"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240112-0005/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:8f07ef39-f74d-4e84-acaa-020a92dd4f91",
+      "id": "CVE-2023-45288",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45288"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-45288",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45288"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "An attacker may cause an HTTP/2 endpoint to read arbitrary amounts of header data by sending an excessive number of CONTINUATION frames. Maintaining HPACK state requires parsing and processing all HEADERS and CONTINUATION frames on a connection. When a request's headers exceed MaxHeaderBytes, no memory is allocated to store the excess headers, but they are still parsed. This permits an attacker to cause an HTTP/2 endpoint to read arbitrary amounts of header data, all associated with a request which is going to be rejected. These headers can include Huffman-encoded data which is significantly more expensive for the receiver to decode than for an attacker to send. The fix sets a limit on the amount of excess header frames we will process before closing a connection.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/04/03/16"
+        },
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/04/05/4"
+        },
+        {
+          "url": "https://go.dev/cl/576155"
+        },
+        {
+          "url": "https://go.dev/issue/65051"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/YgW0sx8mN3M"
+        },
+        {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/QRYFHIQ6XRKRYBI2F5UESH67BJBQXUPT/"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2687"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240419-0009/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:441c57da-b7c8-411f-a329-5f81e4af617c",
+      "id": "CVE-2023-45289",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45289"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-45289",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45289"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "When following an HTTP redirect to a domain which is not a subdomain match or exact match of the initial domain, an http.Client does not forward sensitive headers such as \"Authorization\" or \"Cookie\". For example, a redirect from foo.com to www.foo.com will forward the Authorization header, but a redirect to bar.com will not. A maliciously crafted HTTP redirect could cause sensitive headers to be unexpectedly forwarded.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/03/08/4"
+        },
+        {
+          "url": "https://go.dev/cl/569340"
+        },
+        {
+          "url": "https://go.dev/issue/65065"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/5pwGVUPoMbg"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2600"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240329-0006/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:483b03ca-92e6-4cce-91de-36f7d5864c58",
+      "id": "CVE-2023-45290",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45290"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-45290",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-45290"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "When parsing a multipart form (either explicitly with Request.ParseMultipartForm or implicitly with Request.FormValue, Request.PostFormValue, or Request.FormFile), limits on the total size of the parsed form were not applied to the memory consumed while reading a single form line. This permits a maliciously crafted input containing very long lines to cause allocation of arbitrarily large amounts of memory, potentially leading to memory exhaustion. With fix, the ParseMultipartForm function now correctly limits the maximum size of form lines.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/03/08/4"
+        },
+        {
+          "url": "https://go.dev/cl/569341"
+        },
+        {
+          "url": "https://go.dev/issue/65383"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/5pwGVUPoMbg"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2599"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240329-0004/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:e5700bfb-9c86-46f3-b0ff-e2d8832eef6c",
+      "id": "CVE-2024-24783",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24783"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24783",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24783"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "Verifying a certificate chain which contains a certificate with an unknown public key algorithm will cause Certificate.Verify to panic. This affects all crypto/tls clients, and servers that set Config.ClientAuth to VerifyClientCertIfGiven or RequireAndVerifyClientCert. The default behavior is for TLS servers to not verify client certificates.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/03/08/4"
+        },
+        {
+          "url": "https://go.dev/cl/569339"
+        },
+        {
+          "url": "https://go.dev/issue/65390"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/5pwGVUPoMbg"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2598"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240329-0005/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:b6ba618e-5f7a-40e5-89d5-07b3fbac4d1f",
+      "id": "CVE-2024-24784",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24784"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24784",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24784"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "The ParseAddressList function incorrectly handles comments (text within parentheses) within display names. Since this is a misalignment with conforming address parsers, it can result in different trust decisions being made by programs using different parsers.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/03/08/4"
+        },
+        {
+          "url": "https://go.dev/cl/555596"
+        },
+        {
+          "url": "https://go.dev/issue/65083"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/5pwGVUPoMbg"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2609"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240329-0007/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:9193b003-c89e-480b-804e-ff1ca64ab8ac",
+      "id": "CVE-2024-24785",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24785"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24785",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24785"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "If errors returned from MarshalJSON methods contain user controlled data, they may be used to break the contextual auto-escaping behavior of the html/template package, allowing for subsequent actions to inject unexpected content into templates.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/03/08/4"
+        },
+        {
+          "url": "https://go.dev/cl/564196"
+        },
+        {
+          "url": "https://go.dev/issue/65697"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/5pwGVUPoMbg"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2610"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240329-0008/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:19f240c4-1327-4a99-ad1b-8d8d38648a78",
+      "id": "CVE-2024-24787",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24787"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24787",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24787"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "On Darwin, building a Go module which contains CGO can trigger arbitrary code execution when using the Apple version of ld, due to usage of the -lto_library flag in a \"#cgo LDFLAGS\" directive.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/05/08/3"
+        },
+        {
+          "url": "https://go.dev/cl/583815"
+        },
+        {
+          "url": "https://go.dev/issue/67119"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/wkkO4P9stm0"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2825"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240531-0006/"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:cc18c7ae-254d-46d2-bfa7-d453dd1d559f",
+      "id": "CVE-2024-24789",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24789"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24789",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24789"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "The archive/zip package's handling of certain types of invalid zip files differs from the behavior of most zip implementations. This misalignment could be exploited to create an zip file with contents that vary depending on the implementation reading the file. The archive/zip package now rejects files containing these errors.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/06/04/1"
+        },
+        {
+          "url": "https://go.dev/cl/585397"
+        },
+        {
+          "url": "https://go.dev/issue/66869"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/XbxouI9gY7k/m/TuoGEhxIEwAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2888"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:78405637-5078-4dd4-abcc-630006e66f56",
+      "id": "CVE-2024-24790",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24790"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24790",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24790"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "The various Is methods (IsPrivate, IsLoopback, etc) did not work as expected for IPv4-mapped IPv6 addresses, returning false for addresses which would return true in their traditional IPv4 forms.",
+      "advisories": [
+        {
+          "url": "http://www.openwall.com/lists/oss-security/2024/06/04/1"
+        },
+        {
+          "url": "https://go.dev/cl/590316"
+        },
+        {
+          "url": "https://go.dev/issue/67680"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-announce/c/XbxouI9gY7k/m/TuoGEhxIEwAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2887"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:c492ffdc-0249-486e-95b5-311eef3e58e7",
+      "id": "CVE-2024-4741",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-4741"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-4741",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-4741"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-4741"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libcrypto3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=2f04e7513e735cb9"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:56f6b4ad-6be3-41e8-b763-f7e6d32b8b2f",
+      "id": "CVE-2024-4741",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-4741"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-4741",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-4741"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-4741"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libssl3@3.3.0-r2?arch=x86_64&upstream=openssl&distro=alpine-3.20.0&package-id=6023392ec412f382"
+        }
+      ]
+    }
+  ]
+}

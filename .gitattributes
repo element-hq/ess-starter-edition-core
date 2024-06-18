@@ -1,0 +1,4 @@
+# Mark as generated for both GH & GL
+sboms/*.json gitlab-generated linguist-generated=true
+# Treat as binary files (no diff, no merge-conflicts - latest wins)
+sboms/* -diff -merge
