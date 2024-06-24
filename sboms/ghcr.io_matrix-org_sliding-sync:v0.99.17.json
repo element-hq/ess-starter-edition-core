@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "serialNumber": "urn:uuid:c8deb45d-d1f9-40b4-bd21-b655b9f3eb01",
+  "serialNumber": "urn:uuid:4cccf9b6-19ca-49cb-8c0d-f4cb96dc65e0",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-06-18T12:34:03Z",
+    "timestamp": "2024-06-24T09:24:15Z",
     "tools": {
       "components": [
         {
@@ -5074,7 +5074,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:fc2d2098-25a3-4030-8e91-466d768d71de",
+      "bom-ref": "urn:uuid:4a26a9c7-1fa2-413a-8a93-da998c4c82e0",
       "id": "CVE-2023-42363",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5106,7 +5106,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:528e6b13-aa64-4355-b40a-42053c5bdb4e",
+      "bom-ref": "urn:uuid:097a9764-646f-4427-8cc8-28df741cb6b2",
       "id": "CVE-2023-42363",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5138,7 +5138,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:62241897-52d4-4139-a320-7447058e7156",
+      "bom-ref": "urn:uuid:0cefd2d1-976c-48a1-9b8e-73c1a749e98b",
       "id": "CVE-2023-42363",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5170,7 +5170,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ae93ef1f-ef56-4a97-8f97-44b8ea95cea6",
+      "bom-ref": "urn:uuid:05f35d31-c12a-4762-9e56-356511760bfc",
       "id": "CVE-2023-42364",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5202,7 +5202,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7c4914ca-6757-48da-a5d7-b0f755a626f2",
+      "bom-ref": "urn:uuid:95754246-2fe7-42ca-8619-58a30b46bba5",
       "id": "CVE-2023-42364",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5234,7 +5234,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:818f040f-14c9-40d2-8e9c-b961ff3eb502",
+      "bom-ref": "urn:uuid:56e9bc00-c8a4-4d68-867b-199bb6f066e2",
       "id": "CVE-2023-42364",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5266,7 +5266,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dc537239-16a9-4739-937a-c232305f0654",
+      "bom-ref": "urn:uuid:93314039-0265-4ad7-abf5-6b5e93898d15",
       "id": "CVE-2023-42365",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5298,7 +5298,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:88d604b9-ed6f-4b41-979d-4e26b9588195",
+      "bom-ref": "urn:uuid:edb6fee7-a6cc-4f7a-9bc3-9b5e1549848e",
       "id": "CVE-2023-42365",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5330,7 +5330,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a543e9dd-908e-44fc-bd51-2f53b5bb604e",
+      "bom-ref": "urn:uuid:f231248f-0a82-43d1-a371-d42d06231b41",
       "id": "CVE-2023-42365",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5362,7 +5362,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a9362470-1ec8-42f6-908a-d16be7a52b77",
+      "bom-ref": "urn:uuid:7d58b139-97ac-444c-887b-c55579b74924",
       "id": "CVE-2023-42366",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5394,7 +5394,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6eb36caa-c96c-4aff-8b38-e4be6c3de6cf",
+      "bom-ref": "urn:uuid:6f732bd2-7668-4350-9189-8143103c1341",
       "id": "CVE-2023-42366",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5426,7 +5426,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d5b43c26-fe8f-473b-ab4f-fb6b84fdac82",
+      "bom-ref": "urn:uuid:95cb5051-4ac2-4a4c-8c52-d328e5053d8e",
       "id": "CVE-2023-42366",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -5458,7 +5458,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:82946df6-b5d2-4a3b-be31-34b2c362a87d",
+      "bom-ref": "urn:uuid:435ff4c7-e8a2-4051-a280-72a334dff51e",
       "id": "CVE-2023-45288",
       "source": {
         "name": "nvd-cpe",
@@ -5512,7 +5512,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a87cb77d-c886-45cc-a139-e94aa0e5cdbc",
+      "bom-ref": "urn:uuid:0e308717-ccab-4d31-b87d-f00c4bbe547f",
       "id": "CVE-2023-45289",
       "source": {
         "name": "nvd-cpe",
@@ -5560,7 +5560,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c7b41c12-1ef0-45ad-b599-f77751041bd4",
+      "bom-ref": "urn:uuid:a4583a3e-49c3-48ef-9c62-e9e683c02e75",
       "id": "CVE-2023-45290",
       "source": {
         "name": "nvd-cpe",
@@ -5608,7 +5608,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:41372d82-ed88-4b24-ba8d-e098d0430d0c",
+      "bom-ref": "urn:uuid:a7a6589b-2fde-4195-8d62-5bada7d783db",
       "id": "CVE-2024-0853",
       "source": {
         "name": "nvd-cpe",
@@ -5659,7 +5659,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ad514b5a-4446-4322-9fa3-6424eacc7983",
+      "bom-ref": "urn:uuid:e3aabed9-427d-4795-b98b-e25c5760162f",
       "id": "CVE-2024-2004",
       "source": {
         "name": "nvd-cpe",
@@ -5710,7 +5710,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ded90799-b2cb-446c-b796-2cf08e329bdf",
+      "bom-ref": "urn:uuid:c6e251f1-0ff9-43a5-a2f7-2e3f9e764666",
       "id": "CVE-2024-2398",
       "source": {
         "name": "nvd-cpe",
@@ -5761,7 +5761,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:05d52dd4-efae-4aa5-81d1-5090e879bdc1",
+      "bom-ref": "urn:uuid:5829a4b3-1dbc-40c9-b78f-6727577b3e8c",
       "id": "CVE-2024-2466",
       "source": {
         "name": "nvd-cpe",
@@ -5806,7 +5806,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d4ec2c13-c277-43c4-a2c4-81c0e816e19b",
+      "bom-ref": "urn:uuid:67918ed1-2eb1-4e42-b194-9d05c5f3e1af",
       "id": "CVE-2024-24783",
       "source": {
         "name": "nvd-cpe",
@@ -5854,7 +5854,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e8ef3c3b-200f-451e-b927-53c5bd5d5964",
+      "bom-ref": "urn:uuid:bada7c0a-dd33-4424-9482-d53ffdec5d29",
       "id": "CVE-2024-24784",
       "source": {
         "name": "nvd-cpe",
@@ -5902,7 +5902,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:644bac6a-b4ee-47ba-b546-80cad30ed580",
+      "bom-ref": "urn:uuid:64ed4e4b-756f-4efc-a107-a39027544010",
       "id": "CVE-2024-24785",
       "source": {
         "name": "nvd-cpe",
@@ -5950,7 +5950,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2a610181-ff8f-403e-8b7a-77215ca3cc49",
+      "bom-ref": "urn:uuid:c34fa185-c5a9-4284-950c-fba1ceb79168",
       "id": "CVE-2024-24787",
       "source": {
         "name": "nvd-cpe",
@@ -5998,7 +5998,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5a7227b7-05fc-4f9a-9233-8ad83fb0ae9d",
+      "bom-ref": "urn:uuid:0cd611d6-2521-4af3-ad3c-613ade1c4127",
       "id": "CVE-2024-24789",
       "source": {
         "name": "nvd-cpe",
@@ -6015,7 +6015,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 5.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N"
         }
       ],
       "description": "The archive/zip package's handling of certain types of invalid zip files differs from the behavior of most zip implementations. This misalignment could be exploited to create an zip file with contents that vary depending on the implementation reading the file. The archive/zip package now rejects files containing these errors.",
@@ -6033,6 +6036,9 @@
           "url": "https://groups.google.com/g/golang-announce/c/XbxouI9gY7k/m/TuoGEhxIEwAJ"
         },
         {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/U5YAEIA6IUHUNGJ7AIXXPQT6D2GYENX7/"
+        },
+        {
           "url": "https://pkg.go.dev/vuln/GO-2024-2888"
         }
       ],
@@ -6043,7 +6049,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b6440f3b-c39f-4d6e-9ea5-d7c2f859ea79",
+      "bom-ref": "urn:uuid:b66eab90-1575-4fcd-bd4d-43e1043bc175",
       "id": "CVE-2024-24790",
       "source": {
         "name": "nvd-cpe",
@@ -6060,7 +6066,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
         }
       ],
       "description": "The various Is methods (IsPrivate, IsLoopback, etc) did not work as expected for IPv4-mapped IPv6 addresses, returning false for addresses which would return true in their traditional IPv4 forms.",
@@ -6088,7 +6097,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ba30ec36-1004-42f7-b0d3-8708ef4c531e",
+      "bom-ref": "urn:uuid:9bb4bb95-d917-4b7e-9c5a-eaad7ffd4385",
       "id": "CVE-2024-2511",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -6120,7 +6129,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d776f974-6e2c-4401-b6dd-446ec166472c",
+      "bom-ref": "urn:uuid:b1462142-0cd6-4d6f-8b8e-d31c346dd313",
       "id": "CVE-2024-2511",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -6152,7 +6161,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:66126cc3-5ca9-487d-9ff7-f57ef341197e",
+      "bom-ref": "urn:uuid:6fce6124-b520-4d99-bcf4-2e09967036b9",
       "id": "CVE-2024-28182",
       "source": {
         "name": "nvd-cpe",
@@ -6209,7 +6218,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4307096c-82b4-47b1-b51b-80e511ec7d6a",
+      "bom-ref": "urn:uuid:cfa78573-bd4e-4201-b2fb-7b6683cc5356",
       "id": "CVE-2024-4603",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -6241,7 +6250,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ad441217-c812-4666-88be-c43c24a4c5bc",
+      "bom-ref": "urn:uuid:e5ace8c2-e37f-4449-bb7e-7691e81e45f3",
       "id": "CVE-2024-4603",
       "source": {
         "name": "alpine-distro-alpine-3.17",
@@ -6273,7 +6282,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6fd56786-7ab6-4b6b-93d4-2f11ff491f7c",
+      "bom-ref": "urn:uuid:f123ab8e-3662-44d6-bacc-b466944ff178",
       "id": "GHSA-45x7-px36-x8w8",
       "source": {
         "name": "github-language-go",
@@ -6309,7 +6318,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f164296b-4c04-4bd2-8077-6f49af200b11",
+      "bom-ref": "urn:uuid:b2ea1c01-4486-40fd-87c9-e22e2ec5377d",
       "id": "GHSA-4v7x-pqxf-cx7m",
       "source": {
         "name": "github-language-go",
@@ -6345,7 +6354,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:279dcbcc-78a1-4c1a-a899-b7ddac28e185",
+      "bom-ref": "urn:uuid:4c2a26cf-2608-4f54-a211-8651554ae427",
       "id": "GHSA-8r3f-844c-mc37",
       "source": {
         "name": "github-language-go",

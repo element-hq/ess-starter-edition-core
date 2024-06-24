@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "serialNumber": "urn:uuid:741d8d59-18e4-41f9-be19-f631fdd75cda",
+  "serialNumber": "urn:uuid:7030f98c-6501-449d-8586-82ad47294a92",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-06-18T12:33:42Z",
+    "timestamp": "2024-06-24T09:23:58Z",
     "tools": {
       "components": [
         {
@@ -5435,7 +5435,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:e85dd662-9e16-4592-9e93-e99b625a5718",
+      "bom-ref": "urn:uuid:717f06f4-01b4-4d12-87d6-cf047a889af3",
       "id": "CVE-2022-41722",
       "source": {
         "name": "nvd-cpe",
@@ -5480,7 +5480,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b85b370d-77cf-4c77-9e86-00811404f92c",
+      "bom-ref": "urn:uuid:c22039bb-186d-4b8f-99f9-be2ec49c8f1d",
       "id": "CVE-2022-41723",
       "source": {
         "name": "nvd-cpe",
@@ -5555,7 +5555,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:859858cb-c9f1-4a04-9e44-59eb82ef4879",
+      "bom-ref": "urn:uuid:d86aa684-3235-4f5d-a09f-cdc3d0092000",
       "id": "CVE-2022-41724",
       "source": {
         "name": "nvd-cpe",
@@ -5603,7 +5603,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f6eafad0-a2f9-4d11-b1f8-cf368419d2c6",
+      "bom-ref": "urn:uuid:4c83f7ff-dfe2-44fb-8a37-05ee2620a68b",
       "id": "CVE-2022-41725",
       "source": {
         "name": "nvd-cpe",
@@ -5651,7 +5651,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f96c51e1-7978-410b-aa94-45988693cc1c",
+      "bom-ref": "urn:uuid:88dad29d-7f40-4443-b244-6882f0d9ed80",
       "id": "CVE-2023-24532",
       "source": {
         "name": "nvd-cpe",
@@ -5696,7 +5696,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:11384751-c7f5-40ac-84f1-43fc29f50e80",
+      "bom-ref": "urn:uuid:dd60c208-ae8b-498a-8539-14026faf3b28",
       "id": "CVE-2023-24534",
       "source": {
         "name": "nvd-cpe",
@@ -5747,7 +5747,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bdbef0e1-407c-45b1-ac7f-fe281e120959",
+      "bom-ref": "urn:uuid:cb122b53-878e-41d3-a20d-a648e8b68ca2",
       "id": "CVE-2023-24536",
       "source": {
         "name": "nvd-cpe",
@@ -5804,7 +5804,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5f342ef6-f57e-4d9c-b0ac-6e9c59a5a01b",
+      "bom-ref": "urn:uuid:9401ede1-c1d1-485e-95ea-39f4ae01626d",
       "id": "CVE-2023-24537",
       "source": {
         "name": "nvd-cpe",
@@ -5852,7 +5852,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:24574bc8-c9ba-4ff1-b956-c3d1c1eac418",
+      "bom-ref": "urn:uuid:1cbbdcf0-6d3f-43b0-822a-0758d2998c06",
       "id": "CVE-2023-24538",
       "source": {
         "name": "nvd-cpe",
@@ -5900,7 +5900,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bd2f56f6-6d6b-4dce-b66f-662ea016ea2d",
+      "bom-ref": "urn:uuid:edbf80f6-6fb5-4641-bfcb-387046502379",
       "id": "CVE-2023-24539",
       "source": {
         "name": "nvd-cpe",
@@ -5945,7 +5945,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:cf4c10a2-8dca-455d-bc89-301bbbd3c1ac",
+      "bom-ref": "urn:uuid:628e15cf-f1db-43c1-bea1-c6dfaa949eba",
       "id": "CVE-2023-24540",
       "source": {
         "name": "nvd-cpe",
@@ -5990,7 +5990,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c830cc12-c5b1-40bd-bc06-c6e89bd99b78",
+      "bom-ref": "urn:uuid:792e69c6-3899-4d90-8a08-6b07a64cdaef",
       "id": "CVE-2023-29400",
       "source": {
         "name": "nvd-cpe",
@@ -6035,7 +6035,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9919b666-20d5-4d7c-b589-2d8333a6049b",
+      "bom-ref": "urn:uuid:42d84b9b-ded6-4606-8662-a78bacaa6061",
       "id": "CVE-2023-29402",
       "source": {
         "name": "nvd-cpe",
@@ -6089,7 +6089,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:25321a8e-d4b2-488f-9adc-74c16cd37343",
+      "bom-ref": "urn:uuid:05bcc1d5-a105-48c4-aefd-eb26ca05961f",
       "id": "CVE-2023-29403",
       "source": {
         "name": "nvd-cpe",
@@ -6143,7 +6143,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:29faf69a-a6a8-4910-a1c7-9205462066d4",
+      "bom-ref": "urn:uuid:b4c7af3f-2a61-4a68-ac6a-411672da56d3",
       "id": "CVE-2023-29404",
       "source": {
         "name": "nvd-cpe",
@@ -6197,7 +6197,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e0cd873c-edd4-4520-b313-0cb7863cec5d",
+      "bom-ref": "urn:uuid:c4c918eb-5ea7-41e8-87bd-2a5a85466262",
       "id": "CVE-2023-29405",
       "source": {
         "name": "nvd-cpe",
@@ -6251,7 +6251,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bbf37f01-159f-4c53-915d-656be4eb11da",
+      "bom-ref": "urn:uuid:281b102c-d563-4138-a0ee-7ba19b3dbd46",
       "id": "CVE-2023-29406",
       "source": {
         "name": "nvd-cpe",
@@ -6302,7 +6302,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:fca02c96-93b1-443c-8eaa-3a1b71fcce92",
+      "bom-ref": "urn:uuid:75a94446-f641-424f-8737-f652a7fd944d",
       "id": "CVE-2023-29409",
       "source": {
         "name": "nvd-cpe",
@@ -6353,7 +6353,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b724be67-39b4-47d3-a1db-df3bdfa7e941",
+      "bom-ref": "urn:uuid:193994c5-18bf-41c0-8bc5-90159c2d163e",
       "id": "CVE-2023-39318",
       "source": {
         "name": "nvd-cpe",
@@ -6404,7 +6404,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c8993f31-2ac4-4ffb-9ce6-9cdf36ec6102",
+      "bom-ref": "urn:uuid:e0fbaa44-3165-4e6b-ba1a-45fc2997f246",
       "id": "CVE-2023-39319",
       "source": {
         "name": "nvd-cpe",
@@ -6455,7 +6455,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:040ff7d6-ec95-4d2d-9d82-46fe3b53eeab",
+      "bom-ref": "urn:uuid:8bdaac5d-bc47-4f08-b6dd-8024c2b36268",
       "id": "CVE-2023-39323",
       "source": {
         "name": "nvd-cpe",
@@ -6515,7 +6515,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7336b717-5fc0-4739-9905-d8625d8d464e",
+      "bom-ref": "urn:uuid:c1469166-b7f0-4f53-a030-7115c31de7ef",
       "id": "CVE-2023-39326",
       "source": {
         "name": "nvd-cpe",
@@ -6563,7 +6563,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6e60eae6-bbd3-4190-8764-4722f97300dd",
+      "bom-ref": "urn:uuid:493f7ae4-6b2c-4959-be6c-39a847bbe2e0",
       "id": "CVE-2023-44487",
       "source": {
         "name": "nvd-cpe",
@@ -6949,6 +6949,12 @@
           "url": "https://security.netapp.com/advisory/ntap-20240426-0007/"
         },
         {
+          "url": "https://security.netapp.com/advisory/ntap-20240621-0006/"
+        },
+        {
+          "url": "https://security.netapp.com/advisory/ntap-20240621-0007/"
+        },
+        {
           "url": "https://security.paloaltonetworks.com/CVE-2023-44487"
         },
         {
@@ -7010,7 +7016,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:246a0219-787e-4909-8f55-9b276bb2b87b",
+      "bom-ref": "urn:uuid:b247cd5b-aded-400b-a910-74212551012a",
       "id": "CVE-2023-45285",
       "source": {
         "name": "nvd-cpe",
@@ -7058,7 +7064,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:981a8db1-4d31-4d1e-90a8-662dcdebcb97",
+      "bom-ref": "urn:uuid:e8aeaed3-e949-403e-acf3-b25e644a0453",
       "id": "CVE-2023-45287",
       "source": {
         "name": "nvd-cpe",
@@ -7109,7 +7115,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a015326b-cd26-458a-ac4f-1141e2cb54dc",
+      "bom-ref": "urn:uuid:2666e506-6960-4dc3-b279-f7c337286d1a",
       "id": "CVE-2023-45288",
       "source": {
         "name": "nvd-cpe",
@@ -7163,7 +7169,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:964c9983-392b-4291-85aa-d6912b090c74",
+      "bom-ref": "urn:uuid:83488907-0c5c-4823-baf0-9814c2f26f59",
       "id": "CVE-2023-45289",
       "source": {
         "name": "nvd-cpe",
@@ -7211,7 +7217,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:43eea505-b87c-480d-9a82-e445a6ee66bd",
+      "bom-ref": "urn:uuid:dcb13784-42ce-4b48-b4e4-96957f91c04b",
       "id": "CVE-2023-45290",
       "source": {
         "name": "nvd-cpe",
@@ -7259,7 +7265,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e5eb104d-41e5-456e-96bd-2c0e3f1190f1",
+      "bom-ref": "urn:uuid:fdfd4c73-572d-4431-8327-808251fb6480",
       "id": "CVE-2024-24783",
       "source": {
         "name": "nvd-cpe",
@@ -7307,7 +7313,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:91ccbfea-32e4-4f5d-92d0-c909af93ced6",
+      "bom-ref": "urn:uuid:32f0f1cf-017d-4243-9663-04126cf240ca",
       "id": "CVE-2024-24784",
       "source": {
         "name": "nvd-cpe",
@@ -7355,7 +7361,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9fe9d9b9-3087-4813-8aed-ff5ddb317093",
+      "bom-ref": "urn:uuid:3f4fac73-e95b-4059-a362-34691b1f06ac",
       "id": "CVE-2024-24785",
       "source": {
         "name": "nvd-cpe",
@@ -7403,7 +7409,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:30350c02-7a54-48b0-ae76-98ea047a0d86",
+      "bom-ref": "urn:uuid:96045458-6d83-475a-82cd-4ec585599bff",
       "id": "CVE-2024-24787",
       "source": {
         "name": "nvd-cpe",
@@ -7451,7 +7457,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0d1c8044-49d4-4a9f-8001-0267b49c5846",
+      "bom-ref": "urn:uuid:e73fd2c7-b6cf-4331-9497-c83a862c8537",
       "id": "CVE-2024-24789",
       "source": {
         "name": "nvd-cpe",
@@ -7468,7 +7474,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 5.5,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N"
         }
       ],
       "description": "The archive/zip package's handling of certain types of invalid zip files differs from the behavior of most zip implementations. This misalignment could be exploited to create an zip file with contents that vary depending on the implementation reading the file. The archive/zip package now rejects files containing these errors.",
@@ -7486,6 +7495,9 @@
           "url": "https://groups.google.com/g/golang-announce/c/XbxouI9gY7k/m/TuoGEhxIEwAJ"
         },
         {
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/U5YAEIA6IUHUNGJ7AIXXPQT6D2GYENX7/"
+        },
+        {
           "url": "https://pkg.go.dev/vuln/GO-2024-2888"
         }
       ],
@@ -7496,7 +7508,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a944d45d-1e34-475c-ae41-9a22dfa4baa1",
+      "bom-ref": "urn:uuid:7f35e820-e125-4002-b60a-498f7db14ae8",
       "id": "CVE-2024-24790",
       "source": {
         "name": "nvd-cpe",
@@ -7513,7 +7525,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 9.8,
+          "severity": "critical",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
         }
       ],
       "description": "The various Is methods (IsPrivate, IsLoopback, etc) did not work as expected for IPv4-mapped IPv6 addresses, returning false for addresses which would return true in their traditional IPv4 forms.",
@@ -7541,7 +7556,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:511d8891-fae9-4180-961e-4aa30bc96962",
+      "bom-ref": "urn:uuid:29a79b41-33fb-4294-82be-09db27ef2c9f",
       "id": "GHSA-2wrh-6pvc-2jm9",
       "source": {
         "name": "github-language-go",
@@ -7577,7 +7592,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:94b4667a-3ff2-4e0a-bdac-8ba33b0421c9",
+      "bom-ref": "urn:uuid:2c59112e-6711-4ba6-ab48-9e89cc4c091e",
       "id": "GHSA-4374-p667-p6c8",
       "source": {
         "name": "github-language-go",
@@ -7613,7 +7628,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:292fbaa2-ebd8-4005-bd88-abe0204c8232",
+      "bom-ref": "urn:uuid:a677cb04-a97c-4648-a80a-a77e91a96592",
       "id": "GHSA-45x7-px36-x8w8",
       "source": {
         "name": "github-language-go",
@@ -7649,7 +7664,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:72a8df59-6eda-4f21-acf0-def0a58af86e",
+      "bom-ref": "urn:uuid:fffeaec0-8de0-4ff2-bcfa-35482c92e149",
       "id": "GHSA-4v7x-pqxf-cx7m",
       "source": {
         "name": "github-language-go",
@@ -7685,7 +7700,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a2bbc10d-6e0e-4e39-971b-12892f7bcf7f",
+      "bom-ref": "urn:uuid:ee791642-f2e7-422d-a1e3-2a2af01a083c",
       "id": "GHSA-8pgv-569h-w5rw",
       "source": {
         "name": "github-language-go",
@@ -7721,7 +7736,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:334da110-60f7-40fc-a509-f91e4303afab",
+      "bom-ref": "urn:uuid:8cbcf24e-9e0e-405b-9d45-3aa5db38a705",
       "id": "GHSA-8r3f-844c-mc37",
       "source": {
         "name": "github-language-go",
@@ -7754,7 +7769,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0b513e95-0abb-43d5-ba11-c234fe3a9147",
+      "bom-ref": "urn:uuid:038d08d9-65f4-4c88-b525-0e5483ad3502",
       "id": "GHSA-c5q2-7r4c-mv6g",
       "source": {
         "name": "github-language-go",
@@ -7790,7 +7805,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8e72a2d6-89e2-47a2-a1b8-ab5c01e111aa",
+      "bom-ref": "urn:uuid:c0054d4d-9b1a-4644-ab2a-7747991e0f79",
       "id": "GHSA-m425-mq94-257g",
       "source": {
         "name": "github-language-go",
@@ -7826,7 +7841,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2b22dd3b-abff-43aa-a519-8923d195fcff",
+      "bom-ref": "urn:uuid:87fced7e-8ebb-45b5-9648-370dee178fd2",
       "id": "GHSA-qppj-fm5r-hxr3",
       "source": {
         "name": "github-language-go",
@@ -7862,7 +7877,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e4abe1c9-72a0-42a8-8320-a0353df2a117",
+      "bom-ref": "urn:uuid:2faf56f4-e5f4-4b94-9534-7a46db3c618b",
       "id": "GHSA-qppj-fm5r-hxr3",
       "source": {
         "name": "github-language-go",
@@ -7898,7 +7913,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:58465677-a600-4c5d-b404-67b0490ca0a2",
+      "bom-ref": "urn:uuid:5d3a9bf9-e273-44eb-83ab-0bb3dd08ad5e",
       "id": "GHSA-rcjv-mgp8-qvmr",
       "source": {
         "name": "github-language-go",
