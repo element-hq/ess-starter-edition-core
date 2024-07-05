@@ -5,6 +5,7 @@
 
 ---
 - name: "Find unused resources"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   vars:
     _label_selectors:
     - "app.kubernetes.io/managed-by={{ kind_managed_by }}"
@@ -33,6 +34,7 @@
 # Doing as two step process for debugging
 
 - name: "Filter resources managed by this kind of CRD"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     _teardown_candidates_with_correct_owner_kind: >-
       {{ _teardown_candidates
@@ -46,6 +48,7 @@
     query: "[?metadata.ownerReferences[?kind == `{{ kind_owner }}`]]"
 
 - name: "Remove resources under control of something not named {{ ansible_operator_meta.name }}"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     _to_teardown: "{{ _teardown_candidates_with_correct_owner_kind | json_query(query) }}"
   vars:

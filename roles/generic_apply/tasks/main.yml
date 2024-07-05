@@ -5,6 +5,7 @@
 
 ---
 - name: "Prepare Manifests"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     # These are strings each containing a single YAML document
     _individual_manifest_strings: >
@@ -31,6 +32,7 @@
 # Without this, null values are causing errors such as
 # spec.workloads.synapse: Invalid value: "null" spec.workloads.synapse in body must be of type object
 - name: "Construct Manifests"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     # These are objects after various processing has been done to them
     _prepared_manifest_objects: >
@@ -70,6 +72,8 @@
   when: _risky_manifest_objects | length > 0
 
 - name: Maintain resources that support recreation
+  # Manifests are leaked due to index_var
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.include_tasks: "apply_then_recreate.yml"
   vars:
     # noqa: jinja[invalid]

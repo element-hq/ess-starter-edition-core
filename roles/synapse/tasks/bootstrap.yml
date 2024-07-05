@@ -5,6 +5,7 @@
 
 ---
 - name: "Fetch Synapse main statefulset"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     _synapse_main_sts: >-
       {{

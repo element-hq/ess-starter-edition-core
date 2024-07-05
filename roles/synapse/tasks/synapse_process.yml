@@ -5,6 +5,7 @@
 
 ---
 - name: "Set specific_worker_yaml for {{ process_type }}"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     specific_worker_yaml: "{{ lookup('template', 'worker.yaml.j2') }}"
 

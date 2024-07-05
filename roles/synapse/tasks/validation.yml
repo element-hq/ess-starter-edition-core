@@ -5,6 +5,7 @@
 
 ---
 - name: "Fetch Synapse secrets"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     _fetched_synapse_secrets: >-
       {{
@@ -46,6 +47,7 @@
   when: config.media.volume_claim | default("") | length > 0
   block:
   - name: "Fetch Synapse media volume"
+    no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
     ansible.builtin.set_fact:
       _synapse_media_volume_claim: >-
         {{

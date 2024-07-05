@@ -1,0 +1,5863 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:95ccc2fd-afa0-4515-a706-cf7ff84e8540",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2024-07-05T11:46:09Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "author": "anchore",
+          "name": "grype",
+          "version": "0.79.2"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "986aea07a1768f17",
+      "type": "container",
+      "name": "quay.io/brancz/kube-rbac-proxy:v0.18.0",
+      "version": "v0.18.0"
+    },
+    "properties": null
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u5?arch=amd64&distro=debian-12&package-id=854ccee33785ad46",
+      "type": "library",
+      "publisher": "Santiago Vila <sanvila@debian.org>",
+      "name": "base-files",
+      "version": "12.4+deb12u5",
+      "licenses": [
+        {
+          "license": {
+            "name": "GPL"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:base-files:base-files:12.4\\+deb12u5:*:*:*:*:*:*:*",
+      "purl": "pkg:deb/debian/base-files@12.4%2Bdeb12u5?arch=amd64&distro=debian-12",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "dpkg-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "deb"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "dpkg-db-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:base-files:base_files:12.4\\+deb12u5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:base_files:base-files:12.4\\+deb12u5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:base_files:base_files:12.4\\+deb12u5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:base:base-files:12.4\\+deb12u5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:base:base_files:12.4\\+deb12u5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:3d6fa0469044370439d20eaf7e0d25450e01335a93c13ba46e368d7785914c0c"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/share/doc/base-files/copyright"
+        },
+        {
+          "name": "syft:location:1:layerID",
+          "value": "sha256:3d6fa0469044370439d20eaf7e0d25450e01335a93c13ba46e368d7785914c0c"
+        },
+        {
+          "name": "syft:location:1:path",
+          "value": "/var/lib/dpkg/status.d/base-files"
+        },
+        {
+          "name": "syft:location:2:layerID",
+          "value": "sha256:3d6fa0469044370439d20eaf7e0d25450e01335a93c13ba46e368d7785914c0c"
+        },
+        {
+          "name": "syft:location:2:path",
+          "value": "/var/lib/dpkg/status.d/base-files.md5sums"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "341"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/nytimes/gziphandler@v1.1.1?package-id=384cacf836d44684",
+      "type": "library",
+      "name": "github.com/NYTimes/gziphandler",
+      "version": "v1.1.1",
+      "cpe": "cpe:2.3:a:NYTimes:gziphandler:v1.1.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/NYTimes/gziphandler@v1.1.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:ZUDjpQae29j0ryrS0u/B8HZfJBtBQHjqw2rQ2cqUQ3I="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/antlr/antlr4@v4.0.0-20230305170008-8188dc5388df?package-id=f1cb50b3b6f1dd9b#runtime/Go/antlr/v4",
+      "type": "library",
+      "name": "github.com/antlr/antlr4/runtime/Go/antlr/v4",
+      "version": "v4.0.0-20230305170008-8188dc5388df",
+      "cpe": "cpe:2.3:a:antlr:antlr4\\/runtime\\/Go\\/antlr\\/v4:v4.0.0-20230305170008-8188dc5388df:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/antlr/antlr4@v4.0.0-20230305170008-8188dc5388df#runtime/Go/antlr/v4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:7RFfzj4SSt6nnvCPbCqijJi1nWCd+TqAT3bYCStRC18="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/asaskevich/govalidator@v0.0.0-20190424111038-f61b66f89f4a?package-id=89f5d442b0e0ad2d",
+      "type": "library",
+      "name": "github.com/asaskevich/govalidator",
+      "version": "v0.0.0-20190424111038-f61b66f89f4a",
+      "cpe": "cpe:2.3:a:asaskevich:govalidator:v0.0.0-20190424111038-f61b66f89f4a:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/asaskevich/govalidator@v0.0.0-20190424111038-f61b66f89f4a",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:idn718Q4B6AGu/h5Sxe66HYVdqdGu2l9Iebqhi/AEoA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/beorn7/perks@v1.0.1?package-id=f5726f00fd512995",
+      "type": "library",
+      "name": "github.com/beorn7/perks",
+      "version": "v1.0.1",
+      "cpe": "cpe:2.3:a:beorn7:perks:v1.0.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/beorn7/perks@v1.0.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/blang/semver@v4.0.0?package-id=1d90b0c6632a31f0#v4",
+      "type": "library",
+      "name": "github.com/blang/semver/v4",
+      "version": "v4.0.0",
+      "cpe": "cpe:2.3:a:blang:semver\\/v4:v4.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/blang/semver@v4.0.0#v4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:1PFHFE6yCCTv8C1TeyNNarDzntLi7wMI5i/pzqYIsAM="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/brancz/kube-rbac-proxy@v0.18.0?package-id=8a3ddcfafe1af740",
+      "type": "library",
+      "name": "github.com/brancz/kube-rbac-proxy",
+      "version": "v0.18.0",
+      "cpe": "cpe:2.3:a:brancz:kube-rbac-proxy:v0.18.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/brancz/kube-rbac-proxy@v0.18.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:brancz:kube_rbac_proxy:v0.18.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/cenkalti/backoff@v4.2.1?package-id=cb54ede673ec69c8#v4",
+      "type": "library",
+      "name": "github.com/cenkalti/backoff/v4",
+      "version": "v4.2.1",
+      "cpe": "cpe:2.3:a:cenkalti:backoff\\/v4:v4.2.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/cenkalti/backoff@v4.2.1#v4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:y4OZtCnogmCPw98Zjyt5a6+QwPLGkiQsYW5oUqylYbM="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/cespare/xxhash@v2.2.0?package-id=824702e827fd27d9#v2",
+      "type": "library",
+      "name": "github.com/cespare/xxhash/v2",
+      "version": "v2.2.0",
+      "cpe": "cpe:2.3:a:cespare:xxhash\\/v2:v2.2.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/cespare/xxhash@v2.2.0#v2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:DC2CZ1Ep5Y4k3ZQ899DldepgrayRUGE6BBZ/cd9Cj44="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/coreos/go-oidc@v2.2.1%2Bincompatible?package-id=bc2a78a640f08db8",
+      "type": "library",
+      "name": "github.com/coreos/go-oidc",
+      "version": "v2.2.1+incompatible",
+      "cpe": "cpe:2.3:a:coreos:go-oidc:v2.2.1\\+incompatible:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/coreos/go-oidc@v2.2.1%2Bincompatible",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:coreos:go_oidc:v2.2.1\\+incompatible:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:mh48q/BqXqgjVHpy2ZY7WnWAbenxRjsz9N1i1YxjHAk="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/coreos/go-semver@v0.3.1?package-id=8660cb49c48b1ba9",
+      "type": "library",
+      "name": "github.com/coreos/go-semver",
+      "version": "v0.3.1",
+      "cpe": "cpe:2.3:a:coreos:go-semver:v0.3.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/coreos/go-semver@v0.3.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:coreos:go_semver:v0.3.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:yi21YpKnrx1gt5R+la8n5WgS0kCrsPp33dmEyHReZr4="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/coreos/go-systemd@v22.5.0?package-id=f44ea437a3ca140a#v22",
+      "type": "library",
+      "name": "github.com/coreos/go-systemd/v22",
+      "version": "v22.5.0",
+      "cpe": "cpe:2.3:a:coreos:go-systemd\\/v22:v22.5.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/coreos/go-systemd@v22.5.0#v22",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:coreos:go_systemd\\/v22:v22.5.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:RrqgGjYQKalulkV8NGVIfkXQf6YYmOyiJKk8iXXhfZs="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.1?package-id=6513125f2a71811c",
+      "type": "library",
+      "name": "github.com/davecgh/go-spew",
+      "version": "v1.1.1",
+      "cpe": "cpe:2.3:a:davecgh:go-spew:v1.1.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:davecgh:go_spew:v1.1.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/emicklei/go-restful@v3.11.0?package-id=5f1f77189968fa4a#v3",
+      "type": "library",
+      "name": "github.com/emicklei/go-restful/v3",
+      "version": "v3.11.0",
+      "cpe": "cpe:2.3:a:emicklei:go-restful\\/v3:v3.11.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/emicklei/go-restful@v3.11.0#v3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:emicklei:go_restful\\/v3:v3.11.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:rAQeMHw1c7zTmncogyy8VvRZwtkmkZ4FxERmMY4rD+g="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/evanphx/json-patch@v4.12.0%2Bincompatible?package-id=48d386865447e815",
+      "type": "library",
+      "name": "github.com/evanphx/json-patch",
+      "version": "v4.12.0+incompatible",
+      "cpe": "cpe:2.3:a:evanphx:json-patch:v4.12.0\\+incompatible:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/evanphx/json-patch@v4.12.0%2Bincompatible",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:evanphx:json_patch:v4.12.0\\+incompatible:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:4onqiflcdA9EOZ4RxV643DvftH5pOlLGNtQ5lPWQu84="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/felixge/httpsnoop@v1.0.3?package-id=6b7bba2cef408770",
+      "type": "library",
+      "name": "github.com/felixge/httpsnoop",
+      "version": "v1.0.3",
+      "cpe": "cpe:2.3:a:felixge:httpsnoop:v1.0.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/felixge/httpsnoop@v1.0.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:s/nj+GCswXYzN5v2DpNMuMQYe+0DDwt5WVCU6CWBdXk="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/fsnotify/fsnotify@v1.7.0?package-id=46e232902a20efd8",
+      "type": "library",
+      "name": "github.com/fsnotify/fsnotify",
+      "version": "v1.7.0",
+      "cpe": "cpe:2.3:a:fsnotify:fsnotify:v1.7.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/fsnotify/fsnotify@v1.7.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:8JEhPFa5W2WU7YfeZzPNqzMP6Lwt7L2715Ggo0nosvA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/ghodss/yaml@v1.0.0?package-id=541fed4dde49a4be",
+      "type": "library",
+      "name": "github.com/ghodss/yaml",
+      "version": "v1.0.0",
+      "cpe": "cpe:2.3:a:ghodss:yaml:v1.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/ghodss/yaml@v1.0.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:wQHKEahhL6wmXdzwWG11gIVCkOv05bNOh+Rxn0yngAk="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/go-logr/logr@v1.4.1?package-id=20c2e54e43417dff",
+      "type": "library",
+      "name": "github.com/go-logr/logr",
+      "version": "v1.4.1",
+      "cpe": "cpe:2.3:a:go-logr:logr:v1.4.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/go-logr/logr@v1.4.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go_logr:logr:v1.4.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go:logr:v1.4.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:pKouT5E8xu9zeFC39JXRDukb6JFQPXM5p5I91188VAQ="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/go-logr/stdr@v1.2.2?package-id=1329027e34f30dc4",
+      "type": "library",
+      "name": "github.com/go-logr/stdr",
+      "version": "v1.2.2",
+      "cpe": "cpe:2.3:a:go-logr:stdr:v1.2.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/go-logr/stdr@v1.2.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go_logr:stdr:v1.2.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go:stdr:v1.2.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:hSWxHoqTgW2S2qGc0LTAI563KZ5YKYRhT3MFKZMbjag="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/go-openapi/jsonpointer@v0.19.6?package-id=500ebf29b917ebda",
+      "type": "library",
+      "name": "github.com/go-openapi/jsonpointer",
+      "version": "v0.19.6",
+      "cpe": "cpe:2.3:a:go-openapi:jsonpointer:v0.19.6:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/go-openapi/jsonpointer@v0.19.6",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go_openapi:jsonpointer:v0.19.6:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go:jsonpointer:v0.19.6:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:eCs3fxoIi3Wh6vtgmLTOjdhSpiqphQ+DaPn38N2ZdrE="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2?package-id=46d34d24143b9284",
+      "type": "library",
+      "name": "github.com/go-openapi/jsonreference",
+      "version": "v0.20.2",
+      "cpe": "cpe:2.3:a:go-openapi:jsonreference:v0.20.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go_openapi:jsonreference:v0.20.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go:jsonreference:v0.20.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:3sVjiK66+uXK/6oQ8xgcRKcFgQ5KXa2KvnJRumpMGbE="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/go-openapi/swag@v0.22.3?package-id=7567adc41613e065",
+      "type": "library",
+      "name": "github.com/go-openapi/swag",
+      "version": "v0.22.3",
+      "cpe": "cpe:2.3:a:go-openapi:swag:v0.22.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/go-openapi/swag@v0.22.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go_openapi:swag:v0.22.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:go:swag:v0.22.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:yMBqmnQ0gyZvEb/+KzuWZOXgllrXT4SADYbvDaXHv/g="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gogo/protobuf@v1.3.2?package-id=822a186e444fa173",
+      "type": "library",
+      "name": "github.com/gogo/protobuf",
+      "version": "v1.3.2",
+      "cpe": "cpe:2.3:a:gogo:protobuf:v1.3.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/gogo/protobuf@v1.3.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/golang/groupcache@v0.0.0-20210331224755-41bb18bfe9da?package-id=2a0136b89d5f9b9d",
+      "type": "library",
+      "name": "github.com/golang/groupcache",
+      "version": "v0.0.0-20210331224755-41bb18bfe9da",
+      "cpe": "cpe:2.3:a:golang:groupcache:v0.0.0-20210331224755-41bb18bfe9da:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/golang/groupcache@v0.0.0-20210331224755-41bb18bfe9da",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:oI5xCqsCo564l8iNU+DwB5epxmsaqB+rhGL0m5jtYqE="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/golang/protobuf@v1.5.4?package-id=e2c230f9fb33a1f6",
+      "type": "library",
+      "name": "github.com/golang/protobuf",
+      "version": "v1.5.4",
+      "cpe": "cpe:2.3:a:golang:protobuf:v1.5.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/golang/protobuf@v1.5.4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/google/cel-go@v0.17.8?package-id=63c3851dfd0f39c4",
+      "type": "library",
+      "name": "github.com/google/cel-go",
+      "version": "v0.17.8",
+      "cpe": "cpe:2.3:a:google:cel-go:v0.17.8:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/google/cel-go@v0.17.8",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:google:cel_go:v0.17.8:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:j9m730pMZt1Fc4oKhCLUHfjj6527LuhYcYw0Rl8gqto="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/google/gnostic-models@v0.6.8?package-id=68048a5fafb35985",
+      "type": "library",
+      "name": "github.com/google/gnostic-models",
+      "version": "v0.6.8",
+      "cpe": "cpe:2.3:a:google:gnostic-models:v0.6.8:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/google/gnostic-models@v0.6.8",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:google:gnostic_models:v0.6.8:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:yo/ABAfM5IMRsS1VnXjTBvUb61tFIHozhlYvRgGre9I="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/google/go-cmp@v0.6.0?package-id=4fd5133b6c40abee",
+      "type": "library",
+      "name": "github.com/google/go-cmp",
+      "version": "v0.6.0",
+      "cpe": "cpe:2.3:a:google:go-cmp:v0.6.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/google/go-cmp@v0.6.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:google:go_cmp:v0.6.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/google/gofuzz@v1.2.0?package-id=2ca657cc02076e41",
+      "type": "library",
+      "name": "github.com/google/gofuzz",
+      "version": "v1.2.0",
+      "cpe": "cpe:2.3:a:google:gofuzz:v1.2.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/google/gofuzz@v1.2.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xRy4A+RhZaiKjJ1bPfwQ8sedCA+YS2YcCHW6ec7JMi0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/google/uuid@v1.6.0?package-id=9f924960c2ad2823",
+      "type": "library",
+      "name": "github.com/google/uuid",
+      "version": "v1.6.0",
+      "cpe": "cpe:2.3:a:google:uuid:v1.6.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/google/uuid@v1.6.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0?package-id=1f168dfac7cdb0b7",
+      "type": "library",
+      "name": "github.com/grpc-ecosystem/go-grpc-prometheus",
+      "version": "v1.2.0",
+      "cpe": "cpe:2.3:a:grpc-ecosystem:go-grpc-prometheus:v1.2.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc-ecosystem:go_grpc_prometheus:v1.2.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc_ecosystem:go-grpc-prometheus:v1.2.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc_ecosystem:go_grpc_prometheus:v1.2.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc:go-grpc-prometheus:v1.2.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc:go_grpc_prometheus:v1.2.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Ovs26xHkKqVztRpIrF/92BcuyuQ/YW4NSIpoGtfXNho="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/grpc-ecosystem/grpc-gateway@v2.16.0?package-id=ed503c1215763928#v2",
+      "type": "library",
+      "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
+      "version": "v2.16.0",
+      "cpe": "cpe:2.3:a:grpc-ecosystem:grpc-gateway\\/v2:v2.16.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/grpc-ecosystem/grpc-gateway@v2.16.0#v2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc-ecosystem:grpc_gateway\\/v2:v2.16.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc_ecosystem:grpc-gateway\\/v2:v2.16.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc_ecosystem:grpc_gateway\\/v2:v2.16.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc:grpc-gateway\\/v2:v2.16.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:grpc:grpc_gateway\\/v2:v2.16.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:YBftPWNWd4WwGqtY2yeZL2ef8rHAxPBD8KFhJpmcqms="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/imdario/mergo@v0.3.6?package-id=8b8b3a661a9945e2",
+      "type": "library",
+      "name": "github.com/imdario/mergo",
+      "version": "v0.3.6",
+      "cpe": "cpe:2.3:a:imdario:mergo:v0.3.6:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/imdario/mergo@v0.3.6",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xTNEAn+kxVO7dTZGu0CegyqKZmoWFI0rF8UxjlB2d28="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/josharian/intern@v1.0.0?package-id=a6cef9deea27a281",
+      "type": "library",
+      "name": "github.com/josharian/intern",
+      "version": "v1.0.0",
+      "cpe": "cpe:2.3:a:josharian:intern:v1.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/josharian/intern@v1.0.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:vlS4z54oSdjm0bgjRigI+G1HpF+tI+9rE5LLzOg8HmY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/json-iterator/go@v1.1.12?package-id=2c916e0a1147318e",
+      "type": "library",
+      "name": "github.com/json-iterator/go",
+      "version": "v1.1.12",
+      "cpe": "cpe:2.3:a:json-iterator:go:v1.1.12:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:json_iterator:go:v1.1.12:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:json:go:v1.1.12:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/mailru/easyjson@v0.7.7?package-id=0a3743333d2f43e8",
+      "type": "library",
+      "name": "github.com/mailru/easyjson",
+      "version": "v0.7.7",
+      "cpe": "cpe:2.3:a:mailru:easyjson:v0.7.7:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mailru/easyjson@v0.7.7",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:UGYAvKxe3sBsEDzO8ZeWOSlIQfWFlxbzLZe7hwFURr0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/matttproud/golang_protobuf_extensions@v1.0.4?package-id=5e5336dee115cd48",
+      "type": "library",
+      "name": "github.com/matttproud/golang_protobuf_extensions",
+      "version": "v1.0.4",
+      "cpe": "cpe:2.3:a:matttproud:golang-protobuf-extensions:v1.0.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/matttproud/golang_protobuf_extensions@v1.0.4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:matttproud:golang_protobuf_extensions:v1.0.4:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:mmDVorXM7PCGKw94cs5zkfA9PSy5pEvNWRP0ET0TIVo="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/moby/term@v0.0.0-20221205130635-1aeaba878587?package-id=7f8b602eddddc309",
+      "type": "library",
+      "name": "github.com/moby/term",
+      "version": "v0.0.0-20221205130635-1aeaba878587",
+      "cpe": "cpe:2.3:a:moby:term:v0.0.0-20221205130635-1aeaba878587:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/moby/term@v0.0.0-20221205130635-1aeaba878587",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:HfkjXDfhgVaN5rmueG8cL8KKeFNecRCXFhaJ2qZ5SKA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd?package-id=3ec06eefd42b1775",
+      "type": "library",
+      "name": "github.com/modern-go/concurrent",
+      "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
+      "cpe": "cpe:2.3:a:modern-go:concurrent:v0.0.0-20180306012644-bacd9c7ef1dd:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:modern_go:concurrent:v0.0.0-20180306012644-bacd9c7ef1dd:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:modern:concurrent:v0.0.0-20180306012644-bacd9c7ef1dd:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/modern-go/reflect2@v1.0.2?package-id=05696812fac1fc7b",
+      "type": "library",
+      "name": "github.com/modern-go/reflect2",
+      "version": "v1.0.2",
+      "cpe": "cpe:2.3:a:modern-go:reflect2:v1.0.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:modern_go:reflect2:v1.0.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:modern:reflect2:v1.0.2:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9Gz0M="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822?package-id=02ea5c3d1bb2c247",
+      "type": "library",
+      "name": "github.com/munnerz/goautoneg",
+      "version": "v0.0.0-20191010083416-a7dc8b61c822",
+      "cpe": "cpe:2.3:a:munnerz:goautoneg:v0.0.0-20191010083416-a7dc8b61c822:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:C3w9PqII01/Oq1c1nUAm88MOHcQC9l5mIlSMApZMrHA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/oklog/run@v1.1.0?package-id=9faa1b1e5cf18c5c",
+      "type": "library",
+      "name": "github.com/oklog/run",
+      "version": "v1.1.0",
+      "cpe": "cpe:2.3:a:oklog:run:v1.1.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/oklog/run@v1.1.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:GEenZ1cK0+q0+wsJew9qUg/DyD8k3JzYsZAi5gYi2mA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/pkg/errors@v0.9.1?package-id=91f932bce2ada932",
+      "type": "library",
+      "name": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "cpe": "cpe:2.3:a:pkg:errors:v0.9.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/pquerna/cachecontrol@v0.1.0?package-id=2cf52c7277900151",
+      "type": "library",
+      "name": "github.com/pquerna/cachecontrol",
+      "version": "v0.1.0",
+      "cpe": "cpe:2.3:a:pquerna:cachecontrol:v0.1.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/pquerna/cachecontrol@v0.1.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:yJMy84ti9h/+OEWa752kBTKv4XC30OtVVHYv/8cTqKc="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/client_golang@v1.16.0?package-id=463d2a489a181e05",
+      "type": "library",
+      "name": "github.com/prometheus/client_golang",
+      "version": "v1.16.0",
+      "cpe": "cpe:2.3:a:prometheus:client-golang:v1.16.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/prometheus/client_golang@v1.16.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:prometheus:client_golang:v1.16.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:yk/hx9hDbrGHovbci4BY+pRMfSuuat626eFsHb7tmT8="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/client_model@v0.4.0?package-id=df6c595458c29a1b",
+      "type": "library",
+      "name": "github.com/prometheus/client_model",
+      "version": "v0.4.0",
+      "cpe": "cpe:2.3:a:prometheus:client-model:v0.4.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/prometheus/client_model@v0.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:prometheus:client_model:v0.4.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:5lQXD3cAg1OXBf4Wq03gTrXHeaV0TQvGfUooCfx1yqY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/common@v0.44.0?package-id=5a6935305e5d83e3",
+      "type": "library",
+      "name": "github.com/prometheus/common",
+      "version": "v0.44.0",
+      "cpe": "cpe:2.3:a:prometheus:common:v0.44.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/prometheus/common@v0.44.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:+5BrQJwiBB9xsMygAB3TNvpQKOwlkc25LbISbrdOOfY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/procfs@v0.10.1?package-id=9da87a34824dc9aa",
+      "type": "library",
+      "name": "github.com/prometheus/procfs",
+      "version": "v0.10.1",
+      "cpe": "cpe:2.3:a:prometheus:procfs:v0.10.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/prometheus/procfs@v0.10.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:kYK1Va/YMlutzCGazswoHKo//tZVlFpKYh+PymziUAg="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.8.0?package-id=1738ba29404498e0",
+      "type": "library",
+      "name": "github.com/spf13/cobra",
+      "version": "v1.8.0",
+      "cpe": "cpe:2.3:a:spf13:cobra:v1.8.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/cobra@v1.8.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:7aJaZx1B85qltLMc546zn58BxxfZdR/W22ej9CFoEf0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=ba3964c3cf85ff6c",
+      "type": "library",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "cpe": "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/stoewer/go-strcase@v1.2.0?package-id=4ca4ba502d23ab2c",
+      "type": "library",
+      "name": "github.com/stoewer/go-strcase",
+      "version": "v1.2.0",
+      "cpe": "cpe:2.3:a:stoewer:go-strcase:v1.2.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/stoewer/go-strcase@v1.2.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:stoewer:go_strcase:v1.2.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Z2iHWqGXH00XYgqDmNgQbIBxf3wrNq0F3feEy0ainaU="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.etcd.io/etcd/api@v3.5.10?package-id=115846bda1c64dea#v3",
+      "type": "library",
+      "name": "go.etcd.io/etcd/api/v3",
+      "version": "v3.5.10",
+      "cpe": "cpe:2.3:a:etcd:api\\/v3:v3.5.10:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.etcd.io/etcd/api@v3.5.10#v3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:szRajuUUbLyppkhs9K6BRtjY37l66XQQmw7oZRANE4k="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.etcd.io/etcd/client@v3.5.10?package-id=22bf51a802b96de4#pkg/v3",
+      "type": "library",
+      "name": "go.etcd.io/etcd/client/pkg/v3",
+      "version": "v3.5.10",
+      "cpe": "cpe:2.3:a:etcd:client\\/pkg\\/v3:v3.5.10:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.etcd.io/etcd/client@v3.5.10#pkg/v3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:kfYIdQftBnbAq8pUWFXfpuuxFSKzlmM5cSn76JByiT0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.etcd.io/etcd/client@v3.5.10?package-id=576965389fa29e31#v3",
+      "type": "library",
+      "name": "go.etcd.io/etcd/client/v3",
+      "version": "v3.5.10",
+      "cpe": "cpe:2.3:a:etcd:client\\/v3:v3.5.10:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.etcd.io/etcd/client@v3.5.10#v3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:W9TXNZ+oB3MCd/8UjxHTWK5J9Nquw9fQBLJd5ne5/Ao="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/contrib/instrumentation@v0.51.0?package-id=0a49a367ed048d55#googlegolangorg/grpc/otelgrpc",
+      "type": "library",
+      "name": "go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+      "version": "v0.51.0",
+      "cpe": "cpe:2.3:a:contrib:instrumentation\\/google.golang.org\\/grpc\\/otelgrpc:v0.51.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/contrib/instrumentation@v0.51.0#google.golang.org/grpc/otelgrpc",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:A3SayB3rNyt+1S6qpI9mHPkeHTZbD7XILEqWnYZb2l0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/contrib/instrumentation@v0.44.0?package-id=b1684f001ee6da00#net/http/otelhttp",
+      "type": "library",
+      "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+      "version": "v0.44.0",
+      "cpe": "cpe:2.3:a:contrib:instrumentation\\/net\\/http\\/otelhttp:v0.44.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/contrib/instrumentation@v0.44.0#net/http/otelhttp",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:KfYpVmrjI7JuToy5k8XV3nkapjWx48k4E4JOtVstzQI="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/otel@v1.26.0?package-id=b9fedfe4b8016fdb",
+      "type": "library",
+      "name": "go.opentelemetry.io/otel",
+      "version": "v1.26.0",
+      "purl": "pkg:golang/go.opentelemetry.io/otel@v1.26.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:LQwgL5s/1W7YiiRwxf03QGnWLb2HW4pLiAhaA5cZXBs="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/otel/exporters@v1.19.0?package-id=da782a96a963225e#otlp/otlptrace",
+      "type": "library",
+      "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+      "version": "v1.19.0",
+      "cpe": "cpe:2.3:a:otel:exporters\\/otlp\\/otlptrace:v1.19.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/otel/exporters@v1.19.0#otlp/otlptrace",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Mne5On7VWdx7omSrSSZvM4Kw7cS7NQkOOmLcgscI51U="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/otel/exporters@v1.19.0?package-id=c6eb98e5b02740fa#otlp/otlptrace/otlptracegrpc",
+      "type": "library",
+      "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+      "version": "v1.19.0",
+      "cpe": "cpe:2.3:a:otel:exporters\\/otlp\\/otlptrace\\/otlptracegrpc:v1.19.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/otel/exporters@v1.19.0#otlp/otlptrace/otlptracegrpc",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:3d+S281UTjM+AbF31XSOYn1qXn3BgIdWl8HNEpx08Jk="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/otel/metric@v1.26.0?package-id=59f5203fab379b1a",
+      "type": "library",
+      "name": "go.opentelemetry.io/otel/metric",
+      "version": "v1.26.0",
+      "cpe": "cpe:2.3:a:otel:metric:v1.26.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/otel/metric@v1.26.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:7S39CLuY5Jgg9CrnA9HHiEjGMF/X2VHvoXGgSllRz30="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.26.0?package-id=ed3e2be0890e33f2",
+      "type": "library",
+      "name": "go.opentelemetry.io/otel/sdk",
+      "version": "v1.26.0",
+      "cpe": "cpe:2.3:a:otel:sdk:v1.26.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.26.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Y7bumHf5tAiDlRYFmGqetNcLaVUZmh4iYfmGxtmz7F8="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/otel/trace@v1.26.0?package-id=235396930a36a58d",
+      "type": "library",
+      "name": "go.opentelemetry.io/otel/trace",
+      "version": "v1.26.0",
+      "cpe": "cpe:2.3:a:otel:trace:v1.26.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.26.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:1ieeAUb4y0TE26jUFrCIXKpTuVK7uJGN9/Z/2LP5sQA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.opentelemetry.io/proto/otlp@v1.0.0?package-id=87c45baa09a3ed84",
+      "type": "library",
+      "name": "go.opentelemetry.io/proto/otlp",
+      "version": "v1.0.0",
+      "cpe": "cpe:2.3:a:proto:otlp:v1.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/go.opentelemetry.io/proto/otlp@v1.0.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:T0TX0tmXU8a3CbNXzEKGeU5mIVOdf0oykP+u2lIVU/I="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.uber.org/multierr@v1.11.0?package-id=3ba4e2d7cd517b9d",
+      "type": "library",
+      "name": "go.uber.org/multierr",
+      "version": "v1.11.0",
+      "purl": "pkg:golang/go.uber.org/multierr@v1.11.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.uber.org/zap@v1.26.0?package-id=0b0dd2562eaef8ad",
+      "type": "library",
+      "name": "go.uber.org/zap",
+      "version": "v1.26.0",
+      "purl": "pkg:golang/go.uber.org/zap@v1.26.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:sI7k6L95XOKS281NhVKOFCUNIvv9e0w4BF8N3u+tCRo="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/crypto@v0.24.0?package-id=044728853dabc5b2",
+      "type": "library",
+      "name": "golang.org/x/crypto",
+      "version": "v0.24.0",
+      "cpe": "cpe:2.3:a:golang:x\\/crypto:v0.24.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/crypto@v0.24.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:mnl8DM0o513X8fdIkmyFE/5hTYxbwYOjDS/+rK6qpRI="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/exp@v0.0.0-20220722155223-a9213eeb770e?package-id=744016f63f354577",
+      "type": "library",
+      "name": "golang.org/x/exp",
+      "version": "v0.0.0-20220722155223-a9213eeb770e",
+      "cpe": "cpe:2.3:a:golang:x\\/exp:v0.0.0-20220722155223-a9213eeb770e:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/exp@v0.0.0-20220722155223-a9213eeb770e",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:+WEEuIdZHnUeJJmEUjyYC2gfUMj69yZXw17EnHg/otA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/net@v0.26.0?package-id=74964a31f3e0486c",
+      "type": "library",
+      "name": "golang.org/x/net",
+      "version": "v0.26.0",
+      "cpe": "cpe:2.3:a:golang:networking:v0.26.0:*:*:*:*:go:*:*",
+      "purl": "pkg:golang/golang.org/x/net@v0.26.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:soB7SVo0PWrY4vPW/+ay0jKDNScG2X9wFeYlXIvJsOQ="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/oauth2@v0.18.0?package-id=65a84e5afe68fe04",
+      "type": "library",
+      "name": "golang.org/x/oauth2",
+      "version": "v0.18.0",
+      "cpe": "cpe:2.3:a:golang:x\\/oauth2:v0.18.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/oauth2@v0.18.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:09qnuIAgzdx1XplqJvW6CQqMCtGZykZWcXzPMPUusvI="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/sync@v0.7.0?package-id=cc6ddcd183042ba3",
+      "type": "library",
+      "name": "golang.org/x/sync",
+      "version": "v0.7.0",
+      "cpe": "cpe:2.3:a:golang:x\\/sync:v0.7.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sync@v0.7.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:YsImfSBoP9QPYL0xyKJPq0gcaJdG3rInoqxTWbfQu9M="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.21.0?package-id=a646b4860028a84d",
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.21.0",
+      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.21.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sys@v0.21.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:rF+pYz3DAGSQAxAu1CbC7catZg4ebC4UIeIhKxBZvws="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/term@v0.21.0?package-id=8e5c64ee836c60f5",
+      "type": "library",
+      "name": "golang.org/x/term",
+      "version": "v0.21.0",
+      "cpe": "cpe:2.3:a:golang:x\\/term:v0.21.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/term@v0.21.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:WVXCp+/EBEHOj53Rvu+7KiT/iElMrO8ACK16SMZ3jaA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.16.0?package-id=51216776decd0e30",
+      "type": "library",
+      "name": "golang.org/x/text",
+      "version": "v0.16.0",
+      "cpe": "cpe:2.3:a:golang:text:v0.16.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.16.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:a94ExnEXNtEwYLGJSIUxnWoxoRz/ZcCsV63ROupILh4="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/time@v0.3.0?package-id=5870fb788a9d4243",
+      "type": "library",
+      "name": "golang.org/x/time",
+      "version": "v0.3.0",
+      "cpe": "cpe:2.3:a:golang:x\\/time:v0.3.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/time@v0.3.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:rg5rLMjNzMS1RkNLzCG38eapWhnYLFYXDXj2gOlr8j4="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/google.golang.org/genproto/googleapis@v0.0.0-20240318140521-94a12d6c2237?package-id=25e1d03e84f38b3a#api",
+      "type": "library",
+      "name": "google.golang.org/genproto/googleapis/api",
+      "version": "v0.0.0-20240318140521-94a12d6c2237",
+      "cpe": "cpe:2.3:a:google:genproto:v0.0.0-20240318140521-94a12d6c2237:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/google.golang.org/genproto/googleapis@v0.0.0-20240318140521-94a12d6c2237#api",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:RFiFrvy37/mpSpdySBDrUdipW/dHwsRwh3J3+A9VgT4="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/google.golang.org/genproto/googleapis@v0.0.0-20240515191416-fc5f0ca64291?package-id=5577cb5fd33c3419#rpc",
+      "type": "library",
+      "name": "google.golang.org/genproto/googleapis/rpc",
+      "version": "v0.0.0-20240515191416-fc5f0ca64291",
+      "cpe": "cpe:2.3:a:google:genproto:v0.0.0-20240515191416-fc5f0ca64291:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/google.golang.org/genproto/googleapis@v0.0.0-20240515191416-fc5f0ca64291#rpc",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:AgADTJarZTBqgjiUzRgfaBchgYB3/WFTC80GPwsMcRI="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/google.golang.org/grpc@v1.64.0?package-id=93f9231f32cb1ef2",
+      "type": "library",
+      "name": "google.golang.org/grpc",
+      "version": "v1.64.0",
+      "cpe": "cpe:2.3:a:google:grpc:v1.64.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/google.golang.org/grpc@v1.64.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:KH3VH9y/MgNQg1dE7b3XfVK0GsPSIzJwdF617gUSbvY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/google.golang.org/protobuf@v1.34.1?package-id=234c4905c09dcf1c",
+      "type": "library",
+      "name": "google.golang.org/protobuf",
+      "version": "v1.34.1",
+      "cpe": "cpe:2.3:a:google:protobuf:v1.34.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/google.golang.org/protobuf@v1.34.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:9ddQBjfCyZPOHPUiPxpYESBLc+T8P3E+Vo4IbKZgFWg="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/inf.v0@v0.9.1?package-id=b8f40b1b15b61f15",
+      "type": "library",
+      "name": "gopkg.in/inf.v0",
+      "version": "v0.9.1",
+      "purl": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:73M5CoZyi3ZLMOyDlQh031Cx6N9NDJ2Vvfl76EDAgDc="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/natefinch/lumberjack.v2@v2.2.1?package-id=9cdb25369c4081bd",
+      "type": "library",
+      "name": "gopkg.in/natefinch/lumberjack.v2",
+      "version": "v2.2.1",
+      "purl": "pkg:golang/gopkg.in/natefinch/lumberjack.v2@v2.2.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:bBRl1b0OH9s/DuPhuXpNl+VtCaJXFZ5/uEFST95x9zc="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/square/go-jose.v2@v2.6.0?package-id=a5e160e9c94e6dbb",
+      "type": "library",
+      "name": "gopkg.in/square/go-jose.v2",
+      "version": "v2.6.0",
+      "purl": "pkg:golang/gopkg.in/square/go-jose.v2@v2.6.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:NGk74WTnPKBNUhNzQX7PYcTLUjoq7mzKk2OKbvwk2iI="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0?package-id=eea76200a8e079c7",
+      "type": "library",
+      "name": "gopkg.in/yaml.v2",
+      "version": "v2.4.0",
+      "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1?package-id=68c818a3836d106f",
+      "type": "library",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "cpe": "cpe:2.3:a:yaml_project:yaml:v3.0.1:*:*:*:*:go:*:*",
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/api@v0.30.1?package-id=76c3589f0142ab3f",
+      "type": "library",
+      "name": "k8s.io/api",
+      "version": "v0.30.1",
+      "purl": "pkg:golang/k8s.io/api@v0.30.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:kCm/6mADMdbAxmIh0LBjS54nQBE+U4KmbCfIkF5CpJY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/apimachinery@v0.30.1?package-id=b7e30049f0049a9c",
+      "type": "library",
+      "name": "k8s.io/apimachinery",
+      "version": "v0.30.1",
+      "purl": "pkg:golang/k8s.io/apimachinery@v0.30.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:ZQStsEfo4n65yAdlGTfP/uSHMQSoYzU/oeEbkmF7P2U="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/apiserver@v0.30.1?package-id=f538d2ef4495fc29",
+      "type": "library",
+      "name": "k8s.io/apiserver",
+      "version": "v0.30.1",
+      "purl": "pkg:golang/k8s.io/apiserver@v0.30.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:BEWEe8bzS12nMtDKXzCF5Q5ovp6LjjYkSp8qOPk8LZ8="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/client-go@v0.30.1?package-id=26477dab351e91a0",
+      "type": "library",
+      "name": "k8s.io/client-go",
+      "version": "v0.30.1",
+      "purl": "pkg:golang/k8s.io/client-go@v0.30.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:uC/Ir6A3R46wdkgCV3vbLyNOYyCJ8oZnjtJGKfytl/Q="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/component-base@v0.30.1?package-id=a8878bdfc3a43f52",
+      "type": "library",
+      "name": "k8s.io/component-base",
+      "version": "v0.30.1",
+      "purl": "pkg:golang/k8s.io/component-base@v0.30.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:bvAtlPh1UrdaZL20D9+sWxsJljMi0QZ3Lmw+kmZAaxQ="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/klog/v2@v2.120.1?package-id=1c0aeb2284ae6a08",
+      "type": "library",
+      "name": "k8s.io/klog/v2",
+      "version": "v2.120.1",
+      "cpe": "cpe:2.3:a:klog:v2:v2.120.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/k8s.io/klog/v2@v2.120.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:QXU6cPEOIslTGvZaXvFWiP9VKyeet3sawzTOvdXb4Vw="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/kms@v0.30.1?package-id=4102d8e349b359ca",
+      "type": "library",
+      "name": "k8s.io/kms",
+      "version": "v0.30.1",
+      "purl": "pkg:golang/k8s.io/kms@v0.30.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:gEIbEeCbFiaN2tNfp/EUhFdGr5/CSj8Eyq6Mkr7cCiY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20240228011516-70dd3763d340?package-id=86678d4ed58c6456",
+      "type": "library",
+      "name": "k8s.io/kube-openapi",
+      "version": "v0.0.0-20240228011516-70dd3763d340",
+      "purl": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20240228011516-70dd3763d340",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:BZqlfIlq5YbRMFko6/PM7FjZpUb45WallggurYhKGag="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20230726121419-3b25d923346b?package-id=d7715c9b28a6e05e",
+      "type": "library",
+      "name": "k8s.io/utils",
+      "version": "v0.0.0-20230726121419-3b25d923346b",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20230726121419-3b25d923346b",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:sgn3ZU783SCgtaSJjpcVVlRqd6GSnlTLKgpAAttJvpI="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12&package-id=4939fc774fcd360e",
+      "type": "library",
+      "publisher": "Marco d'Itri <md@linux.it>",
+      "name": "netbase",
+      "version": "6.4",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-2.0-only"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:netbase:netbase:6.4:*:*:*:*:*:*:*",
+      "purl": "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "dpkg-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "deb"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "dpkg-db-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:49626df344c912cfe9f8d8fcd635d301bd41127cd326914212cf2443a96cf421"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/share/doc/netbase/copyright"
+        },
+        {
+          "name": "syft:location:1:layerID",
+          "value": "sha256:49626df344c912cfe9f8d8fcd635d301bd41127cd326914212cf2443a96cf421"
+        },
+        {
+          "name": "syft:location:1:path",
+          "value": "/var/lib/dpkg/status.d/netbase"
+        },
+        {
+          "name": "syft:location:2:layerID",
+          "value": "sha256:49626df344c912cfe9f8d8fcd635d301bd41127cd326914212cf2443a96cf421"
+        },
+        {
+          "name": "syft:location:2:path",
+          "value": "/var/lib/dpkg/status.d/netbase.md5sums"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "36"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/sigs.k8s.io/apiserver-network-proxy/konnectivity-client@v0.29.0?package-id=f4ae2d5739b77953",
+      "type": "library",
+      "name": "sigs.k8s.io/apiserver-network-proxy/konnectivity-client",
+      "version": "v0.29.0",
+      "cpe": "cpe:2.3:a:apiserver-network-proxy:konnectivity-client:v0.29.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/sigs.k8s.io/apiserver-network-proxy/konnectivity-client@v0.29.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver-network-proxy:konnectivity_client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver_network_proxy:konnectivity-client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver_network_proxy:konnectivity_client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver-network:konnectivity-client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver-network:konnectivity_client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver_network:konnectivity-client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver_network:konnectivity_client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver:konnectivity-client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:apiserver:konnectivity_client:v0.29.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:/U5vjBbQn3RChhv7P11uhYvCSm5G2GaIi5AIGBS6r4c="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/sigs.k8s.io/json@v0.0.0-20221116044647-bc3834ca7abd?package-id=d09140a401e0ea0e",
+      "type": "library",
+      "name": "sigs.k8s.io/json",
+      "version": "v0.0.0-20221116044647-bc3834ca7abd",
+      "purl": "pkg:golang/sigs.k8s.io/json@v0.0.0-20221116044647-bc3834ca7abd",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:EDPBXCAspyGV4jQlpZSudPeMmr1bNJefnuqLsRAsHZo="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.1?package-id=b63427a81c453929",
+      "type": "library",
+      "name": "sigs.k8s.io/structured-merge-diff/v4",
+      "version": "v4.4.1",
+      "cpe": "cpe:2.3:a:structured-merge-diff:v4:v4.4.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:structured_merge_diff:v4:v4.4.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:structured-merge:v4:v4.4.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:structured_merge:v4:v4.4.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:structured:v4:v4.4.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:150L+0vs/8DA78h1u02ooW1/fFq/Lwr+sGiqlzvrtq4="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/sigs.k8s.io/yaml@v1.3.0?package-id=d8bef13f258e95c4",
+      "type": "library",
+      "name": "sigs.k8s.io/yaml",
+      "version": "v1.3.0",
+      "purl": "pkg:golang/sigs.k8s.io/yaml@v1.3.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        },
+        {
+          "name": "syft:metadata:goCryptoSettings:0",
+          "value": "standard-crypto"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:a2VclLzOGrwOHDiV8EfBGhvjHvP46CtW5j6POvhYGGo="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/brancz/kube-rbac-proxy"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/stdlib@1.22.4?package-id=acf88ad9230c9249",
+      "type": "library",
+      "name": "stdlib",
+      "version": "go1.22.4",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:golang:go:1.22.4:-:*:*:*:*:*:*",
+      "purl": "pkg:golang/stdlib@1.22.4",
+      "properties": [
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "go-module-buildinfo-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:a9155867c8898bb705a5a0e43594602ea0e45885c76533ed3dd8faa282a09080"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/local/bin/kube-rbac-proxy"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.22.4"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:deb/debian/tzdata@2024a-0%2Bdeb12u1?arch=all&distro=debian-12&package-id=0554439f25547568",
+      "type": "library",
+      "publisher": "GNU Libc Maintainers <debian-glibc@lists.debian.org>",
+      "name": "tzdata",
+      "version": "2024a-0+deb12u1",
+      "licenses": [
+        {
+          "license": {
+            "name": "public-domain"
+          }
+        }
+      ],
+      "cpe": "cpe:2.3:a:tzdata:tzdata:2024a-0\\+deb12u1:*:*:*:*:*:*:*",
+      "purl": "pkg:deb/debian/tzdata@2024a-0%2Bdeb12u1?arch=all&distro=debian-12",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "dpkg-db-cataloger"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "deb"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "dpkg-db-entry"
+        },
+        {
+          "name": "syft:location:0:layerID",
+          "value": "sha256:945d17be9a3e27af5ca1c671792bf1a8f2c3f4d13d3994665d95f084ed4f8a60"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "/usr/share/doc/tzdata/copyright"
+        },
+        {
+          "name": "syft:location:1:layerID",
+          "value": "sha256:945d17be9a3e27af5ca1c671792bf1a8f2c3f4d13d3994665d95f084ed4f8a60"
+        },
+        {
+          "name": "syft:location:1:path",
+          "value": "/var/lib/dpkg/status.d/tzdata"
+        },
+        {
+          "name": "syft:location:2:layerID",
+          "value": "sha256:945d17be9a3e27af5ca1c671792bf1a8f2c3f4d13d3994665d95f084ed4f8a60"
+        },
+        {
+          "name": "syft:location:2:path",
+          "value": "/var/lib/dpkg/status.d/tzdata.md5sums"
+        },
+        {
+          "name": "syft:metadata:installedSize",
+          "value": "2554"
+        }
+      ]
+    },
+    {
+      "bom-ref": "os:debian@12",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12",
+      "description": "Distroless",
+      "swid": {
+        "tagId": "debian",
+        "name": "debian",
+        "version": "12"
+      },
+      "externalReferences": [
+        {
+          "url": "https://github.com/GoogleContainerTools/distroless/issues/new",
+          "type": "issue-tracker"
+        },
+        {
+          "url": "https://github.com/GoogleContainerTools/distroless",
+          "type": "website"
+        },
+        {
+          "url": "https://github.com/GoogleContainerTools/distroless/blob/master/README.md",
+          "comment": "support",
+          "type": "other"
+        }
+      ],
+      "properties": [
+        {
+          "name": "syft:distro:id",
+          "value": "debian"
+        },
+        {
+          "name": "syft:distro:prettyName",
+          "value": "Distroless"
+        },
+        {
+          "name": "syft:distro:versionID",
+          "value": "12"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:golang/github.com/brancz/kube-rbac-proxy@v0.18.0?package-id=8a3ddcfafe1af740",
+      "dependsOn": [
+        "pkg:golang/github.com/antlr/antlr4@v4.0.0-20230305170008-8188dc5388df?package-id=f1cb50b3b6f1dd9b#runtime/Go/antlr/v4",
+        "pkg:golang/github.com/asaskevich/govalidator@v0.0.0-20190424111038-f61b66f89f4a?package-id=89f5d442b0e0ad2d",
+        "pkg:golang/github.com/beorn7/perks@v1.0.1?package-id=f5726f00fd512995",
+        "pkg:golang/github.com/blang/semver@v4.0.0?package-id=1d90b0c6632a31f0#v4",
+        "pkg:golang/github.com/cenkalti/backoff@v4.2.1?package-id=cb54ede673ec69c8#v4",
+        "pkg:golang/github.com/cespare/xxhash@v2.2.0?package-id=824702e827fd27d9#v2",
+        "pkg:golang/github.com/coreos/go-oidc@v2.2.1%2Bincompatible?package-id=bc2a78a640f08db8",
+        "pkg:golang/github.com/coreos/go-semver@v0.3.1?package-id=8660cb49c48b1ba9",
+        "pkg:golang/github.com/coreos/go-systemd@v22.5.0?package-id=f44ea437a3ca140a#v22",
+        "pkg:golang/github.com/davecgh/go-spew@v1.1.1?package-id=6513125f2a71811c",
+        "pkg:golang/github.com/emicklei/go-restful@v3.11.0?package-id=5f1f77189968fa4a#v3",
+        "pkg:golang/github.com/evanphx/json-patch@v4.12.0%2Bincompatible?package-id=48d386865447e815",
+        "pkg:golang/github.com/felixge/httpsnoop@v1.0.3?package-id=6b7bba2cef408770",
+        "pkg:golang/github.com/fsnotify/fsnotify@v1.7.0?package-id=46e232902a20efd8",
+        "pkg:golang/github.com/ghodss/yaml@v1.0.0?package-id=541fed4dde49a4be",
+        "pkg:golang/github.com/go-logr/logr@v1.4.1?package-id=20c2e54e43417dff",
+        "pkg:golang/github.com/go-logr/stdr@v1.2.2?package-id=1329027e34f30dc4",
+        "pkg:golang/github.com/go-openapi/jsonpointer@v0.19.6?package-id=500ebf29b917ebda",
+        "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2?package-id=46d34d24143b9284",
+        "pkg:golang/github.com/go-openapi/swag@v0.22.3?package-id=7567adc41613e065",
+        "pkg:golang/github.com/gogo/protobuf@v1.3.2?package-id=822a186e444fa173",
+        "pkg:golang/github.com/golang/groupcache@v0.0.0-20210331224755-41bb18bfe9da?package-id=2a0136b89d5f9b9d",
+        "pkg:golang/github.com/golang/protobuf@v1.5.4?package-id=e2c230f9fb33a1f6",
+        "pkg:golang/github.com/google/cel-go@v0.17.8?package-id=63c3851dfd0f39c4",
+        "pkg:golang/github.com/google/gnostic-models@v0.6.8?package-id=68048a5fafb35985",
+        "pkg:golang/github.com/google/go-cmp@v0.6.0?package-id=4fd5133b6c40abee",
+        "pkg:golang/github.com/google/gofuzz@v1.2.0?package-id=2ca657cc02076e41",
+        "pkg:golang/github.com/google/uuid@v1.6.0?package-id=9f924960c2ad2823",
+        "pkg:golang/github.com/grpc-ecosystem/go-grpc-prometheus@v1.2.0?package-id=1f168dfac7cdb0b7",
+        "pkg:golang/github.com/grpc-ecosystem/grpc-gateway@v2.16.0?package-id=ed503c1215763928#v2",
+        "pkg:golang/github.com/imdario/mergo@v0.3.6?package-id=8b8b3a661a9945e2",
+        "pkg:golang/github.com/josharian/intern@v1.0.0?package-id=a6cef9deea27a281",
+        "pkg:golang/github.com/json-iterator/go@v1.1.12?package-id=2c916e0a1147318e",
+        "pkg:golang/github.com/mailru/easyjson@v0.7.7?package-id=0a3743333d2f43e8",
+        "pkg:golang/github.com/matttproud/golang_protobuf_extensions@v1.0.4?package-id=5e5336dee115cd48",
+        "pkg:golang/github.com/moby/term@v0.0.0-20221205130635-1aeaba878587?package-id=7f8b602eddddc309",
+        "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd?package-id=3ec06eefd42b1775",
+        "pkg:golang/github.com/modern-go/reflect2@v1.0.2?package-id=05696812fac1fc7b",
+        "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822?package-id=02ea5c3d1bb2c247",
+        "pkg:golang/github.com/nytimes/gziphandler@v1.1.1?package-id=384cacf836d44684",
+        "pkg:golang/github.com/oklog/run@v1.1.0?package-id=9faa1b1e5cf18c5c",
+        "pkg:golang/github.com/pkg/errors@v0.9.1?package-id=91f932bce2ada932",
+        "pkg:golang/github.com/pquerna/cachecontrol@v0.1.0?package-id=2cf52c7277900151",
+        "pkg:golang/github.com/prometheus/client_golang@v1.16.0?package-id=463d2a489a181e05",
+        "pkg:golang/github.com/prometheus/client_model@v0.4.0?package-id=df6c595458c29a1b",
+        "pkg:golang/github.com/prometheus/common@v0.44.0?package-id=5a6935305e5d83e3",
+        "pkg:golang/github.com/prometheus/procfs@v0.10.1?package-id=9da87a34824dc9aa",
+        "pkg:golang/github.com/spf13/cobra@v1.8.0?package-id=1738ba29404498e0",
+        "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=ba3964c3cf85ff6c",
+        "pkg:golang/github.com/stoewer/go-strcase@v1.2.0?package-id=4ca4ba502d23ab2c",
+        "pkg:golang/go.etcd.io/etcd/api@v3.5.10?package-id=115846bda1c64dea#v3",
+        "pkg:golang/go.etcd.io/etcd/client@v3.5.10?package-id=22bf51a802b96de4#pkg/v3",
+        "pkg:golang/go.etcd.io/etcd/client@v3.5.10?package-id=576965389fa29e31#v3",
+        "pkg:golang/go.opentelemetry.io/contrib/instrumentation@v0.44.0?package-id=b1684f001ee6da00#net/http/otelhttp",
+        "pkg:golang/go.opentelemetry.io/contrib/instrumentation@v0.51.0?package-id=0a49a367ed048d55#googlegolangorg/grpc/otelgrpc",
+        "pkg:golang/go.opentelemetry.io/otel/exporters@v1.19.0?package-id=c6eb98e5b02740fa#otlp/otlptrace/otlptracegrpc",
+        "pkg:golang/go.opentelemetry.io/otel/exporters@v1.19.0?package-id=da782a96a963225e#otlp/otlptrace",
+        "pkg:golang/go.opentelemetry.io/otel/metric@v1.26.0?package-id=59f5203fab379b1a",
+        "pkg:golang/go.opentelemetry.io/otel/sdk@v1.26.0?package-id=ed3e2be0890e33f2",
+        "pkg:golang/go.opentelemetry.io/otel/trace@v1.26.0?package-id=235396930a36a58d",
+        "pkg:golang/go.opentelemetry.io/otel@v1.26.0?package-id=b9fedfe4b8016fdb",
+        "pkg:golang/go.opentelemetry.io/proto/otlp@v1.0.0?package-id=87c45baa09a3ed84",
+        "pkg:golang/go.uber.org/multierr@v1.11.0?package-id=3ba4e2d7cd517b9d",
+        "pkg:golang/go.uber.org/zap@v1.26.0?package-id=0b0dd2562eaef8ad",
+        "pkg:golang/golang.org/x/crypto@v0.24.0?package-id=044728853dabc5b2",
+        "pkg:golang/golang.org/x/exp@v0.0.0-20220722155223-a9213eeb770e?package-id=744016f63f354577",
+        "pkg:golang/golang.org/x/net@v0.26.0?package-id=74964a31f3e0486c",
+        "pkg:golang/golang.org/x/oauth2@v0.18.0?package-id=65a84e5afe68fe04",
+        "pkg:golang/golang.org/x/sync@v0.7.0?package-id=cc6ddcd183042ba3",
+        "pkg:golang/golang.org/x/sys@v0.21.0?package-id=a646b4860028a84d",
+        "pkg:golang/golang.org/x/term@v0.21.0?package-id=8e5c64ee836c60f5",
+        "pkg:golang/golang.org/x/text@v0.16.0?package-id=51216776decd0e30",
+        "pkg:golang/golang.org/x/time@v0.3.0?package-id=5870fb788a9d4243",
+        "pkg:golang/google.golang.org/genproto/googleapis@v0.0.0-20240318140521-94a12d6c2237?package-id=25e1d03e84f38b3a#api",
+        "pkg:golang/google.golang.org/genproto/googleapis@v0.0.0-20240515191416-fc5f0ca64291?package-id=5577cb5fd33c3419#rpc",
+        "pkg:golang/google.golang.org/grpc@v1.64.0?package-id=93f9231f32cb1ef2",
+        "pkg:golang/google.golang.org/protobuf@v1.34.1?package-id=234c4905c09dcf1c",
+        "pkg:golang/gopkg.in/inf.v0@v0.9.1?package-id=b8f40b1b15b61f15",
+        "pkg:golang/gopkg.in/natefinch/lumberjack.v2@v2.2.1?package-id=9cdb25369c4081bd",
+        "pkg:golang/gopkg.in/square/go-jose.v2@v2.6.0?package-id=a5e160e9c94e6dbb",
+        "pkg:golang/gopkg.in/yaml.v2@v2.4.0?package-id=eea76200a8e079c7",
+        "pkg:golang/gopkg.in/yaml.v3@v3.0.1?package-id=68c818a3836d106f",
+        "pkg:golang/k8s.io/api@v0.30.1?package-id=76c3589f0142ab3f",
+        "pkg:golang/k8s.io/apimachinery@v0.30.1?package-id=b7e30049f0049a9c",
+        "pkg:golang/k8s.io/apiserver@v0.30.1?package-id=f538d2ef4495fc29",
+        "pkg:golang/k8s.io/client-go@v0.30.1?package-id=26477dab351e91a0",
+        "pkg:golang/k8s.io/component-base@v0.30.1?package-id=a8878bdfc3a43f52",
+        "pkg:golang/k8s.io/klog/v2@v2.120.1?package-id=1c0aeb2284ae6a08",
+        "pkg:golang/k8s.io/kms@v0.30.1?package-id=4102d8e349b359ca",
+        "pkg:golang/k8s.io/kube-openapi@v0.0.0-20240228011516-70dd3763d340?package-id=86678d4ed58c6456",
+        "pkg:golang/k8s.io/utils@v0.0.0-20230726121419-3b25d923346b?package-id=d7715c9b28a6e05e",
+        "pkg:golang/sigs.k8s.io/apiserver-network-proxy/konnectivity-client@v0.29.0?package-id=f4ae2d5739b77953",
+        "pkg:golang/sigs.k8s.io/json@v0.0.0-20221116044647-bc3834ca7abd?package-id=d09140a401e0ea0e",
+        "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.1?package-id=b63427a81c453929",
+        "pkg:golang/sigs.k8s.io/yaml@v1.3.0?package-id=d8bef13f258e95c4",
+        "pkg:golang/stdlib@1.22.4?package-id=acf88ad9230c9249"
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "bom-ref": "urn:uuid:230dc935-5265-4400-984d-572a8f23f51f",
+      "id": "CVE-2024-24791",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24791"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24791",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24791"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "The net/http HTTP/1.1 client mishandled the case where a server responds to a request with an \"Expect: 100-continue\" header with a non-informational (200 or higher) status. This mishandling could leave a client connection in an invalid state, where the next request sent on the connection will fail. An attacker sending a request to a net/http/httputil.ReverseProxy proxy can exploit this mishandling to cause a denial of service by sending \"Expect: 100-continue\" requests which elicit a non-informational response from the backend. Each such request leaves the proxy with an invalid connection, and causes one subsequent request using that connection to fail.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/591255"
+        },
+        {
+          "url": "https://go.dev/issue/67555"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/t0rK-qHBqzY/m/6MMoAZkMAgAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2963"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.22.4?package-id=acf88ad9230c9249"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:1e2b8d48-e65c-4a3f-b6c9-6dba109aa934",
+      "id": "GHSA-c5q2-7r4c-mv6g",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-c5q2-7r4c-mv6g"
+      },
+      "references": [
+        {
+          "id": "GHSA-c5q2-7r4c-mv6g",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-c5q2-7r4c-mv6g"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 4.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ],
+      "description": "Go JOSE vulnerable to Improper Handling of Highly Compressed Data (Data Amplification)",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-c5q2-7r4c-mv6g"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/gopkg.in/square/go-jose.v2@v2.6.0?package-id=a5e160e9c94e6dbb"
+        }
+      ]
+    }
+  ]
+}

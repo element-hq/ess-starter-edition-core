@@ -36,6 +36,7 @@
 # We make sure that all registration files have a registation.yaml key
 # and we build a list of hashes
 - name: "Lookup the registration files hashes"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   ansible.builtin.set_fact:
     _fetched_registration_files_hash: >
       {{

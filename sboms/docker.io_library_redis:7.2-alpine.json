@@ -1,18 +1,18 @@
 {
-  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
-  "specVersion": "1.5",
-  "serialNumber": "urn:uuid:86c840db-bf2f-46e1-877d-b5ecb4cc5c11",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:9fe9ebcc-9457-4ea2-ae2e-8b088bc0bafc",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-06-28T10:53:49Z",
+    "timestamp": "2024-07-05T11:45:19Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "author": "anchore",
           "name": "grype",
-          "version": "0.78.0"
+          "version": "0.79.2"
         }
       ]
     },
@@ -1810,11 +1810,19 @@
         "pkg:apk/alpine/libssl3@3.3.1-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.1&package-id=256036fb4c0abaea",
         "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.1&package-id=3ea0974d202d0c73"
       ]
+    },
+    {
+      "ref": "pkg:golang/github.com/tianon/gosu@(devel)?package-id=0028854aa5a73897",
+      "dependsOn": [
+        "pkg:golang/github.com/moby/sys@v0.1.0?package-id=ee165e286debc751#user",
+        "pkg:golang/golang.org/x/sys@v0.13.0?package-id=a669bc14b34a9768",
+        "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+      ]
     }
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:5537c919-7699-44b3-8c9e-a19249f938b1",
+      "bom-ref": "urn:uuid:364fbda5-400f-4dad-b5c8-a524a1e3c59a",
       "id": "CVE-2022-1705",
       "source": {
         "name": "nvd-cpe",
@@ -1865,7 +1873,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:208b14ce-c727-4e0e-8dc7-c11737f50d76",
+      "bom-ref": "urn:uuid:742e0deb-bfb6-4944-939c-a6de3fad840e",
       "id": "CVE-2022-1962",
       "source": {
         "name": "nvd-cpe",
@@ -1913,7 +1921,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4469e3bc-35c2-47cf-8239-204e72efc49c",
+      "bom-ref": "urn:uuid:193da893-d9c5-403b-b3c5-9e117f444e10",
       "id": "CVE-2022-27664",
       "source": {
         "name": "nvd-cpe",
@@ -1964,7 +1972,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b34602d6-0810-4ab6-8e9d-679eaaf7c83f",
+      "bom-ref": "urn:uuid:15f28737-9f95-4a83-bfcc-55af8b1d49d3",
       "id": "CVE-2022-28131",
       "source": {
         "name": "nvd-cpe",
@@ -2012,7 +2020,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5b7a4587-0401-49ff-a078-14da694c36ba",
+      "bom-ref": "urn:uuid:b4f8a630-f119-4234-84e6-1bf7a9497891",
       "id": "CVE-2022-2879",
       "source": {
         "name": "nvd-cpe",
@@ -2060,7 +2068,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a5e1d6ba-665a-4728-b2f0-666a9de30967",
+      "bom-ref": "urn:uuid:b65ede52-a8d2-43d3-8eb1-2572246653a5",
       "id": "CVE-2022-2880",
       "source": {
         "name": "nvd-cpe",
@@ -2108,7 +2116,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5a1c9faa-a9da-43ef-87db-9f1fca6106a7",
+      "bom-ref": "urn:uuid:97636e3b-1255-4702-a852-a96124104a38",
       "id": "CVE-2022-30580",
       "source": {
         "name": "nvd-cpe",
@@ -2156,7 +2164,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:50ca605c-e287-4004-b4fd-9a108eca723c",
+      "bom-ref": "urn:uuid:47765734-8032-4ccd-ac04-e626f53f6e2f",
       "id": "CVE-2022-30629",
       "source": {
         "name": "nvd-cpe",
@@ -2204,7 +2212,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:450cc81e-1c2a-468f-9bb3-f2e4d611b806",
+      "bom-ref": "urn:uuid:8ffcba1a-5850-45c3-a69c-2eeed0c714bb",
       "id": "CVE-2022-30630",
       "source": {
         "name": "nvd-cpe",
@@ -2252,7 +2260,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7de2ec84-1e3a-4656-a314-3f05a58598fc",
+      "bom-ref": "urn:uuid:7df44862-b8c0-494d-a3b6-c6dc0f01b6a7",
       "id": "CVE-2022-30631",
       "source": {
         "name": "nvd-cpe",
@@ -2300,7 +2308,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:cc4c563a-89d7-4a6e-9ee8-31c7e6a52d1f",
+      "bom-ref": "urn:uuid:5acf7eb1-4cd0-4c0f-aac3-a250affbde6e",
       "id": "CVE-2022-30632",
       "source": {
         "name": "nvd-cpe",
@@ -2348,7 +2356,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ede6af3c-3c4b-49db-883a-b9af268a64c4",
+      "bom-ref": "urn:uuid:d4a1cc8b-9f19-4a58-ae98-c889116c7225",
       "id": "CVE-2022-30633",
       "source": {
         "name": "nvd-cpe",
@@ -2396,7 +2404,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2e0eb428-1495-4a76-8ed0-34d85ecef066",
+      "bom-ref": "urn:uuid:89ba1e38-0833-40a4-9654-d9048b075ebc",
       "id": "CVE-2022-30635",
       "source": {
         "name": "nvd-cpe",
@@ -2444,7 +2452,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dc175355-c33d-4946-b12a-dfb01bcc9f93",
+      "bom-ref": "urn:uuid:176834f5-bb3d-442c-844a-de678ac3b74f",
       "id": "CVE-2022-32148",
       "source": {
         "name": "nvd-cpe",
@@ -2492,7 +2500,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0defa397-dcea-4e5d-b7a9-e03c3d481792",
+      "bom-ref": "urn:uuid:f386af67-c704-490f-9d9e-82892db6f74f",
       "id": "CVE-2022-32189",
       "source": {
         "name": "nvd-cpe",
@@ -2540,7 +2548,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:396a19d1-5452-4479-bdde-2effb3b8440e",
+      "bom-ref": "urn:uuid:87ec544a-6fb0-4ed7-bbea-4f0dd734feac",
       "id": "CVE-2022-41715",
       "source": {
         "name": "nvd-cpe",
@@ -2588,7 +2596,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3504b0ce-14ef-471c-8c1a-45c3ecf13c13",
+      "bom-ref": "urn:uuid:efacd2b0-c1a5-45d6-b297-031d51338644",
       "id": "CVE-2022-41717",
       "source": {
         "name": "nvd-cpe",
@@ -2690,7 +2698,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c2d6d336-eea4-4245-bebf-171b2cfb48ef",
+      "bom-ref": "urn:uuid:59faa09e-fa52-47c3-91fc-dddab7448d07",
       "id": "CVE-2022-41722",
       "source": {
         "name": "nvd-cpe",
@@ -2735,7 +2743,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5cb14c84-054c-48aa-9866-22591ad33cdd",
+      "bom-ref": "urn:uuid:2c7ef6db-62e2-418d-b8d0-324cb48bc057",
       "id": "CVE-2022-41723",
       "source": {
         "name": "nvd-cpe",
@@ -2810,7 +2818,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6097f562-1c90-4ed4-8cd6-6dc83af469b2",
+      "bom-ref": "urn:uuid:d736d0e8-a9cd-454c-b6c3-7930fe964760",
       "id": "CVE-2022-41724",
       "source": {
         "name": "nvd-cpe",
@@ -2858,7 +2866,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:93c591fd-5580-4f75-acee-aa5fd3336840",
+      "bom-ref": "urn:uuid:f406c434-1157-443d-afba-ffe9d9a1a0d6",
       "id": "CVE-2022-41725",
       "source": {
         "name": "nvd-cpe",
@@ -2906,7 +2914,52 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:221cf4d8-0721-4f3f-8c6b-790d5cdbe098",
+      "bom-ref": "urn:uuid:c63fbcce-7114-4546-b9d7-353986bdec10",
+      "id": "CVE-2023-24531",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24531"
+      },
+      "references": [
+        {
+          "id": "CVE-2023-24531",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-24531"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "Command go env is documented as outputting a shell script containing the Go environment. However, go env doesn't sanitize values, so executing its output as a shell script can cause various bad bahaviors, including executing arbitrary commands or inserting new environment variables. This issue is relatively minor because, in general, if an attacker can set arbitrary environment variables on a system, they have better attack vectors than making \"go env\" print them out.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/488375"
+        },
+        {
+          "url": "https://go.dev/cl/493535"
+        },
+        {
+          "url": "https://go.dev/issue/58508"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/ixHOFpSbajE/m/8EjlbKVWAwAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2962"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:a88e0954-f512-431a-96d2-c10d8dd71602",
       "id": "CVE-2023-24532",
       "source": {
         "name": "nvd-cpe",
@@ -2951,7 +3004,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c48f5358-da0f-474e-9abf-e1cbdf0dd3b3",
+      "bom-ref": "urn:uuid:2a2a198d-b25d-4bc7-8c4c-17fb24a40cd7",
       "id": "CVE-2023-24534",
       "source": {
         "name": "nvd-cpe",
@@ -3002,7 +3055,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:babd5a6d-2d81-483f-bae9-ca8cccbe9c4d",
+      "bom-ref": "urn:uuid:f3898440-6e80-43d1-ab04-48f84887769f",
       "id": "CVE-2023-24536",
       "source": {
         "name": "nvd-cpe",
@@ -3059,7 +3112,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ae0dc84b-8041-4cdf-8397-c1ca8f0e3c48",
+      "bom-ref": "urn:uuid:776c9e96-0df1-4253-b9c4-2c1aa73137f6",
       "id": "CVE-2023-24537",
       "source": {
         "name": "nvd-cpe",
@@ -3107,7 +3160,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dbdfa868-9663-46a5-bac7-96148d0dfffc",
+      "bom-ref": "urn:uuid:b4544be2-0895-4ac2-ae1e-39d8313710a2",
       "id": "CVE-2023-24538",
       "source": {
         "name": "nvd-cpe",
@@ -3155,7 +3208,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:32942165-6245-4e6f-81f9-7a945ba659c2",
+      "bom-ref": "urn:uuid:57e09d68-d2c9-42ab-a101-e71ca437b935",
       "id": "CVE-2023-24539",
       "source": {
         "name": "nvd-cpe",
@@ -3200,7 +3253,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e6af6ba7-32a1-4036-b117-7184e6ebc9b6",
+      "bom-ref": "urn:uuid:c7d7027b-f895-4c8a-8695-43897c7c109f",
       "id": "CVE-2023-24540",
       "source": {
         "name": "nvd-cpe",
@@ -3245,7 +3298,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dfec9900-32ea-42ad-aa33-fbf2cb1da3d7",
+      "bom-ref": "urn:uuid:bae37d62-58d0-4688-b961-a9b5cb50d219",
       "id": "CVE-2023-29400",
       "source": {
         "name": "nvd-cpe",
@@ -3290,7 +3343,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:484c5af6-bc20-46da-815b-ba43044ed25c",
+      "bom-ref": "urn:uuid:b389207d-6a85-4575-98ca-7c4741d8fc61",
       "id": "CVE-2023-29402",
       "source": {
         "name": "nvd-cpe",
@@ -3344,7 +3397,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c7fc7f28-2ad8-4001-b675-01f68c8ab31e",
+      "bom-ref": "urn:uuid:df180864-976c-4c32-b1fb-32b623fa4581",
       "id": "CVE-2023-29403",
       "source": {
         "name": "nvd-cpe",
@@ -3398,7 +3451,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3e0d36e0-dd96-433f-9daa-039a2d4e0116",
+      "bom-ref": "urn:uuid:5d42b2ce-91a4-4162-a28c-6a970c12d4d7",
       "id": "CVE-2023-29404",
       "source": {
         "name": "nvd-cpe",
@@ -3452,7 +3505,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:929fe75a-1d89-4a6b-8a8a-3e01f6cb3ab5",
+      "bom-ref": "urn:uuid:56048f0d-495b-4cd6-867a-5e89f89e581b",
       "id": "CVE-2023-29405",
       "source": {
         "name": "nvd-cpe",
@@ -3506,7 +3559,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:76e133ea-de81-44dd-bfb4-de341a808175",
+      "bom-ref": "urn:uuid:6f2f4c3f-7bcd-4e46-97d1-49a9138ca9b9",
       "id": "CVE-2023-29406",
       "source": {
         "name": "nvd-cpe",
@@ -3557,7 +3610,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:522771c4-853a-4f8b-ac37-f566d6e60088",
+      "bom-ref": "urn:uuid:f30cb75f-f036-4f31-82f4-8cbc1a5d3848",
       "id": "CVE-2023-29409",
       "source": {
         "name": "nvd-cpe",
@@ -3608,7 +3661,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a4405ac1-9d26-4389-a787-694cd95c7fcb",
+      "bom-ref": "urn:uuid:0675e1e9-6836-4f44-9f06-43a8ece9bae9",
       "id": "CVE-2023-39318",
       "source": {
         "name": "nvd-cpe",
@@ -3659,7 +3712,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a8860150-daa8-402a-8b1c-9c202cb80e7b",
+      "bom-ref": "urn:uuid:fce1365a-25d7-4fea-81db-2c37d42f1aeb",
       "id": "CVE-2023-39319",
       "source": {
         "name": "nvd-cpe",
@@ -3710,7 +3763,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3db0224f-d5fc-45ea-bd63-b2810cb28c74",
+      "bom-ref": "urn:uuid:9ca9894a-40de-44cb-ae74-82c0370afcdc",
       "id": "CVE-2023-39323",
       "source": {
         "name": "nvd-cpe",
@@ -3770,7 +3823,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5364adee-1578-4062-ade9-f530f32537f0",
+      "bom-ref": "urn:uuid:a7845a16-dd78-4836-8eb9-da5e8aba9e3b",
       "id": "CVE-2023-39326",
       "source": {
         "name": "nvd-cpe",
@@ -3818,7 +3871,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c64e4e0e-d87c-4b84-a50a-1fe237c06241",
+      "bom-ref": "urn:uuid:3e5f0b81-1f8b-4db2-ab7b-0f8ab8254366",
       "id": "CVE-2023-44487",
       "source": {
         "name": "nvd-cpe",
@@ -4271,7 +4324,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0190ac2e-b9b9-47b4-b99c-a73638a0c91f",
+      "bom-ref": "urn:uuid:95fd6657-dd3b-41b6-b833-cb7e2ff163a8",
       "id": "CVE-2023-45285",
       "source": {
         "name": "nvd-cpe",
@@ -4319,7 +4372,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4d3e711a-efd1-4ea4-9ff1-ef89c24ba9c0",
+      "bom-ref": "urn:uuid:a2a331e2-5417-4281-b46b-8a9043da8ccd",
       "id": "CVE-2023-45287",
       "source": {
         "name": "nvd-cpe",
@@ -4370,7 +4423,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4e8a8b39-e2cb-46a6-8fc7-7c192f813129",
+      "bom-ref": "urn:uuid:468103ac-a073-4276-8299-830d090bdf3d",
       "id": "CVE-2023-45288",
       "source": {
         "name": "nvd-cpe",
@@ -4424,7 +4477,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e6999964-0cbd-495b-baf5-5fc0f8188315",
+      "bom-ref": "urn:uuid:dfcaa47c-0ee0-474f-b9f5-33a7c8d38808",
       "id": "CVE-2023-45289",
       "source": {
         "name": "nvd-cpe",
@@ -4472,7 +4525,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a10631ed-ac59-4328-943d-755f53f80bc1",
+      "bom-ref": "urn:uuid:3d7d2aaf-af74-4d94-87f4-0646de6220e7",
       "id": "CVE-2023-45290",
       "source": {
         "name": "nvd-cpe",
@@ -4520,7 +4573,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c0f6e9c6-5d0d-4808-8eda-e55de04c5ad1",
+      "bom-ref": "urn:uuid:0b1ee49e-2b6c-4b6b-85ef-619a98791feb",
       "id": "CVE-2024-24783",
       "source": {
         "name": "nvd-cpe",
@@ -4568,7 +4621,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:82d5053c-edee-48bd-a5d2-f5f1be143049",
+      "bom-ref": "urn:uuid:09579623-d645-4194-a86e-cd9236403aaa",
       "id": "CVE-2024-24784",
       "source": {
         "name": "nvd-cpe",
@@ -4616,7 +4669,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b9c1a4d5-e730-4062-8244-befc8c383c8b",
+      "bom-ref": "urn:uuid:a4bbb862-be09-41b4-9232-5470d06b97b8",
       "id": "CVE-2024-24785",
       "source": {
         "name": "nvd-cpe",
@@ -4664,7 +4717,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bc9e3d02-7062-48f4-b010-f29cd1525f0a",
+      "bom-ref": "urn:uuid:b60caf40-0fc6-4ced-b1d0-1a4962e61cfb",
       "id": "CVE-2024-24787",
       "source": {
         "name": "nvd-cpe",
@@ -4681,7 +4734,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 6.4,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H"
         }
       ],
       "description": "On Darwin, building a Go module which contains CGO can trigger arbitrary code execution when using the Apple version of ld, due to usage of the -lto_library flag in a \"#cgo LDFLAGS\" directive.",
@@ -4712,7 +4768,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:88f51fca-599a-45d5-a82a-353daee737af",
+      "bom-ref": "urn:uuid:8ea7df7d-20b7-43d2-914d-71a019264b35",
       "id": "CVE-2024-24789",
       "source": {
         "name": "nvd-cpe",
@@ -4733,6 +4789,12 @@
           "severity": "medium",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N"
+        },
+        {
+          "score": 5.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L"
         }
       ],
       "description": "The archive/zip package's handling of certain types of invalid zip files differs from the behavior of most zip implementations. This misalignment could be exploited to create an zip file with contents that vary depending on the implementation reading the file. The archive/zip package now rejects files containing these errors.",
@@ -4763,7 +4825,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:72cc9def-e277-45df-b905-2c4fe8730ceb",
+      "bom-ref": "urn:uuid:814117b4-3982-4f1f-9c12-251484b5ceca",
       "id": "CVE-2024-24790",
       "source": {
         "name": "nvd-cpe",
@@ -4807,6 +4869,112 @@
       "affects": [
         {
           "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:6b23cc87-a7bf-4770-b129-364e6159c862",
+      "id": "CVE-2024-24791",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24791"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-24791",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-24791"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "The net/http HTTP/1.1 client mishandled the case where a server responds to a request with an \"Expect: 100-continue\" header with a non-informational (200 or higher) status. This mishandling could leave a client connection in an invalid state, where the next request sent on the connection will fail. An attacker sending a request to a net/http/httputil.ReverseProxy proxy can exploit this mishandling to cause a denial of service by sending \"Expect: 100-continue\" requests which elicit a non-informational response from the backend. Each such request leaves the proxy with an invalid connection, and causes one subsequent request using that connection to fail.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/591255"
+        },
+        {
+          "url": "https://go.dev/issue/67555"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/t0rK-qHBqzY/m/6MMoAZkMAgAJ"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-2963"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.18.2?package-id=bd0350174db7828f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:abc7f063-cf15-4026-8799-61b081cc72e0",
+      "id": "CVE-2024-5535",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-5535",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "critical"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libcrypto3@3.3.1-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.1&package-id=a0d1447e2b233076"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:edb31571-683d-4080-b88e-904b83e4af5f",
+      "id": "CVE-2024-5535",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-5535",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "critical"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libssl3@3.3.1-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.1&package-id=256036fb4c0abaea"
         }
       ]
     }

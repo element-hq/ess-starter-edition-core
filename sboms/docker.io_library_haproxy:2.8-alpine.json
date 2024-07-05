@@ -1,18 +1,18 @@
 {
-  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
-  "specVersion": "1.5",
-  "serialNumber": "urn:uuid:15821b65-3e78-4583-9bde-f392bc2441e1",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:8c6a4200-84dd-4934-9591-fe2cd5be09dc",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-06-28T10:53:43Z",
+    "timestamp": "2024-07-05T11:45:13Z",
     "tools": {
       "components": [
         {
           "type": "application",
           "author": "anchore",
           "name": "grype",
-          "version": "0.78.0"
+          "version": "0.79.2"
         }
       ]
     },
@@ -1959,7 +1959,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:5b03f479-72c2-4d44-84d9-19d0de57aa85",
+      "bom-ref": "urn:uuid:7d9194ed-a083-43bf-90f7-8c8d300009eb",
       "id": "CVE-2016-2102",
       "source": {
         "name": "nvd-cpe",
@@ -2001,7 +2001,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:121d1dcf-9722-44ac-88f5-f973b3e23c57",
+      "bom-ref": "urn:uuid:986e6bb3-3ab8-4589-8303-5f0d9cd3dbce",
       "id": "CVE-2023-0056",
       "source": {
         "name": "nvd-cpe",
@@ -2033,6 +2033,70 @@
       "affects": [
         {
           "ref": "pkg:generic/haproxy@2.8.10?package-id=4c7f7a666f86d64d"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:2275955c-29e1-4953-b801-2ee820e810a0",
+      "id": "CVE-2024-5535",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-5535",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "critical"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libcrypto3@3.3.1-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.1&package-id=a0d1447e2b233076"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:08d952f3-ccb9-44fa-8b45-0e5667189d36",
+      "id": "CVE-2024-5535",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-5535",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "critical"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-5535"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libssl3@3.3.1-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.1&package-id=256036fb4c0abaea"
         }
       ]
     }

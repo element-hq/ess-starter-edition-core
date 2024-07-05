@@ -34,7 +34,7 @@ crds:
     imagePullPolicy: Always
     image:
       repository: docker.io/vectorim/ess-core-updater-conversion-webhook
-      tag: 2.18.6
+      tag: 2.19.0
 updater:
   extraPodSpec:
     securityContext:
@@ -58,7 +58,7 @@ updater:
       - name: DEBUG_MANIFESTS
         value: "0"
       - name: ANSIBLE_VERBOSITY
-        value: "1"
+        value: "0"
     extraContainerSpec:
       securityContext:
         allowPrivilegeEscalation: false
@@ -68,7 +68,7 @@ updater:
             - ALL
     image:
       repository: docker.io/vectorim/ess-core-updater
-      tag: 2.18.6
+      tag: 2.19.0
   rbacProxy:
     resources:
       limits:
@@ -85,5 +85,5 @@ updater:
             - ALL
     imagePullPolicy: Always
     image:
-      repository: gcr.io/kubebuilder/kube-rbac-proxy
-      tag: v0.14.1
+      repository: quay.io/brancz/kube-rbac-proxy
+      tag: v0.18.0

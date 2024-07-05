@@ -14,7 +14,7 @@ RUN apt update && apt install -y git make && \
     cd /workspace && \
     git clone https://github.com/element-hq/ansible-operator-plugins.git && \
     cd ansible-operator-plugins && \
-    git checkout gaelg/mark-unsafe-non-spec-object && \
+    git checkout gaelg/mark-unsafe-non-spec-object-main && \
     make build/ansible-operator && \
     mv ./ansible-operator /usr/local/bin/ansible-operator && \
     chmod +x /usr/local/bin/ansible-operator && /usr/local/bin/ansible-operator version

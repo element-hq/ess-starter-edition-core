@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,6 +9,8 @@
   value:
     type: object
     description: Sliding Sync is a backend component required by the Element X client beta. It provides a mechanism for the fast synchronisation of Matrix rooms. It is not recommended for production use and is only provide to enable the usage of the Element X client. The current version does not support SSO (OIDC/SAML/CAS). If you wish to try out the Element X client, then you need to be using password-based auth to allow Sliding Sync to work. SSO support (OIDC/SAML/CAS) will be added with a later version of the Sliding Sync tooling.
+    required:
+      - config
     properties:
       secretName:
         default: sliding-sync

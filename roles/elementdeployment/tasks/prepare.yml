@@ -38,3 +38,4 @@
       {% endfor %}
       {% endif %}
       {% endfor %}
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
