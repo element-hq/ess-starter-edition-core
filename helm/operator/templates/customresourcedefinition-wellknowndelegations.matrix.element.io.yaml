@@ -80,6 +80,9 @@ spec:
                               type: string
                           type: object
                       type: object
+                    element:
+                      description: JSON contents of /.well-known/element/element.json. Optional, if unset the file will not be deployed.
+                      type: string
                     federation:
                       description: Specification of contents of /.well-known/matrix/server. Optional, if unset the file will only contain {}
                       properties:

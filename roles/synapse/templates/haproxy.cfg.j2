@@ -107,6 +107,7 @@ frontend http-in
     # So we can't guarantee the header is present
     # https is a more sensible default than http for the missing header as we force public_baseurl to https
     http-request set-header X-Forwarded-Proto https if !{ hdr(X-Forwarded-Proto) -m found }
+    http-response add-header Strict-Transport-Security max-age=31536000 if { hdr(X-Forward-Proto) -i "https" }
 
     monitor-uri /haproxy_test
     # If we get here then we want to proxy everything to synapse or a worker.

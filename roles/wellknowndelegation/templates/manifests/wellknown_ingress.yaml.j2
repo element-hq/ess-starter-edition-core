@@ -39,3 +39,10 @@ spec:
             name: "{{ ansible_operator_meta.name }}-well-known"
             port:
               number: 80
+      - path: /.well-known/element
+        pathType: Prefix
+        backend:
+          service:
+            name: "{{ ansible_operator_meta.name }}-well-known"
+            port:
+              number: 80

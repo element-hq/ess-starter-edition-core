@@ -2138,6 +2138,9 @@ spec:
                             additionalClientConfig:
                               description: WellKnownDelegation additional client configuration.
                               type: string
+                            additionalElementConfig:
+                              description: WellKnownDelegation additional element configuration.
+                              type: string
                             additionalServerConfig:
                               description: WellKnownDelegation additional server configuration.
                               type: string
@@ -4801,6 +4804,9 @@ spec:
                           properties:
                             additionalClientConfig:
                               description: WellKnownDelegation additional client configuration.
+                              type: string
+                            additionalElementConfig:
+                              description: WellKnownDelegation additional element configuration.
                               type: string
                             additionalServerConfig:
                               description: WellKnownDelegation additional server configuration.

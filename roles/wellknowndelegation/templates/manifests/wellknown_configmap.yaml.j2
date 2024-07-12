@@ -21,3 +21,5 @@ data:
     {{ client_json | to_nice_json | indent(4) }}
   server: |-
     {{ server_json | to_nice_json | indent(4) }}
+  element.json: |-
+    {{ element_json | to_nice_json | indent(4) }}

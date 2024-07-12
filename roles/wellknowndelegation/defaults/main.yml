@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -15,3 +15,4 @@ replicas: 2
 nginx_config: "{{ lookup('file', 'nginx.conf') }}"
 client_json: "{{ lookup('template', 'client.j2') | from_json }}"
 server_json: "{{ lookup('template', 'server.j2') | from_json }}"
+element_json: "{{ config.element | default('{}') | from_json }}"

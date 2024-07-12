@@ -4,11 +4,6 @@
 
 
 ---
-- name: "Set specific_worker_yaml for {{ process_type }}"
-  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
-  ansible.builtin.set_fact:
-    specific_worker_yaml: "{{ lookup('template', 'worker.yaml.j2') }}"
-
 # It is somewhat tempting to put the specific ConfigMap into the shared ConfigMap however
 # a) that isn't needed
 # b) imposes the complexity of having to loop on worker types in multiple places
@@ -19,5 +14,5 @@
   vars:
     _manifest_template_filenames:
     - "{{ role_path }}/../synapse/templates/manifests/synapse_headless_service.yaml.j2"
-    - "{{ role_path }}/../synapse/templates/manifests/synapse_specific_configmap.yaml.j2"
+    - "{{ role_path }}/../synapse/templates/manifests/synapse_config_secrets.yaml.j2"
     - "{{ role_path }}/../synapse/templates/manifests/synapse_statefulset.yaml.j2"

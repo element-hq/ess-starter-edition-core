@@ -108,9 +108,18 @@ spec:
         resources:
           {{ config.resources | to_nice_yaml(indent=10) | indent(10) }}
         volumeMounts:
-        - mountPath: /usr/share/nginx/html/.well-known/matrix
+        - mountPath: /usr/share/nginx/html/.well-known/matrix/server
+          subPath: server
           name: well-known
           readOnly: true
+        - mountPath: /usr/share/nginx/html/.well-known/matrix/client
+          subPath: client
+          name: well-known
+          readOnly: true
+        - mountPath: /usr/share/nginx/html/.well-known/element/element.json
+          name: well-known
+          readOnly: true
+          subPath: element.json
         - mountPath: /etc/nginx/nginx.conf
           name: nginx-config
           readOnly: true

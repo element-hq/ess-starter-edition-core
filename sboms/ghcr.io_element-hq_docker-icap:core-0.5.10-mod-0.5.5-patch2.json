@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:51dacdb3-4bfa-424f-944d-0a9a41b35f0c",
+  "serialNumber": "urn:uuid:752027db-577f-4959-ba57-4f8f011b8f30",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-07-05T11:46:00Z",
+    "timestamp": "2024-07-12T09:08:42Z",
     "tools": {
       "components": [
         {
@@ -2370,7 +2370,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:8881ae74-496e-4168-86c8-323974a1f844",
+      "bom-ref": "urn:uuid:2b6c444b-fe4b-432a-a7c9-18c1bfbe92a4",
       "id": "CVE-2023-42363",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2402,7 +2402,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ee750401-9110-4268-9991-cda330dfbded",
+      "bom-ref": "urn:uuid:e1aa72a2-da95-4f97-8f22-d31f84e77058",
       "id": "CVE-2023-42363",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2434,7 +2434,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:32371713-46de-47aa-b007-54d714231a60",
+      "bom-ref": "urn:uuid:247059b7-b3b3-4505-84bf-af471bbfcbb2",
       "id": "CVE-2023-42363",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2466,7 +2466,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e1211212-88a8-4360-80d8-97af9fa4330b",
+      "bom-ref": "urn:uuid:872fd4fb-40f5-4b8d-88b5-6ae6821a83c9",
       "id": "CVE-2023-42364",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2498,7 +2498,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:25790b82-0bcf-4695-9df0-1932d6035065",
+      "bom-ref": "urn:uuid:6741050f-134c-43ce-bad4-4025bd2c4e00",
       "id": "CVE-2023-42364",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2530,7 +2530,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9c5b464b-322d-4bfc-97a4-1bef65b2d8fb",
+      "bom-ref": "urn:uuid:d463b9bf-750a-4d70-bfff-348e0b1c3ff8",
       "id": "CVE-2023-42364",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2562,7 +2562,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:13ecfefe-3bcb-4d88-9ef9-77891beb8785",
+      "bom-ref": "urn:uuid:ddc6ff89-6835-4b09-86da-7c3d5ab2e47a",
       "id": "CVE-2023-42365",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2594,7 +2594,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:976433c4-91d6-4ecd-aecd-0c86c138aee2",
+      "bom-ref": "urn:uuid:26091b6a-65da-46f3-93ca-35faf20f1fd0",
       "id": "CVE-2023-42365",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2626,7 +2626,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:42c76533-7ec9-4a26-919f-5e34f26ef82c",
+      "bom-ref": "urn:uuid:42a411b0-1f38-4af9-b7a2-38567941ef31",
       "id": "CVE-2023-42365",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2658,7 +2658,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7b11992c-d48b-4f5c-b404-9a9075cef1b1",
+      "bom-ref": "urn:uuid:641f5e86-85b8-47f6-8be7-f6ff5d67fc13",
       "id": "CVE-2023-42366",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2690,7 +2690,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3644ba0d-d01d-48b7-890d-7358854156c3",
+      "bom-ref": "urn:uuid:b38d201b-6e3f-4afb-8ac5-82f0c5d4ce59",
       "id": "CVE-2023-42366",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2722,7 +2722,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7ea21c39-6e99-470b-bf07-d7d5525cf1e8",
+      "bom-ref": "urn:uuid:784397c7-735e-4ad7-ac20-90b23ce31aa1",
       "id": "CVE-2023-42366",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2754,7 +2754,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2409bbe4-5b3b-439a-934b-39a18c9e6415",
+      "bom-ref": "urn:uuid:75fd8c2f-2612-4dd2-a08f-21ffbf1708cc",
       "id": "CVE-2024-4603",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2786,7 +2786,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6a444ff9-3ef3-4393-8fa1-c31a850002c7",
+      "bom-ref": "urn:uuid:95b1481c-b246-465c-9a8b-63e31260f328",
       "id": "CVE-2024-4603",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2818,7 +2818,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e3aa8a4b-d09e-4df1-a587-1fe6da4b2494",
+      "bom-ref": "urn:uuid:43fefa59-171e-47dd-9512-852540558ca4",
       "id": "CVE-2024-4603",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2850,7 +2850,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8c884c4a-3df7-43b0-946f-4d9de07ccbef",
+      "bom-ref": "urn:uuid:2bb60663-64a8-40a2-87d7-ad0a21f22de3",
       "id": "CVE-2024-4603",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2882,7 +2882,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:894f254c-c4fa-4f83-869d-f84ff419dc31",
+      "bom-ref": "urn:uuid:c922a2ac-4c5d-4816-a98d-e1268733374f",
       "id": "CVE-2024-4741",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2914,7 +2914,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:41e6811d-8c26-4aed-9c14-b0169043268a",
+      "bom-ref": "urn:uuid:f122011d-d7ca-4329-a5b9-71d24382e387",
       "id": "CVE-2024-4741",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2946,7 +2946,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:60a25466-07c0-43fd-a7f4-48ea59a09098",
+      "bom-ref": "urn:uuid:ee8721e1-b389-4729-92e5-06717aa7ebb5",
       "id": "CVE-2024-4741",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -2978,7 +2978,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d5e8b66d-9b3e-4d06-820e-9e6d837048d1",
+      "bom-ref": "urn:uuid:a4023c56-6980-44de-9607-4b3a4cc49ca0",
       "id": "CVE-2024-4741",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -3010,7 +3010,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dc13cbeb-24f3-4b27-a4ec-87a264de78ca",
+      "bom-ref": "urn:uuid:c415b7a0-2061-4e49-966b-d322c96f9f67",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -3042,7 +3042,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0e564e23-ccd2-42cc-a05c-fa8ce08329cd",
+      "bom-ref": "urn:uuid:76487796-5447-466e-8c8f-a6c737746345",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -3074,7 +3074,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:13fb8b8e-6521-4131-a4a0-fc0dc64f7aa0",
+      "bom-ref": "urn:uuid:ae26871e-93c1-4c88-99ef-90774d286fc9",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.18",
@@ -3106,7 +3106,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1d91fb16-61e1-47fa-be1d-6bf70de1f772",
+      "bom-ref": "urn:uuid:ee046266-fd93-4686-bbfd-76745160c0b2",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.18",

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:95ccc2fd-afa0-4515-a706-cf7ff84e8540",
+  "serialNumber": "urn:uuid:5ed1218a-0fd1-4d5a-8b9b-e3b26793cb98",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-07-05T11:46:09Z",
+    "timestamp": "2024-07-12T09:08:50Z",
     "tools": {
       "components": [
         {
@@ -5782,7 +5782,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:230dc935-5265-4400-984d-572a8f23f51f",
+      "bom-ref": "urn:uuid:d14699cf-1ed9-4c65-be81-e34d251a20b4",
       "id": "CVE-2024-24791",
       "source": {
         "name": "nvd-cpe",
@@ -5799,7 +5799,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
         }
       ],
       "description": "The net/http HTTP/1.1 client mishandled the case where a server responds to a request with an \"Expect: 100-continue\" header with a non-informational (200 or higher) status. This mishandling could leave a client connection in an invalid state, where the next request sent on the connection will fail. An attacker sending a request to a net/http/httputil.ReverseProxy proxy can exploit this mishandling to cause a denial of service by sending \"Expect: 100-continue\" requests which elicit a non-informational response from the backend. Each such request leaves the proxy with an invalid connection, and causes one subsequent request using that connection to fail.",
@@ -5824,7 +5827,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1e2b8d48-e65c-4a3f-b6c9-6dba109aa934",
+      "bom-ref": "urn:uuid:e2ce2ab6-8b57-4ac4-9b40-bc9cb1a23760",
       "id": "GHSA-c5q2-7r4c-mv6g",
       "source": {
         "name": "github-language-go",
@@ -5856,6 +5859,39 @@
       "affects": [
         {
           "ref": "pkg:golang/gopkg.in/square/go-jose.v2@v2.6.0?package-id=a5e160e9c94e6dbb"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:e5b8201c-2622-4aa1-9e7c-6527adaf84e9",
+      "id": "GHSA-xr7q-jx4m-x55m",
+      "source": {
+        "name": "github-language-go",
+        "url": "https://github.com/advisories/GHSA-xr7q-jx4m-x55m"
+      },
+      "references": [
+        {
+          "id": "GHSA-xr7q-jx4m-x55m",
+          "source": {
+            "name": "github-language-go",
+            "url": "https://github.com/advisories/GHSA-xr7q-jx4m-x55m"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "low"
+        }
+      ],
+      "description": "Private tokens could appear in logs if context containing gRPC metadata is logged in github.com/grpc/grpc-go",
+      "advisories": [
+        {
+          "url": "https://github.com/advisories/GHSA-xr7q-jx4m-x55m"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/google.golang.org/grpc@v1.64.0?package-id=93f9231f32cb1ef2"
         }
       ]
     }

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -48,6 +48,9 @@ spec:
                   description: Defines how to configure the Well Known Delegation itself
                   type: object
                   properties:
+                    element:
+                      description: 'JSON contents of /.well-known/element/element.json. Optional, if unset the file will not be deployed.'
+                      type: string
                     client:
                       description: 'Specification of contents of /.well-known/matrix/client. Optional, if unset the file will only contain {}'
                       type: object

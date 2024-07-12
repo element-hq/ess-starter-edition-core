@@ -17,7 +17,5 @@ metadata:
   name: "{{ ansible_operator_meta.name }}-synapse-shared"
   namespace: "{{ ansible_operator_meta.namespace }}"
 data:
-  homeserver.yaml: |
-    {{ homeserver_yaml | indent(4) }}
   log_config.yaml: |
     {{ log_config_yaml | indent(4) }}

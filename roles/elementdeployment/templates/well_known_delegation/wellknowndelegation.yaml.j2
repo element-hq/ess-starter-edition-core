@@ -22,6 +22,12 @@ spec:
                        '_ingress_fqdn': _global.config.domain_name}) | indent(4) }}
   config:
     {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
+{% set _element_config_template_files = query('fileglob', 'templates/well_known_delegation/config_element/*.json.j2') | sort %}
+{% set _additional_element_configs = query('template', *_element_config_template_files, convert_data=false, template_vars={'_component_item': _component_item}) | select | map('trim') | select | map('from_json') %}
+{% if _additional_element_configs | length > 0 %}
+    element: |
+      {{ ({} | combine(_additional_element_configs, recursive=true) | to_nice_json(indent=2) | indent(8)) }}
+{% endif %}
     client:
       homeserverBaseUrl: https://{{ components.synapse.k8s.ingress.fqdn }}
 {% set _client_config_template_files = query('fileglob', 'templates/well_known_delegation/config_client/*.json.j2') | sort %}

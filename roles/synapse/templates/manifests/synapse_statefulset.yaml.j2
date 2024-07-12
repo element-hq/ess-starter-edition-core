@@ -15,7 +15,7 @@ metadata:
     app.kubernetes.io/part-of: matrix-stack
     app.kubernetes.io/component: matrix-server
     app.kubernetes.io/version: "{{ image.tag }}"
-    k8s.element.io/confighash: "{{ (homeserver_yaml + log_config_yaml + secrets_hash + specific_worker_yaml) | hash('sha1') }}"
+    k8s.element.io/confighash: "{{ config_instance_yaml | hash('sha1') }}"
 {% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
     k8s.element.io/as-registration-{{ loop.index0 }}-hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
@@ -45,7 +45,7 @@ spec:
         app.kubernetes.io/part-of: matrix-stack
         app.kubernetes.io/component: matrix-server
         app.kubernetes.io/version: "{{ image.tag }}"
-        k8s.element.io/confighash: "{{ (homeserver_yaml + log_config_yaml + secrets_hash + specific_worker_yaml) | hash('sha1') }}"
+        k8s.element.io/confighash: "{{ config_instance_yaml | hash('sha1') }}"
 {% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
         k8s.element.io/as-registration-{{ loop.index0 }}-hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
@@ -97,18 +97,7 @@ spec:
         - >
           sed "s/REPLACE_HOSTNAME/$(hostname -s | sed 's/.*-synapse-//g')/g" /config/instance_template.yaml > /config/rendered/instance.yaml;
           [ -e "/usr/lib/`uname -m`-linux-gnu/libjemalloc.so.2" ] && export LD_PRELOAD="/usr/lib/`uname -m`-linux-gnu/libjemalloc.so.2";
-          python3 -m {{ process_app }} --config-path=/config/homeserver.yaml
-          {%- if not (bootstrap | default(false)) and 'shared.yaml' in _fetched_synapse_secrets[0].data -%}
-          {% raw %} {% endraw %}--config-path=/secrets/shared.yaml
-          {%- endif -%}
-          {%- if (bootstrap | default(false)) and 'bootstrap.yaml' in _fetched_synapse_secrets[0].data -%}
-          {% raw %} {% endraw %}--config-path=/secrets/bootstrap.yaml
-          {%- endif -%}
-          {% raw %} {% endraw %}--config-path=/config/rendered/instance.yaml
-          {%- if (process_type ~ '.yaml') in _fetched_synapse_secrets[0].data -%}
-          {% raw %} {% endraw %}--config-path=/secrets/{{ process_type }}.yaml
-          {% endif %}
-
+          python3 -m {{ process_app }} --config-path=/config/rendered/instance.yaml
 {% if env | length > 0 %}
         env:
         {{ env | to_nice_yaml(indent=2) | indent(8) }}
@@ -156,10 +145,6 @@ spec:
           {{ process_resources | to_nice_yaml(indent=2) | indent(10) }}
 {% endif %}
         volumeMounts:
-        - mountPath: /config/homeserver.yaml
-          name: shared-config
-          readOnly: true
-          subPath: homeserver.yaml
         - mountPath: /config/instance_template.yaml
           name: "process-type-config"
           readOnly: true
@@ -192,9 +177,8 @@ spec:
           defaultMode: 420
           name: "{{ ansible_operator_meta.name }}-synapse-shared"
         name: shared-config
-      - configMap:
-          defaultMode: 420
-          name: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
+      - secret:
+          secretName: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
         name: "process-type-config"
       - emptyDir:
           medium: Memory
