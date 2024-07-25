@@ -1282,4 +1282,22 @@ entries:
     urls:
     - element-updater-2.11.8.tgz
     version: 2.11.8
-generated: "2024-07-25T10:08:02.497565317Z"
+  ess-system:
+  - apiVersion: v2
+    appVersion: 2.19.5
+    created: "2024-07-25T10:12:23.439360011Z"
+    dependencies:
+    - name: element-operator
+      repository: https://element-hq.github.io/ess-starter-edition-core
+      version: 2.19.5
+    - name: element-updater
+      repository: https://element-hq.github.io/ess-starter-edition-core
+      version: 2.19.5
+    description: A Helm chart to deploy ESS System prerequisites (operators & crds)
+    digest: d05e97a52914bfa627a4ac1a7c834b4b5cc04b09ac66cb4fa3000484a01b4745
+    name: ess-system
+    type: application
+    urls:
+    - ess-system-2.19.5.tgz
+    version: 2.19.5
+generated: "2024-07-25T10:12:23.439787519Z"
