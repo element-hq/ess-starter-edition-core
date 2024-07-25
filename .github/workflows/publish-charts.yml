@@ -55,7 +55,7 @@ jobs:
 
       - name: Wait for gh-pages to be up to date
         run: |
-          URL="https://element-hq.github.io/ess-starter-edition-core/element-operator-${VERSION}.tar.gz"
+          URL="https://element-hq.github.io/ess-starter-edition-core/element-operator-${VERSION}.tgz"
           STATUS=0
 
           while [ $STATUS -ne 200 ]; do
