@@ -5,6 +5,8 @@ name: Release Charts
 
 on:
   push:
+    tags:
+    - '*'
 
 env:
   VERSION: ${{ github.ref_name }}
