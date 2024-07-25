@@ -5,6 +5,8 @@ name: Release Charts
 
 on:
   push:
+    tags:
+    - '*'
 
 env:
   VERSION: ${{ github.ref_name }}
@@ -31,6 +33,41 @@ jobs:
 
       - name: Install Helm
         uses: azure/setup-helm@v3
+
+      - name: Move ess-system out of charts dir
+        run: |
+          mv ./helm/ess-system ess-system-backup
+
+      - name: Run chart-releaser
+        uses: element-hq/chart-releaser-action@1389a6afc9af1b11ab9e79267f371d694e4995b2
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          charts_dir: ./helm
+          skip_existing: true
+          skip_cr_install: true
+
+      - name: Move ess-system back to charts dir
+        run: |
+          mv ess-system-backup ./helm/ess-system
+          rm -rf ./helm/operator
+          rm -rf ./helm/updater
+
+      - name: Wait for gh-pages to be up to date
+        run: |
+          URL="https://element-hq.github.io/ess-starter-edition-core/element-operator-${VERSION}.tgz"
+          STATUS=0
+
+          while [ $STATUS -ne 200 ]; do
+              echo "Checking URL: $URL"
+              STATUS=$(curl -s -o /dev/null -w "%{http_code}" $URL)
+              if [ $STATUS -ne 200 ]; then
+                  echo "Status: $STATUS. Not 200 OK, retrying in 5 seconds..."
+                  sleep 5
+              else
+                  echo "Status: $STATUS. URL is accessible."
+              fi
+          done
 
       - name: Run chart-releaser
         uses: element-hq/chart-releaser-action@1389a6afc9af1b11ab9e79267f371d694e4995b2
