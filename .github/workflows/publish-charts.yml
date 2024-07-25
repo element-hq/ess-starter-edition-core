@@ -32,6 +32,25 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3
 
+      - name: Move ess-system out of charts dir
+        run: |
+          mv ./helm/ess-system ess-system-backup
+
+      - name: Run chart-releaser
+        uses: element-hq/chart-releaser-action@1389a6afc9af1b11ab9e79267f371d694e4995b2
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          charts_dir: ./helm
+          skip_existing: true
+          skip_cr_install: true
+
+      - name: Move ess-system back to charts dir
+        run: |
+          mv ess-system-backup ./helm/ess-system
+          rm -rf ./helm/operator
+          rm -rf ./helm/updater
+
       - name: Run chart-releaser
         uses: element-hq/chart-releaser-action@1389a6afc9af1b11ab9e79267f371d694e4995b2
         env:
