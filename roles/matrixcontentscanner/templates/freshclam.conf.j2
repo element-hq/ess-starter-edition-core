@@ -1,12 +1,13 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
 #}
 
 DatabaseOwner clamav
-LogVerbose false
+UpdateLogFile /dev/stdout
+LogVerbose true
 LogSyslog false
 LogFacility LOG_LOCAL6
 LogFileMaxSize 0

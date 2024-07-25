@@ -74,6 +74,7 @@ cp ../fragments/Deployment-element-operator-controller-manager.yaml ./deployment
 cp ../fragments/ServiceAccount-conversion-webhook.yaml ./serviceaccount-conversion-webhook.yaml
 cp ../fragments/ConversionWebhook-Service.yaml ./service-element-conversion-webhook.yaml
 cp ../fragments/Deployment-conversion-webhook.yaml ./deployment-conversion-webhook.yaml
+cp  ../fragments/Operator-ConfigMap.yaml ./configmap-ansible-cfg.yaml
 cp ../fragments/_helpers.tpl ./helpers.tpl
 cp ../fragments/Operator-Service.yaml ./service-manager-metrics.yaml
 cp ../fragments/Operator-ServiceMonitor.yaml ./service-monitor-manager.yaml

@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,8 +27,7 @@ DebugLevel 1
 Pipelining on
 SupportBuggyClients off
 
-Module logger sys_logger.so
-Logger sys_logger
-sys_logger.Facility local1
+ServerLog /dev/stdout
+AccessLog /dev/stdout
 
 Include virus_scan.conf

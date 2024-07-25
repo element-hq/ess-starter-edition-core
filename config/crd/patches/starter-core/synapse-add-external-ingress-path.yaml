@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -7,23 +7,30 @@
   path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/ingress/properties/additionalPaths
   value:
     type: array
-    description: Additional prefixed path to load in synapse ingress
+    description: Additional or overridden paths to route via Synapse's Ingress
     items:
       type: object
-      description: An additional path to load in synapse ingress
+      description: An additional or overridden path to route via Synapse's Ingress
       required:
         - path
-        - service
       properties:
         matchHostname:
           type: string
           description: Hostname to target for the additional path. Empty if not required..
+        availability:
+          type: string
+          enum:
+            - blocked
+            - only_externally
+            - internally_and_externally
+          default: only_externally
+          description: Whether the path is only added for external requests, is also added for requests using Synapse's cluster internal address or always returns 403
         path:
           type: string
           description: A prefix path
         service:
           type: object
-          description: The targetted service name and port
+          description: The targetted service name and port. Required if availability isn't blocked
           required:
             - name
             - port

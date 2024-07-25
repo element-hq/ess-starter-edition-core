@@ -1,0 +1,56 @@
+# Copyright 2023-2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}-{{ (index .Values "element-updater").namePrefix }}-conversion-webhook-tls
+  namespace: {{ .Release.Namespace }}
+spec:
+  commonName: {{ .Release.Name }}-{{ (index .Values "element-updater").namePrefix }}-conversion-webhook.{{ .Release.Namespace }}.svc
+  dnsNames:
+  - {{ .Release.Name }}-{{ (index .Values "element-updater").namePrefix }}-conversion-webhook.{{ .Release.Namespace }}.svc
+  secretName: {{ .Release.Name }}-{{ (index .Values "element-updater").namePrefix }}-selfsigned-certs
+  # 1 year
+  duration: 8766h0m0s
+  # 6 months
+  renewBefore: 4380h0m0s
+  privateKey:
+    algorithm: RSA
+  usages:
+  - digital signature
+  - key encipherment
+  - server auth
+  - client auth
+  issuerRef:
+    name: {{ .Release.Name }}-webhook
+    kind: Issuer
+    group: cert-manager.io
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}-{{ (index .Values "element-operator").namePrefix }}-conversion-webhook-tls
+  namespace: {{ .Release.Namespace }}
+spec:
+  commonName: {{ .Release.Name }}-{{ (index .Values "element-operator").namePrefix }}-conversion-webhook.{{ .Release.Namespace }}.svc
+  dnsNames:
+  - {{ .Release.Name }}-{{ (index .Values "element-operator").namePrefix }}-conversion-webhook.{{ .Release.Namespace }}.svc
+  secretName: {{ .Release.Name }}-{{ (index .Values "element-operator").namePrefix }}-selfsigned-certs
+  # 1 year
+  duration: 8766h0m0s
+  # 6 months
+  renewBefore: 4380h0m0s
+  privateKey:
+    algorithm: RSA
+  usages:
+  - digital signature
+  - key encipherment
+  - server auth
+  - client auth
+  issuerRef:
+    name: {{ .Release.Name }}-webhook
+    kind: Issuer
+    group: cert-manager.io

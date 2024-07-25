@@ -14,7 +14,7 @@ RUN apt update && apt install -y git make && \
     cd /workspace && \
     git clone https://github.com/element-hq/ansible-operator-plugins.git && \
     cd ansible-operator-plugins && \
-    git checkout gaelg/mark-unsafe-non-spec-object-main && \
+    git checkout v1.35.0-mark-unsafe-non-spec-object-main && \
     make build/ansible-operator && \
     mv ./ansible-operator /usr/local/bin/ansible-operator && \
     chmod +x /usr/local/bin/ansible-operator && /usr/local/bin/ansible-operator version
@@ -26,19 +26,11 @@ ARG TARGETPLATFORM
 WORKDIR /workspace
 
 RUN mkdir -p /etc/ansible \
-  && echo "localhost ansible_connection=local" > /etc/ansible/hosts \
-  && echo '[defaults]' > /etc/ansible/ansible.cfg \
-  && echo "callbacks_enabled = ansible.posix.profile_tasks" >> /etc/ansible/ansible.cfg \
-  && echo "internal_poll_interval = 0.05" >> /etc/ansible/ansible.cfg \
-  && echo 'roles_path = /element.io/roles' >> /etc/ansible/ansible.cfg \
-  && echo 'collections_path = /ansible/collections' >> /etc/ansible/ansible.cfg \
-  && echo 'library = /usr/share/ansible/openshift' >> /etc/ansible/ansible.cfg \
-  && echo 'home = /.ansible' >> /etc/ansible/ansible.cfg \
-  && echo 'local_tmp = /.ansible/tmp' >> /etc/ansible/ansible.cfg
+  && echo "localhost ansible_connection=local" > /etc/ansible/hosts
 
 ENV TINI_VERSION=v0.19.0
 ENV OPERATOR_SDK_VERSION=1.34.1
-ENV HELM_VERSION=v3.14.0
+ENV HELM_VERSION=v3.15.3
 
 # Install Helm
 RUN apt update && apt install -y wget && \
@@ -74,7 +66,7 @@ RUN mkdir /required-libs && \
     cp /lib/$( sh -c 'uname -m' )-linux-gnu/libselinux.so.1 /required-libs && \
     cp /lib/$( sh -c 'uname -m' )-linux-gnu/libpcre2-8.so.0 /required-libs
 
-FROM gcr.io/distroless/python3-debian12 as base
+FROM gcr.io/distroless/python3-debian12 AS base
 
 # Label this image with the repo and commit that built it, for freshmaking purposes.
 ARG GIT_COMMIT=devel
@@ -102,7 +94,7 @@ COPY --from=base-builder /element.io /element.io
 RUN chmod -R 0755 /etc/ansible
 
 WORKDIR /element.io
-ENV LC_ALL "C.UTF-8"
-ENV LANG "C.UTF-8"
-ENV PATH "/usr/local/bin:$PATH"
+ENV LC_ALL="C.UTF-8"
+ENV LANG="C.UTF-8"
+ENV PATH="/usr/local/bin:$PATH"
 ENTRYPOINT ["/usr/local/bin/tini", "--", "/usr/local/bin/ansible-operator", "run", "--watches-file=/element.io/watches.yaml"]

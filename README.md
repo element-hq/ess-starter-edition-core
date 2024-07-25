@@ -345,7 +345,7 @@ kubectl exec -it -n element-onprem first-element-deployment-synapse-main-0 -- /b
 and once in the shell, we can run:
 
 ```bash
-register_new_matrix_user -c /config/homeserver.yaml
+register_new_matrix_user -c /config/rendered/instance.yaml -u <USER> -p <PASSWORD> -a
 ```
 
 and this will allow us to register a new matrix user. 

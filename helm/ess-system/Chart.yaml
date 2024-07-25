@@ -1,0 +1,18 @@
+# Copyright 2023-2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: v2
+name: ess-system
+description: A Helm chart to deploy ESS System prerequisites (operators & crds)
+type: application
+version: 2.19.5
+appVersion: 2.19.5
+dependencies:
+  - name: element-operator
+    repository: https://element-hq.github.io/ess-starter-edition-core
+    version: 2.19.5
+  - name: element-updater
+    repository: https://element-hq.github.io/ess-starter-edition-core
+    version: 2.19.5

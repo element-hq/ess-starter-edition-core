@@ -10,10 +10,11 @@ metadata:
 {{- end }}
   name: '{{ include "elementUpdater.controllerManagerFullname" . }}'
   namespace: '{{ .Release.Namespace }}'
-{{- if $.Values.updater.annotations }}
   annotations:
+{{- if $.Values.updater.annotations }}
     {{- toYaml $.Values.updater.annotations | nindent 4 }}
 {{- end }}
+    k8s.element.io/ansible-cfg-hash: {{ include (print $.Template.BasePath "/configmap-ansible-cfg.yaml") . | sha256sum }}
 spec:
   replicas: 1
   selector:
@@ -155,6 +156,10 @@ spec:
           name: ansible-tmp
         - mountPath: /.ansible_async
           name: ansible-async
+        - mountPath: /etc/ansible/ansible.cfg
+          subPath: ansible.cfg
+          readOnly: true
+          name: ansible-cfg
       serviceAccountName: '{{ include "elementUpdater.controllerManagerFullname" . }}'
       terminationGracePeriodSeconds: 10
       volumes:
@@ -167,4 +172,8 @@ spec:
       - emptyDir:
           medium: Memory
         name: ansible-async
+      - name: ansible-cfg
+        configMap:
+          name: {{ include "elementUpdater.controllerManagerFullname" . }}-ansible-cfg
+
 {{ end }}

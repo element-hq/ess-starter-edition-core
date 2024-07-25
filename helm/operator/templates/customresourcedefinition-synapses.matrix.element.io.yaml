@@ -682,10 +682,18 @@ spec:
                   description: Defines how to access this resource
                   properties:
                     additionalPaths:
-                      description: Additional prefixed path to load in synapse ingress
+                      description: Additional or overridden paths to route via Synapse's Ingress
                       items:
-                        description: An additional path to load in synapse ingress
+                        description: An additional or overridden path to route via Synapse's Ingress
                         properties:
+                          availability:
+                            default: only_externally
+                            description: Whether the path is only added for external requests, is also added for requests using Synapse's cluster internal address or always returns 403
+                            enum:
+                              - blocked
+                              - only_externally
+                              - internally_and_externally
+                            type: string
                           matchHostname:
                             description: Hostname to target for the additional path. Empty if not required..
                             type: string
@@ -693,7 +701,7 @@ spec:
                             description: A prefix path
                             type: string
                           service:
-                            description: The targetted service name and port
+                            description: The targetted service name and port. Required if availability isn't blocked
                             properties:
                               name:
                                 description: The service name
@@ -718,7 +726,6 @@ spec:
                             type: object
                         required:
                           - path
-                          - service
                         type: object
                       type: array
                     annotations:
@@ -1533,10 +1540,18 @@ spec:
                   description: Defines how to access this resource
                   properties:
                     additionalPaths:
-                      description: Additional prefixed path to load in synapse ingress
+                      description: Additional or overridden paths to route via Synapse's Ingress
                       items:
-                        description: An additional path to load in synapse ingress
+                        description: An additional or overridden path to route via Synapse's Ingress
                         properties:
+                          availability:
+                            default: only_externally
+                            description: Whether the path is only added for external requests, is also added for requests using Synapse's cluster internal address or always returns 403
+                            enum:
+                              - blocked
+                              - only_externally
+                              - internally_and_externally
+                            type: string
                           matchHostname:
                             description: Hostname to target for the additional path. Empty if not required..
                             type: string
@@ -1544,7 +1559,7 @@ spec:
                             description: A prefix path
                             type: string
                           service:
-                            description: The targetted service name and port
+                            description: The targetted service name and port. Required if availability isn't blocked
                             properties:
                               name:
                                 description: The service name
@@ -1569,7 +1584,6 @@ spec:
                             type: object
                         required:
                           - path
-                          - service
                         type: object
                       type: array
                     annotations:

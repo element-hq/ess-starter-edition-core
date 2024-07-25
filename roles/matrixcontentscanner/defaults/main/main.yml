@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,7 +9,6 @@ _matrix_content_scanner_web_port: 8080
 _clamav_icap_port: 1344
 _clamav_port: 3310
 
-_matrix_content_scanner_config: "{{ lookup('template', 'templates/config.yaml.j2') }}"
 _freshclam_config: "{{ lookup('template', 'templates/freshclam.conf.j2') }}"
 _clamd_config: "{{ lookup('template', 'templates/clamd.conf.j2') }}"
 _c_icap_config: "{{ lookup('template', 'templates/c-icap.conf.j2') }}"
@@ -18,7 +17,7 @@ _c_icap_virus_scan_config: "{{ lookup('template', 'templates/virus_scan.conf.j2'
 
 image_matrixcontentscanner_repository: docker.io/vectorim/matrix-content-scanner
 image_clamav_repository: docker.io/clamav/clamav
-image_icap_repository: registry.element.io/c-icap
+image_icap_repository: ghcr.io/element-hq/docker-icap
 image_pull_secrets: []
 _merged_image_pull_secrets_names: >-
   {{
@@ -35,7 +34,7 @@ env_matrixcontentscanner_overrides:
 - name: ICAP_PORT
   value: "1344"
 - name: ICAP_SVC
-  value: "matrix-content-scanner"
+  value: "avscan"
 - name: DETECTION_KEYWORD
   value: X-Infection-Found
 env_matrixcontentscanner_user: "{{ workloads.matrix_content_scanner.extra_env | default([]) }}"

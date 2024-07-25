@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+{{- if $.Values.updater.annotations }}
+  annotations:
+    {{- toYaml $.Values.updater.annotations | nindent 4 }}
+{{- end }}
+  labels:
+    app.kubernetes.io/instance: '{{ include "elementUpdater.controllerManagerFullname" . }}'
+{{- if $.Values.updater.labels }}
+    {{- toYaml $.Values.updater.labels | nindent 4 }}
+{{- end }}
+  name: '{{ include "elementUpdater.controllerManagerFullname" . }}-ansible-cfg'
+  namespace: '{{ .Release.Namespace }}'
+data:
+  ansible.cfg: |
+    [defaults]
+    callbacks_enabled = ansible.posix.profile_tasks
+    internal_poll_interval = {{ .Values.updater.manager.ansibleInternalPollInterval }}
+    roles_path = /element.io/roles
+    collections_path = /ansible/collections
+    library = /usr/share/ansible/openshift
+    home = /.ansible
+    local_tmp = /.ansible/tmp

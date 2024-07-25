@@ -1,0 +1,27 @@
+# Copyright 2023-2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+
+element-operator:
+  namePrefix: operator
+  deployCrds: true
+  deployManager: false
+  crds:
+    annotations:
+      cert-manager.io/inject-ca-from: >-
+        {{ .Release.Namespace }}/{{ .Release.Name }}-{{ .Values.namePrefix }}-conversion-webhook-tls
+    conversionWebhook:
+      tlsSecretName: "{{ .Release.Name }}-operator-selfsigned-certs"
+
+element-updater:
+  namePrefix: updater
+  deployCrds: true
+  deployManager: false
+  crds:
+    annotations:
+      cert-manager.io/inject-ca-from: >-
+        {{ .Release.Namespace }}/{{ .Release.Name }}-{{ .Values.namePrefix }}-conversion-webhook-tls
+    conversionWebhook:
+      tlsSecretName: "{{ .Release.Name }}-updater-selfsigned-certs"

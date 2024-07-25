@@ -36,13 +36,23 @@ spec:
 {# Include any additionally defined paths. #}
 {% for _external_path in ingress.additional_paths | default([]) %}
 {% if 'match_hostname' not in _external_path or _external_path.match_hostname == ingress.domain_name %}
+{% if _external_path.availability == 'only_externally' %}
       - path: {{ _external_path.path }}
         pathType: Prefix
         backend:
           service:
             name: "{{ _external_path.service.name }}"
             port: {{ _external_path.service.port | to_json }}
+{% elif _external_path.availability == 'blocked' %}
+      - path: {{ _external_path.path }}
+        pathType: Prefix
+        backend:
+          service:
+            name: "{{ ansible_operator_meta.name }}-synapse-haproxy"
+            port:
+              name: haproxy-403
 {% endif %}
+{% endif%}
 {% endfor %}
 {% for _synapse_path in ["/_matrix", "/_synapse"] %}
 {# Determine if this path is equal to, or a subset of, one of the
@@ -51,8 +61,10 @@ spec:
 {% set _path_already_defined = false %}
 {% for _additional_path in ingress.additional_paths | default([]) %}
 {% if 'match_hostname' not in _additional_path or _additional_path.match_hostname == ingress.domain_name %}
+{% if _additional_path.availability in ['only_externally', 'blocked'] %}
 {% if _synapse_path.startswith(_additional_path.path) %}
 {% set _path_already_defined = true %}
+{% endif %}
 {% endif %}
 {% endif %}
 {% endfor %}

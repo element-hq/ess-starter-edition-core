@@ -1,17 +1,14 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
 #}
 
 Service antivirus_module virus_scan.so
-ServiceAlias srv_clamav virus_scan
-ServiceAlias  avscan virus_scan?allow204=on&sizelimit=off&mode=simple
+ServiceAlias avscan virus_scan?allow204=on&sizelimit=off&mode=simple
 
-{% if config.icap.scan_file_types | default(false) %}
 virus_scan.ScanFileTypes {{ config.icap.virus_scan.scan_file_types | join(' ') }}
-{% endif %}
 virus_scan.SendPercentData {{ config.icap.virus_scan.send_percent_data }}
 virus_scan.StartSendPercentDataAfter {{ config.icap.virus_scan.start_send_percent_data_after }}
 virus_scan.MaxObjectSize {{ config.icap.virus_scan.max_object_size }}

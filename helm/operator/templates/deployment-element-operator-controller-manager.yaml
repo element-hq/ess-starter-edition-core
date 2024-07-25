@@ -9,10 +9,11 @@ metadata:
 {{- end }}
   name: '{{ include "elementOperator.controllerManagerFullname" . }}'
   namespace: '{{ .Release.Namespace }}'
-{{- if $.Values.operator.annotations }}
   annotations:
+{{- if $.Values.operator.annotations }}
     {{- toYaml $.Values.operator.annotations | nindent 4 }}
 {{- end }}
+    k8s.element.io/ansible-cfg-hash: {{ include (print $.Template.BasePath "/configmap-ansible-cfg.yaml") . | sha256sum }}
 spec:
   replicas: 1
   selector:
@@ -153,6 +154,10 @@ spec:
           name: manager-tmp
         - mountPath: /.ansible/tmp/
           name: ansible-tmp
+        - mountPath: /etc/ansible/ansible.cfg
+          subPath: ansible.cfg
+          readOnly: true
+          name: ansible-cfg
       serviceAccountName: '{{ include "elementOperator.controllerManagerFullname" . }}'
       terminationGracePeriodSeconds: 10
       volumes:
@@ -162,4 +167,7 @@ spec:
       - emptyDir:
           medium: Memory
         name: ansible-tmp
+      - name: ansible-cfg
+        configMap:
+          name: {{ include "elementOperator.controllerManagerFullname" . }}-ansible-cfg
 {{ end }}

@@ -116,6 +116,8 @@ spec:
           name: clamav-run
         - mountPath: /tmp
           name: clamav-tmp
+        - mountPath: /var/tmp
+          name: shared-tmp
       - name: icap
 {% if image_icap_has_digest %}
         image: "{{ image.icap.repository | default(image_icap_repository) }}@{{ image.icap.digest }}"
@@ -127,6 +129,17 @@ spec:
         securityContext:
           {{ _matrix_element_io_matrixcontentscanner_spec.config.icap.containersSecurityContext | to_nice_yaml(indent=2) | indent(10) }}
 {% endif %}
+        command:
+        - sh
+        - -xc
+        - |
+          echo "Waiting for ClamAV to start before starting c-icap"
+          while ! nc -z localhost 3310; do
+            sleep 1
+          done
+
+          echo "ClamAV started. Now starting c-icap"
+          /usr/local/c-icap/bin/c-icap -N -D
 {% if env_clamav | length > 0 %}
         env:
         {{ env_clamav | to_nice_yaml(indent=2) | indent(8) }}
@@ -163,6 +176,8 @@ spec:
           name: icap-tmp
         - mountPath: /var/run/c-icap
           name: icap-var-run
+        - mountPath: /var/tmp
+          name: shared-tmp
       volumes:
       - configMap:
           defaultMode: 420
@@ -181,5 +196,8 @@ spec:
         emptyDir:
           medium: Memory
       - name: clamav-tmp
+        emptyDir:
+          medium: Memory
+      - name: shared-tmp
         emptyDir:
           medium: Memory

@@ -65,6 +65,7 @@ cp ../fragments/Deployment-element-updater-controller-manager.yaml ./deployment-
 cp ../../operator/fragments/ServiceAccount-conversion-webhook.yaml ./serviceaccount-conversion-webhook.yaml
 cp  ../../operator/fragments/ConversionWebhook-Service.yaml ./service-element-conversion-webhook.yaml
 cp  ../../operator/fragments/Deployment-conversion-webhook.yaml ./deployment-conversion-webhook.yaml
+cp  ../../operator/fragments/Operator-ConfigMap.yaml ./configmap-ansible-cfg.yaml
 cp ../../operator/fragments/_helpers.tpl ./_helpers.tpl
 cp ../fragments/Updater-Service.yaml ./service-manager-metrics.yaml
 cp ../fragments/Updater-ServiceMonitor.yaml ./service-monitor-manager.yaml

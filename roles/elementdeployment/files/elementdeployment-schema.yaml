@@ -470,6 +470,10 @@ spec:
                                         type: string
                                       description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
                                       type: object
+                                    replicas:
+                                      description: The number of ClamAV replicas
+                                      minimum: 1
+                                      type: number
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -846,6 +850,10 @@ spec:
                                         type: string
                                       description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
                                       type: object
+                                    replicas:
+                                      description: The number of Matrix Content Scanner replicas
+                                      minimum: 1
+                                      type: number
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -3137,6 +3145,10 @@ spec:
                                         type: string
                                       description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
                                       type: object
+                                    replicas:
+                                      description: The number of ClamAV replicas
+                                      minimum: 1
+                                      type: number
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.
@@ -3513,6 +3525,10 @@ spec:
                                         type: string
                                       description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
                                       type: object
+                                    replicas:
+                                      description: The number of Matrix Content Scanner replicas
+                                      minimum: 1
+                                      type: number
                                     resources:
                                       default: {}
                                       description: Kubernetes resources to allocate to each instance.

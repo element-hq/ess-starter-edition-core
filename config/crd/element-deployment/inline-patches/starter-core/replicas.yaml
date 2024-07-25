@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -8,6 +8,18 @@
   value:
     type: number
     description: The number of Element Web replicas
+    minimum: 1
+- op: add
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/clamAntiVirus/properties/workloads/properties/replicas'
+  value:
+    type: number
+    description: The number of ClamAV replicas
+    minimum: 1
+- op: add
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/matrixContentScanner/properties/workloads/properties/replicas'
+  value:
+    type: number
+    description: The number of Matrix Content Scanner replicas
     minimum: 1
 - op: add
   path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/haproxy/properties/workloads/properties/replicas'

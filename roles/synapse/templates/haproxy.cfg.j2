@@ -17,6 +17,12 @@ defaults
     mode http
     fullconn 20000
 
+    maxconn 20000
+
+    log global
+    # same as http log, with %Th (handshake time)
+    log-format "%ci:%cp [%tr] %ft %b/%s %Th/%TR/%Tw/%Tc/%Tr/%Ta %ST %B %CC %CS %tsc %ac/%fc/%bc/%sc/%rc %sq/%bq %hr %hs %{+Q}r"
+
     # wait for 5s when connecting to a server
     timeout connect 5s
 
@@ -72,14 +78,17 @@ resolvers kubedns
     hold timeout 600s
     hold refused 600s
 
+frontend http-blackhole
+    bind *:8009
+
+    capture request header Host len 32
+    capture request header Referer len 200
+    capture request header User-Agent len 200
+
+    http-request deny content-type application/json string '{"errcode": "M_FORBIDDEN", "error": "Blocked"}'
+
 frontend http-in
     bind *:8008
-
-    maxconn 20000
-
-    log global
-    # same as http log, with %Th (handshake time)
-    log-format "%ci:%cp [%tr] %ft %b/%s %Th/%TR/%Tw/%Tc/%Tr/%Ta %ST %B %CC %CS %tsc %ac/%fc/%bc/%sc/%rc %sq/%bq %hr %hs %{+Q}r"
 
     capture request header Host len 32
     capture request header Referer len 200
@@ -132,6 +141,14 @@ frontend http-in
 
     use_backend return_204 if { method OPTIONS }
 
+{% for _additional_path in ingress.additional_paths | default([]) %}
+{% if _additional_path.availability == 'internally_and_externally' %}
+{% set additional_path_id = _additional_path.service.name ~ '_' ~ (_additional_path.service.port.name | default(_additional_path.service.port.number)) %}
+    acl is_svc_{{ additional_path_id }} path_beg {{ _additional_path.path }}
+    use_backend be_{{ additional_path_id }} if is_svc_{{ additional_path_id }}
+{% endif %}
+{% endfor %}
+
 {% if synapse_has['initial-synchrotron'] %}
     # special synchrotron backend for initialsyncs
 {% for path in synapse_available_worker_types['synchrotron'].paths %}
@@ -149,7 +166,7 @@ backend main
     server-template main 1 _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-main-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
 
 {% for type, details in synapse_configured_workers | dictsort %}
-{% if 'client' in synapse_available_worker_types[type].listeners or 'federation' in synapse_available_worker_types[type].listeners%}
+{% if synapse_available_worker_types[type].paths | default([]) | length > 0 %}
 backend {{ type }}
 {% if type == "event-creator" %}
     # We want to balance based on the room, so try and pull it out of the path
@@ -220,6 +237,18 @@ backend {{ type }}
     server-template {{ type }} {{ max_instances }} _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-{{ worker_type }}-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
 {% endif %}
 {% endfor%}
+
+{% for _additional_path in ingress.additional_paths | default([]) %}
+{% if _additional_path.availability == 'internally_and_externally' %}
+{% set additional_path_id = _additional_path.service.name ~ '_' ~ (_additional_path.service.port.name | default(_additional_path.service.port.number)) %}
+backend be_{{ additional_path_id }}
+{% if _additional_path.service.port.name | default("") | length > 0 %}
+    server-template {{ additional_path_id }} 10 _{{ _additional_path.service.port.name }}._tcp.{{ _additional_path.service.name }}.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
+{% else %}
+    server-template {{ additional_path_id }} 10 _{{ _additional_path.service.name }}.{{ ansible_operator_meta.namespace }}.svc.cluster.local:{{ _additional_path.service.port.number }} resolvers kubedns init-addr none
+{% endif %}
+{% endif %}
+{% endfor %}
 
 # a backend which responds to everything with a 204
 backend return_204

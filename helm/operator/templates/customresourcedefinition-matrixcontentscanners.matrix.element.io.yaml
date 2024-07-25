@@ -236,8 +236,10 @@ spec:
                               type: array
                           type: object
                         replicas:
-                          description: The number of replicas on this deployment
-                          type: number
+                          default: 2
+                          description: The number of replicas for ClamAV. Defaults to 2
+                          minimum: 1
+                          type: integer
                         resources:
                           default: {}
                           description: Kubernetes resources to allocate to each instance.
@@ -375,15 +377,23 @@ spec:
                           description: Virus Scan settings
                           properties:
                             maxObjectSize:
-                              default: 5M
+                              default: 50M
                               description: The max object size icap will scan
                               pattern: '[0-9]+[KMG]'
                               type: string
                             scanFileTypes:
+                              default:
+                                - TEXT
+                                - DATA
+                                - EXECUTABLE
+                                - ARCHIVE
+                                - GRAPHICS
+                                - STREAM
+                                - DOCUMENT
                               description: List of file types scanned by c-icap
                               items:
                                 enum:
-                                  - EXT
+                                  - TEXT
                                   - DATA
                                   - EXECUTABLE
                                   - ARCHIVE
@@ -391,6 +401,7 @@ spec:
                                   - STREAM
                                   - DOCUMENT
                                 type: string
+                              minItems: 1
                               type: array
                             sendPercentData:
                               default: 5
@@ -509,8 +520,10 @@ spec:
                               type: array
                           type: object
                         replicas:
-                          description: The number of replicas on this deployment
-                          type: number
+                          default: 2
+                          description: The number of replicas for the Matrix Content Scanner itself. Defaults to 2
+                          minimum: 1
+                          type: integer
                         resources:
                           default: {}
                           description: Kubernetes resources to allocate to each instance.

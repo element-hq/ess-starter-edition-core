@@ -15,7 +15,7 @@ metadata:
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
     app.kubernetes.io/version: "{{ image.matrix_content_scanner.tag }}"
   annotations:
-    k8s.element.io/confighash: "{{ _matrix_content_scanner_config | hash('sha1') }}"
+    k8s.element.io/confighash: "{{ lookup('template', 'manifests/matrixcontentscanner_configmap.yaml.j2') | hash('sha1') }}"
     k8s.element.io/secretshash: "{{ _fetched_matrix_content_scanner_secrets | to_yaml | hash('sha1') }}"
 {% if workloads.matrix_content_scanner.annotations | default({}) %}
     {{ _matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.annotations | to_nice_yaml(indent=2) | indent(4) }}
@@ -41,7 +41,7 @@ spec:
         app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-matrix-content-scanner"
         app.kubernetes.io/version: "{{ image.matrix_content_scanner.tag }}"
       annotations:
-        k8s.element.io/confighash: "{{ _matrix_content_scanner_config | hash('sha1') }}"
+        k8s.element.io/confighash: "{{ lookup('template', 'manifests/matrixcontentscanner_configmap.yaml.j2') | hash('sha1') }}"
         k8s.element.io/secretshash: "{{ _fetched_matrix_content_scanner_secrets | to_yaml | hash('sha1') }}"
 {% if workloads.matrix_content_scanner.annotations | default({}) %}
         {{ _matrix_element_io_matrixcontentscanner_spec.workloads.matrixContentScanner.annotations | to_nice_yaml(indent=2) | indent(8) }}

@@ -33,15 +33,12 @@ synapse_available_worker_types:
   appservice:
     app: generic_worker
     single: true
-    listeners: []
   background:
     app: generic_worker
     single: true  # As per worker docs
-    listeners: []
   client-reader:
     app: generic_worker
     single: false
-    listeners: [client]
     paths:
     # Client API requests (apart from createRoom which is eventCreator)
     - "^/_matrix/client/(api/v1|r0|v3|unstable)/publicRooms$"
@@ -94,14 +91,12 @@ synapse_available_worker_types:
   encryption:
     app: generic_worker
     single: true  # Unsure if this is true but m.org only has 1 atm
-    listeners: [client, replication]
     stream_writers: [to_device]
     paths:
     - "^/_matrix/client/(r0|v3|unstable)/sendToDevice/"
   event-creator:
     app: generic_worker
     single: false
-    listeners: [client]
     paths:
     - "^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/redact"
     # v2_alpha is never used anymore, but there are still tracks of this endpoint in the source code
@@ -115,19 +110,16 @@ synapse_available_worker_types:
   event-persister:
     app: generic_worker
     single: false
-    listeners: [replication]
     stream_writers: [events]
   federation-inbound:
     app: generic_worker
     single: false
-    listeners: [federation]
     paths:
     # Inbound federation transaction request
     - "^/_matrix/federation/v1/send/"
   federation-reader:
     app: generic_worker
     single: false
-    listeners: [federation]
     paths:
     # All Federation REST requests for generic_worker
     - "^/_matrix/federation/v1/event/"
@@ -155,18 +147,14 @@ synapse_available_worker_types:
   federation-sender:
     app: generic_worker
     single: false
-    listeners: []
   # Deprecated, remove me. Only kept in for CRD compatibility
   frontend-proxy:
     app: generic_worker
     single: false
-    listeners: [client]
-    paths: []
   initial-synchrotron:
     name_override: initial-sync
     app: generic_worker
     single: false
-    listeners: [client]
     paths:
     - ^/_matrix/client/(api/v1|r0|v3)/initialSync$
     - ^/_matrix/client/(api/v1|r0|v3)/rooms/[^/]+/initialSync$
@@ -174,7 +162,6 @@ synapse_available_worker_types:
   media-repository:
     app: media_repository
     single: true  # Not strictly true but for simplicity with PVCs at present
-    listeners: [client]
     paths:
     - "^/_matrix/media/"
     - "^/_synapse/admin/v1/purge_media_cache$"
@@ -186,18 +173,15 @@ synapse_available_worker_types:
   presence-writer:
     app: generic_worker
     single: true  # Unsure if this is true but m.org only has 1 atm
-    listeners: [client, replication]
     stream_writers: [presence]
     paths:
     - "^/_matrix/client/(api/v1|r0|v3|unstable)/presence/"
   pusher:
     app: generic_worker
     single: false
-    listeners: []
   receipts-account:
     app: generic_worker
     single: true  # Unsure if this is true but m.org only has 1 atm
-    listeners: [client, replication]
     stream_writers: [account_data, receipts]
     paths:
     - "^/_matrix/client/(r0|v3|unstable)/.*/tags"
@@ -207,7 +191,6 @@ synapse_available_worker_types:
   sso-login:
     app: generic_worker
     single: true  # As per worker docs
-    listeners: [client]
     paths:
     - "^/_matrix/client/(api/v1|r0|v3|unstable)/login/sso/redirect"
     - "^/_synapse/client/pick_idp$"
@@ -220,20 +203,17 @@ synapse_available_worker_types:
   synchrotron:
     app: generic_worker
     single: false
-    listeners: [client]
     paths:
     - "^/_matrix/client/(r0|v3)/sync$"
     - "^/_matrix/client/(api/v1|r0|v3)/events$"
   typing-persister:
     app: generic_worker
     single: true  # Unsure if this is true but m.org only has 1 atm
-    listeners: [client, replication]
     stream_writers: [typing]
     paths:
     - "^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/typing"
   user-dir:
     app: generic_worker
     single: true
-    listeners: [client]
     paths:
     - "^/_matrix/client/(r0|v3|unstable)/user_directory/search$"

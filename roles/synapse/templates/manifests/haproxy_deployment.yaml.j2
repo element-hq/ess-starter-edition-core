@@ -78,6 +78,9 @@ spec:
         - containerPort: 8008
           name: haproxy-http
           protocol: TCP
+        - containerPort: 8009
+          name: haproxy-403
+          protocol: TCP
         livenessProbe:
           httpGet:
             path: /haproxy_test

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -11,6 +11,7 @@ all: buildah-build
 build-helm-charts:
 	cd helm/operator && BASE_CRD_KUSTOMIZE_TARGET=config/crd/cleanup/starter-core bash build.sh
 	cd helm/updater && ELEMENT_DEPLOYMENT_KUSTOMIZE_TARGET=config/crd/element-deployment/cleanup/starter-core bash build.sh
+	cd helm/ess-system && helm dep up
 
 .PHONY: build-crds
 build-crds: kustomize
