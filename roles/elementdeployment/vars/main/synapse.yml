@@ -7,3 +7,6 @@ component_info_synapse:
 - id: synapse
   application_services: false
   secret_name_is_optional: false
+
+synapse_public_url: https://{{ components.synapse.k8s.ingress.fqdn }}
+synapse_internal_url: http://{{ ansible_operator_meta.name }}-synapse-haproxy.{{ ansible_operator_meta.namespace }}.svc.cluster.local:8008

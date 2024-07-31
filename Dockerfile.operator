@@ -28,3 +28,5 @@ LABEL git_commit=$GIT_COMMIT
 
 COPY --from=build-tmp   /element.io /element.io
 RUN chmod -R 0755 /element.io
+
+USER 32000

@@ -7,8 +7,9 @@ metadata:
   annotations:
     {{- toYaml $.Values.operator.annotations | nindent 4 }}
 {{- end }}
-{{- if $.Values.operator.labels }}
   labels:
+    app.kubernetes.io/instance: '{{ include "elementOperator.controllerManagerFullname" . }}'
+{{- if $.Values.operator.labels }}
     {{- toYaml $.Values.operator.labels | nindent 4 }}
 {{- end }}
   name: '{{ include "elementOperator.controllerManagerFullname" . }}-metrics'

@@ -16,11 +16,9 @@ metadata:
     app.kubernetes.io/component: matrix-server
     app.kubernetes.io/version: "{{ image.tag }}"
     k8s.element.io/confighash: "{{ config_instance_yaml | hash('sha1') }}"
-{% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
     k8s.element.io/as-registration-{{ loop.index0 }}-hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
 {% endfor %}
-{% endif %}
 {% if workloads.synapse.annotations | default({}) %}
   annotations:
     {{ _matrix_element_io_synapse_spec.workloads.synapse.annotations | to_nice_yaml(indent=2) | indent(4) }}
@@ -46,11 +44,9 @@ spec:
         app.kubernetes.io/component: matrix-server
         app.kubernetes.io/version: "{{ image.tag }}"
         k8s.element.io/confighash: "{{ config_instance_yaml | hash('sha1') }}"
-{% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
         k8s.element.io/as-registration-{{ loop.index0 }}-hash: "{{ _fetched_registration_files_hash[loop.index0] }}"
 {% endfor %}
-{% endif %}
       annotations:
         kubectl.kubernetes.io/default-container: synapse
 {% if workloads.synapse.annotations | default({}) %}
@@ -153,14 +149,12 @@ spec:
           name: shared-config
           readOnly: true
           subPath: log_config.yaml
-{% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
         - name: {{ as_registration }}
           mountPath: /as/{{ as_registration }}/registration.yaml
           readOnly: true
           subPath: registration.yaml
 {% endfor %}
-{% endif %}
         - mountPath: /secrets/
           name: external-secrets
           readOnly: true
@@ -186,14 +180,12 @@ spec:
       - secret:
           secretName: "{{ config.external_secret.name }}"
         name: external-secrets
-{% if not (bootstrap | default(false)) %}
 {% for as_registration in synapse_appservices_registrations %}
       - configMap:
           defaultMode: 420
           name: "{{ as_registration }}"
         name: {{ as_registration }}
 {% endfor %}
-{% endif %}
 {% if has_media and config.media.volume_claim | default("") | length > 0 %}
       - persistentVolumeClaim:
           claimName: "{{ config.media.volume_claim }}"

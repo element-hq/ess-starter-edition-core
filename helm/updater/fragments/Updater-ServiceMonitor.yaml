@@ -7,8 +7,9 @@ metadata:
   annotations:
     {{- toYaml $.Values.__VALUES_MANAGER_PARENT_KEY__.annotations | nindent 4 }}
 {{- end }}
-{{- if $.Values.__VALUES_MANAGER_PARENT_KEY__.labels }}
   labels:
+    app.kubernetes.io/instance: '{{ include "__CHART_FUNCTIONS_NAMESPACE__.controllerManagerFullname" . }}'
+{{- if $.Values.__VALUES_MANAGER_PARENT_KEY__.labels }}
     {{- toYaml $.Values.__VALUES_MANAGER_PARENT_KEY__.labels | nindent 4 }}
 {{- end }}
   name: '{{ include "__CHART_FUNCTIONS_NAMESPACE__.controllerManagerFullname" . }}-metrics'

@@ -1,0 +1,11 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: v2
+name: ess-stack
+description: A Helm chart to deploy ESS stack
+type: application
+version: 2.19.7
+appVersion: 2.19.7

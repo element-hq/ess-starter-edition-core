@@ -33,7 +33,10 @@ spec:
     externalSecret:
       name: {{ ansible_operator_meta.name }}-sliding-sync-secrets
     matrixServer:
-      baseUrl: https://{{ components.synapse.k8s.ingress.fqdn }}
+      # In an ideal world this would be synapse_internal_url, however this a) gets exposed at <sliding sync fqdn>/client/server.json
+      # and b) Element Web checks this value for reachability
+      # See https://github.com/element-hq/element-web/issues/26956 & https://github.com/matrix-org/sliding-sync/pull/386 for context
+      baseUrl: {{ synapse_public_url }}
       serverName: {{ _global.config.domain_name }}
     database:
       host: "{{ components.sliding_sync.config.postgresql.host }}"

@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 {% if config.default_matrix_server is defined %}
   "default_server_config": {
       "m.homeserver": {
-          "base_url": "https://{{ config.default_matrix_server.base_url }}",
+          "base_url": "{{ config.default_matrix_server.base_url }}",
           "server_name": "{{ config.default_matrix_server.server_name | default(config.default_matrix_server.base_url) }}"
       }
   },

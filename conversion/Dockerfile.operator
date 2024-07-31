@@ -20,3 +20,5 @@ WORKDIR /
 COPY --from=buildstage  /app/conversion-webhook /
 EXPOSE 8443
 ENTRYPOINT ["/conversion-webhook"]
+
+USER 30000

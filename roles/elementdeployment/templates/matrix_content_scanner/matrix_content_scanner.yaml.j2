@@ -43,7 +43,7 @@ spec:
     externalSecret:
       name: {{ ansible_operator_meta.name }}-matrix-content-scanner-secrets
     matrixServer:
-      baseUrl: http://{{ ansible_operator_meta.name }}-synapse-haproxy.{{ ansible_operator_meta.namespace }}.svc.cluster.local:8008
+      baseUrl: {{ synapse_internal_url }}
       serverName: {{ _global.config.domain_name }}
 {% if 'allowed_mimetypes' in components.matrix_content_scanner.config.scanning %}
     scanning:

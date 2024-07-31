@@ -1,0 +1,3847 @@
+{
+  "description": "Spec defines the desired state of ElementDeployment",
+  "properties": {
+    "components": {
+      "default": {},
+      "properties": {
+        "elementWeb": {
+          "description": "This is the user interface used by desktops to access Matrix rooms.",
+          "properties": {
+            "config": {
+              "default": {},
+              "properties": {
+                "additionalConfig": {
+                  "description": "Element web additional configuration.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "k8s": {
+              "default": {},
+              "description": "You can override Kubernetes configuration for each component of Element Web",
+              "properties": {
+                "common": {
+                  "default": {},
+                  "description": "Settings dedicated to k8s",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "description": "Defines the annotations to add",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "The annotations to add to every workloads and ingresses deployed",
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ingress": {
+                  "description": "Settings dedicated to k8s ingresses",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "Defines the annotations to add",
+                      "type": "object"
+                    },
+                    "fqdn": {
+                      "description": "Fully qualified domain name of the ingress",
+                      "type": "string"
+                    },
+                    "ingressClassName": {
+                      "description": "An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer externally.",
+                      "type": "string"
+                    },
+                    "services": {
+                      "default": {},
+                      "properties": {
+                        "type": {
+                          "description": "Default service type",
+                          "enum": [
+                            "ClusterIP",
+                            "NodePort",
+                            "LoadBalancer"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tls": {
+                      "oneOf": [
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certmanager"
+                            }
+                          },
+                          "required": [
+                            "certmanager"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certfile"
+                            }
+                          },
+                          "required": [
+                            "certificate"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "existing"
+                            }
+                          },
+                          "required": [
+                            "secretName"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "external"
+                            }
+                          }
+                        }
+                      ],
+                      "properties": {
+                        "certificate": {
+                          "description": "Certificate file",
+                          "properties": {
+                            "certFileSecretKey": {
+                              "default": "elementWebCertificate",
+                              "description": "ElementWeb Certificate",
+                              "type": "string"
+                            },
+                            "privateKeySecretKey": {
+                              "default": "elementWebPrivateKey",
+                              "description": "ElementWeb Private Key",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "certmanager": {
+                          "description": "The cert-manager properties, if enabled",
+                          "properties": {
+                            "issuer": {
+                              "description": "The name of cert-manager ClusterIssuer to use",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "mode": {
+                          "description": "The TLS mode of this component ingress. Use external if TLS is managed externaly to the cluster, certmanager if you want to use cert manager to issue certificate automatically, or certfile if you want to upload certificate files to kubernetes tls secrets manually.",
+                          "enum": [
+                            "certmanager",
+                            "external",
+                            "certfile",
+                            "existing"
+                          ],
+                          "type": "string"
+                        },
+                        "secretName": {
+                          "description": "The name of a secret in the cluster that contains TLS certificates",
+                          "maxLength": 253,
+                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "fqdn"
+                  ],
+                  "type": "object"
+                },
+                "workloads": {
+                  "default": {},
+                  "description": "Settings dedicated to k8s workloads",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "description": "Defines the annotations to add",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "The annotations to add to the workload",
+                      "type": "object"
+                    },
+                    "dockerSecrets": {
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "description": "Docker secret to use for ems image store",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "The docker registry url for this secret",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "url",
+                          "name"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "hostAliases": {
+                      "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                      "items": {
+                        "properties": {
+                          "hostnames": {
+                            "items": {
+                              "description": "An hostname of the associated ip to add to /etc/hosts",
+                              "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "ip": {
+                            "description": "An IP resolution to add to /etc/hosts",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "ip",
+                          "hostnames"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "nodeSelector": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                      "type": "object"
+                    },
+                    "replicas": {
+                      "description": "The number of Element Web replicas",
+                      "minimum": 1,
+                      "type": "number"
+                    },
+                    "resources": {
+                      "default": {},
+                      "description": "Kubernetes resources to allocate to each instance.",
+                      "properties": {
+                        "limits": {
+                          "additionalProperties": {
+                            "anyOf": [
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                            "x-kubernetes-int-or-string": true
+                          },
+                          "default": {
+                            "memory": "200Mi"
+                          },
+                          "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                          "type": "object"
+                        },
+                        "requests": {
+                          "additionalProperties": {
+                            "anyOf": [
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                            "x-kubernetes-int-or-string": true
+                          },
+                          "default": {
+                            "cpu": "50m",
+                            "memory": "50Mi"
+                          },
+                          "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "securityContext": {
+                      "anyOf": [
+                        {
+                          "required": [
+                            "seLinuxOptions"
+                          ]
+                        },
+                        {}
+                      ],
+                      "default": {},
+                      "properties": {
+                        "forceUidGid": {
+                          "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                          "enum": [
+                            "enable",
+                            "disable"
+                          ],
+                          "type": "string"
+                        },
+                        "fsGroup": {
+                          "default": 10004,
+                          "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                          "type": "number"
+                        },
+                        "runAsUser": {
+                          "default": 10004,
+                          "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                          "type": "number"
+                        },
+                        "seLinuxOptions": {
+                          "properties": {
+                            "level": {
+                              "description": "Level is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            },
+                            "role": {
+                              "description": "Role is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "Type is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            },
+                            "user": {
+                              "description": "User is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "setSecComp": {
+                          "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                          "enum": [
+                            "enable",
+                            "disable"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tolerations": {
+                      "description": "Workload tolerations",
+                      "items": {
+                        "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                        "properties": {
+                          "effect": {
+                            "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                            "type": "string"
+                          },
+                          "key": {
+                            "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                            "type": "string"
+                          },
+                          "operator": {
+                            "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                            "type": "string"
+                          },
+                          "tolerationSeconds": {
+                            "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                            "type": "number"
+                          },
+                          "value": {
+                            "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "secretName": {
+              "default": "element-web",
+              "description": "The secret data associated to synapse config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present",
+              "maxLength": 253,
+              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "matrixContentScanner": {
+          "description": "A web service for scanning media hosted on a Matrix media repository.",
+          "properties": {
+            "config": {
+              "properties": {
+                "caching": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "maxFileSize"
+                      ]
+                    },
+                    {}
+                  ],
+                  "default": {},
+                  "description": "Configures caching of scan results.",
+                  "properties": {
+                    "cacheSize": {
+                      "default": 1024,
+                      "description": "Maximum number of results that can be stored in the cache. If more files are scanned before existing items reach their TTL, the least-recently accessed will be evicted.",
+                      "type": "number"
+                    },
+                    "maxFileSize": {
+                      "description": "The maximum cachable file size. If a file is bigger than this size, a copy of it will be not be cached even if the scan succeeds. If the file is requested again, it is downloaded again from the homeserver, but is not written to disk or scanned.",
+                      "pattern": "[0-9]+[KMGT]B",
+                      "type": "string"
+                    },
+                    "ttl": {
+                      "default": "1d",
+                      "description": "The maximum amount of time an entry will stay in the cache before being evicted.",
+                      "pattern": "[0-9]+[dwmy]+",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scanning": {
+                  "description": "Scanning configuration",
+                  "properties": {
+                    "allowedMimetypes": {
+                      "description": "List of allowed MIME types. If a file has a MIME type that's not in this list, its scan is considered failed. Allow every MIME types by default.",
+                      "items": {
+                        "description": "A MIME type.",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "scanning",
+                "caching"
+              ],
+              "type": "object"
+            },
+            "k8s": {
+              "properties": {
+                "clamAntiVirus": {
+                  "default": {},
+                  "properties": {
+                    "monitoring": {
+                      "default": {},
+                      "description": "Settings dedicated to monitoring",
+                      "properties": {
+                        "serviceMonitor": {
+                          "default": {},
+                          "description": "Service monitor settings",
+                          "properties": {
+                            "deploy": {
+                              "default": "auto",
+                              "description": "Enable or disable monitoring using ServiceMonitor resources",
+                              "enum": [
+                                "enable",
+                                "disable",
+                                "auto"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "storage": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s storage",
+                      "properties": {
+                        "volume": {
+                          "oneOf": [
+                            {
+                              "not": {
+                                "required": [
+                                  "persistentVolumeClaimName"
+                                ]
+                              },
+                              "required": [
+                                "size"
+                              ]
+                            },
+                            {
+                              "not": {
+                                "required": [
+                                  "size"
+                                ]
+                              },
+                              "required": [
+                                "persistentVolumeClaimName"
+                              ]
+                            }
+                          ],
+                          "properties": {
+                            "persistentVolumeClaimName": {
+                              "description": "The persistent volume claim name to use to store the media",
+                              "type": "string"
+                            },
+                            "size": {
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "description": "The volume size to use to store the media",
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$",
+                              "x-kubernetes-int-or-string": true
+                            },
+                            "storageClassName": {
+                              "description": "The storage class name to use",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "workloads": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s workloads",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to the workload",
+                          "type": "object"
+                        },
+                        "dockerSecrets": {
+                          "items": {
+                            "properties": {
+                              "name": {
+                                "description": "Docker secret to use for ems image store",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "The docker registry url for this secret",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "hostAliases": {
+                          "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                          "items": {
+                            "properties": {
+                              "hostnames": {
+                                "items": {
+                                  "description": "An hostname of the associated ip to add to /etc/hosts",
+                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "ip": {
+                                "description": "An IP resolution to add to /etc/hosts",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "hostnames"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "nodeSelector": {
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                          "type": "object"
+                        },
+                        "replicas": {
+                          "description": "The number of ClamAV replicas",
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "resources": {
+                          "default": {},
+                          "description": "Kubernetes resources to allocate to each instance.",
+                          "properties": {
+                            "limits": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "memory": "4Gi"
+                              },
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            },
+                            "requests": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "cpu": "100m",
+                                "memory": "100Mi"
+                              },
+                              "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "securityContext": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "seLinuxOptions"
+                              ]
+                            },
+                            {}
+                          ],
+                          "default": {},
+                          "properties": {
+                            "forceUidGid": {
+                              "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            },
+                            "fsGroup": {
+                              "default": 10150,
+                              "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "runAsUser": {
+                              "default": 10150,
+                              "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "seLinuxOptions": {
+                              "properties": {
+                                "level": {
+                                  "description": "Level is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "description": "Role is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "user": {
+                                  "description": "User is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "setSecComp": {
+                              "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tolerations": {
+                          "description": "Workload tolerations",
+                          "items": {
+                            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                            "properties": {
+                              "effect": {
+                                "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                "type": "string"
+                              },
+                              "key": {
+                                "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                                "type": "string"
+                              },
+                              "tolerationSeconds": {
+                                "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                                "type": "number"
+                              },
+                              "value": {
+                                "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "common": {
+                  "default": {},
+                  "description": "Settings dedicated to k8s",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "description": "Defines the annotations to add",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "The annotations to add to every workloads and ingresses deployed",
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "icap": {
+                  "default": {},
+                  "properties": {
+                    "workloads": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s workloads",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to the workload",
+                          "type": "object"
+                        },
+                        "dockerSecrets": {
+                          "items": {
+                            "properties": {
+                              "name": {
+                                "description": "Docker secret to use for ems image store",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "The docker registry url for this secret",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "hostAliases": {
+                          "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                          "items": {
+                            "properties": {
+                              "hostnames": {
+                                "items": {
+                                  "description": "An hostname of the associated ip to add to /etc/hosts",
+                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "ip": {
+                                "description": "An IP resolution to add to /etc/hosts",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "hostnames"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "nodeSelector": {
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                          "type": "object"
+                        },
+                        "resources": {
+                          "default": {},
+                          "description": "Kubernetes resources to allocate to each instance.",
+                          "properties": {
+                            "limits": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "memory": "1Gi"
+                              },
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            },
+                            "requests": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "cpu": "100m",
+                                "memory": "100Mi"
+                              },
+                              "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "securityContext": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "seLinuxOptions"
+                              ]
+                            },
+                            {}
+                          ],
+                          "default": {},
+                          "properties": {
+                            "forceUidGid": {
+                              "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            },
+                            "fsGroup": {
+                              "default": 10152,
+                              "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "runAsUser": {
+                              "default": 10152,
+                              "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "seLinuxOptions": {
+                              "properties": {
+                                "level": {
+                                  "description": "Level is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "description": "Role is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "user": {
+                                  "description": "User is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "setSecComp": {
+                              "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tolerations": {
+                          "description": "Workload tolerations",
+                          "items": {
+                            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                            "properties": {
+                              "effect": {
+                                "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                "type": "string"
+                              },
+                              "key": {
+                                "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                                "type": "string"
+                              },
+                              "tolerationSeconds": {
+                                "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                                "type": "number"
+                              },
+                              "value": {
+                                "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "matrixContentScanner": {
+                  "properties": {
+                    "monitoring": {
+                      "default": {},
+                      "description": "Settings dedicated to monitoring",
+                      "properties": {
+                        "serviceMonitor": {
+                          "default": {},
+                          "description": "Service monitor settings",
+                          "properties": {
+                            "deploy": {
+                              "default": "auto",
+                              "description": "Enable or disable monitoring using ServiceMonitor resources",
+                              "enum": [
+                                "enable",
+                                "disable",
+                                "auto"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "storage": {
+                      "description": "Settings dedicated to k8s storage as a PVC Template",
+                      "properties": {
+                        "selector": {
+                          "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed.\nAn empty label selector matches all objects. A null label selector matches no objects.\n",
+                          "properties": {
+                            "matchExpressions": {
+                              "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                              "items": {
+                                "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                                "properties": {
+                                  "key": {
+                                    "description": "key is the label key that the selector applies to.",
+                                    "type": "string"
+                                  },
+                                  "operator": {
+                                    "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+                                    "type": "string"
+                                  },
+                                  "values": {
+                                    "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty.\nIf the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.\n",
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "required": [
+                                  "key",
+                                  "operator"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array",
+                              "x-kubernetes-list-map-keys": [
+                                "key"
+                              ],
+                              "x-kubernetes-list-type": "map"
+                            },
+                            "matchLabels": {
+                              "additionalProperties": {
+                                "type": "string"
+                              },
+                              "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions,\nwhose key field is \\\"key\\\", the operator is \\\"In\\\", and the values array contains only \\\"value\\\". The requirements are ANDed.\n",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "size": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ],
+                          "description": "The volume size to use to store the media",
+                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$",
+                          "x-kubernetes-int-or-string": true
+                        },
+                        "storageClassName": {
+                          "description": "The storage class name to use",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "size"
+                      ],
+                      "type": "object"
+                    },
+                    "workloads": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s workloads",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to the workload",
+                          "type": "object"
+                        },
+                        "dockerSecrets": {
+                          "items": {
+                            "properties": {
+                              "name": {
+                                "description": "Docker secret to use for ems image store",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "The docker registry url for this secret",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "hostAliases": {
+                          "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                          "items": {
+                            "properties": {
+                              "hostnames": {
+                                "items": {
+                                  "description": "An hostname of the associated ip to add to /etc/hosts",
+                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "ip": {
+                                "description": "An IP resolution to add to /etc/hosts",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "hostnames"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "nodeSelector": {
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                          "type": "object"
+                        },
+                        "replicas": {
+                          "description": "The number of Matrix Content Scanner replicas",
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "resources": {
+                          "default": {},
+                          "description": "Kubernetes resources to allocate to each instance.",
+                          "properties": {
+                            "limits": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "memory": "500Mi"
+                              },
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            },
+                            "requests": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "cpu": "100m",
+                                "memory": "100Mi"
+                              },
+                              "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "securityContext": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "seLinuxOptions"
+                              ]
+                            },
+                            {}
+                          ],
+                          "default": {},
+                          "properties": {
+                            "forceUidGid": {
+                              "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            },
+                            "fsGroup": {
+                              "default": 10151,
+                              "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "runAsUser": {
+                              "default": 10151,
+                              "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "seLinuxOptions": {
+                              "properties": {
+                                "level": {
+                                  "description": "Level is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "description": "Role is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "user": {
+                                  "description": "User is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "setSecComp": {
+                              "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tolerations": {
+                          "description": "Workload tolerations",
+                          "items": {
+                            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                            "properties": {
+                              "effect": {
+                                "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                "type": "string"
+                              },
+                              "key": {
+                                "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                                "type": "string"
+                              },
+                              "tolerationSeconds": {
+                                "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                                "type": "number"
+                              },
+                              "value": {
+                                "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "storage"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "matrixContentScanner"
+              ],
+              "type": "object"
+            },
+            "secretName": {
+              "default": "matrix-content-scanner",
+              "description": "The secret data associated to MatrixContentScanner config",
+              "maxLength": 253,
+              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        },
+        "slidingSync": {
+          "description": "Sliding Sync is a backend component required by the Element X client beta. It provides a mechanism for the fast synchronisation of Matrix rooms. It is not recommended for production use and is only provide to enable the usage of the Element X client. The current version does not support SSO (OIDC/SAML/CAS). If you wish to try out the Element X client, then you need to be using password-based auth to allow Sliding Sync to work. SSO support (OIDC/SAML/CAS) will be added with a later version of the Sliding Sync tooling.",
+          "properties": {
+            "config": {
+              "properties": {
+                "log": {
+                  "default": {},
+                  "description": "Logging settings",
+                  "properties": {
+                    "level": {
+                      "default": "info",
+                      "description": "The maximum level of log output",
+                      "enum": [
+                        "info",
+                        "debug",
+                        "warning",
+                        "error"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "postgresql": {
+                  "description": "Configuration of the PostgreSQL database",
+                  "properties": {
+                    "database": {
+                      "description": "PostgreSQL database name",
+                      "type": "string"
+                    },
+                    "host": {
+                      "description": "PostgreSQL database host",
+                      "type": "string"
+                    },
+                    "passwordSecretKey": {
+                      "default": "postgresPassword",
+                      "description": "The PostgreSQL password",
+                      "type": "string"
+                    },
+                    "port": {
+                      "default": 5432,
+                      "description": "PostgreSQL port",
+                      "maximum": 65535,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "sslMode": {
+                      "default": "require",
+                      "description": "TLS settings to use for the PostgreSQL connection",
+                      "enum": [
+                        "disable",
+                        "require",
+                        "verify-ca",
+                        "verify-full"
+                      ],
+                      "type": "string"
+                    },
+                    "user": {
+                      "description": "PostgreSQL username",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "host",
+                    "user",
+                    "database"
+                  ],
+                  "type": "object"
+                },
+                "syncSecretSecretKey": {
+                  "default": "syncSecret",
+                  "description": "The key of the k8s secret containing Sliding Sync Sync Secret",
+                  "type": "string"
+                },
+                "verifyTls": {
+                  "default": "useGlobalSetting",
+                  "description": "TLS Verification",
+                  "enum": [
+                    "useGlobalSetting",
+                    "force",
+                    "disable"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "postgresql"
+              ],
+              "type": "object"
+            },
+            "k8s": {
+              "default": {},
+              "properties": {
+                "api": {
+                  "default": {},
+                  "properties": {
+                    "monitoring": {
+                      "default": {},
+                      "description": "Settings dedicated to monitoring",
+                      "properties": {
+                        "serviceMonitor": {
+                          "default": {},
+                          "description": "Service monitor settings",
+                          "properties": {
+                            "deploy": {
+                              "default": "auto",
+                              "description": "Enable or disable monitoring using ServiceMonitor resources",
+                              "enum": [
+                                "enable",
+                                "disable",
+                                "auto"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "workloads": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s workloads",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to the workload",
+                          "type": "object"
+                        },
+                        "dockerSecrets": {
+                          "items": {
+                            "properties": {
+                              "name": {
+                                "description": "Docker secret to use for ems image store",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "The docker registry url for this secret",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "hostAliases": {
+                          "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                          "items": {
+                            "properties": {
+                              "hostnames": {
+                                "items": {
+                                  "description": "An hostname of the associated ip to add to /etc/hosts",
+                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "ip": {
+                                "description": "An IP resolution to add to /etc/hosts",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "hostnames"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "nodeSelector": {
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                          "type": "object"
+                        },
+                        "resources": {
+                          "default": {},
+                          "description": "Kubernetes resources to allocate to each instance.",
+                          "properties": {
+                            "limits": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "memory": "4Gi"
+                              },
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            },
+                            "requests": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "cpu": "100m",
+                                "memory": "200Mi"
+                              },
+                              "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "securityContext": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "seLinuxOptions"
+                              ]
+                            },
+                            {}
+                          ],
+                          "default": {},
+                          "properties": {
+                            "forceUidGid": {
+                              "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            },
+                            "fsGroup": {
+                              "default": 10130,
+                              "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "runAsUser": {
+                              "default": 10130,
+                              "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "seLinuxOptions": {
+                              "properties": {
+                                "level": {
+                                  "description": "Level is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "description": "Role is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "user": {
+                                  "description": "User is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "setSecComp": {
+                              "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tolerations": {
+                          "description": "Workload tolerations",
+                          "items": {
+                            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                            "properties": {
+                              "effect": {
+                                "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                "type": "string"
+                              },
+                              "key": {
+                                "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                                "type": "string"
+                              },
+                              "tolerationSeconds": {
+                                "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                                "type": "number"
+                              },
+                              "value": {
+                                "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "common": {
+                  "default": {},
+                  "description": "Settings dedicated to k8s",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "description": "Defines the annotations to add",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "The annotations to add to every workloads and ingresses deployed",
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ingress": {
+                  "description": "Settings dedicated to k8s ingresses",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "Defines the annotations to add",
+                      "type": "object"
+                    },
+                    "fqdn": {
+                      "description": "Fully qualified domain name of the ingress",
+                      "type": "string"
+                    },
+                    "ingressClassName": {
+                      "description": "An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer externally.",
+                      "type": "string"
+                    },
+                    "services": {
+                      "default": {},
+                      "properties": {
+                        "type": {
+                          "description": "Default service type",
+                          "enum": [
+                            "ClusterIP",
+                            "NodePort",
+                            "LoadBalancer"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tls": {
+                      "oneOf": [
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certmanager"
+                            }
+                          },
+                          "required": [
+                            "certmanager"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certfile"
+                            }
+                          },
+                          "required": [
+                            "certificate"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "existing"
+                            }
+                          },
+                          "required": [
+                            "secretName"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "external"
+                            }
+                          }
+                        }
+                      ],
+                      "properties": {
+                        "certificate": {
+                          "description": "Certificate file",
+                          "properties": {
+                            "certFileSecretKey": {
+                              "default": "certificate",
+                              "description": "SlidingSync Certificate",
+                              "type": "string"
+                            },
+                            "privateKeySecretKey": {
+                              "default": "privateKey",
+                              "description": "SlidingSync Private Key",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "certmanager": {
+                          "description": "The cert-manager properties, if enabled",
+                          "properties": {
+                            "issuer": {
+                              "description": "The name of cert-manager ClusterIssuer to use",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "mode": {
+                          "description": "The TLS mode of this component ingress. Use external if TLS is managed externaly to the cluster, certmanager if you want to use cert manager to issue certificate automatically, or certfile if you want to upload certificate files to kubernetes tls secrets manually.",
+                          "enum": [
+                            "certmanager",
+                            "external",
+                            "certfile",
+                            "existing"
+                          ],
+                          "type": "string"
+                        },
+                        "secretName": {
+                          "description": "The name of a secret in the cluster that contains TLS certificates",
+                          "maxLength": 253,
+                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "fqdn"
+                  ],
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "secretName": {
+              "default": "sliding-sync",
+              "description": "The secret data associated to SlidingSync config",
+              "maxLength": 253,
+              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        },
+        "synapse": {
+          "description": "This is a matrix homeserver.",
+          "properties": {
+            "config": {
+              "properties": {
+                "additional": {
+                  "description": "Additional config to inject",
+                  "type": "string"
+                },
+                "externalAppservices": {
+                  "default": {},
+                  "description": "External application services to configure",
+                  "properties": {
+                    "configMaps": {
+                      "default": [],
+                      "description": "Array of ConfigMaps containing a registration.yaml to mount in synapse",
+                      "items": {
+                        "description": "A configmap name",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "files": {
+                      "additionalProperties": {
+                        "description": "Content of an appservice registration file",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "Map of appservice registration files to inject",
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "log": {
+                  "default": {},
+                  "description": "Synapse Logging settings",
+                  "properties": {
+                    "levelOverrides": {
+                      "additionalProperties": {
+                        "description": "The maximum level of Synapse log output for this specific logger",
+                        "enum": [
+                          "Critical",
+                          "Error",
+                          "Warning",
+                          "Info",
+                          "Debug"
+                        ],
+                        "type": "string"
+                      },
+                      "description": "Logging level overrides for specific Synapse loggers",
+                      "type": "object"
+                    },
+                    "rootLevel": {
+                      "default": "Info",
+                      "description": "The maximum level of Synapse log output before any overrides",
+                      "enum": [
+                        "Critical",
+                        "Error",
+                        "Warning",
+                        "Info",
+                        "Debug"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "macaroonSecretKey": {
+                  "default": "macaroon",
+                  "description": "The key of the k8s secret containing Synapse Macaroon",
+                  "type": "string"
+                },
+                "media": {
+                  "default": {
+                    "volume": {
+                      "size": "50Gi"
+                    }
+                  },
+                  "properties": {
+                    "volume": {
+                      "default": {
+                        "size": "50Gi"
+                      },
+                      "description": "The volume holding media",
+                      "oneOf": [
+                        {
+                          "not": {
+                            "required": [
+                              "name"
+                            ]
+                          },
+                          "required": [
+                            "size"
+                          ]
+                        },
+                        {
+                          "required": [
+                            "name",
+                            "size"
+                          ]
+                        }
+                      ],
+                      "properties": {
+                        "name": {
+                          "description": "The volume name to use to store the media",
+                          "type": "string"
+                        },
+                        "size": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ],
+                          "description": "The volume size to use to store the media",
+                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$",
+                          "x-kubernetes-int-or-string": true
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "postgresql": {
+                  "description": "Configuration of the PostgreSQL database",
+                  "properties": {
+                    "database": {
+                      "description": "PostgreSQL database name",
+                      "type": "string"
+                    },
+                    "host": {
+                      "description": "PostgreSQL database host",
+                      "type": "string"
+                    },
+                    "passwordSecretKey": {
+                      "default": "postgresPassword",
+                      "description": "The PostgreSQL password",
+                      "type": "string"
+                    },
+                    "port": {
+                      "default": 5432,
+                      "description": "PostgreSQL port",
+                      "maximum": 65535,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "sslMode": {
+                      "default": "require",
+                      "description": "TLS settings to use for the PostgreSQL connection",
+                      "enum": [
+                        "disable",
+                        "allow",
+                        "prefer",
+                        "require",
+                        "verify-ca",
+                        "verify-full"
+                      ],
+                      "type": "string"
+                    },
+                    "user": {
+                      "description": "PostgreSQL username",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "host",
+                    "user",
+                    "database"
+                  ],
+                  "type": "object"
+                },
+                "registrationSharedSecretSecretKey": {
+                  "default": "registrationSharedSecret",
+                  "description": "The key of the k8s secret containing Synapse registration shared secret",
+                  "type": "string"
+                },
+                "signingKeySecretKey": {
+                  "default": "signingKey",
+                  "description": "The key of the k8s secret containing Synapse signing key",
+                  "type": "string"
+                },
+                "workers": {
+                  "default": [],
+                  "description": "Workers configuration",
+                  "items": {
+                    "properties": {
+                      "additional": {
+                        "default": "",
+                        "description": "Arbitrary extra config to inject into the Synapse worker configuration as a YAML string",
+                        "type": "string"
+                      },
+                      "instances": {
+                        "default": 1,
+                        "description": "Number of instances of this worker type",
+                        "type": "integer"
+                      },
+                      "resources": {
+                        "default": {},
+                        "description": "Kubernetes resources to allocate to each instance.",
+                        "properties": {
+                          "limits": {
+                            "additionalProperties": {
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "x-kubernetes-int-or-string": true
+                            },
+                            "default": {
+                              "memory": "4Gi"
+                            },
+                            "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                            "type": "object"
+                          },
+                          "requests": {
+                            "additionalProperties": {
+                              "anyOf": [
+                                {
+                                  "type": "integer"
+                                },
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                              "x-kubernetes-int-or-string": true
+                            },
+                            "default": {
+                              "cpu": "100m",
+                              "memory": "100Mi"
+                            },
+                            "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": {
+                        "description": "Type of worker being configured",
+                        "enum": [
+                          "appservice",
+                          "background",
+                          "client-reader",
+                          "encryption",
+                          "event-creator",
+                          "event-persister",
+                          "federation-inbound",
+                          "federation-reader",
+                          "federation-sender",
+                          "initial-synchrotron",
+                          "media-repository",
+                          "presence-writer",
+                          "pusher",
+                          "receipts-account",
+                          "sso-login",
+                          "synchrotron",
+                          "typing-persister",
+                          "user-dir"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "postgresql"
+              ],
+              "type": "object"
+            },
+            "k8s": {
+              "default": {},
+              "description": "You can override Kubernetes configuration for each component of Synapse",
+              "properties": {
+                "common": {
+                  "default": {},
+                  "description": "The annotations to add to every workloads, volume claims and service monitors deployed",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "description": "Defines the annotations to add",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "The annotations to add to every workloads and ingresses deployed",
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "haproxy": {
+                  "default": {},
+                  "description": "k8s properties of the haproxy workloads inside synapse component",
+                  "properties": {
+                    "workloads": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s workloads",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to the workload",
+                          "type": "object"
+                        },
+                        "dockerSecrets": {
+                          "items": {
+                            "properties": {
+                              "name": {
+                                "description": "Docker secret to use for ems image store",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "The docker registry url for this secret",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "hostAliases": {
+                          "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                          "items": {
+                            "properties": {
+                              "hostnames": {
+                                "items": {
+                                  "description": "An hostname of the associated ip to add to /etc/hosts",
+                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "ip": {
+                                "description": "An IP resolution to add to /etc/hosts",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "hostnames"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "nodeSelector": {
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                          "type": "object"
+                        },
+                        "replicas": {
+                          "description": "The number of Synapse HAProxy replicas",
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "resources": {
+                          "default": {},
+                          "description": "Kubernetes resources to allocate to each instance.",
+                          "properties": {
+                            "limits": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "memory": "200Mi"
+                              },
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            },
+                            "requests": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "cpu": "100m",
+                                "memory": "100Mi"
+                              },
+                              "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "securityContext": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "seLinuxOptions"
+                              ]
+                            },
+                            {}
+                          ],
+                          "default": {},
+                          "properties": {
+                            "forceUidGid": {
+                              "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            },
+                            "fsGroup": {
+                              "default": 10001,
+                              "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "runAsUser": {
+                              "default": 10001,
+                              "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "seLinuxOptions": {
+                              "properties": {
+                                "level": {
+                                  "description": "Level is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "description": "Role is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "user": {
+                                  "description": "User is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "setSecComp": {
+                              "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tolerations": {
+                          "description": "Workload tolerations",
+                          "items": {
+                            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                            "properties": {
+                              "effect": {
+                                "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                "type": "string"
+                              },
+                              "key": {
+                                "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                                "type": "string"
+                              },
+                              "tolerationSeconds": {
+                                "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                                "type": "number"
+                              },
+                              "value": {
+                                "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ingress": {
+                  "description": "Settings dedicated to k8s ingresses",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "Defines the annotations to add",
+                      "type": "object"
+                    },
+                    "fqdn": {
+                      "description": "Fully qualified domain name of the ingress",
+                      "type": "string"
+                    },
+                    "ingressClassName": {
+                      "description": "An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer externally.",
+                      "type": "string"
+                    },
+                    "services": {
+                      "default": {},
+                      "properties": {
+                        "type": {
+                          "description": "Default service type",
+                          "enum": [
+                            "ClusterIP",
+                            "NodePort",
+                            "LoadBalancer"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tls": {
+                      "oneOf": [
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certmanager"
+                            }
+                          },
+                          "required": [
+                            "certmanager"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certfile"
+                            }
+                          },
+                          "required": [
+                            "certificate"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "existing"
+                            }
+                          },
+                          "required": [
+                            "secretName"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "external"
+                            }
+                          }
+                        }
+                      ],
+                      "properties": {
+                        "certificate": {
+                          "description": "Certificate file",
+                          "properties": {
+                            "certFileSecretKey": {
+                              "default": "synapseCertificate",
+                              "description": "Synapse Server Certificate",
+                              "type": "string"
+                            },
+                            "privateKeySecretKey": {
+                              "default": "synapsePrivateKey",
+                              "description": "Synapse Server Private Key",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "certmanager": {
+                          "description": "The cert-manager properties, if enabled",
+                          "properties": {
+                            "issuer": {
+                              "description": "The name of cert-manager ClusterIssuer to use",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "mode": {
+                          "description": "The TLS mode of this component ingress. Use external if TLS is managed externaly to the cluster, certmanager if you want to use cert manager to issue certificate automatically, or certfile if you want to upload certificate files to kubernetes tls secrets manually.",
+                          "enum": [
+                            "certmanager",
+                            "external",
+                            "certfile",
+                            "existing"
+                          ],
+                          "type": "string"
+                        },
+                        "secretName": {
+                          "description": "The name of a secret in the cluster that contains TLS certificates",
+                          "maxLength": 253,
+                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "fqdn"
+                  ],
+                  "type": "object"
+                },
+                "redis": {
+                  "default": {},
+                  "description": "k8s properties of the redis workloads inside synapse component",
+                  "properties": {
+                    "workloads": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s workloads",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to the workload",
+                          "type": "object"
+                        },
+                        "dockerSecrets": {
+                          "items": {
+                            "properties": {
+                              "name": {
+                                "description": "Docker secret to use for ems image store",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "The docker registry url for this secret",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "hostAliases": {
+                          "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                          "items": {
+                            "properties": {
+                              "hostnames": {
+                                "items": {
+                                  "description": "An hostname of the associated ip to add to /etc/hosts",
+                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "ip": {
+                                "description": "An IP resolution to add to /etc/hosts",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "hostnames"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "nodeSelector": {
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                          "type": "object"
+                        },
+                        "resources": {
+                          "default": {},
+                          "description": "Kubernetes resources to allocate to each instance.",
+                          "properties": {
+                            "limits": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "memory": "50Mi"
+                              },
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            },
+                            "requests": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "cpu": "50m",
+                                "memory": "50Mi"
+                              },
+                              "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "securityContext": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "seLinuxOptions"
+                              ]
+                            },
+                            {}
+                          ],
+                          "default": {},
+                          "properties": {
+                            "forceUidGid": {
+                              "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            },
+                            "fsGroup": {
+                              "default": 10002,
+                              "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "runAsUser": {
+                              "default": 10002,
+                              "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "seLinuxOptions": {
+                              "properties": {
+                                "level": {
+                                  "description": "Level is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "description": "Role is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "user": {
+                                  "description": "User is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "setSecComp": {
+                              "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tolerations": {
+                          "description": "Workload tolerations",
+                          "items": {
+                            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                            "properties": {
+                              "effect": {
+                                "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                "type": "string"
+                              },
+                              "key": {
+                                "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                                "type": "string"
+                              },
+                              "tolerationSeconds": {
+                                "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                                "type": "number"
+                              },
+                              "value": {
+                                "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "synapse": {
+                  "default": {},
+                  "description": "k8s properties of the synapse workloads inside synapse component",
+                  "properties": {
+                    "common": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to every workloads and ingresses deployed",
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "monitoring": {
+                      "default": {},
+                      "description": "Settings dedicated to monitoring",
+                      "properties": {
+                        "serviceMonitor": {
+                          "default": {},
+                          "description": "Service monitor settings",
+                          "properties": {
+                            "deploy": {
+                              "default": "auto",
+                              "description": "Enable or disable monitoring using ServiceMonitor resources",
+                              "enum": [
+                                "enable",
+                                "disable",
+                                "auto"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "storage": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s storage",
+                      "type": "object"
+                    },
+                    "workloads": {
+                      "default": {},
+                      "description": "Settings dedicated to k8s workloads",
+                      "properties": {
+                        "annotations": {
+                          "additionalProperties": {
+                            "description": "Defines the annotations to add",
+                            "type": "string"
+                          },
+                          "default": {},
+                          "description": "The annotations to add to the workload",
+                          "type": "object"
+                        },
+                        "dockerSecrets": {
+                          "items": {
+                            "properties": {
+                              "name": {
+                                "description": "Docker secret to use for ems image store",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "The docker registry url for this secret",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "hostAliases": {
+                          "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                          "items": {
+                            "properties": {
+                              "hostnames": {
+                                "items": {
+                                  "description": "An hostname of the associated ip to add to /etc/hosts",
+                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "ip": {
+                                "description": "An IP resolution to add to /etc/hosts",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "ip",
+                              "hostnames"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "nodeSelector": {
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                          "type": "object"
+                        },
+                        "resources": {
+                          "default": {},
+                          "description": "Kubernetes resources to allocate to each instance.",
+                          "properties": {
+                            "limits": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "memory": "4Gi"
+                              },
+                              "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            },
+                            "requests": {
+                              "additionalProperties": {
+                                "anyOf": [
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                "x-kubernetes-int-or-string": true
+                              },
+                              "default": {
+                                "cpu": "100m",
+                                "memory": "100Mi"
+                              },
+                              "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "securityContext": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "seLinuxOptions"
+                              ]
+                            },
+                            {}
+                          ],
+                          "default": {},
+                          "properties": {
+                            "forceUidGid": {
+                              "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            },
+                            "fsGroup": {
+                              "default": 10991,
+                              "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "runAsUser": {
+                              "default": 10991,
+                              "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                              "type": "number"
+                            },
+                            "seLinuxOptions": {
+                              "properties": {
+                                "level": {
+                                  "description": "Level is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "description": "Role is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "Type is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                },
+                                "user": {
+                                  "description": "User is SELinux level label that applies to all the workload containers.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "setSecComp": {
+                              "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                              "enum": [
+                                "enable",
+                                "disable"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tolerations": {
+                          "description": "Workload tolerations",
+                          "items": {
+                            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                            "properties": {
+                              "effect": {
+                                "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                                "type": "string"
+                              },
+                              "key": {
+                                "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                                "type": "string"
+                              },
+                              "tolerationSeconds": {
+                                "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                                "type": "number"
+                              },
+                              "value": {
+                                "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "secretName": {
+              "default": "synapse",
+              "description": "The secret data associated to synapse config Key matching `config.macaroonSecretKey`, `config.registrationSharedSecretSecretKey`, `config.signingKeySecretKey`, `config.adminPasswordSecretKey`, `config.telemetry.password` and `config.postgres.passwordSecretKey` must be present. If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present If stun is enabled, key matching `config.stun.sharedSecretSecretKey` must be present. To override synapse default trust store for federation, every keys of `config.federation.certificateAutoritiesSecretKeys` should be present.",
+              "maxLength": 253,
+              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        },
+        "wellKnownDelegation": {
+          "description": "This is a well known delegation file hosted as a static site.",
+          "properties": {
+            "config": {
+              "default": {},
+              "properties": {
+                "additionalClientConfig": {
+                  "description": "WellKnownDelegation additional client configuration.",
+                  "type": "string"
+                },
+                "additionalElementConfig": {
+                  "description": "WellKnownDelegation additional element configuration.",
+                  "type": "string"
+                },
+                "additionalServerConfig": {
+                  "description": "WellKnownDelegation additional server configuration.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "k8s": {
+              "default": {},
+              "description": "You can override Kubernetes configuration for each component of WellKnownDelegation",
+              "properties": {
+                "common": {
+                  "default": {},
+                  "description": "Settings dedicated to k8s",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "description": "Defines the annotations to add",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "The annotations to add to every workloads and ingresses deployed",
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ingress": {
+                  "default": {},
+                  "description": "Settings dedicated to k8s ingresses",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "Defines the annotations to add",
+                      "type": "object"
+                    },
+                    "ingressClassName": {
+                      "description": "An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer externally.",
+                      "type": "string"
+                    },
+                    "services": {
+                      "default": {},
+                      "properties": {
+                        "type": {
+                          "description": "Default service type",
+                          "enum": [
+                            "ClusterIP",
+                            "NodePort",
+                            "LoadBalancer"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tls": {
+                      "oneOf": [
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certmanager"
+                            }
+                          },
+                          "required": [
+                            "certmanager"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "certfile"
+                            }
+                          },
+                          "required": [
+                            "certificate"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "existing"
+                            }
+                          },
+                          "required": [
+                            "secretName"
+                          ]
+                        },
+                        {
+                          "not": {
+                            "required": [
+                              "certificate",
+                              "certmanager",
+                              "secretName"
+                            ]
+                          },
+                          "properties": {
+                            "mode": {
+                              "pattern": "external"
+                            }
+                          }
+                        }
+                      ],
+                      "properties": {
+                        "certificate": {
+                          "description": "Certificate file",
+                          "properties": {
+                            "certFileSecretKey": {
+                              "default": "wellKnownDelegationCertificate",
+                              "description": "WellKnownDelegation Certificate",
+                              "type": "string"
+                            },
+                            "privateKeySecretKey": {
+                              "default": "wellKnownDelegationPrivateKey",
+                              "description": "WellKnownDelegation Private Key",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "certmanager": {
+                          "description": "The cert-manager properties, if enabled",
+                          "properties": {
+                            "issuer": {
+                              "description": "The name of cert-manager ClusterIssuer to use",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "mode": {
+                          "description": "The TLS mode of this component ingress. Use external if TLS is managed externaly to the cluster, certmanager if you want to use cert manager to issue certificate automatically, or certfile if you want to upload certificate files to kubernetes tls secrets manually.",
+                          "enum": [
+                            "certmanager",
+                            "external",
+                            "certfile",
+                            "existing"
+                          ],
+                          "type": "string"
+                        },
+                        "secretName": {
+                          "description": "The name of a secret in the cluster that contains TLS certificates",
+                          "maxLength": 253,
+                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "workloads": {
+                  "default": {},
+                  "description": "Settings dedicated to k8s workloads",
+                  "properties": {
+                    "annotations": {
+                      "additionalProperties": {
+                        "description": "Defines the annotations to add",
+                        "type": "string"
+                      },
+                      "default": {},
+                      "description": "The annotations to add to the workload",
+                      "type": "object"
+                    },
+                    "dockerSecrets": {
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "description": "Docker secret to use for ems image store",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "The docker registry url for this secret",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "url",
+                          "name"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "hostAliases": {
+                      "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                      "items": {
+                        "properties": {
+                          "hostnames": {
+                            "items": {
+                              "description": "An hostname of the associated ip to add to /etc/hosts",
+                              "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "ip": {
+                            "description": "An IP resolution to add to /etc/hosts",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "ip",
+                          "hostnames"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "nodeSelector": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                      "type": "object"
+                    },
+                    "replicas": {
+                      "description": "The number of Well-Known Delegation replicas",
+                      "minimum": 1,
+                      "type": "number"
+                    },
+                    "resources": {
+                      "default": {},
+                      "description": "Kubernetes resources to allocate to each instance.",
+                      "properties": {
+                        "limits": {
+                          "additionalProperties": {
+                            "anyOf": [
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                            "x-kubernetes-int-or-string": true
+                          },
+                          "default": {
+                            "memory": "200Mi"
+                          },
+                          "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                          "type": "object"
+                        },
+                        "requests": {
+                          "additionalProperties": {
+                            "anyOf": [
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                            "x-kubernetes-int-or-string": true
+                          },
+                          "default": {
+                            "cpu": "50m",
+                            "memory": "50Mi"
+                          },
+                          "description": "Requests describes the minimum amount of compute resources required. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "securityContext": {
+                      "anyOf": [
+                        {
+                          "required": [
+                            "seLinuxOptions"
+                          ]
+                        },
+                        {}
+                      ],
+                      "default": {},
+                      "properties": {
+                        "forceUidGid": {
+                          "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                          "enum": [
+                            "enable",
+                            "disable"
+                          ],
+                          "type": "string"
+                        },
+                        "fsGroup": {
+                          "default": 10003,
+                          "description": "The fsGroup GID to use if securityContextForceUidGid is enabled",
+                          "type": "number"
+                        },
+                        "runAsUser": {
+                          "default": 10003,
+                          "description": "The runAsUser UID to use if securityContextForceUidGid is enabled",
+                          "type": "number"
+                        },
+                        "seLinuxOptions": {
+                          "properties": {
+                            "level": {
+                              "description": "Level is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            },
+                            "role": {
+                              "description": "Role is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "Type is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            },
+                            "user": {
+                              "description": "User is SELinux level label that applies to all the workload containers.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "setSecComp": {
+                          "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                          "enum": [
+                            "enable",
+                            "disable"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tolerations": {
+                      "description": "Workload tolerations",
+                      "items": {
+                        "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                        "properties": {
+                          "effect": {
+                            "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                            "type": "string"
+                          },
+                          "key": {
+                            "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                            "type": "string"
+                          },
+                          "operator": {
+                            "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                            "type": "string"
+                          },
+                          "tolerationSeconds": {
+                            "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                            "type": "number"
+                          },
+                          "value": {
+                            "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "secretName": {
+              "default": "well-known-delegation",
+              "description": "The secret data associated to wellKnownDelegation config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present",
+              "maxLength": 253,
+              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "global": {
+      "default": {},
+      "properties": {
+        "config": {
+          "default": {},
+          "properties": {
+            "domainName": {
+              "description": "The domain name of this deployment. It will be used for the <localpart> of the users MXIDs, and cannot be changed afterwards",
+              "type": "string"
+            },
+            "genericSharedSecretSecretKey": {
+              "default": "genericSharedSecret",
+              "description": "The generic shared secret to use as a seed for all internally-generated secrets",
+              "type": "string"
+            },
+            "imagesDigestsConfigMap": {
+              "description": "A configmap containing images digests metadata to override",
+              "type": "string"
+            },
+            "verifyTls": {
+              "default": true,
+              "description": "TLS verification",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "k8s": {
+          "default": {},
+          "properties": {
+            "common": {
+              "default": {},
+              "description": "Settings dedicated to k8s",
+              "properties": {
+                "annotations": {
+                  "additionalProperties": {
+                    "description": "Defines the annotations to add",
+                    "type": "string"
+                  },
+                  "default": {},
+                  "description": "The annotations to add to every workloads and ingresses deployed",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "ingresses": {
+              "default": {},
+              "description": "Settings dedicated to k8s ingresses",
+              "properties": {
+                "annotations": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "default": {},
+                  "description": "Defines the annotations to add",
+                  "type": "object"
+                },
+                "ingressClassName": {
+                  "description": "An optional IngressClass name to be used for this ingress. Optional if you are managing ingress / loadbalancer externally.",
+                  "type": "string"
+                },
+                "services": {
+                  "default": {},
+                  "properties": {
+                    "type": {
+                      "default": "ClusterIP",
+                      "description": "Default service type",
+                      "enum": [
+                        "ClusterIP",
+                        "NodePort",
+                        "LoadBalancer"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "tls": {
+                  "oneOf": [
+                    {
+                      "not": {
+                        "required": [
+                          "certificate",
+                          "secretName"
+                        ]
+                      },
+                      "properties": {
+                        "mode": {
+                          "pattern": "certmanager"
+                        }
+                      },
+                      "required": [
+                        "certmanager"
+                      ]
+                    },
+                    {
+                      "not": {
+                        "required": [
+                          "certmanager",
+                          "secretName"
+                        ]
+                      },
+                      "properties": {
+                        "mode": {
+                          "pattern": "certfile"
+                        }
+                      },
+                      "required": [
+                        "certificate"
+                      ]
+                    },
+                    {
+                      "not": {
+                        "required": [
+                          "certificate",
+                          "certmanager"
+                        ]
+                      },
+                      "properties": {
+                        "mode": {
+                          "pattern": "existing"
+                        }
+                      },
+                      "required": [
+                        "secretName"
+                      ]
+                    },
+                    {
+                      "not": {
+                        "required": [
+                          "certificate",
+                          "certmanager",
+                          "secretName"
+                        ]
+                      },
+                      "properties": {
+                        "mode": {
+                          "pattern": "external"
+                        }
+                      }
+                    }
+                  ],
+                  "properties": {
+                    "certificate": {
+                      "description": "The default certificate for every ingresses can be configured here. It can be used for example if you plan to use a wildcard certificate, or a certificate containing all components fqdns as SAN.",
+                      "properties": {
+                        "certFileSecretKey": {
+                          "type": "string"
+                        },
+                        "privateKeySecretKey": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "certmanager": {
+                      "description": "The cert-manager properties, if enabled",
+                      "properties": {
+                        "issuer": {
+                          "description": "The name of cert-manager ClusterIssuer to use",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "mode": {
+                      "description": "The default TLS mode of deployed ingresses. Use external if TLS is managed externaly to the cluster, certmanager if you want to use cert manager to issue certificate automatically, or certfile if you want to upload certificate files to kubernetes tls secrets manually.",
+                      "enum": [
+                        "certmanager",
+                        "external",
+                        "certfile",
+                        "existing"
+                      ],
+                      "type": "string"
+                    },
+                    "secretName": {
+                      "description": "The name of a secret in the cluster that contains TLS certificates",
+                      "maxLength": 253,
+                      "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "monitoring": {
+              "default": {},
+              "description": "Settings dedicated to monitoring",
+              "properties": {
+                "serviceMonitor": {
+                  "default": {},
+                  "description": "Service monitor settings",
+                  "properties": {
+                    "deploy": {
+                      "default": "auto",
+                      "description": "Enable or disable monitoring using ServiceMonitor resources",
+                      "enum": [
+                        "enable",
+                        "disable",
+                        "auto"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "storage": {
+              "description": "Global storage configuration",
+              "properties": {
+                "storageClassName": {
+                  "description": "The storage class name to use",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "workloads": {
+              "default": {},
+              "description": "Settings dedicated to k8s workloads",
+              "properties": {
+                "annotations": {
+                  "additionalProperties": {
+                    "description": "Defines the annotations to add",
+                    "type": "string"
+                  },
+                  "default": {},
+                  "description": "The annotations to add to the workload",
+                  "type": "object"
+                },
+                "dockerSecrets": {
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "description": "Docker secret to use for ems image store",
+                        "type": "string"
+                      },
+                      "url": {
+                        "description": "The docker registry url for this secret",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "url",
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "hostAliases": {
+                  "default": [],
+                  "description": "The list of hosts aliases to configure on the pod spec. It is advised to instead use a DNS entry to resolve your hostnames, instead of this feature. This feature can be used as a workaround when entries cannot be resolved using DNS, for example in our automated testing routines.",
+                  "items": {
+                    "properties": {
+                      "hostnames": {
+                        "items": {
+                          "description": "An hostname of the associated ip to add to /etc/hosts",
+                          "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "ip": {
+                        "description": "An IP resolution to add to /etc/hosts",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "ip",
+                      "hostnames"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "nodeSelector": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+                  "type": "object"
+                },
+                "replicas": {
+                  "default": 2,
+                  "description": "The number of replicas for workloads supporting it",
+                  "minimum": 1,
+                  "type": "number"
+                },
+                "securityContext": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "seLinuxOptions"
+                      ]
+                    },
+                    {}
+                  ],
+                  "default": {},
+                  "properties": {
+                    "forceUidGid": {
+                      "default": "enable",
+                      "description": "Enable pod runAsUser and fsGroup in security context. Disable if it should not be used.",
+                      "enum": [
+                        "enable",
+                        "disable"
+                      ],
+                      "type": "string"
+                    },
+                    "seLinuxOptions": {
+                      "properties": {
+                        "level": {
+                          "description": "Level is SELinux level label that applies to all the workload containers.",
+                          "type": "string"
+                        },
+                        "role": {
+                          "description": "Role is SELinux level label that applies to all the workload containers.",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "Type is SELinux level label that applies to all the workload containers.",
+                          "type": "string"
+                        },
+                        "user": {
+                          "description": "User is SELinux level label that applies to all the workload containers.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "setSecComp": {
+                      "default": "enable",
+                      "description": "Enable RuntimeDefault pod seccomp. disable if it should not be used.",
+                      "enum": [
+                        "enable",
+                        "disable"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "tolerations": {
+                  "description": "Workload tolerations",
+                  "items": {
+                    "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                    "properties": {
+                      "effect": {
+                        "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+                        "type": "string"
+                      },
+                      "key": {
+                        "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+                        "type": "string"
+                      },
+                      "operator": {
+                        "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+                        "type": "string"
+                      },
+                      "tolerationSeconds": {
+                        "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                        "type": "number"
+                      },
+                      "value": {
+                        "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "secretName": {
+          "default": "global",
+          "description": "The secret holding the global data",
+          "maxLength": 253,
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "secrets": {
+      "description": "Secrets contains the secrets used by the ess-stack",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "oneOf": [
+          {
+            "required": [
+              "existingSecret"
+            ],
+            "not": {
+              "required": [
+                "content"
+              ]
+            }
+          },
+          {
+            "required": [
+              "content"
+            ],
+            "not": {
+              "required": [
+                "existingSecret"
+              ]
+            }
+          }
+        ],
+        "description": "A secret for a given component",
+        "properties": {
+          "existingSecret": {
+            "type": "string",
+            "description": "An existing secret created externally to this chart"
+          },
+          "content": {
+            "additionalProperties": {
+              "type": "string",
+              "description": "The secret content"
+            }
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "$id": "file://ess-stack",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

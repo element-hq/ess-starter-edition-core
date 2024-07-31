@@ -42,11 +42,6 @@ config_instance_yaml: "{{ lookup('template', 'manifests/synapse_config_secrets.y
 log_config_yaml: "{{ lookup('template', 'log_config.yaml.j2') }}"
 redis_config: "{{ lookup('template', 'redis.conf.j2') }}"
 
-core_dependencies: >-
-  {{
-    (synapse_appservices_registrations)
-  }}
-
 # media_storage_providers shouldn't be included if has_media as there's an implict filesystem provider of path media_store_path
 # We do want it included if not has_media so that we can turn storage off
 _include_media_storage_providers: "{{ not has_media }}"

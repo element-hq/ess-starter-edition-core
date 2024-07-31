@@ -20,7 +20,7 @@ spec:
   config:
     {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
     defaultMatrixServer:
-      baseUrl: {{ components.synapse.k8s.ingress.fqdn }}
+      baseUrl: {{ synapse_public_url }}
       serverName: {{ _global.config.domain_name }}
 {% set _config_template_files = query('fileglob', 'templates/element_web/config/*.json.j2') | sort %}
 {% set _additional_configs = query('template', *_config_template_files, convert_data=false, template_vars={'_component_item': _component_item}) | select | map('trim') | select | map('from_json') %}

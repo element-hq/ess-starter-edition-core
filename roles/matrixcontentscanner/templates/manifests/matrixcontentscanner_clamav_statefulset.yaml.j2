@@ -101,6 +101,7 @@ spec:
         startupProbe:
           tcpSocket:
             port: 3310
+          failureThreshold: 24
         volumeMounts:
         - mountPath: "/etc/clamav/freshclam.conf"
           name: clamav-config
@@ -159,6 +160,7 @@ spec:
         startupProbe:
           tcpSocket:
             port: 1344
+          failureThreshold: 24
         volumeMounts:
         - mountPath: "/usr/local/c-icap/etc/c-icap.conf"
           name: clamav-config

@@ -1,0 +1,21 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: matrix.element.io/v1alpha2
+kind: ElementDeployment
+metadata:
+  name: {{ .Release.Name }}
+  annotations:
+    k8s.element.io/secretshash: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
+spec:
+  components:
+{{ range $component, $properties := $.Values.components }}
+    {{ $component }}:
+      secretName: {{ (index $.Values.secrets $component).existingSecret | default (printf "%s-secret" ($component | lower) )  }}
+      {{ tpl (toYaml $properties) $ | nindent 6 }}
+{{ end }}
+  global:
+    secretName: {{ $.Values.secrets.global.existingSecret | default ("global-secret")  }}
+    {{ tpl (toYaml $.Values.global) . | nindent 4 }}

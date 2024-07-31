@@ -7,13 +7,9 @@
 - name: Validation
   ansible.builtin.import_tasks: validation.yml
 
-- name: Bootstrap
-  ansible.builtin.import_tasks: bootstrap.yml
-  when:
-  - (core_dependencies | length) > 0
-
 - name: Dependencies
   ansible.builtin.import_tasks: dependencies.yml
+
 - name: Shared
   ansible.builtin.import_tasks: shared.yml
 

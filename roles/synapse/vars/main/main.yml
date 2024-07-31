@@ -6,7 +6,6 @@
 ---
 synapse_workers: "{{ config.workers | default([]) }}"
 synapse_appservices_registrations: "{{ config.application_services_registrations | default([]) }}"
-synapse_modules_configs: "{{ config.synapse_modules_configs | default([]) }}"
 synapse_configured_workers: "{{ dict(synapse_workers | selectattr('instances', 'defined')
                                                      | selectattr('instances', '>', 0)
                                                      | groupby('type')

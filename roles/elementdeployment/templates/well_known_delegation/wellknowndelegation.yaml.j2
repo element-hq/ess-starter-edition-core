@@ -29,7 +29,7 @@ spec:
       {{ ({} | combine(_additional_element_configs, recursive=true) | to_nice_json(indent=2) | indent(8)) }}
 {% endif %}
     client:
-      homeserverBaseUrl: https://{{ components.synapse.k8s.ingress.fqdn }}
+      homeserverBaseUrl: {{ synapse_public_url }}
 {% set _client_config_template_files = query('fileglob', 'templates/well_known_delegation/config_client/*.json.j2') | sort %}
 {% set _additional_client_configs = query('template', *_client_config_template_files, convert_data=false, template_vars={'_component_item': _component_item}) | select | map('trim') | select | map('from_json') %}
 {% if _additional_client_configs | length > 0 %}
