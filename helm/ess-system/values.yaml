@@ -11,9 +11,11 @@ element-operator:
   crds:
     annotations:
       cert-manager.io/inject-ca-from: >-
-        {{ .Release.Namespace }}/{{ .Release.Name }}-{{ .Values.namePrefix }}-conversion-webhook-tls
+        {{ .Release.Namespace }}/{{ include "ess-system.fullname" $ }}-{{ .Values.namePrefix }}-conversion-webhook-tls
     conversionWebhook:
-      tlsSecretName: "{{ .Release.Name }}-operator-selfsigned-certs"
+      tlsSecretName: >-
+        {{ include "ess-system.fullname" $ }}-operator-selfsigned-certs
+  emsImageStore: {}
 
 element-updater:
   namePrefix: updater
@@ -22,6 +24,8 @@ element-updater:
   crds:
     annotations:
       cert-manager.io/inject-ca-from: >-
-        {{ .Release.Namespace }}/{{ .Release.Name }}-{{ .Values.namePrefix }}-conversion-webhook-tls
+        {{ .Release.Namespace }}/{{ include "ess-system.fullname" $ }}-{{ .Values.namePrefix }}-conversion-webhook-tls
     conversionWebhook:
-      tlsSecretName: "{{ .Release.Name }}-updater-selfsigned-certs"
+      tlsSecretName: >-
+        {{ include "ess-system.fullname" $ }}-updater-selfsigned-certs
+  emsImageStore: {}

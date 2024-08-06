@@ -6,7 +6,7 @@
 apiVersion: matrix.element.io/v1alpha2
 kind: ElementDeployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "ess-stack.fullname" $ }}
   annotations:
     k8s.element.io/secretshash: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
 spec:

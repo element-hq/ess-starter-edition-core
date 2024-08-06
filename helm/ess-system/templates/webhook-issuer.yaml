@@ -6,7 +6,7 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ .Release.Name }}-webhook-ca
+  name: {{ include "ess-system.fullname" $ }}-webhook-ca
   namespace: {{ .Release.Namespace }}
 spec:
   selfSigned: {}
@@ -14,26 +14,26 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ .Release.Name }}-webhook-ca
+  name: {{ include "ess-system.fullname" $ }}-webhook-ca
   namespace: {{ .Release.Namespace }}
 spec:
   isCA: true
-  commonName: {{ .Release.Name }}-webhook-ca
-  secretName: {{ .Release.Name }}-webhook-ca
+  commonName: {{ include "ess-system.fullname" $ }}-webhook-ca
+  secretName: {{ include "ess-system.fullname" $ }}-webhook-ca
   # 10 years
   duration: 87660h0m0s
   privateKey:
     algorithm: RSA
   issuerRef:
-    name: {{ .Release.Name }}-webhook-ca
+    name: {{ include "ess-system.fullname" $ }}-webhook-ca
     kind: Issuer
     group: cert-manager.io
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ .Release.Name }}-webhook
+  name: {{ include "ess-system.fullname" $ }}-webhook
   namespace: {{ .Release.Namespace }}
 spec:
   ca:
-    secretName: {{ .Release.Name }}-webhook-ca
+    secretName: {{ include "ess-system.fullname" $ }}-webhook-ca

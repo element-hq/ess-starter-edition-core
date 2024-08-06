@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:1abb2ed2-a6f2-4cba-9219-0d34135c55e1",
+  "serialNumber": "urn:uuid:059915ce-9c4e-4bf3-b155-d4b386b830e1",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-07-31T08:19:14Z",
+    "timestamp": "2024-08-06T17:02:52Z",
     "tools": {
       "components": [
         {
@@ -5782,7 +5782,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:ca8b84c7-1fca-4c96-b72c-e1b567c25feb",
+      "bom-ref": "urn:uuid:d23d56d2-9b9e-4f7d-b96f-f8626239f5c2",
       "id": "CVE-2024-24791",
       "source": {
         "name": "nvd-cpe",
@@ -5827,7 +5827,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0c0685a5-20b4-4d4e-b216-7fcc178ccfa3",
+      "bom-ref": "urn:uuid:4f061c30-ca71-4175-b2f8-a855d5af11a7",
       "id": "GHSA-c5q2-7r4c-mv6g",
       "source": {
         "name": "github-language-go",
@@ -5863,7 +5863,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dc8ccea7-cebe-4285-89d2-41b5e4fa8093",
+      "bom-ref": "urn:uuid:b7276c49-c387-41bc-8f00-d4bb20d4b379",
       "id": "GHSA-xr7q-jx4m-x55m",
       "source": {
         "name": "github-language-go",

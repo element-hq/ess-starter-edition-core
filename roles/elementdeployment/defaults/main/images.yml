@@ -17,11 +17,11 @@ default_images_digests:
     icap:
       image_repository_server: ghcr.io
       image_repository_path: element-hq/docker-icap
-      image_tag: core-0.5.10-mod-0.5.5-patch2
+      image_tag: core-0.6.3-modules-0.5.7
     clam_anti_virus:
       image_repository_server: ghcr.io
       image_repository_path: element-hq/docker-clamav
-      image_tag: "1.1-patch2"
+      image_tag: "1.3.1-60"
     matrix_content_scanner:
       image_repository_server: docker.io
       image_repository_path: vectorim/matrix-content-scanner

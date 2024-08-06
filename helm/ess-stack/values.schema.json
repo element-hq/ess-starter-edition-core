@@ -176,7 +176,6 @@
                         "secretName": {
                           "description": "The name of a secret in the cluster that contains TLS certificates",
                           "maxLength": 253,
-                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
                           "type": "string"
                         }
                       },
@@ -228,7 +227,6 @@
                           "hostnames": {
                             "items": {
                               "description": "An hostname of the associated ip to add to /etc/hosts",
-                              "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                               "type": "string"
                             },
                             "type": "array"
@@ -272,7 +270,6 @@
                                 "type": "string"
                               }
                             ],
-                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                             "x-kubernetes-int-or-string": true
                           },
                           "default": {
@@ -291,7 +288,6 @@
                                 "type": "string"
                               }
                             ],
-                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                             "x-kubernetes-int-or-string": true
                           },
                           "default": {
@@ -405,7 +401,6 @@
               "default": "element-web",
               "description": "The secret data associated to synapse config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present",
               "maxLength": 253,
-              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
               "type": "string"
             }
           },
@@ -435,13 +430,11 @@
                     },
                     "maxFileSize": {
                       "description": "The maximum cachable file size. If a file is bigger than this size, a copy of it will be not be cached even if the scan succeeds. If the file is requested again, it is downloaded again from the homeserver, but is not written to disk or scanned.",
-                      "pattern": "[0-9]+[KMGT]B",
                       "type": "string"
                     },
                     "ttl": {
                       "default": "1d",
                       "description": "The maximum amount of time an entry will stay in the cache before being evicted.",
-                      "pattern": "[0-9]+[dwmy]+",
                       "type": "string"
                     }
                   },
@@ -539,7 +532,6 @@
                                 }
                               ],
                               "description": "The volume size to use to store the media",
-                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$",
                               "x-kubernetes-int-or-string": true
                             },
                             "storageClassName": {
@@ -592,7 +584,6 @@
                               "hostnames": {
                                 "items": {
                                   "description": "An hostname of the associated ip to add to /etc/hosts",
-                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                   "type": "string"
                                 },
                                 "type": "array"
@@ -636,7 +627,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -655,7 +645,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -824,7 +813,6 @@
                               "hostnames": {
                                 "items": {
                                   "description": "An hostname of the associated ip to add to /etc/hosts",
-                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                   "type": "string"
                                 },
                                 "type": "array"
@@ -863,7 +851,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -882,7 +869,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -1077,7 +1063,6 @@
                             }
                           ],
                           "description": "The volume size to use to store the media",
-                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$",
                           "x-kubernetes-int-or-string": true
                         },
                         "storageClassName": {
@@ -1130,7 +1115,6 @@
                               "hostnames": {
                                 "items": {
                                   "description": "An hostname of the associated ip to add to /etc/hosts",
-                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                   "type": "string"
                                 },
                                 "type": "array"
@@ -1174,7 +1158,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -1193,7 +1176,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -1316,7 +1298,6 @@
               "default": "matrix-content-scanner",
               "description": "The secret data associated to MatrixContentScanner config",
               "maxLength": 253,
-              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
               "type": "string"
             }
           },
@@ -1485,7 +1466,6 @@
                               "hostnames": {
                                 "items": {
                                   "description": "An hostname of the associated ip to add to /etc/hosts",
-                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                   "type": "string"
                                 },
                                 "type": "array"
@@ -1524,7 +1504,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -1543,7 +1522,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -1808,7 +1786,6 @@
                         "secretName": {
                           "description": "The name of a secret in the cluster that contains TLS certificates",
                           "maxLength": 253,
-                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
                           "type": "string"
                         }
                       },
@@ -1827,7 +1804,6 @@
               "default": "sliding-sync",
               "description": "The secret data associated to SlidingSync config",
               "maxLength": 253,
-              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
               "type": "string"
             }
           },
@@ -1954,7 +1930,6 @@
                             }
                           ],
                           "description": "The volume size to use to store the media",
-                          "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$",
                           "x-kubernetes-int-or-string": true
                         }
                       },
@@ -2050,7 +2025,6 @@
                                   "type": "string"
                                 }
                               ],
-                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                               "x-kubernetes-int-or-string": true
                             },
                             "default": {
@@ -2069,7 +2043,6 @@
                                   "type": "string"
                                 }
                               ],
-                              "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                               "x-kubernetes-int-or-string": true
                             },
                             "default": {
@@ -2184,7 +2157,6 @@
                               "hostnames": {
                                 "items": {
                                   "description": "An hostname of the associated ip to add to /etc/hosts",
-                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                   "type": "string"
                                 },
                                 "type": "array"
@@ -2228,7 +2200,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -2247,7 +2218,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -2496,7 +2466,6 @@
                         "secretName": {
                           "description": "The name of a secret in the cluster that contains TLS certificates",
                           "maxLength": 253,
-                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
                           "type": "string"
                         }
                       },
@@ -2552,7 +2521,6 @@
                               "hostnames": {
                                 "items": {
                                   "description": "An hostname of the associated ip to add to /etc/hosts",
-                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                   "type": "string"
                                 },
                                 "type": "array"
@@ -2591,7 +2559,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -2610,7 +2577,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -2809,7 +2775,6 @@
                               "hostnames": {
                                 "items": {
                                   "description": "An hostname of the associated ip to add to /etc/hosts",
-                                  "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                   "type": "string"
                                 },
                                 "type": "array"
@@ -2848,7 +2813,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -2867,7 +2831,6 @@
                                     "type": "string"
                                   }
                                 ],
-                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                 "x-kubernetes-int-or-string": true
                               },
                               "default": {
@@ -2984,7 +2947,6 @@
               "default": "synapse",
               "description": "The secret data associated to synapse config Key matching `config.macaroonSecretKey`, `config.registrationSharedSecretSecretKey`, `config.signingKeySecretKey`, `config.adminPasswordSecretKey`, `config.telemetry.password` and `config.postgres.passwordSecretKey` must be present. If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present If stun is enabled, key matching `config.stun.sharedSecretSecretKey` must be present. To override synapse default trust store for federation, every keys of `config.federation.certificateAutoritiesSecretKeys` should be present.",
               "maxLength": 253,
-              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
               "type": "string"
             }
           },
@@ -3170,7 +3132,6 @@
                         "secretName": {
                           "description": "The name of a secret in the cluster that contains TLS certificates",
                           "maxLength": 253,
-                          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
                           "type": "string"
                         }
                       },
@@ -3219,7 +3180,6 @@
                           "hostnames": {
                             "items": {
                               "description": "An hostname of the associated ip to add to /etc/hosts",
-                              "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                               "type": "string"
                             },
                             "type": "array"
@@ -3263,7 +3223,6 @@
                                 "type": "string"
                               }
                             ],
-                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                             "x-kubernetes-int-or-string": true
                           },
                           "default": {
@@ -3282,7 +3241,6 @@
                                 "type": "string"
                               }
                             ],
-                            "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                             "x-kubernetes-int-or-string": true
                           },
                           "default": {
@@ -3396,7 +3354,6 @@
               "default": "well-known-delegation",
               "description": "The secret data associated to wellKnownDelegation config If ingress is tls mode is using certificate, key matching `k8s.ingress.certificate.certFileSecretKey` and `k8s.ingress.certificate.privateKeySecretKey` must be present",
               "maxLength": 253,
-              "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
               "type": "string"
             }
           },
@@ -3584,7 +3541,6 @@
                     "secretName": {
                       "description": "The name of a secret in the cluster that contains TLS certificates",
                       "maxLength": 253,
-                      "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
                       "type": "string"
                     }
                   },
@@ -3668,7 +3624,6 @@
                       "hostnames": {
                         "items": {
                           "description": "An hostname of the associated ip to add to /etc/hosts",
-                          "pattern": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                           "type": "string"
                         },
                         "type": "array"
@@ -3792,7 +3747,6 @@
           "default": "global",
           "description": "The secret holding the global data",
           "maxLength": 253,
-          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
           "type": "string"
         }
       },

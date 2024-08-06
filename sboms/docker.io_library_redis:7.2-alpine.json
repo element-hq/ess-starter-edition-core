@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:f73c79c9-0b6f-411d-b05e-27c402ca1c66",
+  "serialNumber": "urn:uuid:87bda4d8-a6b7-46b1-8793-e0a53c4f596a",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-07-31T08:18:24Z",
+    "timestamp": "2024-08-06T17:02:06Z",
     "tools": {
       "components": [
         {
@@ -1822,7 +1822,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:9066a30f-d95f-4fac-b2a6-9ee907a2f2d1",
+      "bom-ref": "urn:uuid:fdc29508-a569-4200-b9e3-263d211ab534",
       "id": "CVE-2022-1705",
       "source": {
         "name": "nvd-cpe",
@@ -1873,7 +1873,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:84e786bb-0bd7-47fe-a0b7-88578212210d",
+      "bom-ref": "urn:uuid:538c0216-2fb2-442d-af1e-72ff82d161dc",
       "id": "CVE-2022-1962",
       "source": {
         "name": "nvd-cpe",
@@ -1921,7 +1921,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3184d30f-1bce-4e10-ace9-879bc26eddde",
+      "bom-ref": "urn:uuid:aa3584f5-08fd-443e-9007-269f6bab5322",
       "id": "CVE-2022-27664",
       "source": {
         "name": "nvd-cpe",
@@ -1972,7 +1972,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2c24083f-c115-4c29-b067-3bcf8ac7c257",
+      "bom-ref": "urn:uuid:a594eb85-c975-471c-9080-3f410d9aee2c",
       "id": "CVE-2022-28131",
       "source": {
         "name": "nvd-cpe",
@@ -2020,7 +2020,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:af8695ac-6ab4-4ff1-9a3f-f0aa0a62ee48",
+      "bom-ref": "urn:uuid:780f0ecb-ef7d-40b8-b4cb-75bb2c3c0847",
       "id": "CVE-2022-2879",
       "source": {
         "name": "nvd-cpe",
@@ -2068,7 +2068,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:94ab7c5a-2cea-408b-a160-3090826e50ac",
+      "bom-ref": "urn:uuid:641f656f-e412-40dd-a9e7-aef300fbb0f3",
       "id": "CVE-2022-2880",
       "source": {
         "name": "nvd-cpe",
@@ -2116,7 +2116,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:45dae99e-d4c1-4ae0-8a8a-3339b703b72f",
+      "bom-ref": "urn:uuid:db302fe8-10f8-4c11-afdf-6b497cfa926e",
       "id": "CVE-2022-30580",
       "source": {
         "name": "nvd-cpe",
@@ -2164,7 +2164,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:74a3cc7c-b59a-4797-9601-490a649817d1",
+      "bom-ref": "urn:uuid:8c71e36f-5e8f-4855-91ee-ca6bf4b4cef6",
       "id": "CVE-2022-30629",
       "source": {
         "name": "nvd-cpe",
@@ -2212,7 +2212,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ae29d084-280f-4742-af85-b04a0a1915fd",
+      "bom-ref": "urn:uuid:28f4e38e-35ad-4003-96a6-7f3b46871b6c",
       "id": "CVE-2022-30630",
       "source": {
         "name": "nvd-cpe",
@@ -2260,7 +2260,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c9f75a31-a31e-4991-91b7-a80d1676dc17",
+      "bom-ref": "urn:uuid:aa5ecd3c-af83-4119-9afc-3999b4285215",
       "id": "CVE-2022-30631",
       "source": {
         "name": "nvd-cpe",
@@ -2308,7 +2308,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:85268925-e216-4996-8331-02fdd4333e3d",
+      "bom-ref": "urn:uuid:610ae392-8f89-4f4c-a80d-eb5a610e486e",
       "id": "CVE-2022-30632",
       "source": {
         "name": "nvd-cpe",
@@ -2356,7 +2356,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:228a17aa-0386-40ba-9c9a-3c8ce882c893",
+      "bom-ref": "urn:uuid:cf39ed21-5dbb-48f3-8ec9-d4f3fe9ad973",
       "id": "CVE-2022-30633",
       "source": {
         "name": "nvd-cpe",
@@ -2404,7 +2404,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bf6e33fa-ea11-4c27-8341-4ffd0ffadaea",
+      "bom-ref": "urn:uuid:54e84bcc-0533-450a-bf44-40b68694b1ad",
       "id": "CVE-2022-30635",
       "source": {
         "name": "nvd-cpe",
@@ -2452,7 +2452,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a1301f2f-6c80-4d61-88ef-588be862d40f",
+      "bom-ref": "urn:uuid:43c0f313-26ad-45b9-af96-5a1854ac6352",
       "id": "CVE-2022-32148",
       "source": {
         "name": "nvd-cpe",
@@ -2500,7 +2500,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:38340dd5-d3aa-41e0-9020-c86b97cc9515",
+      "bom-ref": "urn:uuid:94fc97a1-169f-484a-8b42-fea16c48a8ac",
       "id": "CVE-2022-32189",
       "source": {
         "name": "nvd-cpe",
@@ -2548,7 +2548,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:73c32993-945a-43f0-a0e1-6271911f8b8f",
+      "bom-ref": "urn:uuid:0d2e4b32-7c3c-45ee-a1b3-e5e8ce603a0d",
       "id": "CVE-2022-41715",
       "source": {
         "name": "nvd-cpe",
@@ -2596,7 +2596,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9bc19b38-e3ee-425d-8c4c-f57bd8c52139",
+      "bom-ref": "urn:uuid:0aeb2237-6dd1-4b7b-b932-c826b4255940",
       "id": "CVE-2022-41717",
       "source": {
         "name": "nvd-cpe",
@@ -2698,7 +2698,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:40473d85-e18a-4bff-b3a6-e4614b1d41df",
+      "bom-ref": "urn:uuid:5e45e1fa-5a9d-43c1-be3a-65e6040ff85a",
       "id": "CVE-2022-41722",
       "source": {
         "name": "nvd-cpe",
@@ -2743,7 +2743,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:39b7f66d-d442-40b3-b890-958243e64308",
+      "bom-ref": "urn:uuid:b0a616b4-2880-4a3f-9547-fe8ee0cefa9f",
       "id": "CVE-2022-41723",
       "source": {
         "name": "nvd-cpe",
@@ -2818,7 +2818,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8b12bfca-8ac7-40b4-9956-92e7d360ba54",
+      "bom-ref": "urn:uuid:e961207a-de41-413a-acbd-3286a00e43e3",
       "id": "CVE-2022-41724",
       "source": {
         "name": "nvd-cpe",
@@ -2866,7 +2866,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:37cdd59b-7b04-403f-9047-c4896e9dd46a",
+      "bom-ref": "urn:uuid:051da238-1b6d-4d7d-be8f-822b97bb3ab1",
       "id": "CVE-2022-41725",
       "source": {
         "name": "nvd-cpe",
@@ -2914,7 +2914,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b6cf9a5d-97d3-46ac-8da2-8ff33ad058c9",
+      "bom-ref": "urn:uuid:1aeafa22-6c90-42c9-848c-262471b731b1",
       "id": "CVE-2023-24531",
       "source": {
         "name": "nvd-cpe",
@@ -2959,7 +2959,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:12a4d1a9-04b8-4426-8af1-9a76ee5b5b65",
+      "bom-ref": "urn:uuid:ba5da1bd-ee1f-46c3-bc45-018061ee1c08",
       "id": "CVE-2023-24532",
       "source": {
         "name": "nvd-cpe",
@@ -3004,7 +3004,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f5c52b65-d2c6-482b-8e10-11cd78d7c06a",
+      "bom-ref": "urn:uuid:c3fdb16b-be92-4c06-84da-aae86a5b7db9",
       "id": "CVE-2023-24534",
       "source": {
         "name": "nvd-cpe",
@@ -3055,7 +3055,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3930001b-9ebf-448a-8c69-78cee43fe5e1",
+      "bom-ref": "urn:uuid:72f9b547-41f4-42ea-84be-87b20f8ccd13",
       "id": "CVE-2023-24536",
       "source": {
         "name": "nvd-cpe",
@@ -3112,7 +3112,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7bfac86d-25b5-4687-b6ef-80b37b5c0dcf",
+      "bom-ref": "urn:uuid:8524c47e-4fb8-44f5-88b8-857846332c3f",
       "id": "CVE-2023-24537",
       "source": {
         "name": "nvd-cpe",
@@ -3160,7 +3160,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:fea8878d-daa5-4f3d-b056-93f833c80e1f",
+      "bom-ref": "urn:uuid:669ba075-7f4c-4de7-aa7f-4c0877bb68f9",
       "id": "CVE-2023-24538",
       "source": {
         "name": "nvd-cpe",
@@ -3208,7 +3208,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4004a1db-e2b2-4f99-98ef-95139cd94dcc",
+      "bom-ref": "urn:uuid:e079ac40-668b-4135-94c4-6d7a374a5948",
       "id": "CVE-2023-24539",
       "source": {
         "name": "nvd-cpe",
@@ -3253,7 +3253,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2f4af48e-a41a-40f1-a785-eeb486a2812d",
+      "bom-ref": "urn:uuid:705daae6-7fed-44f4-b90e-9aab7b3fcb30",
       "id": "CVE-2023-24540",
       "source": {
         "name": "nvd-cpe",
@@ -3298,7 +3298,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:acfe5c0d-d3b4-4143-94f6-e533c30049bc",
+      "bom-ref": "urn:uuid:bad3202d-cf13-46d9-850a-838021eeb304",
       "id": "CVE-2023-29400",
       "source": {
         "name": "nvd-cpe",
@@ -3343,7 +3343,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b5ffda61-37fa-4e60-8b8e-2785cd0fa338",
+      "bom-ref": "urn:uuid:279f4645-9be9-4ef3-943c-f069aa9592d9",
       "id": "CVE-2023-29402",
       "source": {
         "name": "nvd-cpe",
@@ -3397,7 +3397,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ba53fe04-83cf-4581-90cf-41fe6fd68c83",
+      "bom-ref": "urn:uuid:fc51ac38-e763-43dd-81bf-039e5e4325a4",
       "id": "CVE-2023-29403",
       "source": {
         "name": "nvd-cpe",
@@ -3451,7 +3451,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:da03917e-654e-4931-8693-65ce362a0d05",
+      "bom-ref": "urn:uuid:9d13d8ad-7624-46e9-8571-65bbf671cefb",
       "id": "CVE-2023-29404",
       "source": {
         "name": "nvd-cpe",
@@ -3505,7 +3505,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bbaa3fbc-a552-4b0b-b692-760f06605549",
+      "bom-ref": "urn:uuid:5180b43f-fa32-49b9-a432-83c49456439e",
       "id": "CVE-2023-29405",
       "source": {
         "name": "nvd-cpe",
@@ -3559,7 +3559,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:85d1e1ee-cfd8-40b6-a52b-549eb67ce0be",
+      "bom-ref": "urn:uuid:13215348-467d-49cb-9ff8-c28cdd6d172d",
       "id": "CVE-2023-29406",
       "source": {
         "name": "nvd-cpe",
@@ -3610,7 +3610,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:98534d3f-b64b-4a67-ae53-2a6f80a800a5",
+      "bom-ref": "urn:uuid:43e5ae8f-28dd-489d-afd9-e30ffa9522ae",
       "id": "CVE-2023-29409",
       "source": {
         "name": "nvd-cpe",
@@ -3661,7 +3661,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dc58d00d-cc60-4a64-b527-3e988c7effd2",
+      "bom-ref": "urn:uuid:25f22eb5-f32c-47fb-896a-00526713fc72",
       "id": "CVE-2023-39318",
       "source": {
         "name": "nvd-cpe",
@@ -3712,7 +3712,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:00401dc3-85a1-45be-beca-16b5dde4a0f1",
+      "bom-ref": "urn:uuid:3f7e00a8-d38d-4c56-ba01-d130405b8edf",
       "id": "CVE-2023-39319",
       "source": {
         "name": "nvd-cpe",
@@ -3763,7 +3763,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:955b18e1-bb8d-48c2-b453-95824b77d900",
+      "bom-ref": "urn:uuid:7910d297-258a-4ba5-9a49-dc7fad665b5d",
       "id": "CVE-2023-39323",
       "source": {
         "name": "nvd-cpe",
@@ -3823,7 +3823,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7a4a2087-b4af-42b2-a9b0-998dacf904d4",
+      "bom-ref": "urn:uuid:a26b0164-4a86-4dc8-953e-9385bdaaed82",
       "id": "CVE-2023-39326",
       "source": {
         "name": "nvd-cpe",
@@ -3871,7 +3871,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:980e819e-bd6c-4250-995a-c5a3c62c2f95",
+      "bom-ref": "urn:uuid:b7a96e36-7a81-4bfc-a792-e4c0b3d65c12",
       "id": "CVE-2023-44487",
       "source": {
         "name": "nvd-cpe",
@@ -3887,6 +3887,12 @@
         }
       ],
       "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
         {
           "score": 7.5,
           "severity": "high",
@@ -4324,7 +4330,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7dd54c13-8389-4754-8545-8eda30b7b80a",
+      "bom-ref": "urn:uuid:b5284739-3281-4c96-903c-76b0eb1b5939",
       "id": "CVE-2023-45285",
       "source": {
         "name": "nvd-cpe",
@@ -4372,7 +4378,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:33e8257c-936d-410e-b865-245e8c5827be",
+      "bom-ref": "urn:uuid:d9c1fb83-f8c7-4822-90ef-e68b2741efe2",
       "id": "CVE-2023-45287",
       "source": {
         "name": "nvd-cpe",
@@ -4423,7 +4429,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ef255392-3a8e-4874-ba3a-e79d6e13b546",
+      "bom-ref": "urn:uuid:2d74ea51-e148-4814-b588-1ef9886d3402",
       "id": "CVE-2023-45288",
       "source": {
         "name": "nvd-cpe",
@@ -4477,7 +4483,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:291f64e8-0bf2-4e5c-8696-593aa757eca8",
+      "bom-ref": "urn:uuid:113415f5-e837-47d6-8707-c6eb9be1c84e",
       "id": "CVE-2023-45289",
       "source": {
         "name": "nvd-cpe",
@@ -4525,7 +4531,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6eeb258e-4660-40a5-8c6c-96c1fb311401",
+      "bom-ref": "urn:uuid:f1ce4370-6d57-4967-8aa3-3c7d7a635100",
       "id": "CVE-2023-45290",
       "source": {
         "name": "nvd-cpe",
@@ -4573,7 +4579,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:33a87709-9e13-43ed-bc80-8a26329d1e18",
+      "bom-ref": "urn:uuid:8d1bbeee-dbea-4de6-ba7f-8ec0c7108529",
       "id": "CVE-2024-24783",
       "source": {
         "name": "nvd-cpe",
@@ -4621,7 +4627,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7da9f448-c02f-49ce-b285-600b01621a15",
+      "bom-ref": "urn:uuid:25836f49-56a2-4f75-852f-586f9b1d3bc8",
       "id": "CVE-2024-24784",
       "source": {
         "name": "nvd-cpe",
@@ -4638,7 +4644,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
         }
       ],
       "description": "The ParseAddressList function incorrectly handles comments (text within parentheses) within display names. Since this is a misalignment with conforming address parsers, it can result in different trust decisions being made by programs using different parsers.",
@@ -4669,7 +4678,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c8b4c695-0e22-4728-a59f-8bff6029e888",
+      "bom-ref": "urn:uuid:2cb74b91-6989-4a45-989f-b00d56b9d80c",
       "id": "CVE-2024-24785",
       "source": {
         "name": "nvd-cpe",
@@ -4717,7 +4726,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:37ac7c4b-1970-41b1-87b6-4f2e00ba0deb",
+      "bom-ref": "urn:uuid:c0cfc41e-56af-4f65-b2cf-ae53af7f595a",
       "id": "CVE-2024-24787",
       "source": {
         "name": "nvd-cpe",
@@ -4768,7 +4777,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:555b94a3-2f36-47ed-86ad-100791a63540",
+      "bom-ref": "urn:uuid:519db567-da35-4942-b382-ae3f4ca38bb3",
       "id": "CVE-2024-24789",
       "source": {
         "name": "nvd-cpe",
@@ -4825,7 +4834,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c32cec5f-d3a1-4daf-8bf8-5a744bede8aa",
+      "bom-ref": "urn:uuid:6dc1c169-b772-4891-834f-5e123d16bc0b",
       "id": "CVE-2024-24790",
       "source": {
         "name": "nvd-cpe",
@@ -4873,7 +4882,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:06c294aa-0b4a-4579-9716-470116f8b168",
+      "bom-ref": "urn:uuid:bcbebad4-0e4e-4771-b63e-ebc8985a97f6",
       "id": "CVE-2024-24791",
       "source": {
         "name": "nvd-cpe",
