@@ -1,0 +1,27 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: v2
+name: ess-meta
+description: A Helm chart to deploy ESS easily
+type: application
+version: 2.19.10
+appVersion: "2.19.10"
+
+dependencies:
+- name: ess-stack
+  repository: file://../../ess-stack
+  version: 2.19.10
+- name: ess-system
+  repository: file://../../ess-system
+  version: 2.19.10
+- name: postgresql
+  version: 13.2.24
+  repository: https://charts.bitnami.com/bitnami
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  tags:
+  - bitnami-common
+  version: 2.x.x

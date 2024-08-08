@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b5e01ec7-d3e1-49e0-98bb-85721d367092",
+  "serialNumber": "urn:uuid:8d2ea973-0994-47aa-a1fa-88bd80682517",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-08-06T17:02:00Z",
+    "timestamp": "2024-08-08T13:02:47Z",
     "tools": {
       "components": [
         {
@@ -1959,7 +1959,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:db4dbd9a-7d6d-4238-a9b8-59758ea75a9a",
+      "bom-ref": "urn:uuid:5094deb1-b9d6-4f61-a4c3-e203a22e7e7e",
       "id": "CVE-2016-2102",
       "source": {
         "name": "nvd-cpe",
@@ -2001,7 +2001,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:11f4b1fc-0f46-4f70-803e-54428ca873d0",
+      "bom-ref": "urn:uuid:f8c16f5d-0a15-4283-89ce-55652e4a2c44",
       "id": "CVE-2023-0056",
       "source": {
         "name": "nvd-cpe",

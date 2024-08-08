@@ -1,0 +1,104 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+namespaceOverride:
+
+lb:
+  enable: false
+
+global:
+  baseUrl:
+
+ess-system:
+  fullnameOverride: "{{ .Release.Name }}-system"
+  element-operator:
+    deployManager: true
+    deployCrds: false
+    deployCrdRoles: false
+
+  element-updater:
+    deployManager: true
+    deployCrds: false
+    deployCrdRoles: false
+
+ess-stack:
+  secrets:
+    global:
+      content:
+        genericSharedSecret: >-
+          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-global" (include "ess-stack.fullname" $)) "key" "genericSharedSecret" "skipQuote" true "context" $) }}
+        ca.pem: |
+          {{ include "ess.secrets.self-signed-ca" . }}
+
+    synapse:
+      content:
+        macaroon: >-
+          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "macaroon" "skipQuote" true "context" $) }}
+        postgresPassword: >-
+          {{ include "ess.secrets.passwords.manage-with-default" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "postgresPassword" "defaultPasswordValue" (include "ess.secrets.password.shared-password" (dict "sharedPasswordId" "synapse-pg-password" "context" $)) "context" $) }}
+        registrationSharedSecret: >-
+          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "registrationSharedSecret" "skipQuote" true "context" $) }}
+
+  global:
+    config:
+      domainName: "{{ .Values.global.baseUrl }}"
+      supportDnsFederationDelegation: false
+      verifyTls: true
+    k8s:
+      ingresses:
+        tls:
+          mode: existing
+          secretName: "{{ .Release.Name }}-selfsigned"
+      workloads:
+        replicas: 1
+        hostAliases:
+        - ip: >-
+            {{ (lookup "v1" "Service" "ingress-nginx" "ingress-nginx-controller").spec.clusterIP }}
+          hostnames:
+          - "sso.{{ .Values.global.baseUrl }}"
+
+  components:
+    elementWeb: 
+      k8s:
+        ingress:
+          fqdn: "element.{{ .Values.global.baseUrl }}"
+    synapse:
+      config:
+        media:
+          volume:
+            size: 5Gi
+        postgresql:
+          database: synapse
+          host: "{{ .Release.Name }}-postgresql-hl.{{ $.Release.Namespace }}.svc.cluster.local"
+          port: 5432
+          sslMode: disable
+          user: ess_user
+      k8s:
+        ingress:
+          fqdn: "synapse.{{ .Values.global.baseUrl }}"
+    wellKnownDelegation:
+      config: {}
+      k8s: {}
+
+postgresql:
+  enable: true
+  auth:
+    existingSecret: "{{ .Release.Name }}-postgres-db"
+    username: "ess_user"
+    secretKeys:
+      adminPasswordKey: "adminPassword"
+      userPasswordKey: "synapsePassword"
+
+  primary:
+    initdb:
+      scripts:
+        init-synapse.sh: |
+          #!/bin/sh
+          (echo -n $POSTGRES_POSTGRES_PASSWORD | psql -W -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'synapse'" | grep -q 1) || \
+          (echo -n $POSTGRES_POSTGRES_PASSWORD | createdb --encoding=UTF8 --locale=C --template=template0 --owner=ess_user synapse -U postgres)
+    persistence:
+      enabled: true
+      size: 8Gi
+

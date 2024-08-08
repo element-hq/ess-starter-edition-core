@@ -7,6 +7,9 @@
 secrets:
   global: {}
 
-global: {}
+global:
+  k8s:
+    ingresses: {}
+
 
 components: {}

@@ -1,0 +1,22 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}-selfsigned
+  namespace: {{ .Release.Namespace }}
+spec:
+  commonName: "{{ .Values.global.baseUrl }}"
+  secretName: {{ .Release.Name }}-selfsigned
+  privateKey:
+    algorithm: RSA
+  issuerRef:
+    name: ess-stack-selfsigned
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:
+  - "{{ .Values.global.baseUrl }}"
+  - "*.{{ .Values.global.baseUrl }}"

@@ -1,0 +1,28 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |-
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
+      - containerPort: 31000
+        hostPort: 31000
+        protocol: UDP
+      - containerPort: 31000
+        hostPort: 31000
+        protocol: TCP

@@ -1,0 +1,19 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+global:
+  baseUrl: ess.localhost
+
+ess-stack:
+  secrets:
+    synapse:
+      content:
+        # python3 -c "import signedjson.key; signing_key = signedjson.key.generate_signing_key(0); print(f\"{signing_key.alg} {signing_key.version} {signedjson.key.encode_signing_key_base64(signing_key)}\")"
+        signingKey: ed25519 0 7SyX4/XJuMxulOTRIzjw+jgNwcWC9XRnkUJn3CfI6Kg
+
+
+  emsImageStore:
+    username: <username>
+    password: <password>

@@ -13,9 +13,9 @@ spec:
   components:
 {{ range $component, $properties := $.Values.components }}
     {{ $component }}:
-      secretName: {{ (index $.Values.secrets $component).existingSecret | default (printf "%s-secret" ($component | lower) )  }}
+      secretName: {{ (index $.Values.secrets $component).existingSecret | default (printf "%s-stack-%s" (include "ess-stack.fullname" $) ($component | lower) )  }}
       {{ tpl (toYaml $properties) $ | nindent 6 }}
 {{ end }}
   global:
-    secretName: {{ $.Values.secrets.global.existingSecret | default ("global-secret")  }}
+    secretName: {{ $.Values.secrets.global.existingSecret | default (printf "%s-stack-global" (include "ess-stack.fullname" $) )   }}
     {{ tpl (toYaml $.Values.global) . | nindent 4 }}

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:db7a88af-bf46-4ea7-b074-2d4c09d4b05a",
+  "serialNumber": "urn:uuid:27fbc844-7a96-4651-b4ee-b7ea0afd4637",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-08-06T17:02:42Z",
+    "timestamp": "2024-08-08T13:03:39Z",
     "tools": {
       "components": [
         {
@@ -4040,7 +4040,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:d4b4a073-d239-44ba-b427-8073217ddad7",
+      "bom-ref": "urn:uuid:491a4675-3a9d-4043-b299-3415cc6d7838",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.20",
@@ -4072,7 +4072,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a201911b-b463-4261-8167-eb84b0a996b7",
+      "bom-ref": "urn:uuid:5767b920-6d32-4903-b700-dea1d0531ad6",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.20",
@@ -4104,7 +4104,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:fcb7d80f-7c52-4a95-9435-128ee7a6495b",
+      "bom-ref": "urn:uuid:97d426cb-9236-456f-9724-5f815dc6763a",
       "id": "CVE-2024-6197",
       "source": {
         "name": "alpine-distro-alpine-3.20",
@@ -4136,7 +4136,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9c23735e-80aa-4fd3-a309-45d30cd46b98",
+      "bom-ref": "urn:uuid:3f18b2c1-3287-4837-a65b-8754a7c53a12",
       "id": "CVE-2024-6874",
       "source": {
         "name": "alpine-distro-alpine-3.20",
