@@ -13,19 +13,13 @@ It requires locally available on your laptop:
 - [kind](https://kind.sigs.k8s.io/docs/user/quick-start/): to make the local cluster
 - [kubectl](https://kubernetes.io/docs/tasks/tools/): to drive the cluster and pods
 - [helm](https://helm.sh/docs/intro/install/): to install applications on the cluster
-- EMS Image Store Credentials (to be requested from the EMS part of Server Products Team). The process is a little convoluted at present
-  1. Visit https://element.io/pricing
-  2. Under `Starter` click `Download`
-  3. On the next screen click `Download Element Starter`
-  4. Agree to the T&Cs, then click `Continue`
-  5. Register for a new account with your `@element.io` email address
-  6. Ask in [Server Products Team | Lobby](https://matrix.to/#/#on-premise-tech:element.io) to have your new account upgraded to Enterprise and marked as an Employee
-  7. Open https://ems.element.io/on-premise/subscriptions to find your new subscription which will contain your username
-     and token.
+
+
 
 You need to be able to login against the helm repositories:
-
-
+```
+helm repo add ess-starter-edition-core https://element-hq.github.io/ess-starter-edition-core
+```
 
 You have to add the community helm repositories as well :
 
