@@ -26,3 +26,7 @@ nodes:
       - containerPort: 31000
         hostPort: 31000
         protocol: TCP
+containerdConfigPatches:
+  - |-
+    [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:5000"]
+      endpoint = ["http://easy-setup-registry:5000"]

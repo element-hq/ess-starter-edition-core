@@ -5,7 +5,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 -->
 # easy setup chart
-This creates an ESS deployment in a local cluster.
+This creates an ESS deployment in a local cluster with a local registry available on port 5000.
 
 ## Preparation
 
@@ -13,12 +13,14 @@ It requires locally available on your laptop:
 - [kind](https://kind.sigs.k8s.io/docs/user/quick-start/): to make the local cluster
 - [kubectl](https://kubernetes.io/docs/tasks/tools/): to drive the cluster and pods
 - [helm](https://helm.sh/docs/intro/install/): to install applications on the cluster
-
-
+- [docker][https://docs.docker.com/get-docker/]: to run kind
 
 You need to be able to login against the helm repositories:
-```
+
+
+```sh
 helm repo add ess-starter-edition-core https://element-hq.github.io/ess-starter-edition-core
+helm dep build ess-meta
 ```
 
 You have to add the community helm repositories as well :
@@ -41,6 +43,8 @@ cp values.ess-stack.yaml.example values.ess-stack.yaml
 Edit the files, changing any desired values.
 
 You can find more variables to override in `values.ess-stack.yaml` in the `ess-stack/values.yml` file.
+
+The values schema documentation of the `ess-stack` subchart can be found at https://ess-schemas-docs.element.io/starter-edition-core/.
 
 ## Run
 

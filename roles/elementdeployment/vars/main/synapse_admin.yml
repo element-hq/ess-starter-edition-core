@@ -1,0 +1,9 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+component_info_synapse_admin:
+- id: synapse_admin
+  application_services: false
+  secret_name_is_optional: true

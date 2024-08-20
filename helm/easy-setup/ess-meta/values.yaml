@@ -39,12 +39,11 @@ ess-stack:
         postgresPassword: >-
           {{ include "ess.secrets.passwords.manage-with-default" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "postgresPassword" "defaultPasswordValue" (include "ess.secrets.password.shared-password" (dict "sharedPasswordId" "synapse-pg-password" "context" $)) "context" $) }}
         registrationSharedSecret: >-
-          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "registrationSharedSecret" "skipQuote" true "context" $) }}
+          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "failOnNew" false "key" "registrationSharedSecret" "skipQuote" true "context" $) }}
 
-  global:
+  globalOptions:
     config:
       domainName: "{{ .Values.global.baseUrl }}"
-      supportDnsFederationDelegation: false
       verifyTls: true
     k8s:
       ingresses:
@@ -57,6 +56,8 @@ ess-stack:
         - ip: >-
             {{ (lookup "v1" "Service" "ingress-nginx" "ingress-nginx-controller").spec.clusterIP }}
           hostnames:
+          - "{{ .Values.global.baseUrl }}"
+          - "synapse.{{ .Values.global.baseUrl }}"
           - "sso.{{ .Values.global.baseUrl }}"
 
   components:

@@ -7,7 +7,7 @@ default_images_digests:
     element_web:
       image_repository_server: docker.io
       image_repository_path: vectorim/element-web
-      image_tag: v1.11.69
+      image_tag: v1.11.75
   kube_rbac_proxy:
     kube_rbac_proxy:
       image_repository_server: quay.io

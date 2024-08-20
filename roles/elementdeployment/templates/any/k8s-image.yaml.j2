@@ -1,5 +1,5 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -8,6 +8,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 # If we have a _subcomponent, we use it for the image details and the workload docker secret
 # If we have a _subcontainer, we use it only for the image details
 # Note : in this pattern, a component cannot have a subcomponent with multiple subcontainers.
+{%- set images_digests =  imported_images_digests if (
+    _component_item in (imported_images_digests | default({}))
+    and (_subcomponent | default(_subcontainer) | default(_component_item)) in (imported_images_digests[_component_item] | default({}))
+ ) else default_images_digests %}
 {%- set image_details =  images_digests[_component_item][_subcomponent | default(_subcontainer) | default(_component_item)] %}
 
 image:

@@ -18,4 +18,4 @@ spec:
 {{ end }}
   global:
     secretName: {{ $.Values.secrets.global.existingSecret | default (printf "%s-stack-global" (include "ess-stack.fullname" $) )   }}
-    {{ tpl (toYaml $.Values.global) . | nindent 4 }}
+    {{ tpl (toYaml $.Values.globalOptions) . | nindent 4 }}

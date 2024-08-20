@@ -7,7 +7,7 @@
 secrets:
   global: {}
 
-global:
+globalOptions:
   k8s:
     ingresses: {}
 
