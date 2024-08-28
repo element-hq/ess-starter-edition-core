@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ef2bd37f-092a-4b97-accf-4803d3bc218a",
+  "serialNumber": "urn:uuid:775eea82-af7a-48cc-a6d8-1bcd80a002f2",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-08-20T16:26:32Z",
+    "timestamp": "2024-08-28T11:17:14Z",
     "tools": {
       "components": [
         {
@@ -4040,7 +4040,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:b91ac9a6-f200-48a4-80aa-195c9488218b",
+      "bom-ref": "urn:uuid:bccea17f-9d52-40b7-834a-0c7c5d85bbff",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.20",
@@ -4072,7 +4072,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dfcb0f97-bd70-4520-b118-b03714f642b7",
+      "bom-ref": "urn:uuid:b64d8079-bd6a-4eb7-8a22-9cb7a7fa058f",
       "id": "CVE-2024-5535",
       "source": {
         "name": "alpine-distro-alpine-3.20",
@@ -4104,7 +4104,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1aa3520c-9ed4-46b5-9d2a-597a5c2b8a63",
+      "bom-ref": "urn:uuid:36f78403-cbfc-4969-a82e-36fb21b2adca",
       "id": "CVE-2024-6197",
       "source": {
         "name": "alpine-distro-alpine-3.20",
@@ -4136,7 +4136,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6611345b-b90a-4f05-9f47-53f43f3a95ee",
+      "bom-ref": "urn:uuid:d2666fa2-904c-4c49-9d54-4c3ee8fa5e70",
       "id": "CVE-2024-6874",
       "source": {
         "name": "alpine-distro-alpine-3.20",
@@ -4159,6 +4159,38 @@
       "advisories": [
         {
           "url": "https://www.cve.org/CVERecord?id=CVE-2024-6874"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libcurl@8.8.0-r0?arch=x86_64&upstream=curl&distro=alpine-3.20.1&package-id=e55d63eab06d5f01"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:d581dfb9-9183-4b9e-b88c-521ed4b8e802",
+      "id": "CVE-2024-7264",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-7264"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-7264",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-7264"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "medium"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-7264"
         }
       ],
       "affects": [

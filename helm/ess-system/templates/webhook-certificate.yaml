@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+---
 
 {{ if or (eq (index .Values "element-operator").deployCrds true) (eq (index .Values "element-updater").deployCrds true) }}
 apiVersion: cert-manager.io/v1

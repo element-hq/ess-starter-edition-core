@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/component: matrix-delegation
     app.kubernetes.io/name: well-known
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-well-known"
-    app.kubernetes.io/version: "{{ image.tag | default(image_tag) }}"
+    app.kubernetes.io/version: "{{ image.tag }}"
 {% if workloads.annotations | default([]) %}
   annotations:
     {{ _matrix_element_io_wellknowndelegation_spec.workloads.annotations | to_nice_yaml(indent=2) | indent(4) }}
@@ -37,7 +37,7 @@ spec:
         app.kubernetes.io/component: matrix-delegation
         app.kubernetes.io/name: well-known
         app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-well-known"
-        app.kubernetes.io/version: "{{ image.tag | default(image_tag) }}"
+        app.kubernetes.io/version: "{{ image.tag }}"
         k8s.element.io/confighash: "{{ (nginx_config + (client_json | to_nice_json) + (server_json | to_nice_json)) | hash('sha1') }}"
 {% if workloads.annotations | default([]) %}
       annotations:
@@ -78,7 +78,7 @@ spec:
 {% if image_has_digest %}
         image: "{{ image.repository | default(image_repository) }}@{{ image.digest }}"
 {% else %}
-        image: "{{ image.repository | default(image_repository) }}:{{ image.tag | default(image_tag) }}"
+        image: "{{ image.repository | default(image_repository) }}:{{ image.tag }}"
 {% endif %}
         imagePullPolicy: "{{ image.pull_policy | default(image_pull_policy) }}"
 {% if (_matrix_element_io_wellknowndelegation_spec.config.containersSecurityContext | default({})) | length > 0 %}

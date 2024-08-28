@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a74cc0a2-8e4f-45b8-8280-ba7928b35d58",
+  "serialNumber": "urn:uuid:d5152c2a-f528-47b5-8e87-4ce4b427e175",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-08-20T16:25:57Z",
+    "timestamp": "2024-08-28T11:16:26Z",
     "tools": {
       "components": [
         {
@@ -17,22 +17,22 @@
       ]
     },
     "component": {
-      "bom-ref": "62753ff98dd51eeb",
+      "bom-ref": "e8c27725e3131790",
       "type": "container",
-      "name": "docker.io/library/haproxy:2.8-alpine",
-      "version": "2.8-alpine"
+      "name": "docker.io/library/haproxy:3.0-alpine",
+      "version": "3.0-alpine"
     },
     "properties": null
   },
   "components": [
     {
-      "bom-ref": "pkg:apk/alpine/.haproxy-rundeps@20240722.230409?arch=noarch&distro=alpine-3.20.2&package-id=c845332858f23791",
+      "bom-ref": "pkg:apk/alpine/.haproxy-rundeps@20240722.230423?arch=noarch&distro=alpine-3.20.2&package-id=b06a5cec4b58d9a1",
       "type": "library",
       "name": ".haproxy-rundeps",
-      "version": "20240722.230409",
+      "version": "20240722.230423",
       "description": "virtual meta package",
-      "cpe": "cpe:2.3:a:.haproxy-rundeps:.haproxy-rundeps:20240722.230409:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/.haproxy-rundeps@20240722.230409?arch=noarch&distro=alpine-3.20.2",
+      "cpe": "cpe:2.3:a:.haproxy-rundeps:.haproxy-rundeps:20240722.230423:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/.haproxy-rundeps@20240722.230423?arch=noarch&distro=alpine-3.20.2",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -48,27 +48,27 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy-rundeps:.haproxy_rundeps:20240722.230409:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy-rundeps:.haproxy_rundeps:20240722.230423:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy-rundeps:20240722.230409:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy-rundeps:20240722.230423:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy_rundeps:20240722.230409:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy_rundeps:20240722.230423:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy:.haproxy-rundeps:20240722.230409:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy:.haproxy-rundeps:20240722.230423:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy:.haproxy_rundeps:20240722.230409:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy:.haproxy_rundeps:20240722.230423:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -80,7 +80,7 @@
         },
         {
           "name": "syft:metadata:pullChecksum",
-          "value": "Q17ZdhcgF6+XIP+r/9ho3CkP3lAn0="
+          "value": "Q1zakZcLFbW2DyOWPb6Sk0WFZXa3Q="
         },
         {
           "name": "syft:metadata:pullDependencies:0",
@@ -92,7 +92,7 @@
         },
         {
           "name": "syft:metadata:pullDependencies:2",
-          "value": "so:liblua-5.3.so.0"
+          "value": "so:liblua-5.4.so.0"
         },
         {
           "name": "syft:metadata:pullDependencies:3",
@@ -165,7 +165,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -274,7 +274,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -359,7 +359,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -444,7 +444,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -541,7 +541,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -634,7 +634,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -737,7 +737,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -864,7 +864,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -897,12 +897,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:generic/haproxy@2.8.10?package-id=5e896335894225c6",
+      "bom-ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a",
       "type": "application",
       "name": "haproxy",
-      "version": "2.8.10",
-      "cpe": "cpe:2.3:a:haproxy:haproxy:2.8.10:*:*:*:*:*:*:*",
-      "purl": "pkg:generic/haproxy@2.8.10",
+      "version": "3.0.3",
+      "cpe": "cpe:2.3:a:haproxy:haproxy:3.0.3:*:*:*:*:*:*:*",
+      "purl": "pkg:generic/haproxy@3.0.3",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -918,11 +918,11 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:haproxy:haproxy:2.8.10:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:haproxy:haproxy:3.0.3:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -979,7 +979,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1064,7 +1064,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1109,11 +1109,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/lua5.3-libs@5.3.6-r6?arch=x86_64&upstream=lua5.3&distro=alpine-3.20.2&package-id=359a5758e4cf9209",
+      "bom-ref": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
-      "name": "lua5.3-libs",
-      "version": "5.3.6-r6",
+      "name": "lua5.4-libs",
+      "version": "5.4.6-r1",
       "description": "Lua dynamic library runtime",
       "licenses": [
         {
@@ -1122,8 +1122,8 @@
           }
         }
       ],
-      "cpe": "cpe:2.3:a:lua5.3-libs:lua5.3-libs:5.3.6-r6:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/lua5.3-libs@5.3.6-r6?arch=x86_64&upstream=lua5.3&distro=alpine-3.20.2",
+      "cpe": "cpe:2.3:a:lua5.4-libs:lua5.4-libs:5.4.6-r1:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2",
       "externalReferences": [
         {
           "url": "https://www.lua.org/",
@@ -1145,99 +1145,99 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3-libs:lua5.3_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4-libs:lua5.4_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3_libs:lua5.3-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4_libs:lua5.4-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3_libs:lua5.3_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4_libs:lua5.4_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua-libs:lua5.3-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua-libs:lua5.4-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua-libs:lua5.3_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua-libs:lua5.4_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3-libs:lua-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4-libs:lua-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3-libs:lua_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4-libs:lua_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3_libs:lua-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4_libs:lua-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3_libs:lua_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4_libs:lua_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua_libs:lua5.3-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua_libs:lua5.4-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua_libs:lua5.3_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua_libs:lua5.4_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3:lua5.3-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4:lua5.4-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3:lua5.3_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4:lua5.4_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua-libs:lua-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua-libs:lua-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua-libs:lua_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua-libs:lua_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua_libs:lua-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua_libs:lua-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua_libs:lua_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua_libs:lua_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3:lua-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4:lua-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua5.3:lua_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua5.4:lua_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua:lua5.3-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua:lua5.4-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua:lua5.3_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua:lua5.4_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua:lua-libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua:lua-libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:lua:lua_libs:5.3.6-r6:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:lua:lua_libs:5.4.6-r1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1245,23 +1245,23 @@
         },
         {
           "name": "syft:metadata:gitCommitOfApkPort",
-          "value": "cb51c983d74889acde40cf8c7aa5c03d9e2bd6f7"
+          "value": "93d811c319d6479dba4716800d8b809f0b458fe2"
         },
         {
           "name": "syft:metadata:installedSize",
-          "value": "212992"
+          "value": "241664"
         },
         {
           "name": "syft:metadata:originPackage",
-          "value": "lua5.3"
+          "value": "lua5.4"
         },
         {
           "name": "syft:metadata:provides:0",
-          "value": "so:liblua-5.3.so.0=0.0.0"
+          "value": "so:liblua-5.4.so.0=0.0.0"
         },
         {
           "name": "syft:metadata:pullChecksum",
-          "value": "Q1uAaLKQmnWTBxiLCv3kmWWGU6gOU="
+          "value": "Q1oVf05/oIswe4uWKVpAkSuSVURZc="
         },
         {
           "name": "syft:metadata:pullDependencies:0",
@@ -1269,7 +1269,7 @@
         },
         {
           "name": "syft:metadata:size",
-          "value": "90954"
+          "value": "103892"
         }
       ]
     },
@@ -1318,7 +1318,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1413,7 +1413,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1522,7 +1522,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1599,7 +1599,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1692,7 +1692,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1773,7 +1773,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:f647d2bf2c599e3d354f19de3f8894ecfbae032b27f97e4b11d1f3a338710f20"
+          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
         },
         {
           "name": "syft:location:0:path",
@@ -1848,11 +1848,11 @@
   ],
   "dependencies": [
     {
-      "ref": "pkg:apk/alpine/.haproxy-rundeps@20240722.230409?arch=noarch&distro=alpine-3.20.2&package-id=c845332858f23791",
+      "ref": "pkg:apk/alpine/.haproxy-rundeps@20240722.230423?arch=noarch&distro=alpine-3.20.2&package-id=b06a5cec4b58d9a1",
       "dependsOn": [
         "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
         "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
-        "pkg:apk/alpine/lua5.3-libs@5.3.6-r6?arch=x86_64&upstream=lua5.3&distro=alpine-3.20.2&package-id=359a5758e4cf9209",
+        "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
         "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73",
         "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.2&package-id=319e5c7839d7b09b"
       ]
@@ -1908,7 +1908,7 @@
       ]
     },
     {
-      "ref": "pkg:apk/alpine/lua5.3-libs@5.3.6-r6?arch=x86_64&upstream=lua5.3&distro=alpine-3.20.2&package-id=359a5758e4cf9209",
+      "ref": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
       "dependsOn": [
         "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
       ]
@@ -1947,11 +1947,11 @@
       ]
     },
     {
-      "ref": "pkg:generic/haproxy@2.8.10?package-id=5e896335894225c6",
+      "ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a",
       "dependsOn": [
         "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
         "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
-        "pkg:apk/alpine/lua5.3-libs@5.3.6-r6?arch=x86_64&upstream=lua5.3&distro=alpine-3.20.2&package-id=359a5758e4cf9209",
+        "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
         "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73",
         "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.2&package-id=319e5c7839d7b09b"
       ]
@@ -1959,7 +1959,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:56bd00b0-1ed7-4977-b384-4d26b13f79aa",
+      "bom-ref": "urn:uuid:d0539420-9fbf-4227-9eb9-5945932f8363",
       "id": "CVE-2016-2102",
       "source": {
         "name": "nvd-cpe",
@@ -1996,12 +1996,12 @@
       ],
       "affects": [
         {
-          "ref": "pkg:generic/haproxy@2.8.10?package-id=5e896335894225c6"
+          "ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a"
         }
       ]
     },
     {
-      "bom-ref": "urn:uuid:69bf9746-5c11-4965-a7dc-9eba553e459e",
+      "bom-ref": "urn:uuid:7d93e4b6-e928-4893-a999-89b610628c6e",
       "id": "CVE-2023-0056",
       "source": {
         "name": "nvd-cpe",
@@ -2032,7 +2032,7 @@
       ],
       "affects": [
         {
-          "ref": "pkg:generic/haproxy@2.8.10?package-id=5e896335894225c6"
+          "ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a"
         }
       ]
     }

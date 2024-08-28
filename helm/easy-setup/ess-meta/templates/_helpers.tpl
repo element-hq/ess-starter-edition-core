@@ -7,8 +7,11 @@
 Template the configuration of the self signed ca
 */}}
 {{- define "ess.secrets.self-signed-ca" }}
+{{- $essStackCA := lookup "v1" "Secret" "cert-manager" "ess-stack-ca" }}
+{{- if $essStackCA -}}
 {{ index (lookup "v1" "Secret" "cert-manager" "ess-stack-ca").data "tls.crt" | b64dec }}
 {{ index (lookup "v1" "Secret" "cert-manager" "ess-stack-ca").data "ca.crt" | b64dec }}
+{{- end }}
 {{- end }}
 
 

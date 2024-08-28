@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-redis"
     app.kubernetes.io/part-of: matrix-stack
     app.kubernetes.io/component: matrix-server-pubsub
-    app.kubernetes.io/version: "{{ image.redis_tag | default(redis_image_tag) }}"
+    app.kubernetes.io/version: "{{ image.redis_tag }}"
     k8s.element.io/confighash: "{{ redis_config | hash('sha1') }}"
 {% if workloads.redis.annotations | default({}) %}
   annotations:
@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-redis"
         app.kubernetes.io/part-of: matrix-stack
         app.kubernetes.io/component: matrix-server-pubsub
-        app.kubernetes.io/version: "{{ image.redis_tag | default(redis_image_tag) }}"
+        app.kubernetes.io/version: "{{ image.redis_tag }}"
         k8s.element.io/confighash: "{{ redis_config | hash('sha1') }}"
 {% if workloads.redis.annotations | default({}) %}
       annotations:
@@ -66,7 +66,7 @@ spec:
 {% if image_redis_has_digest %}
         image: "{{ image.redis_repository | default(redis_image_repository) }}@{{ image.redis_digest }}"
 {% else %}
-        image: "{{ image.redis_repository | default(redis_image_repository) }}:{{ image.redis_tag | default(redis_image_tag) }}"
+        image: "{{ image.redis_repository | default(redis_image_repository) }}:{{ image.redis_tag }}"
 {% endif %}
         imagePullPolicy: "{{ image.redisPullPolicy | default(image_redis_pull_policy) }}"
 {% if (_matrix_element_io_synapse_spec.config.redisContainersSecurityContext | default({})) | length > 0 %}

@@ -28,18 +28,18 @@ ess-stack:
     global:
       content:
         genericSharedSecret: >-
-          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-global" (include "ess-stack.fullname" $)) "key" "genericSharedSecret" "skipQuote" true "context" $) }}
+          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-global" (include "ess-stack.fullname" $)) "key" "genericSharedSecret" "skipQuote" true "skipB64enc" true "context" $) }}
         ca.pem: |
           {{ include "ess.secrets.self-signed-ca" . }}
 
     synapse:
       content:
         macaroon: >-
-          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "macaroon" "skipQuote" true "context" $) }}
+          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "macaroon" "skipQuote" true "skipB64enc" true "context" $) }}
         postgresPassword: >-
           {{ include "ess.secrets.passwords.manage-with-default" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "key" "postgresPassword" "defaultPasswordValue" (include "ess.secrets.password.shared-password" (dict "sharedPasswordId" "synapse-pg-password" "context" $)) "context" $) }}
         registrationSharedSecret: >-
-          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "failOnNew" false "key" "registrationSharedSecret" "skipQuote" true "context" $) }}
+          {{ include "ess.secrets.passwords.manage" (dict "secret" (printf "%s-stack-synapse" (include "ess-stack.fullname" $)) "failOnNew" false "key" "registrationSharedSecret" "skipQuote" true "skipB64enc" true "context" $) }}
 
   globalOptions:
     config:
@@ -54,7 +54,7 @@ ess-stack:
         replicas: 1
         hostAliases:
         - ip: >-
-            {{ (lookup "v1" "Service" "ingress-nginx" "ingress-nginx-controller").spec.clusterIP }}
+            {{ ( (lookup "v1" "Service" "ingress-nginx" "ingress-nginx-controller") | default (dict "spec" (dict "clusterIP" "127.0.0.1")) ).spec.clusterIP }}
           hostnames:
           - "{{ .Values.global.baseUrl }}"
           - "synapse.{{ .Values.global.baseUrl }}"

@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-redis"
     app.kubernetes.io/part-of: matrix-stack
     app.kubernetes.io/component: matrix-server-pubsub
-    app.kubernetes.io/version: "{{ image.redis_tag | default(redis_image_tag) }}"
+    app.kubernetes.io/version: "{{ image.redis_tag }}"
   name: "{{ ansible_operator_meta.name }}-synapse-redis"
   namespace: "{{ ansible_operator_meta.namespace }}"
 spec:

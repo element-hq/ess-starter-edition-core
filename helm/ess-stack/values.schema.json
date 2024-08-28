@@ -3362,7 +3362,7 @@
       },
       "type": "object"
     },
-    "global": {
+    "globalOptions": {
       "default": {},
       "properties": {
         "config": {

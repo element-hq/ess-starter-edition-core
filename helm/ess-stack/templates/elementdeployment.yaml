@@ -2,16 +2,18 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-
+---
 apiVersion: matrix.element.io/v1alpha2
 kind: ElementDeployment
 metadata:
   name: {{ include "ess-stack.fullname" $ }}
   annotations:
-    k8s.element.io/secretshash: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
+    k8s.element.io/secretshash: {{ $.Values.secrets | toJson | sha256sum }}
 spec:
   components:
-{{ range $component, $properties := $.Values.components }}
+{{- $sortedComponents := sortAlpha (keys $.Values.components) -}}
+{{- range $component := $sortedComponents }}
+{{- $properties := index $.Values.components $component }}
     {{ $component }}:
       secretName: {{ (index $.Values.secrets $component).existingSecret | default (printf "%s-stack-%s" (include "ess-stack.fullname" $) ($component | lower) )  }}
       {{ tpl (toYaml $properties) $ | nindent 6 }}
