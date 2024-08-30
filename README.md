@@ -59,10 +59,10 @@ For example using `easy-rsa` :
 ```
 easyrsa init-pki
 easyrsa --batch "--req-cn=ESS-CA`date +%s`" build-ca nopass
-easyrsa --subject-alt-name="DNS:element-operator-conversion-webhook.element-operator"\
+easyrsa --subject-alt-name="DNS:element-operator-conversion-webhook.element-operator.svc"\
   --days=10000 \
   build-server-full element-operator-conversion-webhook nopass
-easyrsa --subject-alt-name="DNS:element-updater-conversion-webhook.element-updater"\
+easyrsa --subject-alt-name="DNS:element-updater-conversion-webhook.element-updater.svc"\
   --days=10000 \
   build-server-full element-updater-conversion-webhook nopass
 ```
