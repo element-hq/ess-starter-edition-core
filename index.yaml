@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   element-operator:
   - apiVersion: v2
+    appVersion: 2.20.0
+    created: "2024-09-05T12:44:03.564278717Z"
+    description: A Helm chart for Kubernetes
+    digest: 998097bf70e6dff0e373bd7eaace902536b2470a3fa6c7d265d7b56a4cc0943a
+    name: element-operator
+    type: application
+    urls:
+    - element-operator-2.20.0.tgz
+    version: 2.20.0
+  - apiVersion: v2
     appVersion: 2.19.12
     created: "2024-08-28T15:48:06.020978699Z"
     description: A Helm chart for Kubernetes
@@ -692,6 +702,16 @@ entries:
     - element-operator-2.11.8.tgz
     version: 2.11.8
   element-updater:
+  - apiVersion: v2
+    appVersion: 2.20.0
+    created: "2024-09-05T12:44:03.792057332Z"
+    description: A Helm chart for Kubernetes
+    digest: 88aac385df045a4e793921bbc2c2c996f82aabce1e95ef4a93f235642c831372
+    name: element-updater
+    type: application
+    urls:
+    - element-updater-2.20.0.tgz
+    version: 2.20.0
   - apiVersion: v2
     appVersion: 2.19.12
     created: "2024-08-28T15:48:06.212303392Z"
@@ -1384,6 +1404,16 @@ entries:
     version: 2.11.8
   ess-stack:
   - apiVersion: v2
+    appVersion: 2.20.0
+    created: "2024-09-05T12:44:04.036629914Z"
+    description: A Helm chart to deploy ESS stack
+    digest: 0619e5b62b62534c9e33ec2aea15f5d261d8fd64495af97f3079b51213e0794f
+    name: ess-stack
+    type: application
+    urls:
+    - ess-stack-2.20.0.tgz
+    version: 2.20.0
+  - apiVersion: v2
     appVersion: 2.19.12
     created: "2024-08-28T15:48:06.424070528Z"
     description: A Helm chart to deploy ESS stack
@@ -1536,4 +1566,4 @@ entries:
     urls:
     - ess-system-2.19.5.tgz
     version: 2.19.5
-generated: "2024-08-28T15:48:53.21259697Z"
+generated: "2024-09-05T12:44:04.037182788Z"
