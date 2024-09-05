@@ -24,11 +24,6 @@ patches:
     metadata:
       name: matrixContentScanner
     $patch: delete
-  - |
-    kind: KustomizeSchema
-    metadata:
-      name: slidingSync
-    $patch: delete
   - |-
     kind: KustomizeSchema
     metadata:
@@ -84,11 +79,6 @@ patches:
     kind: KustomizeSchema
     metadata:
       name: k8s-workloads-resources
-    $patch: delete
-  - |-
-    kind: KustomizeSchema
-    metadata:
-      name: postgres-golang
     $patch: delete
   - |-
     kind: KustomizeSchema

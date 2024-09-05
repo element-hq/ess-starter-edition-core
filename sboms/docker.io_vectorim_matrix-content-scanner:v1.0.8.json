@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ccae5748-6542-4309-a92e-af32345148ec",
+  "serialNumber": "urn:uuid:102829b0-99d8-406b-afc3-c34084b7fe4f",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-08-28T11:16:57Z",
+    "timestamp": "2024-09-04T14:13:11Z",
     "tools": {
       "components": [
         {
@@ -16568,7 +16568,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:89e45de6-9d55-479b-bab2-5efc2dbf1c14",
+      "bom-ref": "urn:uuid:923ceaeb-629d-4966-ab94-3e33c4e88e83",
       "id": "CVE-2005-2541",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16601,7 +16601,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:fb78fada-dbf5-4592-9a16-3b1a1adf5748",
+      "bom-ref": "urn:uuid:a8515b65-8acb-45ba-b328-76969e5135cf",
       "id": "CVE-2007-5686",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16634,7 +16634,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c04642d9-15ac-420e-8a99-37ff78b33d1e",
+      "bom-ref": "urn:uuid:cb56d40b-af33-4ba9-ab50-a2f75d684e08",
       "id": "CVE-2007-5686",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16667,7 +16667,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6ff283e0-cb09-498d-9d8a-0bddd3660b6a",
+      "bom-ref": "urn:uuid:4290d8a5-00a4-4d39-828b-4901d463ad3f",
       "id": "CVE-2010-4756",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16700,7 +16700,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0d56e5da-48ea-4b26-8d88-9ae3ee31538c",
+      "bom-ref": "urn:uuid:f02f4284-f7ee-4c45-b601-e6a03e9ff9c4",
       "id": "CVE-2010-4756",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16733,7 +16733,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f61e933a-7dcb-47da-9680-7dbdf1b6d17e",
+      "bom-ref": "urn:uuid:55b1a897-8bdb-4cdc-a5ca-904008716142",
       "id": "CVE-2011-3374",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16766,7 +16766,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d249e91b-cbe2-417b-b31e-395d769cb9e0",
+      "bom-ref": "urn:uuid:10f165fd-f08c-4391-81a1-5c81190765d6",
       "id": "CVE-2011-3374",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16799,7 +16799,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f2de702d-f2bc-4bff-ac53-58686c073133",
+      "bom-ref": "urn:uuid:46159f64-3e59-4d8f-8bc4-61f7aa9830f8",
       "id": "CVE-2011-3389",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16832,7 +16832,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:fa5235ab-a62e-44a6-9827-635ca09055e0",
+      "bom-ref": "urn:uuid:779c26c0-6f6d-4d06-ac76-330179a8063e",
       "id": "CVE-2011-4116",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16865,7 +16865,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f650bdff-11b8-4d28-83e5-ba84530aa463",
+      "bom-ref": "urn:uuid:4e498e6c-5802-4df7-aefc-122b2d1fb5ac",
       "id": "CVE-2013-4392",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16898,7 +16898,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:eadab6ca-6159-4039-adf2-b4d7db7ab6fc",
+      "bom-ref": "urn:uuid:d4c72188-8b11-4d5b-8bf5-468fa86ce38e",
       "id": "CVE-2013-4392",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16931,7 +16931,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3d614797-2bf2-4121-bc00-f93452fc4d12",
+      "bom-ref": "urn:uuid:d3324805-e3a0-4970-997f-d842e29ba9c3",
       "id": "CVE-2016-2781",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16964,7 +16964,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b65020e2-bf6a-4ecd-bda7-9bea01ecb6cc",
+      "bom-ref": "urn:uuid:ff2cf6de-405c-42b5-ad2e-c9d07180b28e",
       "id": "CVE-2017-11164",
       "source": {
         "name": "debian-distro-debian-12",
@@ -16997,7 +16997,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2dfeb550-1da3-4ac4-a9f9-d2f564866670",
+      "bom-ref": "urn:uuid:1f1cc54b-3818-48a3-9f74-60326cd92a5d",
       "id": "CVE-2017-16231",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17030,7 +17030,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8cb227f9-21be-4ee9-856e-b59ced9f1dc4",
+      "bom-ref": "urn:uuid:4c87c5d9-078e-4155-933b-1393c2f8415c",
       "id": "CVE-2017-18018",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17063,7 +17063,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:190c9dbf-14f7-4979-b908-38fb20c7ca0b",
+      "bom-ref": "urn:uuid:fb202311-ab4e-48ae-b419-9e547058de7a",
       "id": "CVE-2017-7245",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17096,7 +17096,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:fcd21bea-1c50-4db8-9ed5-8725c94fde60",
+      "bom-ref": "urn:uuid:8227f176-49fc-4c6a-89cb-53f7f702fe3c",
       "id": "CVE-2017-7246",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17129,7 +17129,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:22b4e8d5-3db3-47c0-8dc3-fa2d02fae6d0",
+      "bom-ref": "urn:uuid:00e64ab6-0abf-48d2-a9a0-b5911053b1c1",
       "id": "CVE-2018-20796",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17162,7 +17162,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9d03c526-0811-4f27-9b58-2b2800263cd6",
+      "bom-ref": "urn:uuid:d2d022ea-010e-4d82-9421-e404c2358b69",
       "id": "CVE-2018-20796",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17195,7 +17195,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a8af6c29-5945-4954-863d-2fb9415b0a94",
+      "bom-ref": "urn:uuid:0eb6ccc9-18d6-47d3-81f6-4636a0617bc2",
       "id": "CVE-2018-5709",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17228,7 +17228,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b198369a-b732-4747-ac4a-0bb1897b5cec",
+      "bom-ref": "urn:uuid:8bc755d7-e5a1-480d-89f0-608dd93301bf",
       "id": "CVE-2018-5709",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17261,7 +17261,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4a1703ab-9672-4254-a2a9-15ca70e6fc8d",
+      "bom-ref": "urn:uuid:3ca4c5cb-01d6-49d1-99e5-be8ba0a23a39",
       "id": "CVE-2018-5709",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17294,7 +17294,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ecea4fa8-eb1e-4b5f-acdd-d84d31bd335c",
+      "bom-ref": "urn:uuid:66355dd5-93bf-4f24-b39a-93fece96c407",
       "id": "CVE-2018-5709",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17327,7 +17327,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e49c264d-a275-4036-9886-0032a4665eb1",
+      "bom-ref": "urn:uuid:4bccc325-1154-4842-9330-602bc2f7f6a3",
       "id": "CVE-2018-6829",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17360,7 +17360,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f954435a-edaf-4669-ac29-58b5a3d650c7",
+      "bom-ref": "urn:uuid:c8d39997-2fea-43e2-8fa8-b478bae45a70",
       "id": "CVE-2019-1010022",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17393,7 +17393,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1624f4a5-1941-41a0-88c7-a5429bda9e71",
+      "bom-ref": "urn:uuid:f4f8bd78-b0de-4b7c-87b9-71372ea1b793",
       "id": "CVE-2019-1010022",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17426,7 +17426,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f6d930a6-1796-4a5a-9769-88e20a554763",
+      "bom-ref": "urn:uuid:c706284d-a22c-4c7a-8649-b0b76ec33008",
       "id": "CVE-2019-1010023",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17459,7 +17459,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:464c22ac-3c9a-4ea9-a1e4-c5b5c0595020",
+      "bom-ref": "urn:uuid:b9535dc1-ec0b-4ed8-966a-94a927e11dc8",
       "id": "CVE-2019-1010023",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17492,7 +17492,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a1236713-c43c-444f-9fc9-47db13b9a0f1",
+      "bom-ref": "urn:uuid:90dada20-ba5c-4035-bc64-e40bf5aed742",
       "id": "CVE-2019-1010024",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17525,7 +17525,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3f6c3561-0005-414d-9ce9-c5f582801624",
+      "bom-ref": "urn:uuid:5638f0cf-af5b-4165-9f9a-82c1792b6469",
       "id": "CVE-2019-1010024",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17558,7 +17558,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:91442be0-69fd-4fcc-b7b4-ece211fd0a64",
+      "bom-ref": "urn:uuid:0e09e032-8f8d-44e3-976a-f39869862295",
       "id": "CVE-2019-1010025",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17591,7 +17591,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:85fd2be0-e5a7-44df-a64c-587d38caa929",
+      "bom-ref": "urn:uuid:d8ee5560-8f32-4e18-bc2d-38533dd4fa75",
       "id": "CVE-2019-1010025",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17624,7 +17624,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d854c2e3-74ac-4ee1-9426-28e10b528ca8",
+      "bom-ref": "urn:uuid:1b1ff706-8351-4058-a185-a5a95b830aa4",
       "id": "CVE-2019-19882",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17657,7 +17657,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:816ee821-537d-42cb-bd16-113db928841b",
+      "bom-ref": "urn:uuid:00baec9f-cbe2-41aa-bfcf-839ab4349298",
       "id": "CVE-2019-19882",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17690,7 +17690,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c22dac4d-be10-4195-9f98-8151d23c9894",
+      "bom-ref": "urn:uuid:8b393b76-f39d-4b9e-940e-466c7f58839a",
       "id": "CVE-2019-20838",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17723,7 +17723,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:05967bd5-eddb-4714-a339-08f30f3d020f",
+      "bom-ref": "urn:uuid:d9e8ae92-7eda-49cf-b0ff-3a67872a2408",
       "id": "CVE-2019-9192",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17756,7 +17756,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f8dd6f23-b0fa-4496-8828-8de7e653e854",
+      "bom-ref": "urn:uuid:6387f572-8a2c-4884-9cef-3d2f1939abcf",
       "id": "CVE-2019-9192",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17789,7 +17789,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6bff0afb-f1df-45fc-b8a3-e2d7c27ccc5e",
+      "bom-ref": "urn:uuid:c99f0a1d-057a-42eb-ac27-ad1e79db7548",
       "id": "CVE-2021-45346",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17822,7 +17822,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d06ec96c-e857-4b8f-ad85-198eee0b1f03",
+      "bom-ref": "urn:uuid:1726e3b1-d767-4757-9096-9f3c46a88a4e",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17855,7 +17855,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:151201a2-537f-4522-904f-443f89ad0e2f",
+      "bom-ref": "urn:uuid:ed6363fb-087a-42c1-953c-48022858f708",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17888,7 +17888,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:809ab832-9d48-46d6-b7f6-a0fc5abba606",
+      "bom-ref": "urn:uuid:e5fc30de-8ede-4870-8d18-373fcf4e9140",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17921,7 +17921,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a69ab0dd-db96-4e10-89af-c0ce856feb4b",
+      "bom-ref": "urn:uuid:3eef63ae-75d0-4e3a-b0f2-ce7d9d5a6b2c",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17954,7 +17954,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:891ecc52-7f4c-42b7-af8d-0ee6f9e46018",
+      "bom-ref": "urn:uuid:5ee26d8e-3fa2-40f4-abe0-c53d24a4b5d3",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -17987,7 +17987,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6f2698b6-f6d5-4543-86ba-3af1137d09f8",
+      "bom-ref": "urn:uuid:335e5beb-ae34-4bb2-bc18-7850754026e8",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18020,7 +18020,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4132b3a9-fb35-497a-8211-94e4473ab730",
+      "bom-ref": "urn:uuid:0eacf186-f4c1-4ff7-9184-b519e0d0bc56",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18053,7 +18053,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9f8c5567-7933-4f46-9854-77bbc4ea590e",
+      "bom-ref": "urn:uuid:9890b19c-6ca8-4475-a7ad-b60241866087",
       "id": "CVE-2022-0563",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18086,7 +18086,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:903e38b4-1d66-446d-b3c8-b2ca9dd1301d",
+      "bom-ref": "urn:uuid:11de05fc-85cf-4635-b3e8-b776115df2c2",
       "id": "CVE-2022-27943",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18119,7 +18119,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:cb539786-78ef-4a5e-98a3-6d1a4c1c4995",
+      "bom-ref": "urn:uuid:d98fcb30-4a77-4d00-8871-6e3744212557",
       "id": "CVE-2022-27943",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18152,7 +18152,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ff08faa9-d5a2-4a47-b71d-efa887f49dfa",
+      "bom-ref": "urn:uuid:4bcd8ac8-069e-4182-a70b-e7db9e69aa37",
       "id": "CVE-2022-27943",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18185,7 +18185,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d23b3ee9-1a03-4e10-8736-028dd34c6289",
+      "bom-ref": "urn:uuid:7f091bc7-94bf-4031-a03b-3671d9890bb4",
       "id": "CVE-2022-3219",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18218,7 +18218,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e17e516c-bd21-4742-9a12-f1ffc370341f",
+      "bom-ref": "urn:uuid:9e33689c-3379-4e83-b55c-68825a50fd32",
       "id": "CVE-2023-27043",
       "source": {
         "name": "nvd-cpe",
@@ -18320,7 +18320,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:57cb231e-6e27-40f5-9f87-5d4fbe016d9a",
+      "bom-ref": "urn:uuid:b9bd57dd-999d-4c2c-b3af-41119b85fc3e",
       "id": "CVE-2023-29383",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18353,7 +18353,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:472ff314-3a7e-4613-a1e7-3a67cdf389a4",
+      "bom-ref": "urn:uuid:d5f0ec81-4c93-49ba-a0d4-ba3f62fde173",
       "id": "CVE-2023-29383",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18386,7 +18386,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bd8ed3c8-338d-4686-94ed-5e6319878053",
+      "bom-ref": "urn:uuid:a3def0d7-f2a4-47b2-a8ae-080cda9c2ca8",
       "id": "CVE-2023-31437",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18419,7 +18419,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:63b62b48-a828-4c91-8438-2993d923f266",
+      "bom-ref": "urn:uuid:4b2871c5-bcfe-4e97-b595-11105be795de",
       "id": "CVE-2023-31437",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18452,7 +18452,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c29bb6ca-856d-4511-8b72-4c1be3734efb",
+      "bom-ref": "urn:uuid:f1312be2-91a7-4768-971b-307161a8eb53",
       "id": "CVE-2023-31438",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18485,7 +18485,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6999d82b-dbb4-4486-aa37-1f410658c33c",
+      "bom-ref": "urn:uuid:08f4a3f1-a72d-4d20-bee4-09dc0a1f491a",
       "id": "CVE-2023-31438",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18518,7 +18518,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:97c389e5-e8ee-4f6b-9cc3-6b01c72e0c4e",
+      "bom-ref": "urn:uuid:fdaff586-bd57-402d-b113-ff7e00a1c1f7",
       "id": "CVE-2023-31439",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18551,7 +18551,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:79ecd74c-1825-44de-8b32-8a4d0f4edbd2",
+      "bom-ref": "urn:uuid:70ea657b-3361-48d6-aa9c-687240ff8b58",
       "id": "CVE-2023-31439",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18584,7 +18584,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d73d9402-2424-4a0f-850f-4a86cfd7f9ac",
+      "bom-ref": "urn:uuid:70c674d1-96e5-4292-ba16-b8c6c7c716d3",
       "id": "CVE-2023-31484",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18617,7 +18617,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c3799536-89f5-4b5e-8c34-4cdbfa61f9b9",
+      "bom-ref": "urn:uuid:f95db98b-6127-4e81-ae69-1fd9980e70b1",
       "id": "CVE-2023-31486",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18650,7 +18650,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:31504ace-eb02-4da0-a158-40929a1f64a2",
+      "bom-ref": "urn:uuid:db4a94f9-24ef-4a85-9e12-af51af1dead4",
       "id": "CVE-2023-36632",
       "source": {
         "name": "nvd-cpe",
@@ -18695,7 +18695,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e4212e49-7c4f-4e23-97b5-cc994e4009da",
+      "bom-ref": "urn:uuid:68810027-b5f8-42d3-b784-b888a2b4be94",
       "id": "CVE-2023-4039",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18728,7 +18728,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:821cf3cd-69ab-4e88-b24d-8bdf7e3bbaa0",
+      "bom-ref": "urn:uuid:532c82b2-2005-4c0f-833f-438dc6ed3693",
       "id": "CVE-2023-4039",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18761,7 +18761,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a3cdb174-908f-442d-b4a5-d1b647efdd87",
+      "bom-ref": "urn:uuid:c3782fb2-7810-43f4-a972-dc3121c817fb",
       "id": "CVE-2023-4039",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18794,7 +18794,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8c00dde9-0476-4c45-8e2e-75eac0947082",
+      "bom-ref": "urn:uuid:9721fa93-cb4f-41ad-998d-62800e04ac98",
       "id": "CVE-2023-45853",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18827,7 +18827,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:88e6248c-b253-4ee0-84ad-ee6957499903",
+      "bom-ref": "urn:uuid:45cc961f-90dc-4c0e-8d70-379dc6ae57f3",
       "id": "CVE-2023-45918",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18860,7 +18860,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d20238b2-da2a-402e-96e5-c6181a9f699c",
+      "bom-ref": "urn:uuid:f0fe60e7-3761-4017-af8b-7af086d1518a",
       "id": "CVE-2023-45918",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18893,7 +18893,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c991b4e9-d3d8-4544-a9b3-c9f958b5b546",
+      "bom-ref": "urn:uuid:4519c04b-e210-41d2-8c59-02456ebf2ce6",
       "id": "CVE-2023-45918",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18926,7 +18926,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7a06632e-b93b-46d5-8010-f70a617058e7",
+      "bom-ref": "urn:uuid:9edfcc7a-4323-400b-99a0-29bc477b5ed3",
       "id": "CVE-2023-45918",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18959,7 +18959,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a020bfcf-21f0-4e3c-a0ba-6687ed887220",
+      "bom-ref": "urn:uuid:b29174ac-244c-45ee-8361-73418f03982f",
       "id": "CVE-2023-4641",
       "source": {
         "name": "debian-distro-debian-12",
@@ -18992,7 +18992,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:619086f6-6349-4135-9d80-b1017adce428",
+      "bom-ref": "urn:uuid:0abc8ec3-9b76-4afe-aec4-83c05d78d78f",
       "id": "CVE-2023-4641",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19025,7 +19025,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:eec1819b-03e5-4f4c-8495-4a636947433d",
+      "bom-ref": "urn:uuid:a2262de1-f6dd-4325-935b-a90ad9efc604",
       "id": "CVE-2023-50495",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19058,7 +19058,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9fc8f85e-fd38-43dc-bf77-6e044dffd957",
+      "bom-ref": "urn:uuid:dd7c7dd6-f242-44c5-8d13-ac81e3e16573",
       "id": "CVE-2023-50495",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19091,7 +19091,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f2a33f37-846f-402a-8c6d-92981054e749",
+      "bom-ref": "urn:uuid:9d1d234a-fbfb-441e-befa-f4b8e835bc1e",
       "id": "CVE-2023-50495",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19124,7 +19124,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:74bb7b1a-7f5f-447c-871a-1170a6087335",
+      "bom-ref": "urn:uuid:1bcdaadf-1ec0-4dc9-a814-9b0ae5663b96",
       "id": "CVE-2023-50495",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19157,7 +19157,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ead8fcb8-906f-4b8f-8588-e67dc71a1edb",
+      "bom-ref": "urn:uuid:5971fa4c-27d0-4ad0-b704-2813013b67bf",
       "id": "CVE-2023-52425",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19190,7 +19190,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b238b601-3a07-47bb-83c1-79e72e168c02",
+      "bom-ref": "urn:uuid:2b60a956-3744-4e05-b806-5cc8e2fb0314",
       "id": "CVE-2023-52426",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19223,7 +19223,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:21ae60b7-3abe-4ab5-943a-7c48d58dd03b",
+      "bom-ref": "urn:uuid:3ff2a094-5817-4402-aa30-47c33365213a",
       "id": "CVE-2023-7104",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19256,7 +19256,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4cebd09b-0887-4982-80f9-754d2e894ebe",
+      "bom-ref": "urn:uuid:5fa9a071-c825-4922-a48c-ca61a27c804f",
       "id": "CVE-2024-0232",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19289,7 +19289,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c0538144-4d96-4d69-be3b-b256ee473c1e",
+      "bom-ref": "urn:uuid:671f5b56-1741-4441-845a-b2c9ecb16ffc",
       "id": "CVE-2024-0397",
       "source": {
         "name": "nvd-cpe",
@@ -19352,7 +19352,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:75f5f434-60bf-4db9-8ed2-66db699393a0",
+      "bom-ref": "urn:uuid:b1f19a51-bbdc-4693-9775-95cd64883f6f",
       "id": "CVE-2024-2236",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19385,7 +19385,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0f78fbfe-f65e-4bb2-9ba2-024993348c5a",
+      "bom-ref": "urn:uuid:5ce0fdbb-2482-4b6c-a70b-2a72426c0593",
       "id": "CVE-2024-22365",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19418,7 +19418,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:784905d8-72d4-4d66-80b2-e3c81b4b8824",
+      "bom-ref": "urn:uuid:2b2002a6-eba8-41e8-afdb-f3faa36e4961",
       "id": "CVE-2024-22365",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19451,7 +19451,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:95983706-4a40-4b54-a2dd-5b33f47eb43a",
+      "bom-ref": "urn:uuid:60f3df09-2bca-4296-9b4e-e3e171a5706a",
       "id": "CVE-2024-22365",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19484,7 +19484,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b033bc99-a649-4ce7-a09d-ff9a6b5d9801",
+      "bom-ref": "urn:uuid:61dd2ed5-5255-40a1-9164-9a87fad891f4",
       "id": "CVE-2024-22365",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19517,7 +19517,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e11e015d-26b7-4635-b031-abdc3d8de39d",
+      "bom-ref": "urn:uuid:e1088cf9-3447-4fe1-ac29-7d692d6439ec",
       "id": "CVE-2024-2511",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19550,7 +19550,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a7827d7a-b1a0-482f-95a4-6cb44a1b2bf3",
+      "bom-ref": "urn:uuid:4fa7d227-8a6f-459c-8b4a-a6de29d18cce",
       "id": "CVE-2024-2511",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19583,7 +19583,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:03025bf5-77ca-42f7-8e6b-861f2ae413ef",
+      "bom-ref": "urn:uuid:eab06db1-10e7-4adb-a08b-de467405f4fa",
       "id": "CVE-2024-26458",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19616,7 +19616,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2c9710d0-923e-4dc6-ba34-2671332fd7fb",
+      "bom-ref": "urn:uuid:a8a6105a-9a09-403a-a4c0-d56fe8487940",
       "id": "CVE-2024-26458",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19649,7 +19649,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5b74f387-4fa0-4e97-b40a-52d928148ca1",
+      "bom-ref": "urn:uuid:5e29bb91-6c1d-4cbe-801f-a3c9008b128a",
       "id": "CVE-2024-26458",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19682,7 +19682,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:63cdedc5-20bb-40ac-a94c-8da1d41ee8a7",
+      "bom-ref": "urn:uuid:62a4319a-59d8-4ee3-9414-6b79748065aa",
       "id": "CVE-2024-26458",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19715,7 +19715,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:934542d6-3b16-4edc-8d92-d94099ab3fd0",
+      "bom-ref": "urn:uuid:f280e532-c803-46f8-8f7f-16af9e658656",
       "id": "CVE-2024-26461",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19748,7 +19748,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:03699b68-9d3a-4444-9755-b76ed0d6daea",
+      "bom-ref": "urn:uuid:be97e8a1-0ca9-4200-8a02-0a71458b8cfc",
       "id": "CVE-2024-26461",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19781,7 +19781,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5207602d-cb16-4e19-90d9-f5019c9b1396",
+      "bom-ref": "urn:uuid:69e12948-4d15-45e7-aabf-85a464ca202e",
       "id": "CVE-2024-26461",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19814,7 +19814,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:81bbb5fe-e37f-4375-b17a-985b8a9a0f94",
+      "bom-ref": "urn:uuid:b6847c44-b301-4981-8d46-55e8671fb3fb",
       "id": "CVE-2024-26461",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19847,7 +19847,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1e5131f3-5d71-4c90-9c86-e52eac5a6bfb",
+      "bom-ref": "urn:uuid:4f89f190-b0af-4d0d-a11b-0f27a7b2a8a4",
       "id": "CVE-2024-26462",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19880,7 +19880,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2824bca3-3443-465a-93c7-2d8cb0a13524",
+      "bom-ref": "urn:uuid:38d581fe-83fb-4677-9323-245f0c39b09a",
       "id": "CVE-2024-26462",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19913,7 +19913,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:01afb0c1-a797-47ef-b3a3-28d179086166",
+      "bom-ref": "urn:uuid:bd09dff9-e3ec-4305-a0fe-01dd0353097f",
       "id": "CVE-2024-26462",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19946,7 +19946,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:153967f9-49fa-478a-98cf-9810e112738b",
+      "bom-ref": "urn:uuid:8f2e6862-0384-4c10-989b-7fd5ca7e07fa",
       "id": "CVE-2024-26462",
       "source": {
         "name": "debian-distro-debian-12",
@@ -19979,7 +19979,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8f9ac56b-8609-42d3-ae89-166465bae910",
+      "bom-ref": "urn:uuid:aa1302c3-93c8-4220-8d34-10351c5b79fe",
       "id": "CVE-2024-28757",
       "source": {
         "name": "debian-distro-debian-12",
@@ -20012,7 +20012,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b8672947-0727-43eb-aa53-1a1a8c6f309b",
+      "bom-ref": "urn:uuid:ad8bdf06-dcd0-4285-b9e6-55d837254ec1",
       "id": "CVE-2024-4032",
       "source": {
         "name": "nvd-cpe",
@@ -20029,7 +20029,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
         }
       ],
       "description": "The “ipaddress” module contained incorrect information about whether certain IPv4 and IPv6 addresses were designated as “globally reachable” or “private”. This affected the is_private and is_global properties of the ipaddress.IPv4Address, ipaddress.IPv4Network, ipaddress.IPv6Address, and ipaddress.IPv6Network classes, where values wouldn’t be returned in accordance with the latest information from the IANA Special-Purpose Address Registries.\n\nCPython 3.12.4 and 3.13.0a6 contain updated information from these registries and thus have the intended behavior.",
@@ -20081,7 +20084,106 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3f8360a6-b36d-44cc-91e7-4d93009af38b",
+      "bom-ref": "urn:uuid:ec8a74ce-a5e7-428f-b424-6dde67d3ac4f",
+      "id": "CVE-2024-45490",
+      "source": {
+        "name": "debian-distro-debian-12",
+        "url": "https://security-tracker.debian.org/tracker/CVE-2024-45490"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-45490",
+          "source": {
+            "name": "debian-distro-debian-12",
+            "url": "https://security-tracker.debian.org/tracker/CVE-2024-45490"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "critical"
+        }
+      ],
+      "description": "An issue was discovered in libexpat before 2.6.3. xmlparse.c does not reject a negative length for XML_ParseBuffer.",
+      "advisories": [
+        {
+          "url": "https://security-tracker.debian.org/tracker/CVE-2024-45490"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:deb/debian/libexpat1@2.5.0-1?arch=amd64&upstream=expat&distro=debian-12&package-id=647da6a471c14b1e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:e9d5d7d0-73e8-45ca-8fdf-0f1ef9aadb07",
+      "id": "CVE-2024-45491",
+      "source": {
+        "name": "debian-distro-debian-12",
+        "url": "https://security-tracker.debian.org/tracker/CVE-2024-45491"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-45491",
+          "source": {
+            "name": "debian-distro-debian-12",
+            "url": "https://security-tracker.debian.org/tracker/CVE-2024-45491"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "An issue was discovered in libexpat before 2.6.3. dtdCopy in xmlparse.c can have an integer overflow for nDefaultAtts on 32-bit platforms (where UINT_MAX equals SIZE_MAX).",
+      "advisories": [
+        {
+          "url": "https://security-tracker.debian.org/tracker/CVE-2024-45491"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:deb/debian/libexpat1@2.5.0-1?arch=amd64&upstream=expat&distro=debian-12&package-id=647da6a471c14b1e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:7c6aeee2-7f86-4aa4-b04f-40a883fe45b6",
+      "id": "CVE-2024-45492",
+      "source": {
+        "name": "debian-distro-debian-12",
+        "url": "https://security-tracker.debian.org/tracker/CVE-2024-45492"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-45492",
+          "source": {
+            "name": "debian-distro-debian-12",
+            "url": "https://security-tracker.debian.org/tracker/CVE-2024-45492"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "description": "An issue was discovered in libexpat before 2.6.3. nextScaffoldPart in xmlparse.c can have an integer overflow for m_groupSize on 32-bit platforms (where UINT_MAX equals SIZE_MAX).",
+      "advisories": [
+        {
+          "url": "https://security-tracker.debian.org/tracker/CVE-2024-45492"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:deb/debian/libexpat1@2.5.0-1?arch=amd64&upstream=expat&distro=debian-12&package-id=647da6a471c14b1e"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:5f50a5aa-4b1c-47d9-b1a8-3b8a2bbb9964",
       "id": "CVE-2024-4603",
       "source": {
         "name": "debian-distro-debian-12",
@@ -20114,7 +20216,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2b7427ff-76a1-4a84-8080-34365837a4d0",
+      "bom-ref": "urn:uuid:8f3ba874-ef8c-401a-9fe3-4657084105b6",
       "id": "CVE-2024-4603",
       "source": {
         "name": "debian-distro-debian-12",
@@ -20147,7 +20249,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:be5fa41b-abec-4b73-8126-6bab13ab4197",
+      "bom-ref": "urn:uuid:6f6a10db-9a7e-4a86-ae22-d8de9dd23575",
       "id": "CVE-2024-4741",
       "source": {
         "name": "debian-distro-debian-12",
@@ -20179,7 +20281,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:06f0cdd4-3d1b-43a1-8d04-d27902413aa6",
+      "bom-ref": "urn:uuid:45c8a28b-cd35-4b85-a125-656e8e11c25b",
       "id": "CVE-2024-4741",
       "source": {
         "name": "debian-distro-debian-12",
@@ -20211,7 +20313,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ea9f3620-bd08-455d-b4c1-2f44c0506dd6",
+      "bom-ref": "urn:uuid:d910f836-3c74-4f59-98f8-33b305d64765",
       "id": "CVE-2024-5535",
       "source": {
         "name": "debian-distro-debian-12",
@@ -20244,7 +20346,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:b22e8670-5bcb-41bb-ae4f-724268cda3ea",
+      "bom-ref": "urn:uuid:434941d6-2fb8-4db3-9841-fea9d45c40bd",
       "id": "CVE-2024-5535",
       "source": {
         "name": "debian-distro-debian-12",
@@ -20277,7 +20379,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:543731a6-b15f-4c28-a946-c242e12fd230",
+      "bom-ref": "urn:uuid:353c94a6-82c0-4581-8138-d5cc3e7b6ae5",
       "id": "CVE-2024-5642",
       "source": {
         "name": "nvd-cpe",
@@ -20328,7 +20430,71 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a137b076-0913-4b20-8ca6-28895619f0dc",
+      "bom-ref": "urn:uuid:defccfaa-c07e-4253-b8c9-c4061d9b3663",
+      "id": "CVE-2024-6119",
+      "source": {
+        "name": "debian-distro-debian-12",
+        "url": "https://security-tracker.debian.org/tracker/CVE-2024-6119"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-6119",
+          "source": {
+            "name": "debian-distro-debian-12",
+            "url": "https://security-tracker.debian.org/tracker/CVE-2024-6119"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://security-tracker.debian.org/tracker/CVE-2024-6119"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:deb/debian/libssl3@3.0.13-1~deb12u1?arch=amd64&upstream=openssl&distro=debian-12&package-id=a1bc152826a84c57"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:aa2deec6-78bd-41c5-8f08-ea0c5956f0bd",
+      "id": "CVE-2024-6119",
+      "source": {
+        "name": "debian-distro-debian-12",
+        "url": "https://security-tracker.debian.org/tracker/CVE-2024-6119"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-6119",
+          "source": {
+            "name": "debian-distro-debian-12",
+            "url": "https://security-tracker.debian.org/tracker/CVE-2024-6119"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://security-tracker.debian.org/tracker/CVE-2024-6119"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:deb/debian/openssl@3.0.13-1~deb12u1?arch=amd64&distro=debian-12&package-id=cddd26047eac2a86"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:13fec594-3223-4b46-b0d5-96a8a10cea0e",
       "id": "CVE-2024-6923",
       "source": {
         "name": "nvd-cpe",
@@ -20376,7 +20542,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:99dbcde7-9fa3-40aa-abe7-eea7a3c11b90",
+      "bom-ref": "urn:uuid:aee7a371-e968-43f6-8ee2-8d6f54e22c57",
       "id": "CVE-2024-7592",
       "source": {
         "name": "nvd-cpe",
@@ -20397,10 +20563,22 @@
           "severity": "high",
           "method": "CVSSv31",
           "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        },
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
         }
       ],
       "description": "There is a LOW severity vulnerability affecting CPython, specifically the\n'http.cookies' standard library module.\n\n\nWhen parsing cookies that contained backslashes for quoted characters in\nthe cookie value, the parser would use an algorithm with quadratic\ncomplexity, resulting in excess CPU resources being used while parsing the\nvalue.",
       "advisories": [
+        {
+          "url": "https://github.com/python/cpython/commit/391e5626e3ee5af267b97e37abc7475732e67621"
+        },
+        {
+          "url": "https://github.com/python/cpython/commit/dcc3eaef98cd94d6cb6cb0f44bd1c903d04f33b1"
+        },
         {
           "url": "https://github.com/python/cpython/issues/123067"
         },
@@ -20418,7 +20596,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:85c81c40-24ac-4ee0-90c1-40abed3f1775",
+      "bom-ref": "urn:uuid:0a69ba6a-6604-4c07-86db-6254a8ebbec9",
       "id": "CVE-2024-8088",
       "source": {
         "name": "nvd-cpe",
@@ -20435,19 +20613,25 @@
       ],
       "ratings": [
         {
-          "score": 7.5,
-          "severity": "high",
-          "method": "CVSSv31",
-          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          "severity": "unknown"
         }
       ],
       "description": "There is a HIGH severity vulnerability affecting the CPython \"zipfile\"\nmodule affecting \"zipfile.Path\". Note that the more common API \"zipfile.ZipFile\" class is unaffected.\n\n\n\n\n\nWhen iterating over names of entries in a zip archive (for example, methods\nof \"zipfile.Path\" like \"namelist()\", \"iterdir()\", etc)\nthe process can be put into an infinite loop with a maliciously crafted\nzip archive. This defect applies when reading only metadata or extracting\nthe contents of the zip archive. Programs that are not handling\nuser-controlled zip archives are not affected.",
       "advisories": [
         {
+          "url": "https://github.com/python/cpython/commit/2231286d78d328c2f575e0b05b16fe447d1656d6"
+        },
+        {
           "url": "https://github.com/python/cpython/commit/795f2597a4be988e2bb19b69ff9958e981cb894e"
         },
         {
+          "url": "https://github.com/python/cpython/commit/7e8883a3f04d308302361aeffc73e0e9837f19d4"
+        },
+        {
           "url": "https://github.com/python/cpython/commit/8c7348939d8a3ecd79d630075f6be1b0c5b41f64"
+        },
+        {
+          "url": "https://github.com/python/cpython/commit/95b073bddefa6243effa08e131e297c0383e7f6a"
         },
         {
           "url": "https://github.com/python/cpython/commit/dcc5182f27c1500006a1ef78e10613bb45788dea"
@@ -20457,6 +20641,9 @@
         },
         {
           "url": "https://github.com/python/cpython/issues/122905"
+        },
+        {
+          "url": "https://github.com/python/cpython/issues/123270"
         },
         {
           "url": "https://github.com/python/cpython/pull/122906"
@@ -20472,7 +20659,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:18850bd6-cf53-468e-b1f1-02fa459487af",
+      "bom-ref": "urn:uuid:7ecd101d-8bcc-4769-8eeb-56bc2bf57039",
       "id": "GHSA-cx63-2mw6-8hw5",
       "source": {
         "name": "github-language-python",
@@ -20508,7 +20695,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:030046a2-371a-4a61-896d-bcc8d56ec53a",
+      "bom-ref": "urn:uuid:0927caa0-1107-474a-86ad-e0b3269e4d7d",
       "id": "GHSA-jwhx-xcg6-8xhj",
       "source": {
         "name": "github-language-python",
@@ -20544,7 +20731,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:591472ec-16c8-48dc-a8ae-aee88e636ae5",
+      "bom-ref": "urn:uuid:5c3dfa0b-5000-405a-b324-57663f995f4b",
       "id": "GHSA-mq26-g339-26xf",
       "source": {
         "name": "github-language-python",
@@ -20580,7 +20767,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:4201eb7b-3b0a-4087-9433-3fd243fc9c12",
+      "bom-ref": "urn:uuid:67a0a466-242b-4a1d-8f15-3236a8507a73",
       "id": "GHSA-r9hx-vwmv-q579",
       "source": {
         "name": "github-language-python",

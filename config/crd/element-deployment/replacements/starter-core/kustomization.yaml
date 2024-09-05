@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -11,7 +11,6 @@ resources:
   - ../../base/starter-core
   - element_web.yaml
   - matrix_content_scanner.yaml
-  - sliding_sync.yaml
   - synapse.yaml
   - well_known_delegation.yaml
   - global.yaml
@@ -23,7 +22,6 @@ resources:
   - k8s-storage.yaml
   - k8s-workloads.yaml
   - k8s-workloads-resources.yaml
-  - postgres-golang.yaml
   - postgres-libpq.yaml
 replacements:
   - source:
@@ -87,7 +85,6 @@ replacements:
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.common
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.common
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.common
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.common
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.common
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.k8s.properties.common
@@ -101,7 +98,6 @@ replacements:
           name: elementdeployments.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.ingress
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.ingress
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.ingress
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.k8s.properties.ingress
   - source:
@@ -113,9 +109,7 @@ replacements:
           kind: CustomResourceDefinition
           name: elementdeployments.matrix.element.io
         fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.monitoring
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.monitoring
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.api.properties.monitoring
+          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.haproxy.properties.monitoring
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.monitoring
   - source:
       kind: KustomizeSchema
@@ -151,7 +145,6 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.icap.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.workloads
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.api.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.haproxy.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.redis.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.workloads
@@ -178,16 +171,6 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.config
   - source:
       kind: KustomizeSchema
-      name: slidingSync
-      fieldPath: spec.schema
-    targets:
-      - select:
-          kind: CustomResourceDefinition
-          name: elementdeployments.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.config
-  - source:
-      kind: KustomizeSchema
       name: synapse
       fieldPath: spec.schema
     targets:
@@ -206,16 +189,6 @@ replacements:
           name: elementdeployments.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.config
-  - source:
-      kind: KustomizeSchema
-      name: postgres-golang
-      fieldPath: spec.schema
-    targets:
-      - select:
-          kind: CustomResourceDefinition
-          name: elementdeployments.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.config.properties.postgresql
   - source:
       kind: KustomizeSchema
       name: postgres-libpq
@@ -239,7 +212,6 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.workloads.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.icap.properties.workloads.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.workloads.properties.resources
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.slidingSync.properties.k8s.properties.api.properties.workloads.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.config.properties.workers.items.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.haproxy.properties.workloads.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.redis.properties.workloads.properties.resources

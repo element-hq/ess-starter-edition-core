@@ -603,6 +603,7 @@ spec:
                               - presence-writer
                               - pusher
                               - receipts-account
+                              - sliding-sync
                               - sso-login
                               - synchrotron
                               - typing-persister
@@ -1461,6 +1462,7 @@ spec:
                               - presence-writer
                               - pusher
                               - receipts-account
+                              - sliding-sync
                               - sso-login
                               - synchrotron
                               - typing-persister

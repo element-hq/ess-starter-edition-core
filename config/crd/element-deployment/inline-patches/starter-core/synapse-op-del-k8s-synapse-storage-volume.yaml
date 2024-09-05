@@ -1,8 +1,17 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 # Synapse is has not been migrated yet to volume names and size being handled under the k8s key
+# Nuke out everything but storage.volume.storageClassName which is used
 - op: remove
-  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/storage/properties'
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/storage/default'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/storage/properties/volume/default'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/storage/properties/volume/oneOf'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/storage/properties/volume/properties/persistentVolumeClaimName'
+- op: remove
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/storage/properties/volume/properties/size'

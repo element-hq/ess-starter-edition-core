@@ -16,10 +16,6 @@ patches:
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io
-  - path: sliding_sync.yaml
-    target:
-      kind: CustomResourceDefinition
-      name: elementdeployments.matrix.element.io
   - path: synapse.yaml
     target:
       kind: CustomResourceDefinition

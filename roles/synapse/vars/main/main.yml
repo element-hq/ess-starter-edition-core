@@ -163,6 +163,8 @@ synapse_available_worker_types:
     single: true  # Not strictly true but for simplicity with PVCs at present
     paths:
     - "^/_matrix/media/"
+    - "^/_matrix/client/v1/media/"
+    - "^/_matrix/federation/v1/media/"
     - "^/_synapse/admin/v1/purge_media_cache$"
     - "^/_synapse/admin/v1/room/.*/media.*$"
     - "^/_synapse/admin/v1/user/.*/media.*$"
@@ -187,6 +189,11 @@ synapse_available_worker_types:
     - "^/_matrix/client/(r0|v3|unstable)/.*/account_data"
     - "^/_matrix/client/(r0|v3|unstable)/rooms/.*/receipt"
     - "^/_matrix/client/(r0|v3|unstable)/rooms/.*/read_markers"
+  sliding-sync:
+    app: generic_worker
+    single: false
+    paths:
+    - "^_matrix/client/unstable/org.matrix.simplified_msc3575/.*"
   sso-login:
     app: generic_worker
     single: true  # As per worker docs

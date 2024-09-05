@@ -49,7 +49,7 @@ The values schema documentation of the `ess-stack` subchart can be found at http
 ## Run
 
 1. To prepare the kind cluster, run `./prepare.sh;`
-2. To perform a deployment (initial or subsequent), run `./deploy.sh <component> <component2>
+2. To perform a deployment (initial or subsequent), run `./deploy.sh <component> <component2>`
 
 5. To delete the cluster: `kind delete cluster --name easy-setup`
 

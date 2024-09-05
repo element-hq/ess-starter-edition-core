@@ -26,11 +26,6 @@ default_images_digests:
       image_repository_server: docker.io
       image_repository_path: vectorim/matrix-content-scanner
       image_tag: v1.0.8
-  sliding_sync:
-    api:
-      image_repository_server: ghcr.io
-      image_repository_path: matrix-org/sliding-sync
-      image_tag: v0.99.19
   synapse:
     haproxy:
       image_repository_server: docker.io
@@ -43,7 +38,7 @@ default_images_digests:
     synapse:
       image_repository_server: docker.io
       image_repository_path: matrixdotorg/synapse
-      image_tag: v1.110.0
+      image_tag: v1.114.0
   well_known_delegation:
     well_known_delegation:
       image_repository_server: docker.io

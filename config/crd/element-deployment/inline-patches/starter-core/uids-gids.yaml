@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -29,13 +29,6 @@
 - op: add
   path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/matrixContentScanner/properties/workloads/properties/securityContext/properties/fsGroup/default
   value: 10151
-# slidingSync
-- op: add
-  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/slidingSync/properties/k8s/properties/api/properties/workloads/properties/securityContext/properties/runAsUser/default
-  value: 10130
-- op: add
-  path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/slidingSync/properties/k8s/properties/api/properties/workloads/properties/securityContext/properties/fsGroup/default
-  value: 10130
 # Synapse
 - op: add
   path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/synapse/properties/workloads/properties/securityContext/properties/runAsUser/default

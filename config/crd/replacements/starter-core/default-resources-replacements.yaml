@@ -92,28 +92,6 @@
         name: matrixcontentscanners.matrix.element.io
       fieldPaths:
         - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixContentScanner.properties.resources.properties.requests.default
-# slidingsyncs.matrix.element.io api
-- source:
-    kind: KustomizeSchema
-    name: default-resources-starter-core
-    fieldPath: spec.schemas.slidingSync.api.limits
-  targets:
-    - select:
-        kind: CustomResourceDefinition
-        name: slidingsyncs.matrix.element.io
-      fieldPaths:
-        - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.resources.properties.limits.default
-# slidingsyncs.matrix.element.io api
-- source:
-    kind: KustomizeSchema
-    name: default-resources-starter-core
-    fieldPath: spec.schemas.slidingSync.api.requests
-  targets:
-    - select:
-        kind: CustomResourceDefinition
-        name: slidingsyncs.matrix.element.io
-      fieldPaths:
-        - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.resources.properties.requests.default
 # synapses.matrix.element.io haproxy
 - source:
     kind: KustomizeSchema

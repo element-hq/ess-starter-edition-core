@@ -59,11 +59,19 @@ For example using `easy-rsa` :
 ```
 easyrsa init-pki
 easyrsa --batch "--req-cn=ESS-CA`date +%s`" build-ca nopass
-easyrsa --subject-alt-name="DNS:element-operator-conversion-webhook.element-operator"\
-  --days=10000 \
+easyrsa --san="DNS:element-operator-conversion-webhook" \
+        --san="DNS:element-operator-conversion-webhook.element-operator" \
+        --san="DNS:element-operator-conversion-webhook.element-operator.svc" \
+        --san="DNS:element-operator-conversion-webhook.element-operator.svc.cluster" \
+        --san="DNS:element-operator-conversion-webhook.element-operator.svc.cluster.local" \
+        --days=10000 \
   build-server-full element-operator-conversion-webhook nopass
-easyrsa --subject-alt-name="DNS:element-updater-conversion-webhook.element-updater"\
-  --days=10000 \
+easyrsa --san="DNS:element-updater-conversion-webhook" \
+        --san="DNS:element-updater-conversion-webhook.element-updater" \
+        --san="DNS:element-updater-conversion-webhook.element-updater.svc" \
+        --san="DNS:element-updater-conversion-webhook.element-updater.svc.cluster" \
+        --san="DNS:element-updater-conversion-webhook.element-updater.svc.cluster.local" \
+        --days=10000 \
   build-server-full element-updater-conversion-webhook nopass
 ```
 

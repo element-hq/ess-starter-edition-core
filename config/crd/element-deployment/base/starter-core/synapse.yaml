@@ -48,6 +48,8 @@
             properties:
               workloads:
                 description: This field will be replaced by kustomize
+              monitoring:
+                description: This field will be replaced by kustomize
           redis:
             type: object
             description: k8s properties of the redis workloads inside synapse component

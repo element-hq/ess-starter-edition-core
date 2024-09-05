@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -10,7 +10,8 @@ spec:
   schema:
     type: object
     description: Settings dedicated to k8s storage as a PVC Template
-    required: [size]
+    default:
+      size: This field will be replaced by kustomize
     properties:
       size:
         anyOf:

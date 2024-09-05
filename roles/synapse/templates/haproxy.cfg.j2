@@ -78,6 +78,11 @@ resolvers kubedns
     hold timeout 600s
     hold refused 600s
 
+frontend prometheus
+    bind *:8405
+    http-request use-service prometheus-exporter if { path /metrics }
+    no log
+
 frontend http-blackhole
     bind *:8009
 
@@ -217,7 +222,7 @@ backend {{ type }}
     # to stop the reactor tick time rocketing
     default-server maxconn 50
 
-{% elif type == "synchrotron" %}
+{% elif type in ["sliding-sync", "synchrotron"] %}
     stick-table type string len 180 size 50k expire 30m
     stick on hdr(X-Access-Token)
     balance leastconn

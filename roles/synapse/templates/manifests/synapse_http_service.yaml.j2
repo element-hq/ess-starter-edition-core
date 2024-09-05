@@ -26,5 +26,8 @@ spec:
   - name: haproxy-403
     port: 8009
     targetPort: haproxy-403
+  - name: haproxy-metrics
+    port: 8405
+    targetPort: haproxy-metrics
   selector:
     app.kubernetes.io/instance: "{{ ansible_operator_meta.name }}-synapse-haproxy"

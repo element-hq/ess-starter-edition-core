@@ -44,10 +44,13 @@ spec:
             spec:
               description: Spec defines the desired state of ElementDeployment
               type: object
+              required:
+                - global
               properties:
                 global:
                   type: object
-                  default: {}
+                  required:
+                    - config
                   properties:
                     k8s:
                       type: object

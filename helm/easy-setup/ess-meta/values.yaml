@@ -5,11 +5,8 @@
 
 namespaceOverride:
 
-lb:
-  enable: false
-
 global:
-  baseUrl:
+  baseUrl: ess.localhost
 
 ess-system:
   fullnameOverride: "{{ .Release.Name }}-system"

@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -9,11 +9,15 @@ metadata:
 spec:
   schema:
     type: object
-    default: {}
+    default:
+      volume:
+        size: This field will be replaced by kustomize
     description: Settings dedicated to k8s storage
     properties:
       volume:
         type: object
+        default:
+          size: This field will be replaced by kustomize
         oneOf:
           - required: [size]
             not:

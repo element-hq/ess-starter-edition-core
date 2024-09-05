@@ -1,0 +1,8 @@
+{#
+Copyright 2024 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+#}
+
+{{ lookup('template', 'synapse/service_monitor/haproxy_service_monitor.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent': 'haproxy'}) }}

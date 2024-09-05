@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -50,8 +50,6 @@ replacements:
             name: synapses.matrix.element.io
           - kind: CustomResourceDefinition
             name: matrixcontentscanners.matrix.element.io
-          - kind: CustomResourceDefinition
-            name: slidingsyncs.matrix.element.io
           - namespace: enterprise
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image
@@ -62,11 +60,6 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.clamAntiVirus
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.icap
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.matrixContentScanner
-      - select:
-          kind: CustomResourceDefinition
-          name: slidingsyncs.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.api
   - source:
       kind: KustomizeSchema
       name: ingress
@@ -139,16 +132,6 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.redisPodSecurityContext
   - source:
       kind: KustomizeSchema
-      name: postgres-golang
-      fieldPath: spec.schema
-    targets:
-      - select:
-          kind: CustomResourceDefinition
-          name: slidingsyncs.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.database
-  - source:
-      kind: KustomizeSchema
       name: postgres-libpq
       fieldPath: spec.schema
     targets:
@@ -183,8 +166,6 @@ replacements:
             name: synapses.matrix.element.io
           - kind: CustomResourceDefinition
             name: matrixcontentscanners.matrix.element.io
-          - kind: CustomResourceDefinition
-            name: slidingsyncs.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads
       - select:
@@ -201,9 +182,4 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.clamAntiVirus
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.icap
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.matrixContentScanner
-      - select:
-          kind: CustomResourceDefinition
-          name: slidingsyncs.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.api
   - path: default-resources-replacements.yaml

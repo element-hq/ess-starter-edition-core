@@ -32,8 +32,6 @@
             properties:
               workloads:
                 description: This field will be replaced by kustomize
-              monitoring:
-                description: This field will be replaced by kustomize
               storage:
                 description: This field will be replaced by kustomize
           icap:
@@ -48,8 +46,6 @@
               - storage
             properties:
               workloads:
-                description: This field will be replaced by kustomize
-              monitoring:
                 description: This field will be replaced by kustomize
               storage:
                 description: This field will be replaced by kustomize

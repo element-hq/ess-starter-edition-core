@@ -106,7 +106,7 @@ spec:
 {{ end }}
       - args:
           - --health-probe-bind-address=:6789
-          - --metrics-bind-address=127.0.0.1:8080
+          - --metrics-bind-address=0.0.0.0:8080
           - --leader-elect
           - --leader-election-id=element-updater
 {{- if or .Values.updater.manager.resources.limits.memory .Values.updater.manager.maxReconciliationProcesses }}

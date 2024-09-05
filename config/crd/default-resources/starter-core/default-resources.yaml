@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -32,13 +32,6 @@ spec:
         requests:
           cpu: 100m
           memory: 100Mi
-    slidingSync:
-      api:
-        limits:
-          memory: 4Gi
-        requests:
-          cpu: 100m
-          memory: 200Mi
     synapse:
       haproxy:
         limits:

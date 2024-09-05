@@ -7,5 +7,5 @@ apiVersion: v2
 name: ess-stack
 description: A Helm chart to deploy ESS stack
 type: application
-version: 2.19.12
-appVersion: 2.19.12
+version: 2.20.0
+appVersion: 2.20.0

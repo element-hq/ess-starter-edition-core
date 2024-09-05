@@ -49,3 +49,7 @@ patches:
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io
+  - path: storage-defaults.yaml
+    target:
+      kind: CustomResourceDefinition
+      name: elementdeployments.matrix.element.io

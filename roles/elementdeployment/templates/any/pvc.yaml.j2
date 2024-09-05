@@ -12,8 +12,8 @@ metadata:
   name: {{ ansible_operator_meta.name }}-{{ _component_item | regex_replace('_', '-') }}
   namespace: {{ ansible_operator_meta.namespace }}
 spec:
-{% if components_k8s_properties.storage.storage_class_name | default(_global.k8s.storage.storage_class_name) | default(false) %}
-  storageClassName: "{{ components_k8s_properties.storage.storage_class_name | default(_global.k8s.storage.storage_class_name) }}"
+{% if components_k8s_properties.storage.volume.storage_class_name | default(_global.k8s.storage.storage_class_name) | default(false) %}
+  storageClassName: "{{ components_k8s_properties.storage.volume.storage_class_name | default(_global.k8s.storage.storage_class_name) }}"
 {% endif %}
   accessModes:
     - ReadWriteOnce

@@ -1,0 +1,15 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+- op: replace
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/clamAntiVirus/properties/storage/default/volume/size'
+  value: 1Gi
+- op: replace
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/clamAntiVirus/properties/storage/properties/volume/default/size'
+  value: 1Gi
+- op: replace
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/matrixContentScanner/properties/storage/default/size'
+  value: 10Gi
+# Synapse defaults are configured in config/crd/element-deployment/replacements/starter-core/synapse.yaml
