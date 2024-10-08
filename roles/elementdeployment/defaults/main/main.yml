@@ -66,28 +66,12 @@ has_service_monitor: >-
     ('monitoring.coreos.com/v1' in _cluster_info.apis) and ('ServiceMonitor' in _cluster_info.apis['monitoring.coreos.com/v1'])
   }}
 
-element_deployment_crd_schema: >-
-  {{
-    (
-      lookup('file', 'files/elementdeployment-schema.yaml') | from_yaml
-    ).spec.versions[0].schema.openAPIV3Schema
-  }}
-
-component_schema: >-
-  {{
-      element_deployment_crd_schema.properties.spec.properties.components.properties[_component_item | camel_case(true)]
-  }}
-
-component_k8s_schema: >-
-  {{
-    _subcomponent is defined | ternary(
-      component_schema.properties.k8s.properties[_subcomponent | default('so_that_it_does_not_explode') | camel_case(true)],
-      component_schema.properties.k8s
-    )
-  }}
 component_k8s_schema_has_replicas: >-
   {{
-      'replicas' in component_k8s_schema.properties.workloads.properties
+    _subcomponent is defined | ternary(
+      schema_has_replicas[_component_item | camel_case(true)][_subcomponent | default('so_that_it_does_not_explode') | camel_case(true)],
+      schema_has_replicas[_component_item | camel_case(true)]["main"]
+    )
   }}
 
 component_k8s_workload_container_resources: >-

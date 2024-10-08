@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:2cd54f72-0a38-4225-8201-cd0cb6c2794f",
+  "serialNumber": "urn:uuid:da5ec77a-ebef-4cca-9594-f43314f92979",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-09-04T14:13:33Z",
+    "timestamp": "2024-10-07T15:48:14Z",
     "tools": {
       "components": [
         {
@@ -5782,7 +5782,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:2e943f91-dc6b-4d19-93b2-f8143d662346",
+      "bom-ref": "urn:uuid:d3a89aa6-f783-4868-9fa5-beb9279e6a14",
       "id": "CVE-2024-24791",
       "source": {
         "name": "nvd-cpe",
@@ -5827,7 +5827,139 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1e65fa31-aa97-405c-bc3a-20c52ee80b01",
+      "bom-ref": "urn:uuid:1b168d7b-f0c1-4ad9-a014-2a30ea1cda52",
+      "id": "CVE-2024-34155",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-34155"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-34155",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-34155"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "description": "Calling any of the Parse functions on Go source code which contains deeply nested literals can cause a panic due to stack exhaustion.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/611238"
+        },
+        {
+          "url": "https://go.dev/issue/69138"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/S9POB9NCTdk"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-3105"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.22.4?package-id=acf88ad9230c9249"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:f0ed396c-6bb1-48b6-8ee2-36efcdb45388",
+      "id": "CVE-2024-34156",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-34156"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-34156",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-34156"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Calling Decoder.Decode on a message which contains deeply nested structures can cause a panic due to stack exhaustion. This is a follow-up to CVE-2022-30635.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/611239"
+        },
+        {
+          "url": "https://go.dev/issue/69139"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/S9POB9NCTdk"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-3106"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.22.4?package-id=acf88ad9230c9249"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:39ed22c1-41c6-4782-9289-5303a7dfce21",
+      "id": "CVE-2024-34158",
+      "source": {
+        "name": "nvd-cpe",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-34158"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-34158",
+          "source": {
+            "name": "nvd-cpe",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-34158"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "score": 7.5,
+          "severity": "high",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "description": "Calling Parse on a \"// +build\" build tag line with deeply nested expressions can cause a panic due to stack exhaustion.",
+      "advisories": [
+        {
+          "url": "https://go.dev/cl/611240"
+        },
+        {
+          "url": "https://go.dev/issue/69141"
+        },
+        {
+          "url": "https://groups.google.com/g/golang-dev/c/S9POB9NCTdk"
+        },
+        {
+          "url": "https://pkg.go.dev/vuln/GO-2024-3107"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:golang/stdlib@1.22.4?package-id=acf88ad9230c9249"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:a1c00f33-4d1c-42f3-876c-81186c8a27fd",
       "id": "GHSA-c5q2-7r4c-mv6g",
       "source": {
         "name": "github-language-go",
@@ -5863,7 +5995,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:06c3a6a1-e8a8-43ef-beeb-1c88d942ab1f",
+      "bom-ref": "urn:uuid:ff764f9c-8609-425f-bd6b-d367a67f636a",
       "id": "GHSA-xr7q-jx4m-x55m",
       "source": {
         "name": "github-language-go",

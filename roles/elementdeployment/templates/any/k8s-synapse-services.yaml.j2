@@ -1,0 +1,11 @@
+{#
+Copyright 2024 New Vector Ltd
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+This template if for the case where the component itself doesn't have an ingress but
+does expose itself behind Synapse's ingress.
+#}
+
+type: {{ components.synapse.k8s.ingress.services.type | default(_global.k8s.ingresses.services.type) }}

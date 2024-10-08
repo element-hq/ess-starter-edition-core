@@ -4,8 +4,9 @@
 
 
 ---
-- name: "Manage Redis manifests"
-  ansible.builtin.include_role:
-    name: "generic_apply"
+- name: "Construct Redis manifests"
+  ansible.builtin.set_fact:
+    synapse_manifests: "{{ synapse_manifests + query('template', item) }}"
+  loop: "{{ _manifest_template_filenames }}"
   vars:
     _manifest_template_filenames: "{{ query('fileglob', 'templates/manifests/redis_*.yaml.j2') }}"

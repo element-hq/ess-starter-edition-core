@@ -17,7 +17,7 @@ if [[ -z "$ESS_SYSTEM_CHART" ]]; then
   ESS_SYSTEM_CHART="ess-starter-edition-core/ess-system"
 fi
 
-helm --kube-context kind-easy-setup upgrade ess-system $ESS_SYSTEM_CHART --install --create-namespace --namespace ess-system --wait -f values.ess-crds.yaml
+helm --kube-context kind-easy-setup upgrade ess-system $ESS_SYSTEM_CHART --install --create-namespace --namespace ess-system --wait -f values.ess-crds.yaml --version 2.20.1
 helm --kube-context kind-easy-setup upgrade ess ./ess-meta --install --create-namespace --namespace ess --wait -f values.ess-stack.yaml $values_files_args
 
 

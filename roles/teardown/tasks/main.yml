@@ -4,58 +4,55 @@
 
 
 ---
-- name: "Find unused resources"
-  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
+- name: "Find possible teardown candidates"
   vars:
     _label_selectors:
     - "app.kubernetes.io/managed-by={{ kind_managed_by }}"
-    - "k8s.element.io/crdhash!={{ _crd_spec_hash }}"
-    - "k8s.element.io/crdhash"
   ansible.builtin.set_fact:
     _teardown_candidates: |
+      {% set teardown_candidates = [] %}
       {% for kind_to_teardown in kinds_to_teardown %}
       {% if kind_to_teardown.api_version in _cluster_info.apis
           and kind_to_teardown.kind in _cluster_info.apis[kind_to_teardown.api_version] %}
-      {{ query('k8s',
+      {% set _ = teardown_candidates.extend(
+          query('kubernetes.core.k8s',
                 namespace=ansible_operator_meta.namespace,
                 kind=kind_to_teardown.kind,
                 api_version=kind_to_teardown.api_version,
                 label_selector=_label_selectors | join(',')
               )
-        | mapattributes(['apiVersion', 'kind', 'metadata'])
-        | to_nice_yaml }}
-      ---
+            | mapattributes(['apiVersion', 'kind', 'metadata'])
+            | ansible.utils.remove_keys(target='managedFields')
+          ) %}
       {% endif %}
       {% endfor %}
+      {{ teardown_candidates }}
 
-# Filter the above lists to remove items without
-# an ownerReferences that refers to kind
-# `name: {{ ansible_operator_meta.name }}`
-# Doing as two step process for debugging
-
-- name: "Filter resources managed by this kind of CRD"
-  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
+- name: "Filter down to resources managed by this CRD"
   ansible.builtin.set_fact:
-    _teardown_candidates_with_correct_owner_kind: >-
+    _teardown_candidates_with_correct_owner: >-
       {{ _teardown_candidates
-          | split("---")
-          | select
-          | map('from_yaml')
-          | map('json_query', query)
-          | flatten
+          | community.general.json_query(query_owner_kind)
+          | community.general.json_query(query_owner_name)
       }}
   vars:
-    query: "[?metadata.ownerReferences[?kind == `{{ kind_owner }}`]]"
+    query_owner_kind: "[?metadata.ownerReferences[?kind == `{{ kind_owner }}`]]"
+    query_owner_name: "[?metadata.ownerReferences[?name == '{{ ansible_operator_meta.name }}']]"
 
-- name: "Remove resources under control of something not named {{ ansible_operator_meta.name }}"
-  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
+- name: "Filter out resources still managed by this CRD"
   ansible.builtin.set_fact:
-    _to_teardown: "{{ _teardown_candidates_with_correct_owner_kind | json_query(query) }}"
-  vars:
-    query: "[?metadata.ownerReferences[?name == '{{ ansible_operator_meta.name }}']]"
+    _to_teardown: |
+      {% set to_teardown = [] %}
+      {% for item in _teardown_candidates_with_correct_owner %}
+      {% set id = item.apiVersion ~ "/" ~ item.kind ~ "/" ~ item.metadata.namespace ~ "/" ~ item.metadata.name %}
+      {% if id not in _owned_managed_manifests_ids %}
+      {% set _ = to_teardown.append(item) %}
+      {% endif %}
+      {% endfor %}
+      {{ to_teardown }}
 
 
-- name: "Remove unused resources - {{ item.kind ~ '/' ~ item.apiVersion ~ '/' ~ item.metadata.name }}"
+- name: "Remove unused resources"
   kubernetes.core.k8s:
     state: absent
     definition: >-

@@ -48,3 +48,9 @@
 
 - name: Ingress
   ansible.builtin.import_tasks: ingress.yml
+
+- name: "Manage manifests"
+  ansible.builtin.include_role:
+    name: "generic_apply"
+  vars:
+    _rendered_manifests_strings: "{{ synapse_manifests }}"

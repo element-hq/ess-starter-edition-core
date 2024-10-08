@@ -1,0 +1,18 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+schema_has_replicas:
+  elementWeb:
+    main: true
+  matrixContentScanner:
+    clamAntiVirus: true
+    icap: false
+    matrixContentScanner: true
+  synapse:
+    haproxy: true
+    redis: false
+    synapse: false
+  wellKnownDelegation:
+    main: true
+

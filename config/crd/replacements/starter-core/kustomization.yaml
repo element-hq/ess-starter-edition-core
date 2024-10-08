@@ -149,8 +149,6 @@ replacements:
           kind: CustomResourceDefinition
         reject:
           - namespace: enterprise
-          - kind: CustomResourceDefinition
-            name: lowbandwidths.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.service
   - source:

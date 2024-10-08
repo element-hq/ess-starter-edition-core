@@ -21,9 +21,10 @@
       }}
   when: not synapse_has['initial-synchrotron']
 
-- name: "Manage manifests"
-  ansible.builtin.include_role:
-    name: "generic_apply"
+- name: "Construct manifests"
+  ansible.builtin.set_fact:
+    synapse_manifests: "{{ synapse_manifests + query('template', item) }}"
+  loop: "{{ _manifest_template_filenames }}"
   vars:
     _manifest_template_filenames: >
       {{

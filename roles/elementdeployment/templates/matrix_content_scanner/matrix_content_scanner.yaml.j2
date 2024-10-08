@@ -26,13 +26,18 @@ spec:
     {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'clam_anti_virus'})
       | regex_replace('workloads:', 'clamAntiVirus:') | indent(4) }}
   service:
-    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
+    {{ lookup('template', 'templates/any/k8s-synapse-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   config:
     matrixContentScanner:
       {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'matrix_content_scanner'}) | indent(6) }}
     clamAntiVirus:
-      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'clam_anti_virus'}) | indent(6) }}
-      volumeClaim: {{ ansible_operator_meta.name }}-matrix-content-scanner
+      {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'clam_anti_virus'})
+          | from_yaml
+          | ansible.utils.remove_keys(target=['replicas'])
+          | combine({'replicas': 1})
+          | to_nice_yaml(indent=2)
+          | indent(6) }}
+      {{ lookup('template', 'templates/any/k8s-volume-claim.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'clam_anti_virus', '_claim_name': 'clamav'})  | indent(6) }}
     icap:
       {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'icap'})
        | from_yaml
@@ -62,7 +67,7 @@ spec:
 {% endif %}
 {% if 'selector' in components_k8s_properties.matrix_content_scanner.storage %}
         selector:
-          {{ components_k8s_properties.matrix_content_scanner.storage.selector | to_nice_yaml(indent=2) | indent(10) }}
+          {{ components_k8s_properties_camelled.matrixContentScanner.storage.selector | to_nice_yaml(indent=2) | indent(10) }}
 {% endif %}
     download:
       additionalHeaders:

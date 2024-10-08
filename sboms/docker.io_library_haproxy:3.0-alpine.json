@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:6c2880fd-72e6-411f-9259-83f9cb8022b6",
+  "serialNumber": "urn:uuid:fc8f2457-8a42-46a3-a7cb-75a54b067d66",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-09-04T14:12:47Z",
+    "timestamp": "2024-10-07T15:47:15Z",
     "tools": {
       "components": [
         {
@@ -17,7 +17,7 @@
       ]
     },
     "component": {
-      "bom-ref": "e8c27725e3131790",
+      "bom-ref": "5883d053dd2eed45",
       "type": "container",
       "name": "docker.io/library/haproxy:3.0-alpine",
       "version": "3.0-alpine"
@@ -26,13 +26,13 @@
   },
   "components": [
     {
-      "bom-ref": "pkg:apk/alpine/.haproxy-rundeps@20240722.230423?arch=noarch&distro=alpine-3.20.2&package-id=b06a5cec4b58d9a1",
+      "bom-ref": "pkg:apk/alpine/.haproxy-rundeps@20240919.185804?arch=noarch&distro=alpine-3.20.3&package-id=da1a44bc82b318a4",
       "type": "library",
       "name": ".haproxy-rundeps",
-      "version": "20240722.230423",
+      "version": "20240919.185804",
       "description": "virtual meta package",
-      "cpe": "cpe:2.3:a:.haproxy-rundeps:.haproxy-rundeps:20240722.230423:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/.haproxy-rundeps@20240722.230423?arch=noarch&distro=alpine-3.20.2",
+      "cpe": "cpe:2.3:a:.haproxy-rundeps:.haproxy-rundeps:20240919.185804:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/.haproxy-rundeps@20240919.185804?arch=noarch&distro=alpine-3.20.3",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -48,27 +48,27 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy-rundeps:.haproxy_rundeps:20240722.230423:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy-rundeps:.haproxy_rundeps:20240919.185804:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy-rundeps:20240722.230423:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy-rundeps:20240919.185804:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy_rundeps:20240722.230423:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy_rundeps:.haproxy_rundeps:20240919.185804:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy:.haproxy-rundeps:20240722.230423:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy:.haproxy-rundeps:20240919.185804:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.haproxy:.haproxy_rundeps:20240722.230423:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.haproxy:.haproxy_rundeps:20240919.185804:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -80,7 +80,7 @@
         },
         {
           "name": "syft:metadata:pullChecksum",
-          "value": "Q1zakZcLFbW2DyOWPb6Sk0WFZXa3Q="
+          "value": "Q1MbutWLgALhYFionobh44LPqou64="
         },
         {
           "name": "syft:metadata:pullDependencies:0",
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=08c208ae832e3bf1",
+      "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=08c208ae832e3bf1",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "alpine-baselayout",
@@ -123,7 +123,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:alpine-baselayout:alpine-baselayout:3.6.5-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://git.alpinelinux.org/cgit/aports/tree/main/alpine-baselayout",
@@ -165,7 +165,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.2&package-id=eb22ad614104fc6e",
+      "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.3&package-id=eb22ad614104fc6e",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "alpine-baselayout-data",
@@ -216,7 +216,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:alpine-baselayout-data:alpine-baselayout-data:3.6.5-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://git.alpinelinux.org/cgit/aports/tree/main/alpine-baselayout",
@@ -274,7 +274,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=alpine-3.20.2&package-id=e67e6d4359a4d2c7",
+      "bom-ref": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=alpine-3.20.3&package-id=e67e6d4359a4d2c7",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "alpine-keys",
@@ -317,7 +317,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:alpine-keys:alpine-keys:2.4-r1:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://alpinelinux.org",
@@ -359,7 +359,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -388,7 +388,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.2&package-id=5603df547f73b9d9",
+      "bom-ref": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.3&package-id=5603df547f73b9d9",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "apk-tools",
@@ -402,7 +402,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:apk-tools:apk-tools:2.14.4-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://gitlab.alpinelinux.org/alpine/apk-tools",
@@ -444,7 +444,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -505,7 +505,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.2&package-id=1fe96fc86bc38a25",
+      "bom-ref": "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.3&package-id=1fe96fc86bc38a25",
       "type": "library",
       "publisher": "Sören Tempel <soeren+alpine@soeren-tempel.net>",
       "name": "busybox",
@@ -519,7 +519,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:busybox:busybox:1.36.1-r29:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://busybox.net/",
@@ -541,7 +541,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -578,7 +578,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2&package-id=935ad6397e8681a6",
+      "bom-ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3&package-id=935ad6397e8681a6",
       "type": "library",
       "publisher": "Sören Tempel <soeren+alpine@soeren-tempel.net>",
       "name": "busybox-binsh",
@@ -592,7 +592,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:busybox-binsh:busybox-binsh:1.36.1-r29:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://busybox.net/",
@@ -634,7 +634,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -675,7 +675,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/ca-certificates@20240705-r0?arch=x86_64&distro=alpine-3.20.2&package-id=cff89f58c0585c93",
+      "bom-ref": "pkg:apk/alpine/ca-certificates@20240705-r0?arch=x86_64&distro=alpine-3.20.3&package-id=cff89f58c0585c93",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "ca-certificates",
@@ -687,7 +687,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:ca-certificates:ca-certificates:20240705-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/ca-certificates@20240705-r0?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/ca-certificates@20240705-r0?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/",
@@ -737,7 +737,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -786,7 +786,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20240705-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.2&package-id=f068a89125d4b6d7",
+      "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20240705-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.3&package-id=f068a89125d4b6d7",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "ca-certificates-bundle",
@@ -798,7 +798,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:ca-certificates-bundle:ca-certificates-bundle:20240705-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/ca-certificates-bundle@20240705-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/ca-certificates-bundle@20240705-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/",
@@ -864,7 +864,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -897,12 +897,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a",
+      "bom-ref": "pkg:generic/haproxy@3.0.5?package-id=72843505ca23c788",
       "type": "application",
       "name": "haproxy",
-      "version": "3.0.3",
-      "cpe": "cpe:2.3:a:haproxy:haproxy:3.0.3:*:*:*:*:*:*:*",
-      "purl": "pkg:generic/haproxy@3.0.3",
+      "version": "3.0.5",
+      "cpe": "cpe:2.3:a:haproxy:haproxy:3.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:generic/haproxy@3.0.5",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -918,11 +918,11 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:haproxy:haproxy:3.0.3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:haproxy:haproxy:3.0.5:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -931,11 +931,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
+      "bom-ref": "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "libcrypto3",
-      "version": "3.3.1-r3",
+      "version": "3.3.2-r0",
       "description": "Crypto library from openssl",
       "licenses": [
         {
@@ -944,8 +944,8 @@
           }
         }
       ],
-      "cpe": "cpe:2.3:a:libcrypto3:libcrypto3:3.3.1-r3:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2",
+      "cpe": "cpe:2.3:a:libcrypto3:libcrypto3:3.3.2-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://www.openssl.org/",
@@ -967,19 +967,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:libcrypto3:libcrypto:3.3.1-r3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:libcrypto3:libcrypto:3.3.2-r0:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:libcrypto:libcrypto3:3.3.1-r3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:libcrypto:libcrypto3:3.3.2-r0:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:libcrypto:libcrypto:3.3.1-r3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:libcrypto:libcrypto:3.3.2-r0:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -987,7 +987,7 @@
         },
         {
           "name": "syft:metadata:gitCommitOfApkPort",
-          "value": "83c40f5aee556e975228ae40d879fbcd9f15c428"
+          "value": "f81b26d0708cf0a8149e2caf8e5bc3e7fda1225b"
         },
         {
           "name": "syft:metadata:installedSize",
@@ -1003,7 +1003,7 @@
         },
         {
           "name": "syft:metadata:pullChecksum",
-          "value": "Q1aavvRbDbcFifXhRgq7IeTHHUWSU="
+          "value": "Q1m/BhjWxfpo4D5cK7R9F5Mg91dro="
         },
         {
           "name": "syft:metadata:pullDependencies:0",
@@ -1011,16 +1011,16 @@
         },
         {
           "name": "syft:metadata:size",
-          "value": "1817593"
+          "value": "1818353"
         }
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
+      "bom-ref": "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "libssl3",
-      "version": "3.3.1-r3",
+      "version": "3.3.2-r0",
       "description": "SSL shared libraries",
       "licenses": [
         {
@@ -1029,8 +1029,8 @@
           }
         }
       ],
-      "cpe": "cpe:2.3:a:libssl3:libssl3:3.3.1-r3:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2",
+      "cpe": "cpe:2.3:a:libssl3:libssl3:3.3.2-r0:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://www.openssl.org/",
@@ -1052,19 +1052,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:libssl3:libssl:3.3.1-r3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:libssl3:libssl:3.3.2-r0:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:libssl:libssl3:3.3.1-r3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:libssl:libssl3:3.3.2-r0:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:libssl:libssl:3.3.1-r3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:libssl:libssl:3.3.2-r0:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1072,7 +1072,7 @@
         },
         {
           "name": "syft:metadata:gitCommitOfApkPort",
-          "value": "83c40f5aee556e975228ae40d879fbcd9f15c428"
+          "value": "f81b26d0708cf0a8149e2caf8e5bc3e7fda1225b"
         },
         {
           "name": "syft:metadata:installedSize",
@@ -1088,11 +1088,11 @@
         },
         {
           "name": "syft:metadata:pullChecksum",
-          "value": "Q19thO8VXTZadpTl1yzJkS0Y4lX3g="
+          "value": "Q1+BBSqExeECj+TbSOlMlKsagmqJg="
         },
         {
           "name": "syft:metadata:pullDependencies:0",
-          "value": "libcrypto3=3.3.1-r3"
+          "value": "libcrypto3=3.3.2-r0"
         },
         {
           "name": "syft:metadata:pullDependencies:1",
@@ -1104,12 +1104,12 @@
         },
         {
           "name": "syft:metadata:size",
-          "value": "357479"
+          "value": "357545"
         }
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
+      "bom-ref": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.3&package-id=486dd4390c1d8c51",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "lua5.4-libs",
@@ -1123,7 +1123,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:lua5.4-libs:lua5.4-libs:5.4.6-r1:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://www.lua.org/",
@@ -1237,7 +1237,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1274,7 +1274,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73",
+      "bom-ref": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "musl",
@@ -1288,7 +1288,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:musl-libc:musl:1.2.5-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://musl.libc.org/",
@@ -1318,7 +1318,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1351,7 +1351,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.2&package-id=a52be0ebb34aa881",
+      "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.3&package-id=a52be0ebb34aa881",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "musl-utils",
@@ -1363,7 +1363,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:musl-utils:musl-utils:1.2.5-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://musl.libc.org/",
@@ -1413,7 +1413,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1474,7 +1474,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.2&package-id=319e5c7839d7b09b",
+      "bom-ref": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.3&package-id=319e5c7839d7b09b",
       "type": "library",
       "publisher": "Jakub Jirutka <jakub@jirutka.cz>",
       "name": "pcre2",
@@ -1488,7 +1488,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:pcre2:pcre2:10.43-r0:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://pcre.org/",
@@ -1522,7 +1522,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1563,7 +1563,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.2&package-id=786da1fbab465741",
+      "bom-ref": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.3&package-id=786da1fbab465741",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "scanelf",
@@ -1577,7 +1577,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:scanelf:scanelf:1.3.7-r2:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities",
@@ -1599,7 +1599,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1636,7 +1636,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2&package-id=c5128491237ee638",
+      "bom-ref": "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3&package-id=c5128491237ee638",
       "type": "library",
       "publisher": "Sören Tempel <soeren+alpine@soeren-tempel.net>",
       "name": "ssl_client",
@@ -1650,7 +1650,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:ssl-client:ssl-client:1.36.1-r29:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://busybox.net/",
@@ -1692,7 +1692,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1737,7 +1737,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.2&package-id=6dd4db84efbbb0de",
+      "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.3&package-id=6dd4db84efbbb0de",
       "type": "library",
       "publisher": "Natanael Copa <ncopa@alpinelinux.org>",
       "name": "zlib",
@@ -1751,7 +1751,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:zlib:zlib:1.3.1-r1:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.2",
+      "purl": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.3",
       "externalReferences": [
         {
           "url": "https://zlib.net/",
@@ -1773,7 +1773,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:e2850fd9211bcf14120672cd4d4d39439f8b99c8584555c6f45aaeec9b04060f"
+          "value": "sha256:0916750bba89f07da3f6e647d9fc4a99ccd87de04022b8c6fb95d19f58890d7f"
         },
         {
           "name": "syft:location:0:path",
@@ -1810,15 +1810,15 @@
       ]
     },
     {
-      "bom-ref": "os:alpine@3.20.2",
+      "bom-ref": "os:alpine@3.20.3",
       "type": "operating-system",
       "name": "alpine",
-      "version": "3.20.2",
+      "version": "3.20.3",
       "description": "Alpine Linux v3.20",
       "swid": {
         "tagId": "alpine",
         "name": "alpine",
-        "version": "3.20.2"
+        "version": "3.20.3"
       },
       "externalReferences": [
         {
@@ -1841,125 +1841,125 @@
         },
         {
           "name": "syft:distro:versionID",
-          "value": "3.20.2"
+          "value": "3.20.3"
         }
       ]
     }
   ],
   "dependencies": [
     {
-      "ref": "pkg:apk/alpine/.haproxy-rundeps@20240722.230423?arch=noarch&distro=alpine-3.20.2&package-id=b06a5cec4b58d9a1",
+      "ref": "pkg:apk/alpine/.haproxy-rundeps@20240919.185804?arch=noarch&distro=alpine-3.20.3&package-id=da1a44bc82b318a4",
       "dependsOn": [
-        "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
-        "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
-        "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73",
-        "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.2&package-id=319e5c7839d7b09b"
+        "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
+        "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
+        "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.3&package-id=486dd4390c1d8c51",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73",
+        "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.3&package-id=319e5c7839d7b09b"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=08c208ae832e3bf1",
+      "ref": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=08c208ae832e3bf1",
       "dependsOn": [
-        "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.2&package-id=eb22ad614104fc6e",
-        "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2&package-id=935ad6397e8681a6"
+        "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&upstream=alpine-baselayout&distro=alpine-3.20.3&package-id=eb22ad614104fc6e",
+        "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3&package-id=935ad6397e8681a6"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.2&package-id=5603df547f73b9d9",
+      "ref": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=alpine-3.20.3&package-id=5603df547f73b9d9",
       "dependsOn": [
-        "pkg:apk/alpine/ca-certificates-bundle@20240705-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.2&package-id=f068a89125d4b6d7",
-        "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
-        "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73",
-        "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.2&package-id=6dd4db84efbbb0de"
+        "pkg:apk/alpine/ca-certificates-bundle@20240705-r0?arch=x86_64&upstream=ca-certificates&distro=alpine-3.20.3&package-id=f068a89125d4b6d7",
+        "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
+        "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73",
+        "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.3&package-id=6dd4db84efbbb0de"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2&package-id=935ad6397e8681a6",
+      "ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3&package-id=935ad6397e8681a6",
       "dependsOn": [
-        "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.2&package-id=1fe96fc86bc38a25"
+        "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.3&package-id=1fe96fc86bc38a25"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.2&package-id=1fe96fc86bc38a25",
+      "ref": "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=alpine-3.20.3&package-id=1fe96fc86bc38a25",
       "dependsOn": [
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/ca-certificates@20240705-r0?arch=x86_64&distro=alpine-3.20.2&package-id=cff89f58c0585c93",
+      "ref": "pkg:apk/alpine/ca-certificates@20240705-r0?arch=x86_64&distro=alpine-3.20.3&package-id=cff89f58c0585c93",
       "dependsOn": [
-        "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2&package-id=935ad6397e8681a6",
-        "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3&package-id=935ad6397e8681a6",
+        "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
+      "ref": "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
       "dependsOn": [
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
+      "ref": "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
       "dependsOn": [
-        "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
+      "ref": "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.3&package-id=486dd4390c1d8c51",
       "dependsOn": [
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.2&package-id=a52be0ebb34aa881",
+      "ref": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&upstream=musl&distro=alpine-3.20.3&package-id=a52be0ebb34aa881",
       "dependsOn": [
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73",
-        "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.2&package-id=786da1fbab465741"
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73",
+        "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.3&package-id=786da1fbab465741"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.2&package-id=319e5c7839d7b09b",
+      "ref": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.3&package-id=319e5c7839d7b09b",
       "dependsOn": [
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.2&package-id=786da1fbab465741",
+      "ref": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&upstream=pax-utils&distro=alpine-3.20.3&package-id=786da1fbab465741",
       "dependsOn": [
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.2&package-id=c5128491237ee638",
+      "ref": "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&upstream=busybox&distro=alpine-3.20.3&package-id=c5128491237ee638",
       "dependsOn": [
-        "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
-        "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
+        "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.2&package-id=6dd4db84efbbb0de",
+      "ref": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=alpine-3.20.3&package-id=6dd4db84efbbb0de",
       "dependsOn": [
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73"
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73"
       ]
     },
     {
-      "ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a",
+      "ref": "pkg:generic/haproxy@3.0.5?package-id=72843505ca23c788",
       "dependsOn": [
-        "pkg:apk/alpine/libcrypto3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=da8775f3539f76c6",
-        "pkg:apk/alpine/libssl3@3.3.1-r3?arch=x86_64&upstream=openssl&distro=alpine-3.20.2&package-id=38620aa358cbe87a",
-        "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.2&package-id=486dd4390c1d8c51",
-        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.2&package-id=3ea0974d202d0c73",
-        "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.2&package-id=319e5c7839d7b09b"
+        "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
+        "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
+        "pkg:apk/alpine/lua5.4-libs@5.4.6-r1?arch=x86_64&upstream=lua5.4&distro=alpine-3.20.3&package-id=486dd4390c1d8c51",
+        "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=alpine-3.20.3&package-id=3ea0974d202d0c73",
+        "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=alpine-3.20.3&package-id=319e5c7839d7b09b"
       ]
     }
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:75c0186f-277b-47f9-9bb7-510fce02f635",
+      "bom-ref": "urn:uuid:3149aeda-1502-4055-829b-7c56902e7a9a",
       "id": "CVE-2016-2102",
       "source": {
         "name": "nvd-cpe",
@@ -1996,12 +1996,12 @@
       ],
       "affects": [
         {
-          "ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a"
+          "ref": "pkg:generic/haproxy@3.0.5?package-id=72843505ca23c788"
         }
       ]
     },
     {
-      "bom-ref": "urn:uuid:9fbcbcaa-9ca9-45d2-8b38-c197692cf243",
+      "bom-ref": "urn:uuid:f04e6a45-49ff-4530-95da-8aefd3b2553d",
       "id": "CVE-2023-0056",
       "source": {
         "name": "nvd-cpe",
@@ -2032,7 +2032,7 @@
       ],
       "affects": [
         {
-          "ref": "pkg:generic/haproxy@3.0.3?package-id=45b156ce0442057a"
+          "ref": "pkg:generic/haproxy@3.0.5?package-id=72843505ca23c788"
         }
       ]
     }

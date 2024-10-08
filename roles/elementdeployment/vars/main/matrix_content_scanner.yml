@@ -14,6 +14,6 @@ _matrix_content_scanner_basic_paths:
   matchHostname: '{{ components.synapse.k8s.ingress.fqdn }}'
   availability: internally_and_externally  # /_matrix/media_proxy should also be available when hitting Synapse's HAProxy Service directly
   service:
-    name: '{{ ansible_operator_meta.name }}-matrix-content-scanner-headless'
+    name: '{{ ansible_operator_meta.name }}-matrix-content-scanner'
     port:
       name: web

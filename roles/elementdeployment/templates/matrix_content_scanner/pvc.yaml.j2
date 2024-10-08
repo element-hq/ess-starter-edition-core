@@ -5,4 +5,4 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 #}
 
-{{ lookup('template', 'templates/any/pvc.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent': 'clam_anti_virus'}) }}
+{{ lookup('template', 'templates/any/pvc.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent': 'clam_anti_virus', '_claim_name': 'clamav'}) }}

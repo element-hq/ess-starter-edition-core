@@ -17,7 +17,7 @@ metadata:
 spec:
   endpoints:
   - interval: 30s
-    port: metrics-ctrl
+    port: metrics
   - interval: 30s
     port: metrics-watch
   selector:

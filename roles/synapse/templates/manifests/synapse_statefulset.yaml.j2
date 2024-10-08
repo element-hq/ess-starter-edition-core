@@ -26,7 +26,7 @@ metadata:
   name: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
   namespace: "{{ ansible_operator_meta.namespace }}"
 spec:
-  serviceName: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}-headless"
+  serviceName: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
   replicas: {{ num_instances }}
   selector:
     matchLabels:
@@ -142,11 +142,11 @@ spec:
 {% endif %}
         volumeMounts:
         - mountPath: /config/instance_template.yaml
-          name: "process-type-config"
+          name: "provided-config"
           readOnly: true
           subPath: instance_template.yaml
         - mountPath: /config/log_config.yaml
-          name: shared-config
+          name: provided-config
           readOnly: true
           subPath: log_config.yaml
 {% for as_registration in synapse_appservices_registrations %}
@@ -167,13 +167,9 @@ spec:
         - mountPath: /tmp
           name: tmp
       volumes:
-      - configMap:
-          defaultMode: 420
-          name: "{{ ansible_operator_meta.name }}-synapse-shared"
-        name: shared-config
       - secret:
           secretName: "{{ ansible_operator_meta.name }}-synapse-{{ process_type }}"
-        name: "process-type-config"
+        name: "provided-config"
       - emptyDir:
           medium: Memory
         name: "rendered-config"

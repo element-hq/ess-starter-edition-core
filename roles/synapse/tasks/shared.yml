@@ -1,9 +1,10 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 
 ---
-- name: Import all shared
-  ansible.builtin.include_tasks: '{{ item }}'
-  loop: "{{ query('fileglob', 'shared/*.yml') | sort }}"
+- name: Initialise the list of manifests to manage
+  ansible.builtin.set_fact:
+    synapse_manifests: []
+

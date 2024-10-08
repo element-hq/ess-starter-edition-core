@@ -84,8 +84,6 @@ spec:
         | regex_replace('workloads:\n', '')
         | indent(4)
     }}
-  service:
-    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   ingress:
     {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2', template_vars={'_component_item': _component_item, '_tls_secret': 'synapse-tls-secret'}) | indent(4) }}
 {% if selected_components_with_synapse_additional_ingress_paths | length > 0 %}
@@ -98,6 +96,8 @@ spec:
       | indent(4)
     }}
 {% endif %}
+  service:
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   config:
     haproxyReplicas: 1
     {{ lookup('template', 'templates/any/k8s-host-aliases.yaml.j2', template_vars={'_component_item': _component_item, '_subcomponent':'synapse'}) | indent(4) }}

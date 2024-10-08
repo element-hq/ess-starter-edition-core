@@ -13,13 +13,13 @@ metadata:
 spec:
   {{ lookup('template', 'templates/any/k8s-image.yaml.j2', template_vars={'_component_item': _component_item})  | indent(2) }}
   {{ lookup('template', 'templates/any/k8s-workloads.yaml.j2', template_vars={'_component_item': _component_item})  | indent(2) }}
-  service:
-    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   ingress:
     {{ lookup('template', 'templates/any/k8s-ingress.yaml.j2',
         template_vars={'_component_item': _component_item,
                        '_tls_secret': 'wellknowndelegation-tls-secret',
                        '_ingress_fqdn': _global.config.domain_name}) | indent(4) }}
+  service:
+    {{ lookup('template', 'templates/any/k8s-services.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
   config:
     {{ lookup('template', 'templates/any/k8s-config.yaml.j2', template_vars={'_component_item': _component_item})  | indent(4) }}
 {% set _element_config_template_files = query('fileglob', 'templates/well_known_delegation/config_element/*.json.j2') | sort %}

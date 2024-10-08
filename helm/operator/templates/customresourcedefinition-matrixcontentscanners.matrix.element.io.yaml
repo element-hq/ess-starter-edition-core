@@ -94,6 +94,8 @@ spec:
                             storageClassName:
                               description: The storage class name to use
                               type: string
+                          required:
+                            - size
                           type: object
                         ttl:
                           description: The maximum amount of time an entry will stay in the cache before being evicted.
@@ -236,8 +238,9 @@ spec:
                               type: array
                           type: object
                         replicas:
-                          default: 2
-                          description: The number of replicas for ClamAV. Defaults to 2
+                          default: 1
+                          description: The number of replicas for ClamAV. Can only be 1 for now
+                          maximum: 1
                           minimum: 1
                           type: integer
                         resources:

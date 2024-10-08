@@ -462,7 +462,9 @@ spec:
                                       description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
                                       type: object
                                     replicas:
-                                      description: The number of ClamAV replicas
+                                      default: 1
+                                      description: The number of ClamAV replicas. Can only be 1 for now
+                                      maximum: 1
                                       minimum: 1
                                       type: number
                                     resources:
@@ -768,6 +770,7 @@ spec:
                                       anyOf:
                                         - type: integer
                                         - type: string
+                                      default: 10Gi
                                       description: The volume size to use to store the media
                                       pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$
                                       x-kubernetes-int-or-string: true
@@ -2775,7 +2778,9 @@ spec:
                                       description: 'NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node''s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/'
                                       type: object
                                     replicas:
-                                      description: The number of ClamAV replicas
+                                      default: 1
+                                      description: The number of ClamAV replicas. Can only be 1 for now
+                                      maximum: 1
                                       minimum: 1
                                       type: number
                                     resources:
@@ -3081,6 +3086,7 @@ spec:
                                       anyOf:
                                         - type: integer
                                         - type: string
+                                      default: 10Gi
                                       description: The volume size to use to store the media
                                       pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[MGTPE])?$
                                       x-kubernetes-int-or-string: true

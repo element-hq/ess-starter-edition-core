@@ -1,12 +1,12 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
 #}
 
 {% if components_k8s_properties.storage.volume.size | default(false)  %}
-volumeClaim: {{ ansible_operator_meta.name }}-{{ _component_item }}
+volumeClaim: {{ ansible_operator_meta.name }}-{{ _claim_name | default(_component_item | regex_replace('_', '-')) }}
 {% else %}
 volumeClaim: {{ components_k8s_properties.storage.volume.persistent_volume_claim_name }}
 {% endif %}

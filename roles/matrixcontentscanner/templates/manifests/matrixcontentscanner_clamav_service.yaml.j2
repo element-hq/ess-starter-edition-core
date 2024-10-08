@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ ansible_operator_meta.name }}-clamav-headless"
+  name: "{{ ansible_operator_meta.name }}-clamav"
   namespace: "{{ ansible_operator_meta.namespace }}"
   labels:
     app.kubernetes.io/name: clamav

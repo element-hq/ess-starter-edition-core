@@ -1,8 +1,8 @@
 {#
-Copyright 2023 New Vector Ltd
+Copyright 2023-2024 New Vector Ltd
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
 #}
 
-type: {{ components_services_properties.type | default(_global.k8s.ingresses.services.type) }}
+type: {{ components_ingress_properties.services.type | default(_global.k8s.ingresses.services.type) }}

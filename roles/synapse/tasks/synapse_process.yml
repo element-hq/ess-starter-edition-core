@@ -8,11 +8,12 @@
 # a) that isn't needed
 # b) imposes the complexity of having to loop on worker types in multiple places
 #    e.g. defining has_replication, has_http, process_additional, etc
-- name: "Maintain manifests - {{ process_type }}"
-  ansible.builtin.include_role:
-    name: "generic_apply"
+- name: "Construct manifests - {{ process_type }}"
+  ansible.builtin.set_fact:
+    synapse_manifests: "{{ synapse_manifests + query('template', item) }}"
+  loop: "{{ _manifest_template_filenames }}"
   vars:
     _manifest_template_filenames:
-    - "{{ role_path }}/../synapse/templates/manifests/synapse_headless_service.yaml.j2"
+    - "{{ role_path }}/../synapse/templates/manifests/synapse_service.yaml.j2"
     - "{{ role_path }}/../synapse/templates/manifests/synapse_config_secrets.yaml.j2"
     - "{{ role_path }}/../synapse/templates/manifests/synapse_statefulset.yaml.j2"

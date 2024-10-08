@@ -592,7 +592,9 @@
                           "type": "object"
                         },
                         "replicas": {
-                          "description": "The number of ClamAV replicas",
+                          "default": 1,
+                          "description": "The number of ClamAV replicas. Can only be 1 for now",
+                          "maximum": 1,
                           "minimum": 1,
                           "type": "number"
                         },
@@ -1024,6 +1026,7 @@
                               "type": "string"
                             }
                           ],
+                          "default": "10Gi",
                           "description": "The volume size to use to store the media",
                           "x-kubernetes-int-or-string": true
                         },

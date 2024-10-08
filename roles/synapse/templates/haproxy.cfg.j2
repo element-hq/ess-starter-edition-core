@@ -168,7 +168,7 @@ frontend http-in
 backend main
     default-server maxconn 250
     # Use DNS SRV service discovery on the headless service
-    server-template main 1 _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-main-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
+    server-template main 1 _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-main.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
 
 {% for type, details in synapse_configured_workers | dictsort %}
 {% if synapse_available_worker_types[type].paths | default([]) | length > 0 %}
@@ -239,7 +239,7 @@ backend {{ type }}
 {%- set max_instances = 1 if synapse_available_worker_types[type].single else 20 %}
 {%- set worker_type = synapse_available_worker_types[type].name_override | default(type) %}
     # Use DNS SRV service discovery on the headless service
-    server-template {{ type }} {{ max_instances }} _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-{{ worker_type }}-headless.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
+    server-template {{ type }} {{ max_instances }} _synapse-http._tcp.{{ ansible_operator_meta.name }}-synapse-{{ worker_type }}.{{ ansible_operator_meta.namespace }}.svc.cluster.local resolvers kubedns init-addr none
 {% endif %}
 {% endfor%}
 

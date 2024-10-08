@@ -58,11 +58,6 @@ patches:
   - |-
     kind: KustomizeSchema
     metadata:
-      name: k8s-services
-    $patch: delete
-  - |-
-    kind: KustomizeSchema
-    metadata:
       name: k8s-storage
     $patch: delete
   - |-

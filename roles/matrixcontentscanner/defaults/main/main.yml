@@ -30,7 +30,7 @@ _merged_image_pull_secrets_names: >-
 
 env_matrixcontentscanner_overrides:
 - name: ICAP_HOST
-  value: "{{ ansible_operator_meta.name }}-clamav-headless"
+  value: "{{ ansible_operator_meta.name }}-clamav"
 - name: ICAP_PORT
   value: "1344"
 - name: ICAP_SVC

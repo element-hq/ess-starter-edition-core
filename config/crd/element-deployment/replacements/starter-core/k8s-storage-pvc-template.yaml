@@ -14,6 +14,7 @@ spec:
       size: This field will be replaced by kustomize
     properties:
       size:
+        default: This field will be replaced by kustomize
         anyOf:
           - type: integer
           - type: string

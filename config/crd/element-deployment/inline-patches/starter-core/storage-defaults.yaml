@@ -9,7 +9,11 @@
 - op: replace
   path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/clamAntiVirus/properties/storage/properties/volume/default/size'
   value: 1Gi
+# We have both these defaults as specifying a storageClassName or selector shouldn't lose the default on the siz\e
 - op: replace
   path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/matrixContentScanner/properties/storage/default/size'
+  value: 10Gi
+- op: replace
+  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/matrixContentScanner/properties/storage/properties/size/default'
   value: 10Gi
 # Synapse defaults are configured in config/crd/element-deployment/replacements/starter-core/synapse.yaml

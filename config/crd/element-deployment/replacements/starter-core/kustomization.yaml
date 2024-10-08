@@ -15,7 +15,6 @@ resources:
   - well_known_delegation.yaml
   - global.yaml
   - k8s-common.yaml
-  - k8s-services.yaml
   - k8s-ingresses.yaml
   - k8s-monitoring.yaml
   - k8s-storage-pvc-template.yaml

@@ -21,6 +21,7 @@
                         kind=_kind,
                         namespace=ansible_operator_meta.namespace,
                         resource_name=ansible_operator_meta.name) }}"
+      _owned_managed_manifests_ids: []
 
   - name: Fetch APIs available
     kubernetes.core.k8s_cluster_info:
@@ -50,22 +51,15 @@
           name: "{{ _owner.metadata.name }}"
           uid: "{{ _owner.metadata.uid }}"
 
-    # This allows us to force a recreation of all managed resources
-    # Change this value, _crd_spec_hash will then change and then any resources not updated will be reaped by the teardown plays
-    _crd_hash_versions_by_kind:
-      "Synapse": "2023-10-10"
-    _crd_hash_version: "{{ _crd_hash_versions_by_kind[_kind] | default('') }}"
-    _crd_spec_json: "{{ hostvars[inventory_hostname]['_matrix_element_io_' ~ (_kind | lower) ~ '_spec'] | to_json }}"
-    _crd_spec_hash: "{{ (_crd_spec_json + (_owner.metadata.annotations | default({}) | to_json) + _crd_hash_version) | hash('sha1') }}"
-    _crd_spec_hash_metadata:
-      metadata:
-        labels:
-          k8s.element.io/crdhash: "{{ _crd_spec_hash }}"
-
     _managed_by: "{{ 'element-updater' if _kind == 'ElementDeployment' else 'element-operator' }}"
     _managed_by_metadata:
       metadata:
         labels:
           app.kubernetes.io/managed-by: "{{ _managed_by }}"
+          # https://github.com/kubernetes/client-go/issues/1085
+          # We can't do server-side filtering by ownerReferences. Introduce owner labels so that, in future, we can
+          # use them to do some server-side filtering using label selectors that we do client side for now
+          k8s.element.io/owner-name: "{{ ansible_operator_meta.name }}"
+          k8s.element.io/owner-group-kind: "{{ _kind }}"
 
-    _generic_apply_mixin: "{{ {} | combine([_owner_refs_metadata, _crd_spec_hash_metadata, _managed_by_metadata], recursive=true) }}"
+    _generic_apply_mixin: "{{ {} | combine([_owner_refs_metadata, _managed_by_metadata], recursive=true) }}"

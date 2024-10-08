@@ -45,6 +45,18 @@
         | sort_apply_order
       }}
 
+- name: "Update the list of manifests that we own and are still actively managing"
+  ansible.builtin.set_fact:
+    _owned_managed_manifests_ids: "{{ _owned_managed_manifests_ids + _ids_of_manifests_in_this_apply }}"
+  vars:
+    _ids_of_manifests_in_this_apply: |
+      {% set identifiers = [] %}
+      {% for item in _prepared_manifest_objects %}
+      {% set id = item.apiVersion ~ "/" ~ item.kind ~ "/" ~ item.metadata.namespace ~ "/" ~ item.metadata.name %}
+      {% set _ = identifiers.append(id) %}
+      {% endfor %}
+      {{ identifiers }}
+
 
 - name: Apply Manifest in check_mode
   check_mode: true
@@ -58,8 +70,10 @@
   - ("updates to statefulset spec for fields other than" not in result.msg)
   - ("missing metadata in converted object" not in result.msg)
   - '("MatchExpressions:[]v1.LabelSelectorRequirement(nil)}: field is immutable" not in result.msg)'
+  - ("may not change once set" not in result.msg)
 
-- name: "Maintain resources that risk to not support recreation"
+- name: "Maintain resources possibly don't support recreation"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
   kubernetes.core.k8s:
     resource_definition: "{{ _risky_manifest_objects }}"
   vars:
@@ -71,17 +85,46 @@
       }}
   when: _risky_manifest_objects | length > 0
 
-- name: Maintain resources that support recreation
-  # Manifests are leaked due to index_var
+- name: "Save non-risky manifests"
   no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
-  ansible.builtin.include_tasks: "apply_then_recreate.yml"
-  vars:
+  ansible.builtin.set_fact:
     # noqa: jinja[invalid]
     _non_risky_manifest_objects: >
       {{
         _prepared_manifest_objects
         | rejectattr('kind', 'eq', 'PersistentVolumeClaim')
       }}
+
+- name: "Teardown non-SSA non-risky objects"
+  no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
+  kubernetes.core.k8s:
+    state: absent
+    resource_definition: "{{ _non_ssa_resources }}"
+  when: _non_ssa_resources | length > 0
+  vars:
+    _non_ssa_resources: |
+      {% set to_teardown = [] %}
+      {% for item in _non_risky_manifest_objects %}
+      {% set existing_item = query('kubernetes.core.k8s',
+                                    kind=item.kind,
+                                    api_version=item.apiVersion,
+                                    resource_name=item.metadata.name,
+                                    namespace=ansible_operator_meta.namespace) %}
+      {% if existing_item | length > 0 %}
+      {% if ((existing_item | first).metadata.managedFields)
+              | selectattr('manager', 'eq', 'OpenAPI-Generator')
+              | map(attribute='fieldsV1')
+              | selectattr('f:spec', 'defined')
+              | length > 0 %}
+      {% set _ = to_teardown.append(existing_item | first) %}
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      {{ to_teardown }}
+
+- name: Maintain resources that support recreation
+  ansible.builtin.include_tasks: "apply_then_recreate.yml"
   loop: "{{ _non_risky_manifest_objects }}"
   loop_control:
     loop_var: "_manifest"
+    label: "{{ _manifest.kind }}/{{ _manifest.metadata.name }}"

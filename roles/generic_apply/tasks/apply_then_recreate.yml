@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -6,41 +6,18 @@
 ---
 - name: Maintain Manifest
   block:
-  - name: "Teardown non-SSA resource"
-    kubernetes.core.k8s:
-      resource_definition:
-        kind: "{{ _existing_resource[0].kind }}"
-        apiVersion: "{{ _existing_resource[0].apiVersion }}"
-        metadata:
-          name: "{{ _existing_resource[0].metadata.name }}"
-          namespace: "{{ _existing_resource[0].metadata.namespace }}"
-      state: absent
-    when:
-    - _existing_resource | length > 0
-    - >-
-      ((_existing_resource | first).metadata.managedFields)
-      | selectattr('manager', 'eq', 'OpenAPI-Generator')
-      | map(attribute='fieldsV1')
-      | selectattr('f:spec', 'defined')
-      | length > 0
-    vars:
-      _existing_resource: >
-        {{ query('kubernetes.core.k8s',
-              kind=_manifest.kind,
-              api_version=_manifest.apiVersion,
-              namespace=_manifest.metadata.namespace,
-              resource_name=_manifest.metadata.name)
-        }}
-
   - name: Apply Manifest
+    no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
     kubernetes.core.k8s:
       resource_definition: "{{ _manifest }}"
   rescue:
   - name: Destroy Manifest
+    no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
     kubernetes.core.k8s:
       state: absent
       resource_definition: "{{ _manifest }}"
 
   - name: Apply Manifest from scratch
+    no_log: "{{ lookup('env', 'DEBUG_MANIFESTS') | int != 1 }}"
     kubernetes.core.k8s:
       resource_definition: "{{ _manifest }}"
