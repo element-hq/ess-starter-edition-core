@@ -28,6 +28,7 @@ docker run \
 echo "now on kind context, going to apply whats next in 15seconds"
 sleep 5
 kubectl --context $kind_context_name apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+kubectl patch configmap/ingress-nginx-controller -n ingress-nginx --type merge --patch-file tests/nginx-cm.yml
 helm --kube-context $kind_context_name install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager \

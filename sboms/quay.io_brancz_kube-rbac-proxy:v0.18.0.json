@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:da5ec77a-ebef-4cca-9594-f43314f92979",
+  "serialNumber": "urn:uuid:bbbfff02-4373-4884-b6cd-2cfc34ef0398",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-10-07T15:48:14Z",
+    "timestamp": "2024-10-15T16:30:15Z",
     "tools": {
       "components": [
         {
@@ -5782,7 +5782,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:d3a89aa6-f783-4868-9fa5-beb9279e6a14",
+      "bom-ref": "urn:uuid:157cb344-39dd-4aa0-84fb-5c342425ad38",
       "id": "CVE-2024-24791",
       "source": {
         "name": "nvd-cpe",
@@ -5827,7 +5827,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1b168d7b-f0c1-4ad9-a014-2a30ea1cda52",
+      "bom-ref": "urn:uuid:e7fa975b-a1ea-4e43-a809-ff9e36a3c3b7",
       "id": "CVE-2024-34155",
       "source": {
         "name": "nvd-cpe",
@@ -5869,7 +5869,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f0ed396c-6bb1-48b6-8ee2-36efcdb45388",
+      "bom-ref": "urn:uuid:ae09490e-e101-4c40-b94f-817131616f0b",
       "id": "CVE-2024-34156",
       "source": {
         "name": "nvd-cpe",
@@ -5914,7 +5914,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:39ed22c1-41c6-4782-9289-5303a7dfce21",
+      "bom-ref": "urn:uuid:9458f67c-9ba8-4f4b-bb60-6bb8e2806a70",
       "id": "CVE-2024-34158",
       "source": {
         "name": "nvd-cpe",
@@ -5959,7 +5959,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a1c00f33-4d1c-42f3-876c-81186c8a27fd",
+      "bom-ref": "urn:uuid:46afe723-c5fa-43c0-909b-0bf693cd5a82",
       "id": "GHSA-c5q2-7r4c-mv6g",
       "source": {
         "name": "github-language-go",
@@ -5995,7 +5995,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ff764f9c-8609-425f-bd6b-d367a67f636a",
+      "bom-ref": "urn:uuid:bcc6a8b1-1a3a-4c92-b422-0bb47fd2baeb",
       "id": "GHSA-xr7q-jx4m-x55m",
       "source": {
         "name": "github-language-go",

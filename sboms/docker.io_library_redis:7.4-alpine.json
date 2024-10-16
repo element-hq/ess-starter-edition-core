@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:6368fcc3-fa8a-402f-b230-cbff976cbeeb",
+  "serialNumber": "urn:uuid:bcbbd573-2549-4163-a7a4-8d82fd4c7a93",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-10-07T15:47:22Z",
+    "timestamp": "2024-10-15T16:29:23Z",
     "tools": {
       "components": [
         {
@@ -17,7 +17,7 @@
       ]
     },
     "component": {
-      "bom-ref": "528ea92810c82b5c",
+      "bom-ref": "7db19e4b8d94f13a",
       "type": "container",
       "name": "docker.io/library/redis:7.4-alpine",
       "version": "7.4-alpine"
@@ -26,13 +26,13 @@
   },
   "components": [
     {
-      "bom-ref": "pkg:apk/alpine/.redis-rundeps@20240906.232357?arch=noarch&distro=alpine-3.20.3&package-id=1bc5acaee0d40ad9",
+      "bom-ref": "pkg:apk/alpine/.redis-rundeps@20241007.180153?arch=noarch&distro=alpine-3.20.3&package-id=8592bcdbcb768487",
       "type": "library",
       "name": ".redis-rundeps",
-      "version": "20240906.232357",
+      "version": "20241007.180153",
       "description": "virtual meta package",
-      "cpe": "cpe:2.3:a:.redis-rundeps:.redis-rundeps:20240906.232357:*:*:*:*:*:*:*",
-      "purl": "pkg:apk/alpine/.redis-rundeps@20240906.232357?arch=noarch&distro=alpine-3.20.3",
+      "cpe": "cpe:2.3:a:.redis-rundeps:.redis-rundeps:20241007.180153:*:*:*:*:*:*:*",
+      "purl": "pkg:apk/alpine/.redis-rundeps@20241007.180153?arch=noarch&distro=alpine-3.20.3",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -48,27 +48,27 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.redis-rundeps:.redis_rundeps:20240906.232357:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.redis-rundeps:.redis_rundeps:20241007.180153:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.redis_rundeps:.redis-rundeps:20240906.232357:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.redis_rundeps:.redis-rundeps:20241007.180153:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.redis_rundeps:.redis_rundeps:20240906.232357:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.redis_rundeps:.redis_rundeps:20241007.180153:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.redis:.redis-rundeps:20240906.232357:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.redis:.redis-rundeps:20241007.180153:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:.redis:.redis_rundeps:20240906.232357:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:.redis:.redis_rundeps:20241007.180153:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -80,7 +80,7 @@
         },
         {
           "name": "syft:metadata:pullChecksum",
-          "value": "Q1yi4FlvVgQMwem98HLHlPCjVZoM4="
+          "value": "Q1AyeLmzrLc+6Mt9as+DlGbeMlUtA="
         },
         {
           "name": "syft:metadata:pullDependencies:0",
@@ -157,7 +157,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -266,7 +266,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -351,7 +351,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -436,7 +436,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -533,7 +533,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -626,7 +626,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -745,7 +745,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -803,7 +803,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:33314e41226737f1718da232ef5abb2ee7afaf770286d91307fea6a9e7969a39"
+          "value": "sha256:c69df2962fb31bd9130b1d4f04895e251a9fbebe2dde3956aae0e20b853759cd"
         },
         {
           "name": "syft:location:0:path",
@@ -853,7 +853,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:33314e41226737f1718da232ef5abb2ee7afaf770286d91307fea6a9e7969a39"
+          "value": "sha256:c69df2962fb31bd9130b1d4f04895e251a9fbebe2dde3956aae0e20b853759cd"
         },
         {
           "name": "syft:location:0:path",
@@ -899,7 +899,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:33314e41226737f1718da232ef5abb2ee7afaf770286d91307fea6a9e7969a39"
+          "value": "sha256:c69df2962fb31bd9130b1d4f04895e251a9fbebe2dde3956aae0e20b853759cd"
         },
         {
           "name": "syft:location:0:path",
@@ -972,7 +972,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1057,7 +1057,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1146,7 +1146,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1241,7 +1241,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1302,12 +1302,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:generic/redis@7.4.0?package-id=40ebdd9d64747839",
+      "bom-ref": "pkg:generic/redis@7.4.1?package-id=ded9551e650a7eb9",
       "type": "application",
       "name": "redis",
-      "version": "7.4.0",
-      "cpe": "cpe:2.3:a:redislabs:redis:7.4.0:*:*:*:*:*:*:*",
-      "purl": "pkg:generic/redis@7.4.0",
+      "version": "7.4.1",
+      "cpe": "cpe:2.3:a:redislabs:redis:7.4.1:*:*:*:*:*:*:*",
+      "purl": "pkg:generic/redis@7.4.1",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -1323,11 +1323,11 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:redis:redis:7.4.0:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:redis:redis:7.4.1:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1372,7 +1372,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1465,7 +1465,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1538,7 +1538,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:33314e41226737f1718da232ef5abb2ee7afaf770286d91307fea6a9e7969a39"
+          "value": "sha256:c69df2962fb31bd9130b1d4f04895e251a9fbebe2dde3956aae0e20b853759cd"
         },
         {
           "name": "syft:location:0:path",
@@ -1587,7 +1587,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1652,7 +1652,7 @@
         },
         {
           "name": "syft:location:0:layerID",
-          "value": "sha256:04057946fcfe090ab4e02b7b7364e0019839b33a5ef475c6153ecea16e7328c0"
+          "value": "sha256:b5624c14317e18366d8cf3769d1aaf12b76d8a1520e9caa342a5decf44546b48"
         },
         {
           "name": "syft:location:0:path",
@@ -1727,7 +1727,7 @@
   ],
   "dependencies": [
     {
-      "ref": "pkg:apk/alpine/.redis-rundeps@20240906.232357?arch=noarch&distro=alpine-3.20.3&package-id=1bc5acaee0d40ad9",
+      "ref": "pkg:apk/alpine/.redis-rundeps@20241007.180153?arch=noarch&distro=alpine-3.20.3&package-id=8592bcdbcb768487",
       "dependsOn": [
         "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
         "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
@@ -1804,7 +1804,7 @@
       ]
     },
     {
-      "ref": "pkg:generic/redis@7.4.0?package-id=40ebdd9d64747839",
+      "ref": "pkg:generic/redis@7.4.1?package-id=ded9551e650a7eb9",
       "dependsOn": [
         "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187",
         "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be",
@@ -1822,7 +1822,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:9a6eaa18-b401-4758-97d6-b1d15f665ddf",
+      "bom-ref": "urn:uuid:bb74ac7b-18ef-4bc8-90a6-57f8225f5cfc",
       "id": "CVE-2022-1705",
       "source": {
         "name": "nvd-cpe",
@@ -1873,7 +1873,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d60e1b31-323a-4993-b9a9-42fb630966a2",
+      "bom-ref": "urn:uuid:cb1b1ec8-f43b-4ece-a53b-2fe9fc001d06",
       "id": "CVE-2022-1962",
       "source": {
         "name": "nvd-cpe",
@@ -1921,7 +1921,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d9c39d01-9d6f-4e67-92ba-9ce8703e811e",
+      "bom-ref": "urn:uuid:6153721d-0e9e-4665-834d-132f32126af0",
       "id": "CVE-2022-27664",
       "source": {
         "name": "nvd-cpe",
@@ -1972,7 +1972,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:054eb2b1-a376-4bf6-911c-7dcb1510bff9",
+      "bom-ref": "urn:uuid:63490376-af7c-425d-8c85-4cfa917870e3",
       "id": "CVE-2022-28131",
       "source": {
         "name": "nvd-cpe",
@@ -2020,7 +2020,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1ac533b1-bb1b-4ee9-9d62-dd0d4c0f3f89",
+      "bom-ref": "urn:uuid:880d8336-5e3b-45a0-baf6-c7e022adcf10",
       "id": "CVE-2022-2879",
       "source": {
         "name": "nvd-cpe",
@@ -2068,7 +2068,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d7f44caa-ed32-4547-9b02-375abc4c4223",
+      "bom-ref": "urn:uuid:c4698604-9e38-4410-8c11-a6baab801eec",
       "id": "CVE-2022-2880",
       "source": {
         "name": "nvd-cpe",
@@ -2116,7 +2116,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:781a5131-bb82-4f6a-ab62-ee2b9dbf4dbc",
+      "bom-ref": "urn:uuid:ed788292-3028-4590-9b09-c85f263d4618",
       "id": "CVE-2022-30580",
       "source": {
         "name": "nvd-cpe",
@@ -2164,7 +2164,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:15b23544-3f62-463a-ad47-87c6d727c897",
+      "bom-ref": "urn:uuid:d769b701-bc12-46d3-99f0-06524820db7a",
       "id": "CVE-2022-30629",
       "source": {
         "name": "nvd-cpe",
@@ -2212,7 +2212,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ef98dd53-5a97-423f-bbab-3b4a8b924f3b",
+      "bom-ref": "urn:uuid:52547b8f-9ec4-47ad-b4b9-7eb7dd9353fa",
       "id": "CVE-2022-30630",
       "source": {
         "name": "nvd-cpe",
@@ -2260,7 +2260,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3807cf04-6e9b-4051-bd06-9324429dbf72",
+      "bom-ref": "urn:uuid:2106ed5b-8221-4928-a9ab-85c13921fd27",
       "id": "CVE-2022-30631",
       "source": {
         "name": "nvd-cpe",
@@ -2308,7 +2308,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:cc9ab7b4-abcb-4ef8-b33e-23a8ed407fe3",
+      "bom-ref": "urn:uuid:e127ffc6-b66c-45ed-9283-da33489d591b",
       "id": "CVE-2022-30632",
       "source": {
         "name": "nvd-cpe",
@@ -2356,7 +2356,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0d285e83-fcf9-4583-b762-6cfc823b2cb8",
+      "bom-ref": "urn:uuid:0101b234-0290-4023-bd2a-ae98afd9db76",
       "id": "CVE-2022-30633",
       "source": {
         "name": "nvd-cpe",
@@ -2404,7 +2404,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e6088449-8317-4b93-a1b0-c9544abff75e",
+      "bom-ref": "urn:uuid:4c74e2b8-6e76-48cd-bdc0-084f72ba3db7",
       "id": "CVE-2022-30635",
       "source": {
         "name": "nvd-cpe",
@@ -2452,7 +2452,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d106a327-de34-4900-9c6b-b744fc156a86",
+      "bom-ref": "urn:uuid:e7bcdb66-fa4f-445e-9595-e65b09723bc7",
       "id": "CVE-2022-32148",
       "source": {
         "name": "nvd-cpe",
@@ -2500,7 +2500,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:87ea9b5a-51bd-42d1-a9fa-bce2e01fc13c",
+      "bom-ref": "urn:uuid:eb1d3ccd-6e9d-46af-9ef3-4c712cb2bf71",
       "id": "CVE-2022-32189",
       "source": {
         "name": "nvd-cpe",
@@ -2548,7 +2548,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9492c6aa-c590-44dc-8f34-6270cc425582",
+      "bom-ref": "urn:uuid:14988f11-1b4d-4bdc-974f-f6d93aa38ff6",
       "id": "CVE-2022-41715",
       "source": {
         "name": "nvd-cpe",
@@ -2596,7 +2596,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ef0264b9-9693-4939-955b-dfe4b363bd8d",
+      "bom-ref": "urn:uuid:143f015f-e546-49fa-a8fb-8dbd8a7ed373",
       "id": "CVE-2022-41717",
       "source": {
         "name": "nvd-cpe",
@@ -2698,7 +2698,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9cc916f4-fec9-4809-a152-d250e724f42b",
+      "bom-ref": "urn:uuid:0696313f-15ed-4247-a59f-89781a862005",
       "id": "CVE-2022-41723",
       "source": {
         "name": "nvd-cpe",
@@ -2773,7 +2773,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d2b6e640-86f8-4442-90eb-d6b8c787dc19",
+      "bom-ref": "urn:uuid:8c9d93fb-aed2-41e5-bb0f-c5e9bb286b8d",
       "id": "CVE-2022-41724",
       "source": {
         "name": "nvd-cpe",
@@ -2821,7 +2821,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:dab8dde8-d36b-49fd-9f89-e869f2a23702",
+      "bom-ref": "urn:uuid:21fc2769-a33b-445b-9f75-ac1f81ddba40",
       "id": "CVE-2022-41725",
       "source": {
         "name": "nvd-cpe",
@@ -2869,7 +2869,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:679d1356-6381-4b6d-acd8-7a8582c4c11c",
+      "bom-ref": "urn:uuid:365cb402-9a1a-4536-adde-cacf0b7cf2ab",
       "id": "CVE-2023-24531",
       "source": {
         "name": "nvd-cpe",
@@ -2917,7 +2917,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f250dd30-9ac6-4217-a4db-d97abca30a98",
+      "bom-ref": "urn:uuid:06ff6292-365a-4aaa-a109-7af8a746521c",
       "id": "CVE-2023-24532",
       "source": {
         "name": "nvd-cpe",
@@ -2962,7 +2962,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:968980c0-7961-48a6-b664-b08d214bd99c",
+      "bom-ref": "urn:uuid:487a1ccb-f1a8-405a-b4aa-118a00dde89c",
       "id": "CVE-2023-24534",
       "source": {
         "name": "nvd-cpe",
@@ -3013,7 +3013,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:a9b9bb8c-793b-41b5-884c-2c7309e84128",
+      "bom-ref": "urn:uuid:59ff5d54-6f79-4d2c-a202-73a87cce4763",
       "id": "CVE-2023-24536",
       "source": {
         "name": "nvd-cpe",
@@ -3070,7 +3070,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:7bf0aee8-99e6-4809-a2b2-12936ed2f073",
+      "bom-ref": "urn:uuid:64d819be-764c-4f78-a8c8-a2d5ab703bf3",
       "id": "CVE-2023-24537",
       "source": {
         "name": "nvd-cpe",
@@ -3118,7 +3118,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ce7eaff4-3e63-4055-a6bb-3565e9f750e9",
+      "bom-ref": "urn:uuid:f688255d-1009-415c-ba80-a2ac3443a774",
       "id": "CVE-2023-24538",
       "source": {
         "name": "nvd-cpe",
@@ -3166,7 +3166,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:38da1919-8f73-47a3-af2c-ad071c6d7b50",
+      "bom-ref": "urn:uuid:9eedb1f9-0148-41f5-8e56-a7d306615bd0",
       "id": "CVE-2023-24539",
       "source": {
         "name": "nvd-cpe",
@@ -3211,7 +3211,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:da179c42-1ad0-4080-b3b9-eec6156a649d",
+      "bom-ref": "urn:uuid:b421fcdb-5841-4315-ae50-80e4a5c4be22",
       "id": "CVE-2023-24540",
       "source": {
         "name": "nvd-cpe",
@@ -3256,7 +3256,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:62b9950b-16fe-4470-a6f4-87d4de4815a7",
+      "bom-ref": "urn:uuid:58b56426-a96c-4bcc-bda7-f9d5624df616",
       "id": "CVE-2023-29400",
       "source": {
         "name": "nvd-cpe",
@@ -3301,7 +3301,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9ca223cd-3b58-4038-896b-071ca645addd",
+      "bom-ref": "urn:uuid:148e3c9c-7fdb-44b6-8095-0e9cf57c8a28",
       "id": "CVE-2023-29402",
       "source": {
         "name": "nvd-cpe",
@@ -3355,7 +3355,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:d33838c5-50aa-4181-bf2d-e35bd8df038f",
+      "bom-ref": "urn:uuid:148f2eed-1c37-41c2-a313-6f88e08787c9",
       "id": "CVE-2023-29403",
       "source": {
         "name": "nvd-cpe",
@@ -3409,7 +3409,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:3b095e2c-f8f9-4ec2-bc5c-9d93305f8b98",
+      "bom-ref": "urn:uuid:6beb6a24-2e06-4b7e-8aa4-ba55c5add541",
       "id": "CVE-2023-29404",
       "source": {
         "name": "nvd-cpe",
@@ -3463,7 +3463,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1ccf69de-b587-46e8-bcc8-db0a3c844d23",
+      "bom-ref": "urn:uuid:8d486712-4c06-4836-a3c0-a5fa23badd45",
       "id": "CVE-2023-29405",
       "source": {
         "name": "nvd-cpe",
@@ -3517,7 +3517,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:6a06a24a-a3d9-482b-bbf9-107539be764d",
+      "bom-ref": "urn:uuid:9d4209f8-d7f8-4bc5-be34-7967c30a0416",
       "id": "CVE-2023-29406",
       "source": {
         "name": "nvd-cpe",
@@ -3568,7 +3568,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f361c1a4-45a1-4d0b-bdc1-4f9e42adafba",
+      "bom-ref": "urn:uuid:6d3347e4-c132-4b2b-8953-0da736999967",
       "id": "CVE-2023-29409",
       "source": {
         "name": "nvd-cpe",
@@ -3619,7 +3619,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e83448fe-3636-409d-a960-37cff426978a",
+      "bom-ref": "urn:uuid:941a4247-1230-4f53-b4dc-8ed4e6282747",
       "id": "CVE-2023-39318",
       "source": {
         "name": "nvd-cpe",
@@ -3670,7 +3670,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:74934cf7-4aa8-4aea-b1e2-705ead4436e6",
+      "bom-ref": "urn:uuid:b25189e9-044c-48e1-afc1-554707962f7c",
       "id": "CVE-2023-39319",
       "source": {
         "name": "nvd-cpe",
@@ -3721,7 +3721,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:944f17ae-62b1-4173-bcd5-c375ae91cb12",
+      "bom-ref": "urn:uuid:75e78a93-f1cf-4381-b8af-1e27efc851f7",
       "id": "CVE-2023-39323",
       "source": {
         "name": "nvd-cpe",
@@ -3781,7 +3781,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8957977f-b6bb-4929-b723-abb3886bd7cd",
+      "bom-ref": "urn:uuid:17ca07fa-53bf-4047-a205-cf04f967b564",
       "id": "CVE-2023-39326",
       "source": {
         "name": "nvd-cpe",
@@ -3829,7 +3829,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:f7c83348-7be6-4a15-82e9-2d8dedea6cc3",
+      "bom-ref": "urn:uuid:d6c950c1-e567-4983-b9ee-426e9d99d5db",
       "id": "CVE-2023-44487",
       "source": {
         "name": "nvd-cpe",
@@ -4288,7 +4288,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1d70bd27-9b5c-4713-bdcf-48bfa85cdc8c",
+      "bom-ref": "urn:uuid:cac113f7-d232-4525-a93e-0568f88fbdb2",
       "id": "CVE-2023-45285",
       "source": {
         "name": "nvd-cpe",
@@ -4336,7 +4336,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:2ec49a63-a71f-4870-a8e6-e6fed6d2b6a8",
+      "bom-ref": "urn:uuid:01d4c33c-bcc7-4a28-aa29-746b126c6913",
       "id": "CVE-2023-45287",
       "source": {
         "name": "nvd-cpe",
@@ -4387,7 +4387,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:fefcd459-b029-4f84-beea-a8ae435b121d",
+      "bom-ref": "urn:uuid:9311d401-25ba-4135-8689-b0db5d4f9ef4",
       "id": "CVE-2023-45288",
       "source": {
         "name": "nvd-cpe",
@@ -4444,7 +4444,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:73d7cafe-7152-409b-a3ba-63859b7ebbdc",
+      "bom-ref": "urn:uuid:989d77ac-a691-49c7-acd6-a6bb93d129d8",
       "id": "CVE-2023-45289",
       "source": {
         "name": "nvd-cpe",
@@ -4492,7 +4492,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:04cb0640-485a-496e-8cf6-31e768bf2fca",
+      "bom-ref": "urn:uuid:02a9c538-c969-47fe-9d2e-91caf8ba60ff",
       "id": "CVE-2023-45290",
       "source": {
         "name": "nvd-cpe",
@@ -4540,7 +4540,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:10997cc4-7ca4-4619-a056-00fcf31b71b4",
+      "bom-ref": "urn:uuid:959321d4-55b1-42ae-8cfc-cc6fa54528bf",
       "id": "CVE-2024-24783",
       "source": {
         "name": "nvd-cpe",
@@ -4588,7 +4588,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:c31d0135-df3a-4d19-951f-6b360644a76a",
+      "bom-ref": "urn:uuid:8f52574f-27a5-4df6-8f37-cc2d4bd54d65",
       "id": "CVE-2024-24784",
       "source": {
         "name": "nvd-cpe",
@@ -4639,7 +4639,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5bcbdbac-7cb6-4e82-bb19-63a0ad9cb9a1",
+      "bom-ref": "urn:uuid:8b2d284f-cb23-4c16-aaea-fd5f3b6d1032",
       "id": "CVE-2024-24785",
       "source": {
         "name": "nvd-cpe",
@@ -4687,7 +4687,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5a735cd6-495c-49e5-bd5d-11d3388464fc",
+      "bom-ref": "urn:uuid:058fb6ed-034f-4fed-82a5-faf476810177",
       "id": "CVE-2024-24787",
       "source": {
         "name": "nvd-cpe",
@@ -4738,7 +4738,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9e9d53a3-4957-493b-8538-1aa4b531cb2e",
+      "bom-ref": "urn:uuid:9ebe0a74-7e0a-425e-a331-fadc9ecf2447",
       "id": "CVE-2024-24789",
       "source": {
         "name": "nvd-cpe",
@@ -4795,7 +4795,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:5bbe197c-bb39-4324-89f7-28a4185c08a4",
+      "bom-ref": "urn:uuid:e8135ba7-3459-4816-9924-5194f2a09a30",
       "id": "CVE-2024-24790",
       "source": {
         "name": "nvd-cpe",
@@ -4849,7 +4849,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:1c3f28f1-d1e0-4223-987a-dbfdc5a2ac66",
+      "bom-ref": "urn:uuid:515458be-6a52-4214-90b4-3045f2f60e9a",
       "id": "CVE-2024-24791",
       "source": {
         "name": "nvd-cpe",
@@ -4894,7 +4894,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:cd338cb0-5629-493a-91c9-c0ae3b935db6",
+      "bom-ref": "urn:uuid:995b69e2-edff-4d64-8bdf-e22bfc339490",
       "id": "CVE-2024-34155",
       "source": {
         "name": "nvd-cpe",
@@ -4936,7 +4936,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:8d9fc58a-5f31-4a16-90e1-ac08e7a7aacd",
+      "bom-ref": "urn:uuid:1c243f10-b744-4f4c-995f-cb7bb7605e87",
       "id": "CVE-2024-34156",
       "source": {
         "name": "nvd-cpe",
@@ -4981,7 +4981,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e7205551-6ee1-4163-9521-434c60765695",
+      "bom-ref": "urn:uuid:7eb12216-a8f6-4dcb-8f59-3a27e8d05cdb",
       "id": "CVE-2024-34158",
       "source": {
         "name": "nvd-cpe",

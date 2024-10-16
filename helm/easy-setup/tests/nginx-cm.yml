@@ -1,0 +1,8 @@
+# Copyright 2024 New Vector Ltd
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+data:
+  # we need this for all our path prefixs with dots, like `.well-known  `
+  strict-validate-path-type: "false"
