@@ -13,6 +13,9 @@ global
     # https://github.com/haproxy/haproxy/issues/1743
     tune.maxrewrite 4096
 
+    # Allow HAProxy Stats sockets
+    stats socket ipv4@127.0.0.1:1999 level admin
+
 defaults
     mode http
     fullconn 20000
@@ -72,6 +75,10 @@ defaults
     #        monitoring requests which match the "monitor fail" condition
     #
     errorfile 503 /usr/local/etc/haproxy/429.http
+
+    # Use a consistent hashing scheme so that worker with balancing going down doesn't cause
+    # the traffic for all others to be shuffled around.
+    hash-type consistent sdbm
 
 resolvers kubedns
     parse-resolv-conf
@@ -201,21 +208,7 @@ backend {{ type }}
     # return the initial sync.
     timeout server 180s
 
-    # limit the frequency with which users can do initial syncs
-    #
-    # this is essentially a workaround for the fact that huge initialsyncs take
-    # ages to serialise (https://github.com/matrix-org/synapse/issues/6998),
-    # causing replication to be starved of CPU.
-    #
-    stick-table type string len 180 size 10k expire 10m store http_req_rate(10m)
-
-    # Track only for full initalsyncs, room based syncs can go through.
-    # note the match is for a substring, not a regex, despite the /regex/ style format.
-    http-request track-sc0 hdr(X-Access-Token) if !{ path_sub "/rooms/" } !{ sc_http_req_rate(0) gt 5 }
-
-    # If header doesn't exist it will round robin requests,
-    # though in that case they should all just be 4xx'd due
-    # to lack of access token.
+    # Balance on hash of access token
     balance hdr(X-Access-Token)
 
     # limit the number of concurrent requests to each synchrotron,
@@ -223,9 +216,20 @@ backend {{ type }}
     default-server maxconn 50
 
 {% elif type in ["sliding-sync", "synchrotron"] %}
-    stick-table type string len 180 size 50k expire 30m
-    stick on hdr(X-Access-Token)
-    balance leastconn
+    # Balance on the hash of the access token.
+    # When using stick tables, the stickiness only takes effect once the backend
+    # has responded at least once. If a user keeps timing out on their first
+    # incremental sync in a while, then they will keep 'bouncing' around
+    # different synchrotrons, preventing their sync from making progress.
+    #
+    # We can still use stick tables to ensure that once a client gets assigned
+    # to a Synchrotron it stays on that worker, allowing us to rebalance the
+    # pool without moving existing sessions.
+    #
+    # If the header doesn't exist it will round robin requests,
+    # though in that case they should all just be 4xx'd due
+    # to lack of an access token.
+    balance hdr(X-Access-Token)
 
     # synchrotrons are long-polled, so we need to allow many
     # concurrent connections.

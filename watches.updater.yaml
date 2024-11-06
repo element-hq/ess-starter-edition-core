@@ -15,8 +15,6 @@
     element_operator_crds:
       - kind: ElementWeb
         api_version: matrix.element.io/v1alpha1
-      - kind: MatrixContentScanner
-        api_version: matrix.element.io/v1alpha1
       - kind: Synapse
         api_version: matrix.element.io/v1alpha2
       - kind: WellKnownDelegation

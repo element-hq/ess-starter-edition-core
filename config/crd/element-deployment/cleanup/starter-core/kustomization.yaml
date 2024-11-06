@@ -19,11 +19,6 @@ patches:
     metadata:
       name: elementWeb
     $patch: delete
-  - |
-    kind: KustomizeSchema
-    metadata:
-      name: matrixContentScanner
-    $patch: delete
   - |-
     kind: KustomizeSchema
     metadata:
@@ -59,11 +54,6 @@ patches:
     kind: KustomizeSchema
     metadata:
       name: k8s-storage
-    $patch: delete
-  - |-
-    kind: KustomizeSchema
-    metadata:
-      name: k8s-storage-pvc-template
     $patch: delete
   - |-
     kind: KustomizeSchema

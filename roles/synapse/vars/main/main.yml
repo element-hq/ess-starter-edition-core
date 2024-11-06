@@ -6,12 +6,10 @@
 ---
 synapse_workers: "{{ config.workers | default([]) }}"
 synapse_appservices_registrations: "{{ config.application_services_registrations | default([]) }}"
-synapse_configured_workers: "{{ dict(synapse_workers | selectattr('instances', 'defined')
-                                                     | selectattr('instances', '>', 0)
-                                                     | groupby('type')
+synapse_configured_workers: "{{ dict(synapse_workers | groupby('type')
                                                      | rejectattr('1.1', 'defined')
                                                      | map('flatten')) }}"  # The rejectattr removes all types where there's more than 1 item in the list
-has_any_workers: "{{ (synapse_configured_workers.values() | sum(attribute='instances')) > 0 }}"
+has_any_workers: "{{ (synapse_configured_workers.keys() | length) > 0 }}"
 
 # Create a dict of each worker type: false
 # Create a dict of present worker types: true
@@ -28,6 +26,8 @@ synapse_stream_writer_worker_types: >-
 # static workers config that can't be tweaked by the user.
 # user-controllable config like caches should be specified by the
 # user in the main or worker config of the CustomResource.
+#
+# please keep that in sync with changes done here.
 synapse_available_worker_types:
   appservice:
     app: generic_worker

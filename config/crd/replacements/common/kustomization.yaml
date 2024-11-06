@@ -1,4 +1,4 @@
-# Copyright 2023 New Vector Ltd
+# Copyright 2023-2024 New Vector Ltd
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -14,7 +14,6 @@ resources:
   - ingress.yaml
   - kustomization.yaml
   - matrix-server.yaml
-  - persistent-volume-claim-template.yaml
   - pods-security-context.yaml
   - postgres-golang.yaml
   - postgres-libpq.yaml

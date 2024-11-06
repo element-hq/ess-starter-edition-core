@@ -12,10 +12,6 @@ patches:
     target:
       kind: CustomResourceDefinition
       name: elementdeployments.matrix.element.io
-  - path: matrix_content_scanner.yaml
-    target:
-      kind: CustomResourceDefinition
-      name: elementdeployments.matrix.element.io
   - path: synapse.yaml
     target:
       kind: CustomResourceDefinition

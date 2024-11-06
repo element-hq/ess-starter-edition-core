@@ -7,15 +7,15 @@ apiVersion: v2
 name: ess-meta
 description: A Helm chart to deploy ESS easily
 type: application
-version: 2.20.2
-appVersion: "2.20.2"
+version: 2.21.1
+appVersion: "2.21.1"
 dependencies:
   - name: ess-stack
     repository: https://element-hq.github.io/ess-starter-edition-core
-    version: 2.20.2
+    version: 2.21.1
   - name: ess-system
     repository: https://element-hq.github.io/ess-starter-edition-core
-    version: 2.20.2
+    version: 2.21.1
   - name: postgresql
     version: 13.2.24
     repository: https://charts.bitnami.com/bitnami

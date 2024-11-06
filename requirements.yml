@@ -19,19 +19,19 @@ collections:
 - name: community.postgresql
   source: https://github.com/ansible-collections/community.postgresql.git
   type: git
-  version: "3.4.0"
+  version: "3.6.1"
 - name: community.general
   source: https://github.com/ansible-collections/community.general.git
   type: git
-  version: "8.3.0"
+  version: "9.4.0"
 - name: ansible.utils
-  source: https://github.com/ansible-collections/ansible.utils.git,v3.1.0
+  source: https://github.com/element-hq/ansible.utils,gaelg/fix-keep-keys-keeping-wrong-lists
   type: git
 - name: ansible.posix
   source: https://github.com/ansible-collections/ansible.posix.git
   type: git
-  version: "1.5.4"
+  version: "1.6.0"
 - name: community.crypto
   source: https://github.com/ansible-collections/community.crypto
   type: git
-  version: "2.17.1"
+  version: "2.22.1"

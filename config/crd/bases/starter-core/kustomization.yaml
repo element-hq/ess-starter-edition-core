@@ -5,6 +5,5 @@
 
 resources:
   - matrix.element.io_elementwebs.yaml
-  - matrix.element.io_matrixcontentscanners.yaml
   - matrix.element.io_synapses.yaml
   - matrix.element.io_wellknowndelegations.yaml

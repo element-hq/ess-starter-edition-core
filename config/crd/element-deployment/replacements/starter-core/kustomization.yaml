@@ -10,14 +10,12 @@ resources:
   - ../../../default-resources/starter-core
   - ../../base/starter-core
   - element_web.yaml
-  - matrix_content_scanner.yaml
   - synapse.yaml
   - well_known_delegation.yaml
   - global.yaml
   - k8s-common.yaml
   - k8s-ingresses.yaml
   - k8s-monitoring.yaml
-  - k8s-storage-pvc-template.yaml
   - k8s-storage.yaml
   - k8s-workloads.yaml
   - k8s-workloads-resources.yaml
@@ -83,7 +81,6 @@ replacements:
           name: elementdeployments.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.common
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.common
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.common
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.common
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.wellKnownDelegation.properties.k8s.properties.common
@@ -119,18 +116,7 @@ replacements:
           kind: CustomResourceDefinition
           name: elementdeployments.matrix.element.io
         fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.storage
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.storage
-  - source:
-      kind: KustomizeSchema
-      name: k8s-storage-pvc-template
-      fieldPath: spec.schema
-    targets:
-      - select:
-          kind: CustomResourceDefinition
-          name: elementdeployments.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.storage
   - source:
       kind: KustomizeSchema
       name: k8s-workloads
@@ -141,9 +127,6 @@ replacements:
           name: elementdeployments.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.workloads
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.workloads
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.icap.properties.workloads
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.haproxy.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.redis.properties.workloads
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.synapse.properties.workloads
@@ -158,16 +141,6 @@ replacements:
           name: elementdeployments.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.config
-  - source:
-      kind: KustomizeSchema
-      name: matrixContentScanner
-      fieldPath: spec.schema
-    targets:
-      - select:
-          kind: CustomResourceDefinition
-          name: elementdeployments.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.config
   - source:
       kind: KustomizeSchema
       name: synapse
@@ -208,9 +181,6 @@ replacements:
           name: elementdeployments.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.elementWeb.properties.k8s.properties.workloads.properties.resources
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.clamAntiVirus.properties.workloads.properties.resources
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.icap.properties.workloads.properties.resources
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.matrixContentScanner.properties.k8s.properties.matrixContentScanner.properties.workloads.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.config.properties.workers.items.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.haproxy.properties.workloads.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.components.properties.synapse.properties.k8s.properties.redis.properties.workloads.properties.resources

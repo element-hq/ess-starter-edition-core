@@ -5,7 +5,7 @@
 
 
 element-operator:
-  deployManager: false
+  deployManager: true
 
 element-updater:
-  deployManager: false
+  deployManager: true

@@ -44,11 +44,6 @@ patches:
   - |-
     kind: KustomizeSchema
     metadata:
-      name: persistent-volume-claim-template-starter-core
-    $patch: delete
-  - |-
-    kind: KustomizeSchema
-    metadata:
       name: postgres-golang-starter-core
     $patch: delete
   - |-

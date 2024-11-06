@@ -21,11 +21,8 @@ replacements:
           kind: CustomResourceDefinition
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.containersSecurityContext
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.clamAntiVirus.properties.containersSecurityContext
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.containersSecurityContext
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.haproxyContainersSecurityContext
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.icap.properties.containersSecurityContext
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixContentScanner.properties.containersSecurityContext
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.redisContainersSecurityContext
   - source:
       kind: KustomizeSchema
@@ -48,18 +45,9 @@ replacements:
           # TODO : Synapse uses a different schema at the moment
           - kind: CustomResourceDefinition
             name: synapses.matrix.element.io
-          - kind: CustomResourceDefinition
-            name: matrixcontentscanners.matrix.element.io
           - namespace: enterprise
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image
-      - select:
-          kind: CustomResourceDefinition
-          name: matrixcontentscanners.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.clamAntiVirus
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.icap
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.image.properties.matrixContentScanner
   - source:
       kind: KustomizeSchema
       name: ingress
@@ -83,10 +71,7 @@ replacements:
           kind: CustomResourceDefinition
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.resources
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.clamAntiVirus.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.haproxyResources
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.icap.properties.resources
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixContentScanner.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.redisResources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.resources
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.workers.items.properties.resources
@@ -104,18 +89,6 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.defaultMatrixServer
   - source:
       kind: KustomizeSchema
-      name: persistent-volume-claim-template
-      fieldPath: spec.schema
-    targets:
-      - reject:
-          - namespace: enterprise
-        select:
-          kind: CustomResourceDefinition
-          name: matrixcontentscanners.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.caching.properties.persistentVolumeClaimTemplate
-  - source:
-      kind: KustomizeSchema
       name: pods-security-context
       fieldPath: spec.schema
     targets:
@@ -125,9 +98,7 @@ replacements:
           kind: CustomResourceDefinition
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.api.properties.podSecurityContext
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.clamAntiVirus.properties.podSecurityContext
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.haproxyPodSecurityContext
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.matrixContentScanner.properties.podSecurityContext
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.podSecurityContext
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.config.properties.redisPodSecurityContext
   - source:
@@ -162,8 +133,6 @@ replacements:
           - namespace: enterprise
           - kind: CustomResourceDefinition
             name: synapses.matrix.element.io
-          - kind: CustomResourceDefinition
-            name: matrixcontentscanners.matrix.element.io
         fieldPaths:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads
       - select:
@@ -173,11 +142,4 @@ replacements:
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.haproxy
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.redis
           - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.synapse
-      - select:
-          kind: CustomResourceDefinition
-          name: matrixcontentscanners.matrix.element.io
-        fieldPaths:
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.clamAntiVirus
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.icap
-          - spec.versions.0.schema.openAPIV3Schema.properties.spec.properties.workloads.properties.matrixContentScanner
   - path: default-resources-replacements.yaml

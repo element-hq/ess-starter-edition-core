@@ -12,16 +12,6 @@
   vars:
     _kind: ElementWeb
     _api_version: matrix.element.io/v1alpha1
-- version: v1alpha1
-  group: matrix.element.io
-  kind: MatrixContentScanner
-  playbook: playbooks/any.yml
-  watchAnnotationsChanges: true
-  markUnsafe: true
-  maxRunnerArtifacts: 3
-  vars:
-    _kind: MatrixContentScanner
-    _api_version: matrix.element.io/v1alpha1
 - version: v1alpha2
   group: matrix.element.io
   kind: Synapse

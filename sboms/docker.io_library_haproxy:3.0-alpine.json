@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:fc4a61ec-397e-496f-a1f3-3749691cb63f",
+  "serialNumber": "urn:uuid:6639f93b-bf90-4cfa-bc93-06f643f89578",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-10-15T16:29:16Z",
+    "timestamp": "2024-11-06T12:35:59Z",
     "tools": {
       "components": [
         {
@@ -1959,7 +1959,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:07d27382-8209-404d-9e55-d25ce291e789",
+      "bom-ref": "urn:uuid:876cab33-324f-4ad4-9fcd-c41514c780f4",
       "id": "CVE-2016-2102",
       "source": {
         "name": "nvd-cpe",
@@ -2001,7 +2001,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:0c9d51bf-89f7-4028-a1c2-7d4b94092fed",
+      "bom-ref": "urn:uuid:13552fd3-2372-4384-8fdf-4f3d6cb2a5f6",
       "id": "CVE-2023-0056",
       "source": {
         "name": "nvd-cpe",
@@ -2033,6 +2033,70 @@
       "affects": [
         {
           "ref": "pkg:generic/haproxy@3.0.5?package-id=72843505ca23c788"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:cb1b89f7-b7e2-42fd-a135-a56de590fc05",
+      "id": "CVE-2024-9143",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-9143",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:b6090ff7-829f-49cd-bcbb-3feb5f0fe8e9",
+      "id": "CVE-2024-9143",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-9143",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be"
         }
       ]
     }

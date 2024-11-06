@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-FROM python:3.11-slim-bookworm AS build
+FROM python:3.12-slim-bookworm AS build
 RUN apt --yes update && apt --yes install git curl libc-bin && \
     ls -l /usr/lib/locale
 
@@ -14,7 +14,7 @@ RUN apt update && apt install -y git make && \
     cd /workspace && \
     git clone https://github.com/element-hq/ansible-operator-plugins.git && \
     cd ansible-operator-plugins && \
-    git checkout v1.35.0-mark-unsafe-non-spec-object-main && \
+    git checkout element && \
     make build/ansible-operator && \
     mv ./ansible-operator /usr/local/bin/ansible-operator && \
     chmod +x /usr/local/bin/ansible-operator && /usr/local/bin/ansible-operator version
@@ -72,7 +72,7 @@ FROM gcr.io/distroless/python3-debian12 AS base
 ARG GIT_COMMIT=devel
 LABEL git_commit=$GIT_COMMIT
 
-COPY --from=base-builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=base-builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=base-builder /etc/ansible /etc/ansible
 COPY --from=base-builder /ansible /ansible
 COPY --from=base-builder /usr/local/bin /usr/local/bin

@@ -70,15 +70,17 @@
   - name: "Assert supporter number of workers"
     ansible.builtin.assert:
       that:
-      - "item.instances is defined"
       - "item.instances > 0"
-      - "(synapse_available_worker_types[item.type].single and item.instances == 1) or not synapse_available_worker_types[item.type].single"
-      fail_msg: "spec.config.workers of type={{ item.type }} must correctly set instances number. \
+      # If instances, ensure if single we have only one instance
+      - (not synapse_available_worker_types[item.type].single or
+        (synapse_available_worker_types[item.type].single and item.instances == 1))
+      fail_msg: "spec.config.workers of type={{ item.type }} must correctly set instances. \
         single={{ synapse_available_worker_types[item.type].single }} for type={{ item.type }}"
+    when: "item.instances is defined"
     loop: "{{ synapse_workers }}"
     register: assertions
   rescue:
-  - name: "Assert supporter number of workers failed"
+  - name: "Assert supported number of workers failed"
     ansible.builtin.fail:
       msg: "{{ assertions.results | selectattr('failed', 'eq', true) | map(attribute='msg') | join('\n') }}"
 

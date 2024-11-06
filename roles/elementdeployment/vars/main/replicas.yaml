@@ -5,10 +5,6 @@
 schema_has_replicas:
   elementWeb:
     main: true
-  matrixContentScanner:
-    clamAntiVirus: true
-    icap: false
-    matrixContentScanner: true
   synapse:
     haproxy: true
     redis: false

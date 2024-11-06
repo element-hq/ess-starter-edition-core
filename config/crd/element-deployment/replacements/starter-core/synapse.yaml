@@ -139,6 +139,7 @@ spec:
               description: Number of instances of this worker type
               type: integer
               default: 1
+              minimum: 1
             additional:
               default: ''
               description: Arbitrary extra config to inject into the Synapse worker configuration as a YAML string

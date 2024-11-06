@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:bbbfff02-4373-4884-b6cd-2cfc34ef0398",
+  "serialNumber": "urn:uuid:ed396be5-34eb-4b13-b558-672cff4a43c5",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-10-15T16:30:15Z",
+    "timestamp": "2024-11-06T12:36:37Z",
     "tools": {
       "components": [
         {
@@ -5782,7 +5782,7 @@
   ],
   "vulnerabilities": [
     {
-      "bom-ref": "urn:uuid:157cb344-39dd-4aa0-84fb-5c342425ad38",
+      "bom-ref": "urn:uuid:5cdec12a-23a0-45a6-a583-b27f2f9ad662",
       "id": "CVE-2024-24791",
       "source": {
         "name": "nvd-cpe",
@@ -5827,7 +5827,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:e7fa975b-a1ea-4e43-a809-ff9e36a3c3b7",
+      "bom-ref": "urn:uuid:1cba32bd-f016-4a47-8a8c-16f7ccbef3f0",
       "id": "CVE-2024-34155",
       "source": {
         "name": "nvd-cpe",
@@ -5844,7 +5844,10 @@
       ],
       "ratings": [
         {
-          "severity": "unknown"
+          "score": 4.3,
+          "severity": "medium",
+          "method": "CVSSv31",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"
         }
       ],
       "description": "Calling any of the Parse functions on Go source code which contains deeply nested literals can cause a panic due to stack exhaustion.",
@@ -5869,7 +5872,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:ae09490e-e101-4c40-b94f-817131616f0b",
+      "bom-ref": "urn:uuid:68cab19e-6679-44b7-a2ff-bcf3900ba779",
       "id": "CVE-2024-34156",
       "source": {
         "name": "nvd-cpe",
@@ -5914,7 +5917,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:9458f67c-9ba8-4f4b-bb60-6bb8e2806a70",
+      "bom-ref": "urn:uuid:25a9db35-388a-444a-a7a5-ea1dec20cddb",
       "id": "CVE-2024-34158",
       "source": {
         "name": "nvd-cpe",
@@ -5959,7 +5962,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:46afe723-c5fa-43c0-909b-0bf693cd5a82",
+      "bom-ref": "urn:uuid:db60bf9f-c583-4829-927c-05a343679394",
       "id": "GHSA-c5q2-7r4c-mv6g",
       "source": {
         "name": "github-language-go",
@@ -5995,7 +5998,7 @@
       ]
     },
     {
-      "bom-ref": "urn:uuid:bcc6a8b1-1a3a-4c92-b422-0bb47fd2baeb",
+      "bom-ref": "urn:uuid:fa6ab040-fffe-4b1e-a4df-5b5fe657e651",
       "id": "GHSA-xr7q-jx4m-x55m",
       "source": {
         "name": "github-language-go",

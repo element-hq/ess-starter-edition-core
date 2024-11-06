@@ -557,6 +557,7 @@ spec:
                           instances:
                             default: 1
                             description: Number of instances of this worker type
+                            minimum: 1
                             type: integer
                           resources:
                             default: {}
@@ -1416,6 +1417,7 @@ spec:
                           instances:
                             default: 1
                             description: Number of instances of this worker type
+                            minimum: 1
                             type: integer
                           resources:
                             default: {}

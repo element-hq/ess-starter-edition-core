@@ -137,9 +137,9 @@ spec:
 {% if (selected_components_with_appservices
       + components.synapse.config.external_appservices.config_maps
       + components.synapse.config.external_appservices.files.keys() | list) | length > 0
-      or components.synapse.config.workers | length > 0 %}
+      or _matrix_element_io_elementdeployment_spec.components.synapse.config.workers | length > 0 %}
     workers:
-{% for worker in components.synapse.config.workers | default([]) %}
+{% for worker in _matrix_element_io_elementdeployment_spec.components.synapse.config.workers | default([]) %}
       - type: {{ worker.type }}
         instances: {{ worker.instances }}
         resources:

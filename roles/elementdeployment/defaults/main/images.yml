@@ -7,30 +7,17 @@ default_images_digests:
     element_web:
       image_repository_server: docker.io
       image_repository_path: vectorim/element-web
-      image_tag: v1.11.81
+      image_tag: v1.11.82
   kube_rbac_proxy:
     kube_rbac_proxy:
       image_repository_server: quay.io
       image_repository_path: brancz/kube-rbac-proxy
       image_tag: v0.18.0
-  matrix_content_scanner:
-    icap:
-      image_repository_server: ghcr.io
-      image_repository_path: element-hq/docker-icap
-      image_tag: core-0.6.3-modules-0.5.7
-    clam_anti_virus:
-      image_repository_server: ghcr.io
-      image_repository_path: element-hq/docker-clamav
-      image_tag: "1.3.1-60"
-    matrix_content_scanner:
-      image_repository_server: docker.io
-      image_repository_path: vectorim/matrix-content-scanner
-      image_tag: v1.1.0
   synapse:
     haproxy:
       image_repository_server: docker.io
       image_repository_path: library/haproxy
-      image_tag: '3.0-alpine'
+      image_tag: 3.0-alpine
     redis:
       image_repository_server: docker.io
       image_repository_path: library/redis
@@ -38,7 +25,7 @@ default_images_digests:
     synapse:
       image_repository_server: docker.io
       image_repository_path: matrixdotorg/synapse
-      image_tag: v1.114.0
+      image_tag: v1.116.0
   well_known_delegation:
     well_known_delegation:
       image_repository_server: docker.io

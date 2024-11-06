@@ -43,7 +43,7 @@
     has_replication: "{{ synapse_available_worker_types[worker.key].stream_writers | default([]) | length > 0 }}"
     has_http: "{{ synapse_available_worker_types[worker.key].paths | default([]) | length > 0 }}"
     has_media: "{{ worker.key == 'media-repository' }}"
-    num_instances: "{{ worker.value.instances }}"
+    num_instances: "{{ worker.value.instances | default(0) }}"
     can_only_have_one: "{{ synapse_available_worker_types[worker.key].single }}"
 
 - name: Ingress

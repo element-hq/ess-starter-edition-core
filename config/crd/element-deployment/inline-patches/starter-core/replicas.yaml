@@ -10,20 +10,6 @@
     description: The number of Element Web replicas
     minimum: 1
 - op: add
-  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/clamAntiVirus/properties/workloads/properties/replicas'
-  value:
-    type: number
-    description: The number of ClamAV replicas. Can only be 1 for now
-    minimum: 1
-    default: 1
-    maximum: 1
-- op: add
-  path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/matrixContentScanner/properties/k8s/properties/matrixContentScanner/properties/workloads/properties/replicas'
-  value:
-    type: number
-    description: The number of Matrix Content Scanner replicas
-    minimum: 1
-- op: add
   path: '/spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/components/properties/synapse/properties/k8s/properties/haproxy/properties/workloads/properties/replicas'
   value:
     type: number

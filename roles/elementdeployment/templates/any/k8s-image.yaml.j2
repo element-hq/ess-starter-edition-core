@@ -8,22 +8,38 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 # If we have a _subcomponent, we use it for the image details and the workload docker secret
 # If we have a _subcontainer, we use it only for the image details
 # Note : in this pattern, a component cannot have a subcomponent with multiple subcontainers.
+
+# We allow a variety of scenarios:
+# - The imported_images_digests (the ConfigMap) isn't set at all/populated for a given component/subcomponent/subcontainer.
+#   All details (server, path, tag & digest) are in default_images_digests
+# - The imported_images_digests is set for a given component/subcomponent/subcontainer.
+#   - The server, path and tag can all simply fall back to default_images_digests. This allows for either:
+#     - changing just the version from our registry that is pointed to (server & path fall back)
+#     - changing just the server that is pointed to, e.g. if there's a pull-through cache (tag falls back)
+#   - The digest only falls back to default_images_digests in the situation that the tag isn't overridden
+#     as otherwise changing the tag in the ConfigMap isn't enough to change the image used and you'd always
+#     need to also provide an updated digest
+
 {%- set images_digests =  imported_images_digests if (
     _component_item in (imported_images_digests | default({}))
     and (_subcomponent | default(_subcontainer) | default(_component_item)) in (imported_images_digests[_component_item] | default({}))
  ) else default_images_digests %}
 {%- set image_details =  images_digests[_component_item][_subcomponent | default(_subcontainer) | default(_component_item)] %}
+{%- set default_image_details =  default_images_digests[_component_item][_subcomponent | default(_subcontainer) | default(_component_item)] %}
+{%- set image_repository_server = image_details.image_repository_server | default(default_image_details.image_repository_server) %}
+{%- set image_repository_path = image_details.image_repository_path | default(default_image_details.image_repository_path) %}
+{%- set image_tag = image_details.image_tag | default(default_image_details.image_tag) %}
 
 image:
-  repository: "{{ image_details.image_repository_server }}/{{ image_details.image_repository_path }}"
-  tag: "{{ image_details.image_tag }}"
-{% if 'image_digest' in image_details %}
-  digest: "{{ image_details.image_digest }}"
+  repository: "{{ image_repository_server }}/{{ image_repository_path }}"
+  tag: "{{ image_tag }}"
+{% if 'image_digest' in image_details or 'image_tag' not in image_details %}
+  digest: "{{ image_details.image_digest | default(default_image_details.image_digest) }}"
 {% endif %}
 {% if components_k8s_properties.workloads.docker_secrets | default(_global.k8s.workloads.docker_secrets) | default([])
-      | selectattr('url', '==', image_details.image_repository_server) | list | length > 0 %}
+      | selectattr('url', '==', image_repository_server) | list | length > 0 %}
   pullSecrets:
     - name: {{ (components_k8s_properties.workloads.docker_secrets | default(_global.k8s.workloads.docker_secrets)
-                | selectattr('url', '==', image_details.image_repository_server) | first).name
+                | selectattr('url', '==', image_repository_server) | first).name
             }}
 {% endif %}

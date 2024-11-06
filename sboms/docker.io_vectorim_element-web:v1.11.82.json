@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:2ffe1ab9-c562-4f41-8eb3-9c2dd425905e",
+  "serialNumber": "urn:uuid:4facf937-f6fa-4b7a-8e1b-7cc481f36662",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-10-15T16:29:43Z",
+    "timestamp": "2024-11-06T12:36:30Z",
     "tools": {
       "components": [
         {
@@ -17,10 +17,10 @@
       ]
     },
     "component": {
-      "bom-ref": "93393e33f6eca2f2",
+      "bom-ref": "2672a25336fba1ae",
       "type": "container",
-      "name": "docker.io/vectorim/element-web:v1.11.81",
-      "version": "v1.11.81"
+      "name": "docker.io/vectorim/element-web:v1.11.82",
+      "version": "v1.11.82"
     },
     "properties": [
       {
@@ -29,7 +29,7 @@
       },
       {
         "name": "syft:image:labels:org.opencontainers.image.created",
-        "value": "2024-10-15T11:45:58.829Z"
+        "value": "2024-10-22T12:13:06.728Z"
       },
       {
         "name": "syft:image:labels:org.opencontainers.image.description",
@@ -41,7 +41,7 @@
       },
       {
         "name": "syft:image:labels:org.opencontainers.image.revision",
-        "value": "89380ab59ff25277ec2fa0287c9c16275cdf5283"
+        "value": "1df72ce2d047eb4d8149d56b788e3649b46d180c"
       },
       {
         "name": "syft:image:labels:org.opencontainers.image.source",
@@ -57,7 +57,7 @@
       },
       {
         "name": "syft:image:labels:org.opencontainers.image.version",
-        "value": "v1.11.81"
+        "value": "v1.11.82"
       }
     ]
   },
@@ -1833,5 +1833,70 @@
       ]
     }
   ],
-  "vulnerabilities": []
+  "vulnerabilities": [
+    {
+      "bom-ref": "urn:uuid:1f094dbe-344e-4acd-a799-034d39d94f7a",
+      "id": "CVE-2024-9143",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-9143",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libcrypto3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=0bd67c24de5c4187"
+        }
+      ]
+    },
+    {
+      "bom-ref": "urn:uuid:69b76f7b-6bb6-41ed-b51e-21a82ae54464",
+      "id": "CVE-2024-9143",
+      "source": {
+        "name": "alpine-distro-alpine-3.20",
+        "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+      },
+      "references": [
+        {
+          "id": "CVE-2024-9143",
+          "source": {
+            "name": "alpine-distro-alpine-3.20",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+          }
+        }
+      ],
+      "ratings": [
+        {
+          "severity": "unknown"
+        }
+      ],
+      "advisories": [
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2024-9143"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:apk/alpine/libssl3@3.3.2-r0?arch=x86_64&upstream=openssl&distro=alpine-3.20.3&package-id=409f5b93e7b861be"
+        }
+      ]
+    }
+  ]
 }
