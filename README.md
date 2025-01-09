@@ -1,6 +1,10 @@
 <meta name="copyright" value="SPDX-FileCopyrightText:Copyright 2023 New Vector Ltd">
 <meta name="license" value="SPDX-License-Identifier: AGPL-3.0-or-later">
 
+**Element Starter Edition and Starter Edition Core have been discontinued and deprecated with the [24.10 release](https://ems-docs.element.io/books/element-server-suite-documentation-lts-2410/page/ess-lts-2410-change-logs-and-upgrade-notes). There will be no new releases of this distribution and it is recommended to use a different deployment method.**
+
+---
+
 # Element Starter Core
 Copyright 2023 New Vector Ltd
 
