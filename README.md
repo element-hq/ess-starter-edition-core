@@ -5,7 +5,9 @@
 
 **Element Starter Edition and Starter Edition Core have been discontinued and deprecated with the [24.10 release](https://ems-docs.element.io/books/element-server-suite-documentation-lts-2410/page/ess-lts-2410-change-logs-and-upgrade-notes). There will be no new releases of this distribution and it is recommended to use a different deployment method.**
 
-For those wanting an example Matrix 2.0 stack for experimentation purposes, take a look at https://github.com/element-hq/element-docker-demo.
+Check out [ESS Community](https://github.com/element-hq/ess-helm?tab=readme-ov-file), a cutting-edge Matrix distribution including all the latest features of the Matrix server Synapse and other components. It is freely available under the AGPLv3 license and tailored to small-/mid-scale, non-commercial community use cases with up to 100 users. It's designed to easily and quickly set up a Matrix deployment. It comprises the basic components needed to get you running and is a great way to get started.
+
+To get professional support & upgrade to ESS Pro, [contact Element](https://try.element.io/upgrade-ess-community).
 
 ---
 
